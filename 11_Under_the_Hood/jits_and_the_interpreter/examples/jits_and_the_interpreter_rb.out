@@ -1,0 +1,12 @@
+ 1. RUBY_ENGINE                                          "ruby"
+ 2. RUBY_VERSION.start_with?("4.")                       true
+ 3. RubyVM::YJIT.enabled? in this process (no flag)      false
+ 4. child --yjit -e 'puts RubyVM::YJIT.enabled?'         ["true", true]
+ 5. child --version says +YJIT: without / with --yjit    [false, true]
+ 6. RubyVM::YJIT.enable at runtime; enabled?; stats class [true, true, Hash]
+ 7. ZJIT: defined?, enabled? here, child --zjit          ["constant", false, ["true", true]]
+ 8. INSTRUCTION_NAMES has opt_plus, opt_new, leave       [true, true, true]
+ 9. RubyVM.stat(:constant_cache_invalidations): key?, class [true, Integer]
+10. +PRISM here; child --parser=parse.y says +PRISM      [true, ["false", true]]
+11. Process.respond_to?(:warmup) (3.3: tidy up before fork) true
+12. defined?(Ruby::Box) (4.0: an isolated namespace)     "constant"

@@ -1,0 +1,5 @@
+flag               YJIT   ZJIT   PRISM
+(none)             false  false  true
+--yjit             true   false  true
+--zjit             false  true   true
+--parser=parse.y   false  false  false

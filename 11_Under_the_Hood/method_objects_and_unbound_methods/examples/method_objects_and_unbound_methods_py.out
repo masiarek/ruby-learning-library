@@ -1,0 +1,19 @@
+ 1. type(ada.greet).__name__                             'method'
+ 2. call it: m("Hi") -- one spelling                     ['Hi, Ada!']
+ 3. m.__name__, m.__qualname__                           ['greet', 'Greeter.greet']
+ 4. m.__self__, m.__self__ is ada                        [<Greeter Ada>, True]
+ 5. signature(m), parameter kinds                        ["(greeting, punct='!')", ['POSITIONAL_OR_KEYWORD', 'POSITIONAL_OR_KEYWORD']]
+ 6. type(Greeter.greet).__name__, m.__func__ is Greeter.greet ['function', True]
+ 7. Greeter.greet(bob, "Yo"), MethodType(u, bob)("Yo")   ['Yo, Bob!', 'Yo, Bob!']
+ 8. Greeter.greet("a string", "Yo") raises               'AttributeError'
+ 9. Greeter's greet called on a Loud (a subclass) instance 'Hi, Eve!'
+10. eve.greet.__func__.__qualname__, super's             ['Loud.greet', 'Greeter.greet']
+11. super(Loud, eve).greet("Hi")                         'Hi, Eve!'
+12. super(Greeter, eve).greet (nothing above) raises     'AttributeError'
+13. callable(m), ismethod(m), isfunction(m)              [True, True, False]
+14. list(map(ada.greet, ["Hi", "Yo"]))                   ['Hi, Ada!', 'Yo, Ada!']
+15. Greeter.hello.__name__, Greeter.hello is Greeter.greet ['greet', True]
+16. m == ada.greet, m is ada.greet                       [True, False]
+17. type(print).__name__, print.__module__               ['builtin_function_or_method', 'builtins']
+18. type((1).__add__).__name__, (1).__add__(2)           ['method-wrapper', 3]
+19. list(map((1).__add__, [1, 2, 3]))                    [2, 3, 4]

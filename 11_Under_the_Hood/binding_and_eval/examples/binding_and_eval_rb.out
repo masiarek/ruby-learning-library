@@ -1,0 +1,13 @@
+ 1. b = two_locals; b.class, b.local_variables           [Binding, [:a, :b]]
+ 2. b.local_variable_get(:a)                             1
+ 3. eval("a + b", b)                                     3
+ 4. after b.local_variable_set(:a, 10): eval("a * b", b) 20
+ 5. local_variable_set(:c, 3) adds c to the binding      [true, [:a, :b, :c]]
+ 6. in a method, set through a throwaway binding         [nil, false]
+ 7. eval("w = 7", b); b.local_variable_get(:w)           7
+ 8. 3.times { cb.eval("count += 1") }; count             3
+ 9. eval("__method__", b), b.receiver                    [:two_locals, main]
+10. TOPLEVEL_BINDING.receiver, .local_variable_get(:z)   [main, 5]
+11. a lambda's binding: .local_variables, z              [[:z], 5]
+12. ERB.new("a is <%= a %>, b is <%= b %>").result(b)    "a is 10, b is 2"
+13. eval("nope", b) raises                               NameError

@@ -1,0 +1,4 @@
+area       called 3 times
+factor     called 3 times
+initialize called 2 times
+perimeter  called 1 time

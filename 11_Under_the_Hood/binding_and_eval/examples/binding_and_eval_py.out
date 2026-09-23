@@ -1,0 +1,13 @@
+ 1. env = two_locals(); type(env).__name__, sorted(env)  ['dict', ['a', 'b']]
+ 2. env["a"]                                             1
+ 3. eval("a + b", {}, env)                               3
+ 4. after env["a"] = 10: eval("a * b", {}, env)          20
+ 5. env["c"] = 3 adds c to the dict                      [True, ['a', 'b', 'c']]
+ 6. in a function, set through a locals() snapshot       'NameError'
+ 7. exec("w = 7", {}, env); env["w"]                     7
+ 8. exec("count += 1", {}, ce) three times; count        3
+ 9. a frame: f_code.co_name, its f_locals (a dict knows neither) ['frame_demo', ['a', 'b']]
+10. globals()["__name__"], eval("z")                     ['__main__', 5]
+11. a lambda's closure: co_freevars, cell contents       [('z',), [5]]
+12. string.Template("a is $a, b is $b").substitute(env)  'a is 10, b is 2'
+13. eval("nope", {}, env) raises                         'NameError'

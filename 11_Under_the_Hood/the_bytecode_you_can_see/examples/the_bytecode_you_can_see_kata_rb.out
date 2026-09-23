@@ -1,0 +1,6 @@
+x = 5                      -> putobject dup setlocal_WC_0 leave
+x = 5; x + 1               -> putobject setlocal_WC_0 getlocal_WC_0 putobject_INT2FIX_1_ opt_plus leave
+[1, 2].map { |x| x * 2 }   -> duparray send leave
+                              block in <compiled>: getlocal_WC_0 putobject opt_mult leave
+def m(a) = a * 2           -> definemethod putobject leave
+                              m: getlocal_WC_0 putobject opt_mult leave

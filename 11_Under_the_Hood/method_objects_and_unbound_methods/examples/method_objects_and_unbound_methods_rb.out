@@ -1,0 +1,19 @@
+ 1. ada.method(:greet).class                             Method
+ 2. call it: m.call("Hi"), m.("Hi"), m["Hi"]             ["Hi, Ada!", "Hi, Ada!", "Hi, Ada!"]
+ 3. m.name, m.owner                                      [:greet, Greeter]
+ 4. m.receiver, m.receiver.equal?(ada)                   [#<Greeter Ada>, true]
+ 5. m.arity, m.parameters                                [-2, [[:req, :greeting], [:opt, :punct]]]
+ 6. m.unbind.class, == Greeter.instance_method(:greet)   [UnboundMethod, true]
+ 7. u.bind(bob).call("Yo"), u.bind_call(bob, "Yo")       ["Yo, Bob!", "Yo, Bob!"]
+ 8. u.bind("a string") raises                            TypeError
+ 9. Greeter's greet bound to a Loud (a subclass) instance "Hi, Eve!"
+10. eve.method(:greet).owner, .super_method.owner        [Loud, Greeter]
+11. eve.method(:greet).super_method.call("Hi")           "Hi, Eve!"
+12. ...super_method.super_method (nothing above)         nil
+13. m.to_proc.class, m.to_proc.lambda?                   [Proc, true]
+14. %w[Hi Yo].map(&ada.method(:greet))                   ["Hi, Ada!", "Yo, Ada!"]
+15. ada.method(:hello).name, .original_name              [:hello, :greet]
+16. m == ada.method(:greet), m.equal?(ada.method(:greet)) [true, false]
+17. method(:puts).owner, method(:puts).receiver          [Kernel, main]
+18. 1.method(:+).owner, 1.method(:+).call(2)             [Integer, 3]
+19. [1, 2, 3].map(&1.method(:+))                         [2, 3, 4]

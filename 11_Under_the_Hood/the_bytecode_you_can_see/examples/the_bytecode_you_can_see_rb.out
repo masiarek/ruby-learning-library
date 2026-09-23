@@ -1,0 +1,28 @@
+ 1. compile("a = 1 + 2; a * 3"): instruction names       ["putobject_INT2FIX_1_", "putobject", "opt_plus", "setlocal_WC_0", "getlocal_WC_0", "putobject", "opt_mult", "leave"]
+ 2. 1 + 2 is not folded: opt_plus is in the sequence     true
+ 3. iseq.eval                                            9
+ 4. to_a[0] (format magic), label, kind                  ["YARVInstructionSequence/SimpleDataFormat", "<compiled>", :top]
+ 5. InstructionSequence.of(method(:foo)): label, kind, names ["foo", :method, ["getlocal_WC_0", "putobject_INT2FIX_1_", "opt_plus", "leave"]]
+ 6. specialized_instruction: false -> opt_plus becomes send ["putobject_INT2FIX_1_", "putobject", "send", "leave"]
+ 7. to_binary.class, load_from_binary(...).eval          [String, 9]
+ 8. Prism.parse("1 + 2"): success?, value.class, the nodes: [true, Prism::ProgramNode]
+      ProgramNode
+        StatementsNode
+          CallNode
+            IntegerNode
+            ArgumentsNode
+              IntegerNode
+ 9. the CallNode: name, receiver.value, argument values, slice [:+, 1, [2], "1 + 2"]
+10. Prism.parse("a = 1 + 2; a * 3") nodes:               true
+      ProgramNode
+        StatementsNode
+          LocalVariableWriteNode
+            CallNode
+              IntegerNode
+              ArgumentsNode
+                IntegerNode
+          CallNode
+            LocalVariableReadNode
+            ArgumentsNode
+              IntegerNode
+11. RubyVM::AbstractSyntaxTree.parse("1 + 2").type (older API) :SCOPE

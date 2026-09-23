@@ -1,0 +1,31 @@
+ 1. compile("(a := 1 + 2) * 3"): co_names, co_varnames   [('a',), ()]
+ 2. 1 + 2 is folded: BINARY_OP in "1 + 2" / in "a + 2"   [False, True]
+ 3. eval(code)                                           9
+ 4. type(code).__name__, co_name, type(co_code).__name__ ['code', '<module>', 'bytes']
+ 5. foo.__code__: co_name, co_varnames, co_argcount, BINARY_OP ['foo', ('x',), 1, True]
+ 6. optimize=2 drops docstrings: f.__doc__ at 0 / at 2   ['doc', None]
+ 7. marshal.dumps(code).__class__, eval(marshal.loads(...)) ['bytes', 9]
+ 8. ast.parse("1 + 2"): type, body length, the nodes:    ['Module', 1]
+      Module
+        Expr
+          BinOp
+            Constant
+            Add
+            Constant
+ 9. the BinOp: op, left.value, right.value, ast.unparse  ['Add', 1, 2, '1 + 2']
+10. ast.parse("a = 1 + 2; a * 3") nodes:                 True
+      Module
+        Assign
+          Name
+            Store
+          BinOp
+            Constant
+            Add
+            Constant
+        Expr
+          BinOp
+            Name
+              Load
+            Mult
+            Constant
+11. ast.parse("1 + 2", mode="eval") root (one ast, two modes) 'Expression'

@@ -1,0 +1,14 @@
+ 1. gc.collect() returns an int (objects it freed) >= 0  ['int', True]
+ 2. len(gc.get_objects()) grew by >= 1000 after 1000 lists True
+ 3. [isenabled(), after disable(), after enable()]       [True, False, True]
+ 4. any Widget in gc.get_objects() before / after Widget() [False, True]
+ 5. weakref.WeakValueDictionary: "key" in wd, wd["key"] is value [True, True]
+ 6. weakref.ref(w) while w is referenced: alive, r() is w [True, True]
+ 7. after del w: r() is None at once; __del__ already ran [True, ['__del__ ran for a Widget']]
+ 8. weakref.finalize(keep, print, ...): alive, atexit    [True, True]
+ 9. sys.getrefcount: +1 with an alias, back after del    [True, True]
+10. gc.get_stats(): generations, keys of one             [3, ['collected', 'collections', 'uncollectable']]
+11. gc.is_tracked(1), gc.is_tracked("a"), gc.is_tracked([]) [False, False, True]
+12. a cycle survives del; gc.collect() frees it          [True, True, True]
+13. sys.getsizeof("x" * 1000) > 1000                     True
+finalize ran for keep (after the last row: at exit)

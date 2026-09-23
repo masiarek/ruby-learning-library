@@ -1,0 +1,13 @@
+ 1. double(3) traced; helper is not ours                 ('call', 'double', None)
+ 2.                                                      ('call', 'add', None)
+ 3.                                                      ('return', 'add', 6)
+ 4.                                                      ('return', 'double', 6)
+ 5. sys.gettrace() is None after settrace(None)          True
+ 6. events for one add(1, 2): call, line, return         ['call', 'line', 'return']
+ 7. len([1, 2, 3]) is a C function (sys.setprofile)      [('c_call', 'len', 'builtin_function_or_method'), ('c_return', 'len', 'builtin_function_or_method')]
+ 8. 'exception' inside fail_hard, then its 'return'      [('exception', 'fail_hard', 'ValueError'), ('return', 'fail_hard', None)]
+ 9. local trace for add only while double(2) runs        [('call', 'add'), ('return', 'add')]
+10. 'return' carries the value; co_varnames the parameters [('add', 3, ('self', 'a', 'b'))]
+11. Calculator.create(): co_name, the cls local          [('create', 'Calculator')]
+12. calls made inside the trace function are not traced  ['add']
+13. [gettrace() is t after settrace(t), is None after]   [True, True]

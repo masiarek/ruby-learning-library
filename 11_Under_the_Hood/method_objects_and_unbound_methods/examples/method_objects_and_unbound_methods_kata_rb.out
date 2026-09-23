@@ -1,0 +1,5 @@
+greet  from Greeter  required=1 optional=1  bound to #<Greeter Ada>
+greet  from Greeter  required=1 optional=1  unbound
++      from Integer  required=1 optional=0  bound to 1
+puts   from Kernel   required=0 optional=0  bound to main
+push   from Array    required=0 optional=0  unbound

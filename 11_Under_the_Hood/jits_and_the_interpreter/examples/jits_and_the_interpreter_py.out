@@ -1,0 +1,12 @@
+ 1. sys.implementation.name, platform.python_implementation() ['cpython', 'CPython']
+ 2. sys.version_info >= (3, 12)                          True
+ 3. sys.flags.optimize in this process (no flag)         0
+ 4. child -O -c 'print(sys.flags.optimize, __debug__)'   ['1 False', True]
+ 5. flags under -I: isolated, ignore_environment, safe_path [1, 1, True]
+ 6. sys.flags.optimize = 1 at runtime raises             'AttributeError'
+ 7. a JIT switch in sys.flags? hasattr(sys.flags, 'jit') False
+ 8. dis.opmap has BINARY_OP, LOAD_CONST, RETURN_VALUE    [True, True, True]
+ 9. sys.getrecursionlimit(), sys.getswitchinterval()     [1000, 0.005]
+10. one parser: ast root here; child -X oldparser (ignored) ['Module', ['Module', True]]
+11. callable(gc.freeze) (3.7: tidy up before fork)       True
+12. hasattr(sys, 'monitoring') (3.12: the event API)     True

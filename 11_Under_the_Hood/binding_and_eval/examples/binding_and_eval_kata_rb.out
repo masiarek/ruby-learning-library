@@ -1,0 +1,4 @@
+1. render with greeting: and name:   -> "Hello, Ada!"
+2. the clean binding sees no locals  -> []
+3. render("<%= secret %>")           -> NameError
+4. the caller's binding sees secret -> "s3cret"

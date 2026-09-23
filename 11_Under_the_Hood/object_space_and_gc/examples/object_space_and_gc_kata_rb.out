@@ -1,0 +1,5 @@
+1. an empty block allocates nothing:                    true
+2. 100 String.new calls allocate at least 100 objects:  true
+3. 1 + 2 allocates nothing (Integers are immediates):   true
+4. a symbol literal allocates nothing:                  true
+5. [[1], [2], [3]] allocates at least 4 objects:        true

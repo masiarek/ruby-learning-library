@@ -1,0 +1,13 @@
+ 1. double(3) traced; helper is not ours                 [:call, :double, nil]
+ 2.                                                      [:call, :add, nil]
+ 3.                                                      [:return, :add, 6]
+ 4.                                                      [:return, :double, 6]
+ 5. tp.enabled? after the block form                     false
+ 6. events for one add(1, 2): call, line, return         [:call, :line, :return]
+ 7. [1, 2, 3].size is a C method                         [[:c_call, :size, Array], [:c_return, :size, Array]]
+ 8. :raise inside fail_hard                              [[:raise, ArgumentError, :fail_hard]]
+ 9. enable(target: add) while double(2) runs             [[:call, :add], [:return, :add]]
+10. :return carries return_value and parameters          [[:add, 3, [[:req, :a], [:req, :b]]]]
+11. Calculator.create: method_id, singleton_class?, self [[:create, true, Calculator]]
+12. calls made inside the hook are not traced            [:add]
+13. [tp.enable, tp.enabled?, tp.disable, tp.enabled?]    [false, true, true, false]

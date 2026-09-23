@@ -1,0 +1,14 @@
+ 1. GC.count grows after GC.start                        true
+ 2. GC.stat(:total_allocated_objects) grew by >= 1000    true
+ 3. [GC.disable, GC.disable, GC.enable] (previous state) [false, true, true]
+ 4. each_object(Widget).any? before / after Widget.new   [false, true]
+ 5. ObjectSpace::WeakMap: wm.key?(key), wm[key]          [true, "value"]
+ 6. WeakRef while w is referenced: alive?, __getobj__    [true, true]
+ 7. after w = nil; GC.start: alive? is nil or true       true
+ 8. define_finalizer(KEPT, proc) returned [Integer, Proc] [Integer, Proc]
+ 9. count_objects keys :TOTAL, :FREE, :T_STRING (no refcounts) [true, true, true]
+10. GC.stat keys :minor_gc_count, :major_gc_count        [true, true]
+11. 1.object_id == 1.object_id, "a".object_id == "a".object_id [true, false]
+12. GC.latest_gc_info keys :major_by, :gc_by             [true, true]
+13. ObjectSpace.memsize_of("x" * 1000) > 1000            true
+finalizer ran for KEPT (after the last row: at exit)
