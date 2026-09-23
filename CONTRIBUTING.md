@@ -137,11 +137,11 @@ CI's *Show toolchain* step prints what each runner has. Measured differences bet
 | | Ubuntu runner | macOS runner |
 |---|---|---|
 | CPU | x86-64 | arm64 |
-| Ruby | 4.0.x, from `ruby/setup-ruby` | 4.0.x, from `ruby/setup-ruby` |
-| `python3` | 3.12 | 3.14 |
-| `bash` | 5.2 | 3.2 |
+| Ruby | 4.0.7, from `ruby/setup-ruby`, with YJIT | 4.0.7, from `ruby/setup-ruby`, with YJIT |
+| `python3` | 3.12.3 | 3.14.7 |
+| `bash` | 5.2.21 | 3.2.57 |
 
-The keys were recorded on an x86-64 Mac with Ruby 4.0.0 (Homebrew) and Python 3.14, and every Python twin was also run under Python 3.12 there.
+The runner versions are from the first CI run, on 2026-09-23, and all 387 examples printed the same on both. The keys were recorded on an x86-64 Mac with Ruby 4.0.0 (Homebrew) and Python 3.14.7, and every Python twin was also run under Python 3.12 there; the Numbers chapter's platform-sensitive values (`format("%.2f", …)`, `Float#round`, seeded `Random`) were additionally run under `ruby:4.0-slim` on Linux x86-64 and arm64 before recording.
 
 ## Cross-references
 
