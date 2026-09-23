@@ -1,0 +1,7 @@
+counts                     {Word(Ruby) => 3, Word(python) => 2}
+counts[Word.new("rUbY")]   3
+the key kept the first spelling seen:
+counts.keys.map(&:text)    ["Ruby", "python"]
+Word("a").eql?(Word("A"))  true
+same hash?                 true
+as a Set                   Set[Word(Go)]

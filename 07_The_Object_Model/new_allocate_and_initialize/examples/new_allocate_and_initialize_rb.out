@@ -1,0 +1,45 @@
+1. new is allocate, then initialize
+   (initialize(1, 2) runs; self is a Point)
+   Point.new(1, 2)                              #<Point 1,2>
+   Point.method(:new).owner                     Class
+   Point.method(:allocate).owner                Class
+2. initialize is private automatically
+   Point.private_instance_methods(false).sort   [:initialize, :initialize_copy]
+   (initialize(1, 2) runs; self is a Point)
+   pt.initialize(3, 4)                          NoMethodError: private method 'initialize' called for an instance of Point
+   (initialize(3, 4) runs; self is a Point)
+   pt.send(:initialize, 3, 4); pt               #<Point 3,4>
+3. allocate skips initialize
+   Point.allocate                               #<Point nil,nil>
+   blank.instance_variables                     []
+   blank.x                                      nil
+   (initialize(5, 6) runs; self is a Point)
+   blank.send(:initialize, 5, 6); blank         #<Point 5,6>
+4. initialize's return value is ignored
+   (initialize(0, 0) runs; self is a Point)
+   Point.new(0, 0).class                        Point
+5. arguments go straight to initialize
+   Point.new(1)                                 ArgumentError: wrong number of arguments (given 1, expected 2)
+6. overriding self.new: a cache
+   (Color#initialize("red") runs)
+   (Color#initialize("blue") runs)
+   Color.new("red").equal?(Color.new("red"))    true
+   red.equal?(blue)                             false
+7. overriding self.new: a factory
+   Shape.new(:circle, 3)                        #<Circle size=3>
+   Shape.new(:square, 4)                        #<Square size=4>
+   Circle.new(5)                                #<Circle size=5>
+8. initialize_copy runs on dup and clone
+   (initialize(7, 8) runs; self is a Point)
+   (initialize_copy runs, copying #<Point 7,8>)
+   original.dup                                 #<Point 7,8>
+   (initialize_copy runs, copying #<Point 7,8>)
+   original.clone                               #<Point 7,8>
+9. classes with no allocator or no new
+   Integer.allocate                             TypeError: allocator undefined for Integer
+   Integer.new                                  NoMethodError: undefined method 'new' for class Integer
+   NilClass.new                                 NoMethodError: undefined method 'new' for class NilClass
+10. a subclass calls super inside initialize
+   (initialize(1, 2) runs; self is a Point3)
+   Point3.new(1, 2, 3)                          #<Point3 1,2,3>
+   Point3.instance_method(:initialize).arity    3

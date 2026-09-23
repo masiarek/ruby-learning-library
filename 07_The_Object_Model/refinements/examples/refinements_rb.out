@@ -1,0 +1,33 @@
+1. a refinement is a Module holding Refinement objects
+   Shout.class                                    Module
+   Shout.refinements                              [#<refinement:String@Shout>]
+   Shout.refinements.first.class                  Refinement
+   Shout.refinements.first.target                 String
+   Refinement.superclass                          Module
+2. before using: String is untouched
+   "hi".shout                                     NoMethodError
+   "hi".respond_to?(:shout)                       false
+   String.method_defined?(:shout)                 false
+3. after using: the rest of this file sees it
+   "hi".shout                                     HI!
+   "hi".length  (an existing method, replaced)    refined length
+   ["a", "b"].map(&:shout)                        ["A!", "B!"]
+   after_using  (a method written below using)    HI!
+4. the scope is lexical: where code is written, not when it runs
+   before_using  (written above the using line)   NoMethodError
+   a method in a file required after using        NoMethodError
+   eval('"z".shout')  (a string eval'd here)      Z!
+   using inside a method                          RuntimeError: main.using is permitted only at toplevel
+5. what reflection sees inside the scope
+   "hi".respond_to?(:shout)                       true
+   "hi".send(:shout)                              HI!
+   "hi".public_send(:shout)                       HI!
+   "hi".method(:shout).owner                      #<refinement:String@Shout>
+   String.instance_methods.include?(:shout)       false
+   String.method_defined?(:shout)                 false
+   Module.used_modules                            [Shout]
+   Module.used_refinements                        [#<refinement:String@Shout>]
+6. super reaches the original; a refinement sees only what was active where it was written
+   "hi".upcase  (refined; calls super)            politely HI
+   "hi".shout  (its upcase is still the original) HI!
+   Module.used_modules                            [Politely, Shout]

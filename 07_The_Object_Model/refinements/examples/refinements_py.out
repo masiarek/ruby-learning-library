@@ -1,0 +1,33 @@
+1. the two routes: a subclass, or a patch
+   str.shout = ...  (built-in types are closed)   TypeError
+   ShoutStr('hi').shout()                         HI!
+   type(ShoutStr('hi') + '!').__name__            str
+   type(mock.patch.object(Greeter, 'greet', loud)).__name__ _patch
+2. before the patch: Greeter is untouched
+   Greeter().greet()                              hello
+   Greeter.greet is loud                          False
+   hasattr(Greeter, 'shout')                      False
+3. inside the with block: replaced
+   Greeter().greet()                              HELLO
+   [Greeter(), Greeter()] greeted                 ['HELLO', 'HELLO']
+   inside_patch()  (a function written in the block) HELLO
+   Greeter().greet()  after the block             hello
+4. the scope is dynamic: whoever calls while it is active
+   before_patch()  (written above the block)      HELLO
+   other.call(Greeter())  (another module)        HELLO
+   eval('Greeter().greet()')                      HELLO
+   inside_patch()  (called from inside again)     HELLO
+   inside_patch()  (called after the block)       hello
+   decorated()  (the decorator form)              HELLO
+   before_patch()  after decorated() returned     hello
+5. what reflection sees inside the patch
+   hasattr(Greeter(), 'greet')                    True
+   Greeter.greet is loud                          True
+   vars(Greeter)['greet'] is loud  (the class changed) True
+   getattr(Greeter(), 'greet')()                  HELLO
+   Greeter().greet.__func__.__name__              loud
+   Greeter().greet.__func__.__name__  after       greet
+6. the original is kept; a wrapper calls it; built-ins cannot be patched
+   patched greet calling the saved original       politely HELLO
+   Greeter.greet is original  after               True
+   mock.patch.object(str, 'upper', ...)           TypeError

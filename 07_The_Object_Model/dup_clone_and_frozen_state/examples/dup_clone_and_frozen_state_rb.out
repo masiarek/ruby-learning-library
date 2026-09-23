@@ -1,0 +1,50 @@
+1. both copy the instance variables
+   original                                       #<Doc "draft" ["a"]>
+   original.dup                                   #<Doc "draft" ["a"]>
+   original.clone                                 #<Doc "draft" ["a"]>
+   original.dup.equal?(original)                  false
+2. frozen state: dup drops it, clone keeps it
+   original.frozen?                               true
+   original.dup.frozen?                           false
+   original.clone.frozen?                         true
+   original.clone(freeze: false).frozen?          false
+   Doc.new("u", []).clone(freeze: true).frozen?   true
+   original.clone.title = "x"                     FrozenError: can't modify frozen Doc: #<Doc "draft" ["a"]>
+   fresh = original.dup; fresh.title = "copy"     #<Doc "copy" ["a"]>
+3. singleton methods: dup drops them, clone keeps them
+   original.singleton_methods                     [:shout]
+   original.dup.singleton_methods                 []
+   original.clone.singleton_methods               [:shout]
+4. both are shallow
+   fresh.tags.equal?(original.tags)               true
+   fresh.tags << "b"; original.tags               ["a", "b"]
+   original.clone.tags.equal?(original.tags)      true
+5. Marshal round-trip is the deep copy
+   deep = Marshal.load(Marshal.dump(plain))       #<Doc "plain" ["a"]>
+   deep.tags.equal?(plain.tags)                   false
+   deep.frozen?  (frozen state is not dumped)     false
+   Marshal.dump(original)  (has a singleton)      TypeError: singleton can't be dumped
+   Marshal.dump(proc {})                          TypeError: no _dump_data is defined for class Proc
+6. the hooks: initialize_dup or initialize_clone, then initialize_copy
+   Tracked.new.dup.log                            [:initialize_dup, :initialize_copy]
+   Tracked.new.clone.log                          [[:initialize_clone, nil], :initialize_copy]
+   Tracked.new.clone(freeze: false).log           [[:initialize_clone, false], :initialize_copy]
+   copy.items.equal?(tracked.items)  (dup'd in the hook) false
+   copy.log.equal?(tracked.log)  (not dup'd: shared) true
+7. immediates and frozen literals
+   1.dup.equal?(1)                                true
+   :a.clone.equal?(:a)                            true
+   nil.dup.equal?(nil)                            true
+   "x".freeze.dup.frozen?                         false
+   frozen? of  "lit"  :sym  1  nil  []  (1..2)    false  true  true  true  false  true
+8. Data stays frozen through dup; make_shareable freezes deep
+   D.new([1]).frozen?                             true
+   D.new([1]).dup.frozen?                         true
+   data.dup.a.equal?(data.a)  (still shallow)     true
+   Ractor.make_shareable(h); h.frozen?            true
+   h[:list].frozen?                               true
+9. where they live
+   Object.instance_method(:dup).owner             Kernel
+   Object.instance_method(:clone).owner           Kernel
+   Object.instance_method(:freeze).owner          Kernel
+   Kernel.private_instance_methods.include?(:initialize_copy) true

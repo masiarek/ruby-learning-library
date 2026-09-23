@@ -1,0 +1,8 @@
+puts v          -> 1.2.3
+p v             -> #<Version 1.2.3>
+"#{v}"          -> 1.2.3
+[v].to_s        -> [#<Version 1.2.3>]
+format %s / %p  -> 1.2.3 / #<Version 1.2.3>
+#<Version 1.2.3>
+p returns it    -> 1.2.3
+sorted          -> [#<Version 1.2.3>, #<Version 1.2.10>, #<Version 1.10.0>]

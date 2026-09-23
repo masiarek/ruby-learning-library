@@ -1,0 +1,54 @@
+1. __eq__ alone: the class becomes unhashable
+   Pt(1, 2) == Pt(1, 2)                       True
+   Pt.__hash__ is None                        True
+   hash(Pt(1, 2))                             TypeError
+   {Pt(1,2): 'a', Pt(1,2): 'b'}               TypeError
+2. what __eq__ alone still does, and what it does not
+   Pt(1, 2) in [Pt(1, 2)]  (uses ==)          True
+   set([Pt(1,2), Pt(1,2)])                    TypeError
+   Counter([Pt(1,2), Pt(1,2)])                TypeError
+   dict.fromkeys([Pt(1,2), Pt(1,2)])          TypeError
+3. __eq__ and __hash__ together fix it
+   Pt2(1, 2) == Pt2(1, 2)                     True
+   hash(Pt2(1, 2)) == hash(Pt2(1, 2))         True
+   len({Pt2(1,2): 'a', Pt2(1,2): 'b'})        1
+   d[Pt2(1, 2)]                               'b'
+   len(set(pair))                             1
+   len(dict.fromkeys(pair))  (uniq)           1
+   Counter(pair)                              {Pt(1,2): 2}
+4. dataclasses: frozen ones are hashable, mutable ones are not
+   S.__hash__ is None  (eq=True, frozen=False) True
+   {S(1, 2): 1}                               TypeError
+   len({D(1,2): 1, D(1,2): 2})  (frozen=True) 1
+   len({NT(1,2): 1, NT(1,2): 2})  (namedtuple) 1
+   NT(1, 2) == NT(1, 2.0)                     True
+   hash(NT(1, 2)) == hash(NT(1, 2.0))         True
+5. a tuple key works by value; a list cannot be a key; a mutated key is lost
+   {(1, 2): 'tuple'}[(1, 2)]                  'tuple'
+   {[1, 2]: 'list'}                           TypeError
+   key = Pt2(1, 2); d = {key: 'here'}; key.x = 9 (the key changed after insertion)
+   d.get(Pt2(9, 2))                           None
+   d.get(key)                                 None
+   list(d)                                    [Pt(9,2)]
+   rebuilt: {k: v for k, v in d.items()}; d.get(Pt2(9, 2)) 'here'
+6. 1 and 1.0 are == and hash alike
+   1 == 1.0                                   True
+   hash(1) == hash(1.0)                       True
+   {1: 'int'}[1.0]                            'int'
+   {1: 'int', 1.0: 'float'}                   {1: 'float'}
+   len(dict.fromkeys([1, 1.0]))               1
+   len({1, 1.0})                              1
+   len({1, 1.0, True})                        1
+7. a str key is immutable, so it is stored as is
+   s = 'key'; d = {s: 1}                      (a str is immutable)
+   list(d)[0] is s                            True
+   d['key']                                   1
+8. no compare_by_identity: key by id() instead
+   the same str object twice, keyed by id()   1
+   a second object                            2
+9. the rules
+   __hash__ returning a str                   TypeError
+   __hash__ without __eq__: keys kept         2
+   hasattr(object, '__eq__')                  True
+   hasattr(object, '__hash__')                True
+   vars(Pt)['__hash__']  (set by defining __eq__) None

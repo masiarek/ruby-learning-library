@@ -1,0 +1,6 @@
+2.hours + 30.minutes             9000
+90.minutes / 60                  90
+[1, 2].map(&:hours)              [3600, 7200]
+3.respond_to?(:hours)            true
+Integer.method_defined?(:hours)  false
+early  (written above using)     NoMethodError

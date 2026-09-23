@@ -1,0 +1,8 @@
+without the hook: original settings  {"debug" => true}
+with the hook:    original settings  {"debug" => false}
+                  copy settings      {"debug" => true}
+own.frozen?          true
+own.dup.frozen?      false
+own.clone.frozen?    true
+clone writable?      FrozenError
+dup writable?        yes

@@ -1,0 +1,6 @@
+Money.new(0)                        #<Money 0c>
+Money.new(0).equal?(Money.new(0))   true
+Money.new(5).equal?(Money.new(5))   false
+times initialize ran                3
+Money.allocate.cents                nil
+times initialize ran after allocate 3

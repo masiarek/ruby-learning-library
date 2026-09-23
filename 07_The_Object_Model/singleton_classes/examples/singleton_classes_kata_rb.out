@@ -1,0 +1,10 @@
+counter                       #<counter 3>
+counter.singleton_methods     [:count, :increment, :inspect]
+counter.class                 Object
+Object.new.respond_to?(:count) false
+dup keeps @count?             3
+dup.singleton_methods         []
+dup.respond_to?(:increment)   false
+clone.singleton_methods       [:count, :increment, :inspect]
+clone after one increment     #<counter 4>
+the original is untouched     #<counter 3>

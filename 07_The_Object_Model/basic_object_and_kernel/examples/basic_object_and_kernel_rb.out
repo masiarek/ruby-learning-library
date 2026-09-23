@@ -1,0 +1,46 @@
+1. three things at the top
+   Object.ancestors                               [Object, Kernel, BasicObject]
+   Object.superclass                              BasicObject
+   BasicObject.superclass                         nil
+   Kernel.class                                   Module
+   Object.instance_methods(false)                 []
+   Object.private_instance_methods(false).sort    [:row, :section]
+2. BasicObject: the smallest object there is
+   BasicObject.instance_methods.sort              [:!, :!=, :==, :__id__, :__send__, :equal?, :instance_eval, :instance_exec]
+   BasicObject.private_instance_methods.sort      [:initialize, :method_missing, :singleton_method_added, :singleton_method_removed, :singleton_method_undefined]
+3. Kernel: the methods every object has
+   private, called without a receiver:            puts p print require raise lambda proc loop rand format Integer exit
+     all in Kernel.private_instance_methods       true
+   public:                                        inspect to_s respond_to? is_a? class nil? send freeze dup instance_variable_get
+     all in Kernel.instance_methods               true
+   method(:puts).owner                            Kernel
+   5.method(:puts).owner                          Kernel
+   Kernel.singleton_methods.include?(:puts)       true
+   self.to_s / self.class  (top level)            main / Object
+4. a BasicObject subclass has none of it
+   puts inside Bare                               NoMethodError: undefined method 'puts' for an instance of Bare
+   raise inside Bare                              NoMethodError: undefined method 'raise' for an instance of Bare
+   String inside Bare                             NameError: uninitialized constant Bare::String
+   (::Kernel.puts works from inside Bare)
+   ::String.name inside Bare                      String
+   bare.inspect                                   NoMethodError: undefined method 'inspect' for an instance of Bare
+   bare.class                                     NoMethodError
+   p bare  (p calls inspect)                      NoMethodError
+   bare == Bare.new                               false
+   bare.equal?(bare)                              true
+   !bare                                          false
+   bare.instance_eval { @x = 1; @x }              1
+   BasicObject === bare / Object === bare         true / false
+5. a proxy: method_missing forwards everything, even class
+   (forwarding sort)
+   pr.sort                                        [1, 2, 3]
+   (forwarding size)
+   pr.size                                        3
+   (forwarding class)
+   pr.class                                       Array
+   (forwarding inspect)
+   pr.inspect                                     [3, 1, 2]
+   (forwarding respond_to?)
+   pr.respond_to?(:sort)                          true
+   Proxy.instance_methods(false)                  [:method_missing]
+   Proxy.ancestors                                [Proxy, BasicObject]

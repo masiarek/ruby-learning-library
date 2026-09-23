@@ -1,0 +1,52 @@
+1. copy.copy copies the instance dictionary
+   original                                       Doc('draft', ['a'])
+   copy.copy(original)                            Doc('draft', ['a'])
+   sorted(vars(copy.copy(original)))              ['shout', 'tags', 'title']
+   copy.copy(original) is original                False
+2. frozen state: none to copy; a frozen dataclass is frozen by its class
+   type(copy.copy(frozen)).__name__               FrozenDoc
+   copy.copy(frozen) == frozen                    True
+   copy.copy(frozen).title = 'x'                  FrozenInstanceError
+   issubclass(FrozenInstanceError, AttributeError) True
+   fresh = copy.copy(original); fresh.title = 'copy' Doc('copy', ['a'])
+3. functions stored on the object: copied, still bound to the original
+   'shout' in vars(original)                      True
+   'shout' in vars(copy.copy(original))           True
+   copy.copy(original).shout.__self__ is original True
+   copy.deepcopy(original).shout.__self__ is the copy True
+4. copy.copy is shallow
+   fresh.tags is original.tags                    True
+   fresh.tags.append('b'); original.tags          ['a', 'b']
+   copy.copy(original).tags is original.tags      True
+5. copy.deepcopy and a pickle round-trip are the deep copies
+   copy.deepcopy(plain)                           Doc('plain', ['a'])
+   deep.tags is plain.tags                        False
+   pickle.loads(pickle.dumps(plain))              Doc('plain', ['a'])
+   unpickled.tags is plain.tags                   False
+   pickle.dumps(plain)  (holds a lambda)          PicklingError
+   copy.copy(MappingProxyType({}))  (via __reduce_ex__) TypeError
+6. the hooks: __copy__ and __deepcopy__(memo)
+   copy.copy(tracked); tracked.log                ['__copy__']
+   shallow.items is tracked.items  (copied in the hook) False
+   shallow.log is tracked.log  (not copied: shared) True
+   copy.deepcopy(tracked2); tracked2.log          ['__deepcopy__']
+   deep2.log is tracked2.log                      False
+7. immutables are handed back as is
+   copy.copy(1) is 1                              True
+   copy.copy('x') is 'x'                          True
+   copy.copy(None) is None                        True
+   copy.copy((1, [2])) is the tuple               True
+   copy.deepcopy((1, [2])) is the tuple           False
+   frozen-ness of  'lit'  1  None  []  (1, 2)     n/a: Python has no frozen flag; types are immutable or not
+8. dataclasses.replace and copy on a frozen dataclass
+   dataclasses.replace(frozen, title='r')         FrozenDoc(title='r', tags=['a'])
+   replaced.tags is frozen.tags  (shallow)        True
+   copy.deepcopy(frozen).tags is frozen.tags      False
+   copy.copy(frozen).tags is frozen.tags          True
+9. where they live
+   copy.copy.__module__                           copy
+   hasattr(object, '__copy__')                    False
+   hasattr(object, '__reduce_ex__')  (what copy uses) True
+   (__init__ runs)
+   copy.copy(loud)  (no __init__ line follows)    {'x': 1}
+   copy.deepcopy(loud)  (nor here)                {'x': 1}

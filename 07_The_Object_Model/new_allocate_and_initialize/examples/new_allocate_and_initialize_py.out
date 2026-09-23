@@ -1,0 +1,44 @@
+1. calling the class is __new__, then __init__
+   (__init__(1, 2) runs; self is a Point)
+   Point(1, 2)                                  Point(1, 2)
+   type(Point).__call__ is type.__call__        True
+   Point.__new__ is object.__new__              True
+2. __init__ is public
+   '__init__' in vars(Point)                    True
+   (__init__(1, 2) runs; self is a Point)
+   (__init__(3, 4) runs; self is a Point)
+   pt.__init__(3, 4); pt                        Point(3, 4)
+   private methods                              none; a leading _ is a convention
+3. object.__new__(Point) skips __init__
+   object.__new__(Point)                        Point(None, None)
+   vars(blank)                                  {}
+   getattr(blank, 'x', None)                    None
+   (__init__(5, 6) runs; self is a Point)
+   blank.__init__(5, 6); blank                  Point(5, 6)
+4. __init__ must return None
+   BadInit()  (its __init__ returns 5)          TypeError
+5. arguments go straight to __init__
+   Point(1)                                     TypeError
+6. overriding __new__: a cache (and a trap)
+   (Color.__init__('red') runs)
+   (Color.__init__('red') runs)
+   (Color.__init__('blue') runs)
+   Color('red') is Color('red')                 True
+   red is blue                                  False
+7. overriding __new__: a factory
+   Shape('circle', 3)                           <Circle size=3>
+   Shape('square', 4)                           <Square size=4>
+   Circle(5)                                    <Circle size=5>
+8. __copy__ runs on copy.copy; __init__ does not
+   (__init__(7, 8) runs; self is a Point)
+   (__copy__ runs, copying Point(7, 8))
+   copy.copy(original)                          Point(7, 8)
+   copy.deepcopy(original)                      Point(7, 8)
+9. classes that refuse arguments or new instances
+   object(1)                                    TypeError
+   int.__new__(str)                             TypeError
+   type(None)() is None                         True
+10. a subclass calls super().__init__
+   (__init__(1, 2) runs; self is a Point3)
+   Point3(1, 2, 3)                              Point3(1, 2, 3)
+   Point3.__init__.__code__.co_argcount - 1     3

@@ -1,0 +1,72 @@
+1. the two defaults
+   Plain.new.to_s starts with "#<Plain:0x"  true
+   Plain.new.inspect == Plain.new.to_s (shape) true
+   Point.new(1, 2).inspect ends " @x=1, @y=2>" true
+   Point.new(1, 2).to_s includes "@x"       false
+2. defining one never defines the other
+   OnlyToS.new.to_s                         only to_s
+   OnlyToS.new.inspect is still the default true
+   OnlyInspect.new.inspect                  <OnlyInspect>
+   OnlyInspect.new.to_s is still the default true
+3. who calls which
+   puts obj                                 to_s of 3
+   p obj                                    #<Both 3>
+   "#{obj}"                                 to_s of 3
+   format("%s / %p", obj, obj)              to_s of 3 / #<Both 3>
+   String(obj)                              to_s of 3
+   obj.to_s                                 to_s of 3
+   obj.inspect                              #<Both 3>
+4. containers inspect their elements, even in to_s
+   [obj].to_s                               [#<Both 3>]
+   [obj].inspect                            [#<Both 3>]
+   { k: obj }.to_s                          {k: #<Both 3>}
+   "#{[obj]}"                               [#<Both 3>]
+   puts [obj]                               to_s of 3
+5. p returns its argument, puts returns nil
+   p(obj) prints: #<Both 3>
+     ...and returns obj itself              true
+   p(1, 2) prints two lines:
+1
+2
+     ...and returns                         [1, 2]
+   p() returns                              nil
+   puts("one") prints: one
+     ...and returns                         nil
+6. nil
+   puts nil writes                          "\n"
+   p nil writes                             "nil\n"
+   print nil writes                         ""
+   "#{nil}".inspect                         ""
+   nil.to_s.inspect                         ""
+   nil.inspect                              nil
+   [nil].to_s                               [nil]
+7. strings and symbols
+   "str".to_s                               str
+   "str".inspect                            "str"
+   "tab\there".inspect                      "tab\there"
+   "\u{e9}".inspect                         "é"
+   :sym.to_s                                sym
+   :sym.inspect                             :sym
+8. core classes define both
+   S.new(1, 2).inspect                      #<struct S x=1, y=2>
+   S.new(1, 2).to_s == its inspect          true
+   D.new(1).inspect                         #<data D a=1>
+   RuntimeError.new("boom").to_s            boom
+   RuntimeError.new("boom").inspect         #<RuntimeError: boom>
+   1e20.to_s                                1.0e+20
+   (1..3).inspect                           1..3
+9. pp wraps a nested structure at a width
+{name: "widget",
+ parts:
+  [{id: 1,
+    tags: ["alpha", "beta", "gamma"]},
+   {id: 2,
+    tags: ["alpha", "beta", "gamma"]},
+   {id: 3,
+    tags: ["alpha", "beta", "gamma"]}]}
+   obj.pretty_inspect == obj.inspect + "\n" true
+10. where they live
+   Object.instance_method(:to_s).owner      Kernel
+   Object.instance_method(:inspect).owner   Kernel
+   Kernel.private_instance_methods.include?(:p) true
+   BasicObject.instance_methods.include?(:inspect) false

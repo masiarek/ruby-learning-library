@@ -1,0 +1,41 @@
+1. a method defined on one object
+   obj.greet                                      hi from obj
+   other.greet                                    NoMethodError
+2. where that method lives
+   obj.singleton_methods                          [:greet]
+   Foo.instance_methods(false).sort               [:inspect]
+   obj.singleton_class.superclass == Foo          true
+   obj.singleton_class.singleton_class?           true
+   obj.class                                      Foo
+   obj.instance_of?(Foo)                          true
+3. class << obj opens the singleton class
+   obj.name_length                                3
+   obj.singleton_methods.sort                     [:greet, :name_length]
+4. class methods are singleton methods of the class
+   Foo.singleton_methods.sort                     [:build, :make]
+   Foo.make                                       #<Foo made>
+   Foo.build                                      built by Foo
+   Foo.new("x").make                              NoMethodError
+5. a class's singleton class has a name
+   Foo.singleton_class                            #<Class:Foo>
+   Foo.singleton_class.ancestors.first(3)         [#<Class:Foo>, #<Class:Object>, #<Class:BasicObject>]
+   Foo.singleton_class.class                      Class
+   Foo.singleton_class.superclass                 #<Class:Object>
+   Class.class                                    Class
+   Sub.singleton_class.superclass                 #<Class:Foo>
+   Sub.make  (class methods are inherited)        #<Sub made>
+6. define_singleton_method takes a block
+   obj.wave                                       wave from obj
+7. extend is include into the singleton class
+   obj.singleton_class.include?(Loud)             true
+   obj.singleton_class.ancestors (names)          ["(singleton)", "Loud", "Foo", "Object", "Kernel", "BasicObject"]
+   obj.shout                                      LOUD from obj
+   other.respond_to?(:shout)                      false
+8. dup drops the singleton class, clone keeps it
+   obj.dup.singleton_methods                      []
+   obj.clone.singleton_methods.sort               [:greet, :name_length, :shout, :wave]
+   clone.wave after renaming the clone            wave from clone
+9. immediates have no singleton class
+   1.singleton_class                              TypeError: can't define singleton
+   :sym.singleton_class                           TypeError: can't define singleton
+   nil.singleton_class                            NilClass

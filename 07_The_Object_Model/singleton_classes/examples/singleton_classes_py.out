@@ -1,0 +1,43 @@
+1. a function stored on one object
+   obj.greet = greet; obj.greet()                 TypeError (self is not passed)
+   obj.greet = MethodType(greet, obj); obj.greet() hi from obj
+   other.greet()                                  AttributeError
+2. where that function lives
+   sorted(vars(obj))                              ['greet', 'name']
+   'greet' in vars(Foo)                           False
+   type(obj) is Foo                               True
+   type(obj).__name__                             Foo
+   isinstance(obj, Foo)                           True
+3. the closest to class << obj: a per-object subclass
+   obj.name_length()                              3
+   type(obj).__name__ / type(other).__name__      FooOnly / Foo
+4. class methods live on the class or its metaclass
+   Foo.make()                                     <Foo made>
+   Foo.build()                                    built by Foo
+   Foo('x').make()  (a classmethod is reachable)  <Foo made>
+   Bar.forge()  (a metaclass method)              forged by Bar
+   Bar().forge()                                  AttributeError
+5. the class of a class is its metaclass
+   type(Foo).__name__                             type
+   [c.__name__ for c in type(Foo).__mro__]        ['type', 'object']
+   type(type) is type                             True
+   type(Bar).__name__                             Meta
+   type(type).__name__                            type
+   type(BarSub).__name__  (inherited metaclass)   Meta
+   BarSub.forge()                                 forged by BarSub
+6. setattr with a bound MethodType
+   obj.wave()                                     wave from obj
+7. extend: a per-object subclass with the mixin first
+   isinstance(obj, Loud)                          True
+   [c.__name__ for c in type(obj).__mro__]        ['FooLoud', 'Loud', 'FooOnly', 'Foo', 'object']
+   obj.shout()                                    LOUD from obj
+   hasattr(other, 'shout')                        False
+8. copy.copy keeps the class and the bound methods
+   type(copy.copy(obj)).__name__                  FooLoud
+   sorted(vars(dup))                              ['greet', 'name', 'wave']
+   dup.wave() after renaming the copy             wave from obj  (still bound to obj)
+   dup.wave.__self__ is obj                       True
+9. built-in instances take no attributes
+   (1).greet = greet                              AttributeError
+   "sym".greet = greet                            AttributeError
+   type(None).__name__                            NoneType

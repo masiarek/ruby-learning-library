@@ -1,0 +1,9 @@
+rec.size            3
+rec.first           pear
+rec.sort            ["apple", "fig", "pear"]
+rec.class           Array
+rec.nil?            false
+rec.inspect         ["pear", "apple", "fig"]
+rec.map(&:upcase)   ["PEAR", "APPLE", "FIG"]
+recorded            [:size, :first, :sort, :class, :nil?, :inspect, :map]
+rec.equal?(rec)     true   (equal? is BasicObject's own, so it was not recorded)

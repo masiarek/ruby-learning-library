@@ -1,0 +1,59 @@
+1. == alone: two equal points are two keys
+   Pt.new(1, 2) == Pt.new(1, 2)               true
+   Pt.new(1, 2).eql?(Pt.new(1, 2))            false
+   Pt.new(1, 2).hash == Pt.new(1, 2).hash     false
+   { Pt(1,2) => :a, Pt(1,2) => :b }.size      2
+   h[Pt.new(1, 2)]                            nil
+2. what == alone still does, and what it does not
+   [Pt(1,2)].include?(Pt(1,2))  (uses ==)     true
+   [Pt(1,2), Pt(1,2)].uniq.size               2
+   ([Pt(1,2)] - [Pt(1,2)]).size               1
+   Set[Pt(1,2), Pt(1,2)].size                 2
+   [Pt(1,2), Pt(1,2)].tally.size              2
+   [Pt(1,2), Pt(1,2)].group_by(&:itself).size 2
+3. eql? and hash together fix it
+   Pt.new(1, 2).eql?(Pt.new(1, 2))            true
+   Pt.new(1, 2).hash == Pt.new(1, 2).hash     true
+   { Pt(1,2) => :a, Pt(1,2) => :b }.size      1
+   h[Pt.new(1, 2)]                            :b
+   [Pt(1,2), Pt(1,2)].uniq.size               1
+   Set[Pt(1,2), Pt(1,2)].size                 1
+   [Pt(1,2), Pt(1,2)].tally                   {Pt(1,2) => 2}
+4. Struct and Data get both for free
+   S.new(1, 2).eql?(S.new(1, 2))              true
+   { S(1,2) => 1, S(1,2) => 2 }.size          1
+   { D(1,2) => 1, D(1,2) => 2 }.size          1
+   S.new(1, 2) == S.new(1, 2.0)               true
+   S.new(1, 2).eql?(S.new(1, 2.0))            false
+5. an Array key works by value; a mutated key is lost until rehash
+   { [1, 2] => :arr }[[1, 2]]                 :arr
+   key = [1]; h = { key => :arr }; key << 2   (the key changed after insertion)
+   h[[1, 2]]                                  nil
+   h[key]                                     nil
+   h.keys                                     [[1, 2]]
+   h.rehash; h[[1, 2]]                        :arr
+6. 1 and 1.0 are == but not eql?
+   1 == 1.0                                   true
+   1.eql?(1.0)                                false
+   1.hash == 1.0.hash                         false
+   { 1 => :int }[1.0]                         nil
+   { 1 => :int, 1.0 => :float }               {1 => :int, 1.0 => :float}
+   [1, 1.0].uniq.size                         2
+   Set[1, 1.0].size                           2
+7. a String key is copied and frozen
+   s = +"key"; h = { s => 1 }                 (a mutable String as the key)
+   h.keys.first.frozen?                       true
+   s.frozen?                                  false
+   s.equal?(h.keys.first)                     false
+   s << "!"; h["key"]                         1
+   h["key!"]                                  nil
+8. compare_by_identity switches to equal?
+   two "a" literals as keys, by identity      2
+   the same String object twice               3
+9. the rules
+   hash returning a String                    TypeError: no implicit conversion of String into Integer
+   eql? without hash: keys kept               2
+   hash without eql?: keys kept               2
+   Object.instance_method(:eql?).owner        Kernel
+   Object.instance_method(:hash).owner        Kernel
+   Object.instance_method(:==).owner          BasicObject

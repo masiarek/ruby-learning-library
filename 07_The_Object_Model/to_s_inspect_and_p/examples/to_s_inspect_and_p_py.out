@@ -1,0 +1,77 @@
+1. the two defaults
+   str(Plain()) starts with "<__main__.Plain object at 0x" True
+   repr(Plain()) == str(Plain())            True
+   repr(Point(1, 2)) mentions x             True
+   vars(Point(1, 2))                        {'x': 1, 'y': 2}
+2. __str__ never defines __repr__; __repr__ does define str
+   str(OnlyStr())                           only __str__
+   repr(OnlyStr()) is still the default     True
+   repr(OnlyRepr())                         <OnlyRepr>
+   str(OnlyRepr())  (falls back to __repr__) <OnlyRepr>
+3. who calls which
+   print(obj)                               str of 3
+   p(obj)                                   <Both 3>
+   f"{obj}"                                 str of 3
+   "%s / %r" % (obj, obj)                   str of 3 / <Both 3>
+   str(obj)                                 str of 3
+   f"{obj!s}"                               str of 3
+   f"{obj!r}"                               <Both 3>
+4. containers repr their elements, even in str
+   str([obj])                               [<Both 3>]
+   repr([obj])                              [<Both 3>]
+   str({"k": obj})                          {'k': <Both 3>}
+   f"{[obj]}"                               [<Both 3>]
+   print([obj])                             [<Both 3>]
+5. print returns None; the p helper returns its argument
+   p(obj) prints: <Both 3>
+     ...and returns obj itself              True
+   p(1, 2) prints two lines:
+1
+2
+     ...and returns                         [1, 2]
+   p() returns                              None
+   print("one") prints: one
+     ...and returns                         None
+6. None
+   print(None) writes                       'None\n'
+   p(None) writes                           'None\n'
+   print(None, end='') writes               'None'
+   repr(f"{None}")                          'None'
+   repr(str(None))                          'None'
+   repr(None)                               None
+   str([None])                              [None]
+7. strings; no symbol, so an Enum member
+   str("str")                               str
+   repr("str")                              'str'
+   repr("tab\there")                        'tab\there'
+   repr("\N{LATIN SMALL LETTER E WITH ACUTE}") 'é'
+   str(Sym.sym)                             Sym.sym
+   repr(Sym.sym)                            <Sym.sym: 1>
+8. stdlib classes define both
+   repr(S(1, 2))                            S(x=1, y=2)
+   str(S(1, 2)) == repr(S(1, 2))            True
+   repr(NT(1))                              NT(a=1)
+   str(RuntimeError("boom"))                boom
+   repr(RuntimeError("boom"))               RuntimeError('boom')
+   str(1e20)                                1e+20
+   repr(range(1, 4))                        range(1, 4)
+9. pprint wraps a nested structure at a width
+{'name': 'widget',
+ 'parts': [{'id': 1,
+            'tags': ['alpha',
+                     'beta',
+                     'gamma']},
+           {'id': 2,
+            'tags': ['alpha',
+                     'beta',
+                     'gamma']},
+           {'id': 3,
+            'tags': ['alpha',
+                     'beta',
+                     'gamma']}]}
+   pprint.pformat(obj) == repr(obj)         True
+10. where they live
+   Plain.__str__ is object.__str__          True
+   Plain.__repr__ is object.__repr__        True
+   hasattr(builtins, 'print')               True
+   hasattr(object, '__repr__')              True
