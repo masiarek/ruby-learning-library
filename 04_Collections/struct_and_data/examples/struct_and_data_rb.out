@@ -1,0 +1,19 @@
+ 1. Struct.new(:x, :y): Point.new(1, 2), Point.new(x: 1, y: 2)           [#<struct Point x=1, y=2>, #<struct Point x=1, y=2>]
+ 2. Point.new(1)  (a missing member is nil); Point.new(1, 2, 3)          #<struct Point x=1, y=nil>; ArgumentError: struct size differs
+ 3. pt.x = 5; pt[:y] = 6  (mutable); then pt, pt[0]                      #<struct Point x=5, y=6>, 5
+ 4. Point.new(1, 2) == / eql? / hash ==; as a Hash key                   [true, true, true, :key]
+ 5. pt.to_a, Point.members, pt.to_h                                      [[5, 6], [:x, :y], {x: 5, y: 6}]
+ 6. Struct.new(:x).new(1) == Struct.new(:x).new(1)  (two classes)        false
+ 7. case Point.new(1, 2) in [x, y]; in {x:, y:}  (both match)            ["in [x, y] -> 1,2", "in {x:, y:} -> 1,2"]
+ 8. Struct.new(:w, :h) { def area = w * h }.new(2, 3).area               6
+ 9. Struct.new(:x, :y, keyword_init: true).new(1, 2)                     ArgumentError: wrong number of arguments (given 2, expected 0)
+10. Data.define(:lat, :lng): Coord.new(1, 2), Coord.new(lat: 1, lng: 2)  [#<data Coord lat=1, lng=2>, #<data Coord lat=1, lng=2>]
+11. Coord.new(1); Coord.new(1, 2, 3); Coord.new(lat: 1, lng: 2, alt: 3)  ArgumentError: missing keyword: :lng; ArgumentError: wrong number of arguments (given 3, expected 0..2); ArgumentError: unknown keyword: :alt
+12. c.lat = 5  (no setter)                                               NoMethodError: undefined method 'lat=' for an instance of Coord
+13. c.instance_variable_set(:@lat, 5); c.frozen?                         FrozenError: can't modify frozen Coord: #<data Coord lat=1, lng=2>; true
+14. c.with(lat: 9), then c                                               [#<data Coord lat=9, lng=2>, #<data Coord lat=1, lng=2>]
+15. c == Coord.new(1, 2), eql?, hash ==; as a Hash key                   [true, true, true, :key]
+16. c.respond_to?(:to_a), (:each), (:deconstruct); Enumerable?; c.to_h   [false, false, true, false, {lat: 1, lng: 2}]
+17. case c in [lat, lng]; in {lat:, lng:}; in Coord(lat:, lng:)          ["in [lat, lng] matched", "in {lat:, lng:} -> 1,2", "in Coord(lat:, lng:) -> 1,2"]
+18. Temp.new("35").deg, Temp.new(deg: 12).deg  (initialize normalises)   [35.0, 12.0]
+19. Coord.new(lat: [1], lng: 2).lat << 2  (immutability is shallow)      [1, 2]

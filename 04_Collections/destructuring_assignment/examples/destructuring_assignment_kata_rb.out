@@ -1,0 +1,5 @@
+ada  age "36" city london     extra []
+bob  age "41" city (unknown)  extra []
+cy   age "29" city paris      extra ["texas"]
+first "ada 36 london", middle ["bob 41"], last "cy 29 paris texas"
+minmax [3, 9], divmod [3, 2], partition [[2, 4, 6], [1, 3, 5]]

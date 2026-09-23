@@ -1,0 +1,18 @@
+ 1. list(range(1, 6)), list(range(1, 5))  (half-open only)   [[1, 2, 3, 4, 5], [1, 2, 3, 4]]
+ 2. len(range(1, 6)), len(range(1, 5)), type(range(1, 6))    [5, 4, range]
+ 3. [chr(c) for c in range(97, 102)], ascii_lowercase[:5]    [['a', 'b', 'c', 'd', 'e'], 'abcde']
+ 4. list(islice(count(1), 3)); count(1) has no end           [[1, 2, 3], None]
+ 5. 3 <= 5, 9 <= 5  (no beginless range: a comparison)       [True, False]
+ 6. list(count(1))  (not run: it would never return)         -
+ 7. list(range(1, 11, 3))  (the step is the third argument)  [1, 4, 7, 10]
+ 8. range(1.0, 2.0); [1 + i * 0.5 for i in range(3)]         TypeError, [1.0, 1.5, 2.0]
+ 9. "bb" in letters (a list), "a" <= "bb" <= "z"             [False, True]
+10. 5.5 in range(1, 11), 5.0 in range(1, 11)                 [False, True]
+11. match 42: case n if n in range(1, 11) / range(11, 101)   'medium'
+12. a[1:3], a[1:-1], a[:2], a[2:], "hello"[1:4]              [[20, 30], [20, 30, 40], [10, 20], [30, 40, 50], 'ell']
+13. sum(range(1, 101)); n * (n + 1) // 2 for n = 10**12      [5050, 500000000000500000000000]
+14. range(1, 5)[-1], range(1, 5)[-1:], max(range(1, 5))      [4, range(4, 5), 4]
+15. list(range(5, 1)), list(range(5, 0, -1))                 [[], [5, 4, 3, 2, 1]]
+16. range(1, 6) == range(1, 6, 1), range(0) == range(1, 1)   [True, True]
+17. range(1, 6)[1], range(1, 6)[1:3]  (range is a sequence)  [2, range(2, 4)]
+18. min(max(7, 1), 5), set(range(2, 4)) <= set(range(1, 6))  [5, True]

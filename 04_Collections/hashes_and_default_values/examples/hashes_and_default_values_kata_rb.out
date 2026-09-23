@@ -1,0 +1,7 @@
+counts:   {"the" => 3, "cat" => 1, "and" => 2, "dog" => 1, "bird" => 1}
+by_count: {3 => ["the"], 1 => ["cat", "dog", "bird"], 2 => ["and"]}
+3 x  the
+2 x  and
+1 x  bird, cat, dog
+reading by_count[99] stored a key: [3, 1, 2, 99]
+counts['zzz'] did not: 0 and ["the", "cat", "and", "dog", "bird"]

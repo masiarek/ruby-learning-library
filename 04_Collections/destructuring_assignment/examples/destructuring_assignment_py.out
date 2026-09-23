@@ -1,0 +1,19 @@
+ 1. a, b = 1, 2                                              [1, 2]
+ 2. a, b = b, a  (swap)                                      [2, 1]
+ 3. a, *b = [1, 2, 3]; *c, d = [1, 2, 3]  (rest: a list)     [[1, [2, 3]], [[1, 2], 3]]
+ 4. a, *b, c = 1, 2, 3, 4                                    [1, [2, 3], 4]
+ 5. (a, b), c = [1, 2], 3  (nested)                          [1, 2, 3]
+ 6. first, = [1, 2]; first, = [1]; first, *_ = [1, 2]        ValueError, 1, 1
+ 7. a, b = [1]  (too few)                                    ValueError
+ 8. a, b = 1, 2, 3  (too many)                               ValueError
+ 9. a = 1, 2  (one target: a tuple)                          (1, 2)
+10. a, b = "xy"  (any iterable unpacks)                      ['x', 'y']
+11. a, b = {'x': 1, 'y': 2}  (a dict unpacks its keys)       ['x', 'y']
+12. a, b = None                                              TypeError
+13. compile("v = (a, b = 1, 2)")  (a statement: no value)    SyntaxError
+14. [x + y for x, y in pairs]  (for unpacks)                 [3, 7]
+15. for i, (x, y) in enumerate(pairs)                        ['0:3', '1:7']
+16. [f'{k}{v}' for k, v in d.items()]                        ['a1', 'b2']
+17. lambda x, y with [1, 2]; lambda (x, y); starmap          [TypeError, SyntaxError, [3, 7]]
+18. a, b = obj with __iter__; c, d = obj without             [[7, 8], TypeError]
+19. def two(): return 1, 2; two(), then a, b = two()         [(1, 2), [1, 2]]

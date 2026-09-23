@@ -1,0 +1,18 @@
+ 1. defined?(Set), require "set"  (core: nothing to load)            ["constant", false]
+ 2. Set.instance_method(:add).source_location  (C, no file)          nil
+ 3. Set[3, 1, 2], [3, 1].to_set, Set.new(1..3)                       [Set[3, 1, 2], Set[3, 1], Set[1, 2, 3]]
+ 4. Set[3, 1, 2].to_a; after delete(1) then add(1)                   [[3, 1, 2], [3, 2, 1]]
+ 5. s = Set[1, 2]; s << 3 (returns s); s.add?(3); s.add?(4)          [Set[1, 2, 3, 4], nil, Set[1, 2, 3, 4]]
+ 6. Set[1, 2] | Set[2, 3], &, -, ^                                   [Set[1, 2, 3], Set[2], Set[1], Set[1, 3]]
+ 7. Set[1] <= Set[1, 2], subset?, <, Set[1].disjoint?(Set[2])        [true, true, true, true]
+ 8. Set[1, 2] == Set[2, 1], Set[Set[1]].include?(Set[1])             [true, true]
+ 9. Set[1, 2] === 2; case 2 when Set[1, 2]                           [true, "in"]
+10. map, select, sort, | : the class each returns; select's owner    [Array, Array, Array, Set, Enumerable]
+11. s.delete(9) (returns s, no error), s.delete?(9)                  [Set[1, 2, 3, 4], nil]
+12. Set[1].freeze << 2                                               FrozenError: can't modify frozen Set: Set[1]
+13. Set[x, x'].size for Plain, ByValue (eql?+hash), EqOnly (==)      [2, 1, 2]
+14. Set[[1, 2]].include?([1, 2]), Set[1, 1.0, true].size             [true, 3]
+15. arr << 2 after Set[arr]: include?([1, 2]), then after reset      [false, true]
+16. defined?(SortedSet)  (removed in 3.0; a gem now)                 nil
+17. Set.new("hello".chars).to_a, Set[3, 1, 2].first(2)               [["h", "e", "l", "o"], [3, 1]]
+18. Set[1, 2] <=> Set[1, 2, 3], Set[1] <=> Set[2]                    [-1, nil]

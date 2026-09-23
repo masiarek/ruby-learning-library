@@ -1,0 +1,22 @@
+ 1. d = {"b": 1, "a": 2}; d["c"] = 3; list(d)                ['b', 'a', 'c']
+ 2. key type of {'a': 1}; {'a': 1} == {"a": 1}               str, True
+ 3. d["zz"]  (missing key)                                   KeyError
+ 4. d["zz"] is already the raising form; d.get("zz")         KeyError, None
+ 5. d.get("zz", 0); d["zz"] if "zz" in d else "no zz"        0, 'no zz'
+ 6. counts = Counter("hello"); dict(counts)                  {'h': 1, 'e': 1, 'l': 2, 'o': 1}
+ 7. counts["zz"], len(counts)  (default not stored)          0, 4
+ 8. defaultdict(int): dd["zz"], len(dd); dd.get("yy")        0, 5 (stored), None
+ 9. defaultdict(list); group words by len                    {5: ['apple'], 3: ['fig'], 4: ['kiwi', 'plum'], 6: ['banana']}
+10. groups[99]; len(groups)  (the factory stores)            [], 5
+11. t = dict.fromkeys("ab", []); append via a, via b; t      {'a': [1, 2], 'b': [1, 2]}
+12. u = {}; u.setdefault("a", []).append(1)                  {'a': [1]}
+13. dig(n, "a", "b", 1), dig(n, "a", "zz", 1)  (helper)      20, None
+14. {str(k): v ...}, {k: v * 10 ...} comprehensions          [{'b': 1, 'a': 2, 'c': 3}, {'b': 10, 'a': 20, 'c': 30}]
+15. dict([("a", 1)]), list(d.items()), {v: k ...}            [{'a': 1}, [('b', 1), ('a', 2), ('c', 3)], {1: 'b', 2: 'a', 3: 'c'}]
+16. for pair in d.items(): a tuple; for k, v in ...          ('b', 1) is a tuple; k = 'b', v = 1
+17. "a" in d, 2 in d.values(), "zz" in d                     [True, True, False]
+18. a str key is immutable (nothing to copy); a list key     TypeError
+19. len({1: "int", 1.0: "float"})  (1 == 1.0, same hash)     1
+20. two equal str keys: no identity mode, plain dict         -, 1
+21. {"a": 1} | {"b": 2}; {"a": 1} | {"a": 2} (right wins)    [{'a': 1, 'b': 2}, {'a': 2}]
+22. m.pop("a"), m.pop("zz", None), m.pop("zz")               1, None, KeyError

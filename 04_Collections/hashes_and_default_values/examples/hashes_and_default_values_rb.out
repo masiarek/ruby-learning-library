@@ -1,0 +1,22 @@
+ 1. h = {b: 1, a: 2}; h[:c] = 3; h.keys                      [:b, :a, :c]
+ 2. key class of {a: 1}, {"a" => 1}, {"a": 1}                [Symbol, String, Symbol]
+ 3. h[:zz]  (missing key)                                    nil
+ 4. h.fetch(:zz)  (the raising form)                         KeyError: key not found: :zz
+ 5. h.fetch(:zz, 0), h.fetch(:zz) { |k| "no #{k}" }          [0, "no zz"]
+ 6. counts = Hash.new(0); count the chars of "hello"         {"h" => 1, "e" => 1, "l" => 2, "o" => 1}
+ 7. counts[:zz], counts.size  (default not stored)           [0, 4]
+ 8. counts.fetch(:zz)  (fetch ignores the default)           KeyError: key not found: :zz
+ 9. Hash.new { |h, k| h[k] = [] }; group words by size       {5 => ["apple"], 3 => ["fig"], 4 => ["kiwi", "plum"], 6 => ["banana"]}
+10. groups[99]; groups.size  (the block stores)              [[], 5]
+11. t = Hash.new([]); t[:a] << 1; t[:b] << 2; t, t[:zz]      [{}, [1, 2]]
+12. u = {}; u[:a] ||= []; u[:a] << 1                         {a: [1]}
+13. n.dig(:a, :b, 1), n.dig(:a, :zz, 1)                      [20, nil]
+14. h.transform_keys(&:to_s), h.transform_values {it*10}     [{"b" => 1, "a" => 2, "c" => 3}, {b: 10, a: 20, c: 30}]
+15. [[:a, 1]].to_h, h.to_a, h.to_h { |k, v| [v, k] }         [{a: 1}, [[:b, 1], [:a, 2], [:c, 3]], {1 => :b, 2 => :a, 3 => :c}]
+16. h.each { |pair| } yields, then |k, v| auto-splats        [:b, 1] is an Array; k = :b, v = 1
+17. h.key?(:a), h.value?(2), h.key?(:zz)                     [true, true, false]
+18. key = "x"; s[key] = 1; key << "y"; s, s.keys[0].frozen?  [{"x" => 1}, true]
+19. {1 => :int, 1.0 => :float}.size  (1.eql?(1.0) is false)  2
+20. two equal String keys: compare_by_identity, plain        [2, 1]
+21. {a: 1}.merge({b: 2}); merge({a: 2}) { |k, o, n| o + n }  [{a: 1, b: 2}, {a: 3}]
+22. d = {a: 1, b: 2}; d.delete(:a), d.delete(:zz), d         [1, nil, {b: 2}]

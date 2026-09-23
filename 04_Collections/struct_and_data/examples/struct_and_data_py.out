@@ -1,0 +1,19 @@
+ 1. namedtuple Point(1, 2), Point(x=1, y=2); @dataclass P(1, 2)          [Point(x=1, y=2), Point(x=1, y=2)]; P(x=1, y=2)
+ 2. Point(1); Point(1, 2, 3)  (and the same for P)                       TypeError, TypeError; TypeError, TypeError
+ 3. p.x = 5 on the namedtuple; q.x = 5 on the dataclass; then q, p[0]    AttributeError; P(x=5, y=2), 1
+ 4. Point == Point, hash ==, dict key; P == P, hash(P), P.__hash__ is None [True, True, 'key']; True, TypeError, True
+ 5. list(p), Point._fields, p._asdict(); astuple(q), asdict(q)           [[1, 2], ('x', 'y'), {'x': 1, 'y': 2}]; [(5, 2), {'x': 5, 'y': 2}]
+ 6. Point(1, 2) == Other(1, 2)  (both tuples); P(1, 2) == Q(1, 2)        True; False
+ 7. match: case Point(x, y); case (x, y); case P(x, y)  (__match_args__) ['case Point(x, y) -> 1,2', 'case (x, y) -> 1,2', 'case P(x, y) -> 1,2']
+ 8. @dataclass Rect with def area(self): Rect(2, 3).area()               6
+ 9. @dataclass(kw_only=True) KW: KW(1, 2)                                TypeError
+10. @dataclass(frozen=True) Coord: Coord(1, 2), Coord(lat=1, lng=2)      [Coord(lat=1, lng=2), Coord(lat=1, lng=2)]
+11. Coord(1); Coord(1, 2, 3); Coord(lat=1, lng=2, alt=3)                 TypeError; TypeError; TypeError
+12. c.lat = 5                                                            FrozenInstanceError
+13. object.__setattr__(c2, "lat", 5)  (bypasses frozen); then c2         Coord(lat=5, lng=2)
+14. replace(c, lat=9), then c                                            [Coord(lat=9, lng=2), Coord(lat=1, lng=2)]
+15. c == Coord(1, 2), hash ==; as a dict key                             [True, True, 'key']
+16. astuple(c), asdict(c); list(c)  (not iterable)                       [(1, 2), {'lat': 1, 'lng': 2}]; TypeError
+17. match c: [lat, lng]; Coord(lat=lat, lng=lng); Coord(lat, lng)        ['case [lat, lng] -> no match', 'case Coord(lat=lat, lng=lng) -> 1,2', 'case Coord(lat, lng) -> 1,2']
+18. Temp("35").deg, Temp(deg=12).deg  (__post_init__ normalises)         [35.0, 12.0]
+19. Bag().items.append(2)  (immutability is shallow); hash(Bag())        Bag(items=[2]); TypeError

@@ -1,0 +1,7 @@
+a = 12.50 EUR, b = 2.50 EUR
+a + b = 15.00 EUR; a is still 12.50 EUR
+a == Money.new(1250)? true  (positional, currency defaulted)
+as a Hash key: :paid
+mixed currencies: ArgumentError: EUR + USD
+a.cents = 0: NoMethodError
+inspect: #<data Money cents=1250, currency="EUR">

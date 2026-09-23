@@ -1,0 +1,9 @@
+sorted as strings:  ["1.10", "1.2", "1.2.1", "1.9", "2.0"]
+sorted as versions: [v1.2, v1.2.1, v1.9, v1.10, v2.0]
+newest: 2.0, oldest: 1.2
+  1.2   between? false clamp(1.5, 1.10) -> 1.5
+  1.2.1 between? false clamp(1.5, 1.10) -> 1.5
+  1.9   between? true  clamp(1.5, 1.10) -> 1.9
+  1.10  between? true  clamp(1.5, 1.10) -> 1.10
+  2.0   between? false clamp(1.5, 1.10) -> 1.10
+v1.10 == v1.10.0? false  ([1, 10] <=> [1, 10, 0] is -1)

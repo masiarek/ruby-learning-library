@@ -1,0 +1,9 @@
+monday          ["ada", "bob", "cy", "dee"]  (duplicate ada dropped, order kept)
+tuesday         ["dee", "bob", "eve", "fay"]  (duplicate bob dropped)
+both days       ["bob", "dee"]
+monday only     ["ada", "cy"]
+tuesday only    ["eve", "fay"]
+exactly one day ["ada", "cy", "eve", "fay"]
+either day      ["ada", "bob", "cy", "dee", "eve", "fay"]
+both-days is a subset of monday? true
+first seen, either day: ["ada", "bob", "cy", "dee", "eve", "fay"]
