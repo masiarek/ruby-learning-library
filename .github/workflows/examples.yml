@@ -1,0 +1,44 @@
+# Every example must run and print exactly what its recorded .out file says — and
+# every lesson page's generated output block must match that run.
+#
+#   examples/*_rb.rb        Ruby 4.0, from ruby/setup-ruby, run as `ruby -E UTF-8`
+#   examples/*_py.py        the runner image's own python3, standard library only —
+#                           3.12 on Ubuntu and 3.14 on macOS, so a Python twin is
+#                           checked on two interpreter versions for free
+#   examples/*_sh.sh        bash, with the same Ruby first on PATH
+#
+# It runs on BOTH Ubuntu and macOS on purpose: a key has to be something both
+# machines agree on, and the two differ in Python version, CPU and libc.
+
+name: examples
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  verify:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '4.0'
+      - name: Show toolchain
+        run: |
+          ruby -v
+          python3 --version
+          bash --version | head -1
+          uname -sm
+      - name: Run every example and check it against its answer key
+        run: python3 tools/run_examples.py --check
+      - name: Check that every external link is marked as external
+        run: python3 tools/check_link_style.py
+      - name: Check every lesson has the sections, examples, chapter row and nav entry a lesson needs
+        run: python3 tools/check_pages.py
