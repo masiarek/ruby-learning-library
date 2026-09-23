@@ -1,0 +1,12 @@
+ 1. case 5; in String (no else)              -> nothing ran
+ 2. {a: 1} => {b:}                           -> nothing ran
+ 3. case {a: 1}; in {b:}                     -> nothing ran
+ 4. 5 => String                              -> silent; `case _: raise` idiom -> ValueError: no pattern matched 5
+ 5. [1, 2] => [a]                            -> silent as a pattern; `a, = [1, 2]` -> ValueError
+ 6. 5 in String                              -> False
+ 7. case 5 when String (no else)             -> None
+ 8. ancestors                                -> assert_never(5) -> AssertionError: Expected code to be unreachable, but got: 5
+ 9. rescue => e (bare) on case/in            -> issubclass(AssertionError, Exception) -> True
+10. case 5; in String ... else               -> 'else branch'
+11. x = (5 => Integer)                       -> SyntaxError for x = match v: ...
+12. {a: {b: 1}} => {a: {c:}}                 -> nothing ran; config["a"]["c"] -> KeyError

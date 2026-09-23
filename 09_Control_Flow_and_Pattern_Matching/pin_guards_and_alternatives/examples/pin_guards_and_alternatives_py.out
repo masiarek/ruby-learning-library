@@ -1,0 +1,10 @@
+ 1. 5 in ^expected (expected = 5)            -> SyntaxError for case ^expected:; guard `case x if x == expected` -> matched / no
+ 2. case 7; in expected                      -> matches anything; expected is now 7; a case after it is a SyntaxError
+ 3. [3, 3] / [3, 4] in [a, ^a]               -> SyntaxError for case [a, a]:; guard `[a, b] if a == b` -> True / False
+ 4. [[1, 2], 2] / [[1, 2], 3] in [[_, x], ^x] -> SyntaxError for [[_, x], x]; guard -> True / False
+ 5. ^(2 * 3), ^@limit, ^$max                 -> 6 via guard `if x == 2 * 3` -> True; Gate(10) via `case self.limit:`: at the limit / under / over; 9 via guard `if x == MAX` -> True
+ 6. 5 / 6 in LIMIT (a constant)              -> case LIMIT: captures (a case after it is a SyntaxError); case K.LIMIT: -> True / False
+ 7. in [x, y] if x > y / unless x > y        -> descending / not descending; `unless` guard -> SyntaxError
+ 8. 2.5 in Integer | Float => num            -> 'number 2.5'
+ 9. [x, y] | [x, y, _] / [_x, _y] | [_x, _y, _] -> compiles (same names); [x, y] | [x, z] -> SyntaxError; matched, x = 1
+10. def limit = 5; case 8; in limit          -> rebinds the name: limit = 8; `case limit():` -> compiles

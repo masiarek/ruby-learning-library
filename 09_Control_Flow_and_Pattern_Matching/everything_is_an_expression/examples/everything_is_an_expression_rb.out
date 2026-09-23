@@ -1,0 +1,14 @@
+ 1. if/else as a value                     -> 1
+ 2. case/when as a value                   -> "two"
+ 3. begin...end as a value                 -> 42
+ 4. while loop as a value                  -> nil; with `break 5` -> 5
+hi
+ 5. x = (puts "hi") leaves x =             -> nil
+ 6. def greet; end evaluates to            -> :greet
+ 7. class Foo; 99; end evaluates to        -> 99; an empty class body -> nil
+ 8. chained x = y = 1 gives [x, y]         -> [1, 1]
+ 9. nested y = (a = 1) gives [y, a]        -> [1, 1]
+10. lambda body with two statements        -> 2
+11. eval("1 + 2")                          -> 3
+12. eval("x = 1; x + 1")                   -> 2
+13. class ...; private def helper; end     -> [:helper]  (private received the Symbol)

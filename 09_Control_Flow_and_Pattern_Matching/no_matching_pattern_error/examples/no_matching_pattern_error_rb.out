@@ -1,0 +1,12 @@
+ 1. case 5; in String (no else)              -> NoMatchingPatternError: 5: String === 5 does not return true
+ 2. {a: 1} => {b:}                           -> NoMatchingPatternKeyError: {a: 1}: key not found: :b; key = :b, matchee = {a: 1}
+ 3. case {a: 1}; in {b:}                     -> NoMatchingPatternKeyError: {a: 1}: key not found: :b
+ 4. 5 => String                              -> NoMatchingPatternError: 5: String === 5 does not return true
+ 5. [1, 2] => [a]                            -> NoMatchingPatternError: [1, 2]: [1, 2] length mismatch (given 2, expected 1)
+ 6. 5 in String                              -> false
+ 7. case 5 when String (no else)             -> nil
+ 8. ancestors                                -> [NoMatchingPatternError, StandardError, Exception]; NoMatchingPatternKeyError.superclass -> NoMatchingPatternError
+ 9. rescue => e (bare) on case/in            -> bare rescue caught NoMatchingPatternError
+10. case 5; in String ... else               -> "else branch"
+11. x = (5 => Integer)                       -> SyntaxError  (void value); 5 => Integer alone -> compiles
+12. {a: {b: 1}} => {a: {c:}}                 -> key = :c, matchee = {b: 1}

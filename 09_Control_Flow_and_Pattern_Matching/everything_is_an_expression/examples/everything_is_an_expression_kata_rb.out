@@ -1,0 +1,6 @@
+describe(-3) -> negative
+describe( 0) -> zero
+describe( 7) -> positive
+if with no else, condition false -> nil
+while loop, run 3 times, evaluates to nil
+each with break n -> 9

@@ -1,0 +1,12 @@
+ 1. 3: when Integer, Float                 -> "number"
+ 2. 3: when 1..5                           -> "small"  (("a".."z") === "bb" -> true: cover?, since include? -> false)
+ 3. "id 42": when /(\d+)/ sets $~          -> "digits 42"; $~ is a MatchData
+ 4. 150: when ->(n) { n > 100 }            -> "big"
+ 5. "e": when *VOWELS                      -> "vowel"
+ 6. 1: when 1 ... when Integer             -> "first"  (no fall-through)
+ 7. case with no subject, n = -4           -> "negative"
+ 8. 99: no when matches                    -> nil; with else -> "other"
+ 9. 4, 7: when Even (a custom ===)         -> even / odd
+10. 1.0: when 1                            -> matched  (1 === 1.0 -> true)
+11. nil: when nil                          -> matched  (NilClass === nil -> true)
+12. what when calls                        -> Integer === 3 -> true; (1..5) === 3 -> true; /ab/ === "cab" -> true; lambda === 150 -> true

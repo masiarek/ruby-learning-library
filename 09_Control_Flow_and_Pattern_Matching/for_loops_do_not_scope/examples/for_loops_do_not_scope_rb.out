@@ -1,0 +1,11 @@
+ 1. for i in 1..3; x = i; end; then          -> i = 3, x = 3  (defined? local-variable / local-variable)
+ 2. [10, 20].each { |j| y = j }; then        -> defined?(j) -> nil; y -> NameError
+ 3. for v in Bag.new                         -> Bag#each called; v after the loop = :b
+ 4. while n < 2; w = n; ...; then            -> n = 2, w = 1
+ 5. times / upto / step / loop               -> defined?(t) nil, (tt) nil, (u) nil, (s) nil; loop counted k = 2
+ 6. z = nil; [1].each { |q| z = q }          -> z = 1
+ 7. for a, b in [[1, 2], [3, 4]]; then       -> a = 3, b = 4
+ 8. for ... end as a value                   -> [1, 2]; with break m * 10 -> 20
+ 9. [1].each { |q; outer| outer = ... }      -> outer = "outer"
+10. for none in []; end; then none           -> nil  (defined? "local-variable")
+11. lambdas capturing the loop variable      -> for -> [3, 3, 3]; each -> [1, 2, 3]

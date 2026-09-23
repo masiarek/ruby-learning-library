@@ -1,0 +1,14 @@
+ 1. if/else as a value                     -> 1  (x = 1 if c else 2; statement form: SyntaxError)
+ 2. case/when as a value                   -> SyntaxError  (match is a statement)
+ 3. begin...end as a value                 -> SyntaxError  (try is a statement)
+ 4. while loop as a value                  -> SyntaxError  (while is a statement)
+hi
+ 5. x = (print("hi")) leaves x =           -> None
+ 6. def greet(): pass evaluates to         -> SyntaxError  (def is a statement)
+ 7. class Foo: 99 evaluates to             -> SyntaxError  (class is a statement)
+ 8. chained x = y = 1 gives [x, y]         -> [1, 1]
+ 9. nested y = (a = 1) gives [y, a]        -> SyntaxError  (y = (a := 1) gives [1, 1])
+10. lambda body with two statements        -> SyntaxError  ((lambda: (t := 1) + 1)() gives 2)
+11. eval("1 + 2")                          -> 3
+12. eval("x = 1; x + 1")                   -> SyntaxError  (exec("x = 1") returns None)
+13. class ...; @private def helper         -> ['helper']  (the decorator received the function object)

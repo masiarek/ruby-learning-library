@@ -1,0 +1,9 @@
+a = nil || "x"      -> a is "x"
+b = nil or "x"      -> b is nil
+c = (nil or "x")    -> c is "x"
+1 and 2              -> 2
+nil or 1 and 2       -> 2
+!true == false       -> true
+not true == false    -> true
+@trap ||= compute, called 3 times  -> compute ran 3 time(s)
+defined?(@fixed) guard, called 3 times -> compute ran 1 time(s)

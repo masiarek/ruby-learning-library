@@ -1,0 +1,10 @@
+ 1. in [a, b] on a Point                     -> [1, 2]  via deconstruct
+ 2. in Point[a, b]                           -> [1, 2]  via deconstruct
+ 3. in {x:, y:}                              -> [1, 2]  via deconstruct_keys([:x, :y])
+ 4. in Point(x:)                             -> 1  via deconstruct_keys([:x])
+ 5. in {x:, **rest}                          -> rest = {y: 2}  via deconstruct_keys(nil)
+ 6. Struct / Data: deconstruct, deconstruct_keys -> [1, 2] / {x: 1, y: 2}; Data: [1, 2] / {x: 1, y: 2}; keys [:x] -> {x: 1} / {x: 1}
+ 7. Array#deconstruct, Hash#deconstruct_keys -> [1, 2] / {a: 1}; "ab" in [_, _] -> false
+ 8. 5 in [_] (no deconstruct)                -> false; 5.respond_to?(:deconstruct) -> false
+ 9. deconstruct returning a String           -> TypeError: deconstruct must return Array; TypeError: deconstruct_keys must return Hash
+10. MatchData: deconstruct / deconstruct_keys -> ["10", "20"] / {a: "10", b: "20"}

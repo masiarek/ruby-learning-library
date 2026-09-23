@@ -1,0 +1,10 @@
+ 1. in [a, b] on a Point                     -> 'no match' before Sequence.register(Pair); [1, 2] after
+ 2. in Point[a, b]                           -> TypeError without __match_args__; [1, 2] with ('x', 'y')  (read ['x', 'y'])
+ 3. in {x:, y:}                              -> [1, 2]  via getattr: read ['x', 'y']
+ 4. in Point(x:)                             -> 1  via getattr: read ['x']
+ 5. in {x:, **rest}                          -> SyntaxError for case Point(x=a, **rest):
+ 6. Struct / Data: deconstruct, deconstruct_keys -> namedtuple __match_args__ ('x', 'y'); dataclass ('x', 'y')
+ 7. Array#deconstruct, Hash#deconstruct_keys -> isinstance([], Sequence) -> True; isinstance({}, Mapping) -> True; "ab" as [_, _] -> 'no match'
+ 8. 5 in [_] (no deconstruct)                -> 'no match'; isinstance(5, Sequence) -> False
+ 9. deconstruct returning a String           -> TypeError for a list-valued __match_args__
+10. MatchData: deconstruct / deconstruct_keys -> __match_args__ on re.Match -> False; groups() ('10', '20') / groupdict() {'a': '10', 'b': '20'}

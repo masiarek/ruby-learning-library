@@ -1,0 +1,12 @@
+ 1. unless 1 > 2 ... else ... end            -> SyntaxError  (if not 1 > 2: gives 'body')
+ 2. unless ... elsif ... end                 -> compiles  (if not c: ... elif d: ...)
+ 3. n = 0; until n >= 4 ... n += 1           -> SyntaxError  (while not n >= 4: gives 4)
+ 4. r << x if c; r << y unless c             -> SyntaxError  (an expression needs else: x if c else y)
+ 5. n = 10; n += 1 while n < 3               -> SyntaxError  (while n < 3: n += 1 gives 10)
+ 6. n = 10; begin n += 1 end while n < 3     -> SyntaxError  (while True: ... if not c: break gives 11)
+ 7. loop do ... break i * 10 ... end         -> SyntaxError  (while True: ... v = i * 10; break gives 30)
+ 8. if/elsif/else/end                        -> SyntaxError
+ 9. if ... elif true ... end                 -> compiles
+10. else if ... with one end / two ends      -> SyntaxError / compiles  (else if / else: nested if)
+11. y = 5 if false; then y                   -> SyntaxError  (if False: y = 5; then y -> NameError)
+12. for ... else (search with no hit)        -> compiles; break at 9 / else ran

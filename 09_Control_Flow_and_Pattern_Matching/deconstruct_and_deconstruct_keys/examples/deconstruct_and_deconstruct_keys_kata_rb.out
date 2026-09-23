@@ -1,0 +1,5 @@
+in [a, c]                    -> 5 EUR
+   deconstruct_keys asked for [:currency]
+in Money(currency: "EUR")   -> matched a euro amount
+   deconstruct_keys asked for nil
+in {amount:, **rest}         -> amount 5, rest {currency: "EUR"}

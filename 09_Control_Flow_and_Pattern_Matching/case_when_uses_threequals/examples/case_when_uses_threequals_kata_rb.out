@@ -1,0 +1,12 @@
+7              -> digit
+42             -> integer
+2.5            -> digit
+9.5            -> float
+"case"         -> keyword
+"ruby"         -> word
+"Ruby"         -> something else
+[1, 2, 3, 4]   -> long array
+nil            -> something else
+
+(1..9) === 2.5 -> true: a Range answers === with cover?, so 2.5 is a "digit"
+move `when Float` above the Range if that is not what you meant

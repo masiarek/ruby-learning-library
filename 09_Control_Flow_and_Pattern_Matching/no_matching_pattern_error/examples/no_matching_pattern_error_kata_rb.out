@@ -1,0 +1,5 @@
+good event -> key q
+bad event  -> NoMatchingPatternError
+=> with a missing key -> NoMatchingPatternKeyError, key :modifiers
+boolean in -> false
+case/when  -> a hash

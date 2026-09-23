@@ -1,0 +1,13 @@
+ 1. [1, 2, 3] in [Integer => a, *rest]           -> a = 1, rest = [2, 3]
+ 2. person in {name: String => n, age:}          -> n = 'Ada', age = 36  (city ignored)
+ 3. {name:, **nil} vs {name:, **rest}            -> extra: ['age', 'city'] / exact  (guard `if not rest`; {**None} is a SyntaxError)
+ 4. nested {user: {roles: [String => first, *]}} -> n = 'Ada', first = 'dev'
+ 5. find pattern [*, "admin", *post]             -> SyntaxError for two stars; guard `if "admin" in roles` -> post = ['ops']
+ 6. alternatives [_, _] | [_, _, _]              -> 'pair or triple'
+ 7. rightward config => {host:, port:}           -> SyntaxError; match with one case -> host = 'localhost', port = 80
+ 8. boolean: value in pattern                    -> 5 in int -> TypeError (membership test); isinstance(5, str) -> False
+ 9. nil pattern                                  -> 'matched None'
+10. Struct: in [x, y] / in {x:, y:}              -> [1, 2] via [x, y] / [1, 2] via Point(x, y)
+11. Data: {lat:, lng:} / Coord[a, b] / Coord(k:) -> [1.5, 2.5] via Coord(lat=, lng=) / [1.5, 2.5] via Coord(lat, lng) / [lat, lng] -> 'no match'
+12. one line: case 5 in X / case 5; in X         -> SyntaxError / compiles
+13. hash pattern keys are symbols                -> case {"name": n}: matches a str-keyed dict -> n = 'Ada'

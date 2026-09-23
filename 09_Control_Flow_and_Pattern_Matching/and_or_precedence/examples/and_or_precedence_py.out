@@ -1,0 +1,10 @@
+ 1. x = false || true; x                     -> SyntaxError for ||, SyntaxError for &&; x = False or True gives True
+ 2. x = false or true; x                     -> True  (the whole expression is True)
+ 3. y = nil or "d"; y                        -> 'd'
+ 4. nil || "d", 1 && 2, nil && 2             -> 'd', 2, None
+ 5. true or false and false                  -> True  (True or (False and False))
+ 6. !nil == false / not nil == false         -> SyntaxError for !None / True
+ 7. !obj is a method; && and || are not      -> not Loud() -> False; Loud() and 1 -> 1; both via ['__bool__', '__bool__']
+ 8. a ||= 5 for nil / false / 0 / ""         -> SyntaxError for ||=; a = a or 5 gives 5 / 5 / 5 / 5
+ 9. 1 < x < 3 with x = 2                     -> True; 1 < 2 < 0 -> False; x evaluated 1 time(s)
+10. p(true or false) / p((true or false))    -> compiles / compiles

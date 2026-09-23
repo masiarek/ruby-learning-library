@@ -1,0 +1,10 @@
+ 1. x = false || true; x                     -> true
+ 2. x = false or true; x                     -> false  (the whole expression is true)
+ 3. y = nil or "d"; y                        -> nil
+ 4. nil || "d", 1 && 2, nil && 2             -> "d", 2, nil
+ 5. true or false and false                  -> false  ((true or false) and false)
+ 6. !nil == false / not nil == false         -> false / true
+ 7. !obj is a method; && and || are not      -> !Loud.new -> "custom !"; Loud.new && 1 -> 1; 1.respond_to?(:"&&") -> false
+ 8. a ||= 5 for nil / false / 0 / ""         -> 5 / 5 / 0 / ""
+ 9. 1 < x < 3 with x = 2                     -> NoMethodError: undefined method '<' for true
+10. p(true or false) / p((true or false))    -> SyntaxError / compiles

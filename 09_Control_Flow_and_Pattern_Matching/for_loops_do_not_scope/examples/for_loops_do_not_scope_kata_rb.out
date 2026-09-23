@@ -1,0 +1,6 @@
+i          leaked? true
+total_for  leaked? true
+j          leaked? false
+total_each leaked? false
+lambdas from for  -> [3, 3, 3]
+lambdas from each -> [1, 2, 3]

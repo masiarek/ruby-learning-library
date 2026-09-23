@@ -1,0 +1,12 @@
+ 1. unless 1 > 2 ... else ... end            -> "body"
+ 2. unless ... elsif ... end                 -> SyntaxError
+ 3. n = 0; until n >= 4 ... n += 1           -> 4
+ 4. r << x if c; r << y unless c             -> ["if", "unless"]
+ 5. n = 10; n += 1 while n < 3               -> 10  (tested first, never ran)
+ 6. n = 10; begin n += 1 end while n < 3     -> 11  (ran once, then tested)
+ 7. loop do ... break i * 10 ... end         -> 30
+ 8. if/elsif/else/end                        -> compiles
+ 9. if ... elif true ... end                 -> compiles; when that branch runs: NoMethodError
+10. else if ... with one end / two ends      -> SyntaxError / compiles
+11. y = 5 if false; then y                   -> nil  (defined? -> "local-variable")
+12. for ... else (search with no hit)        -> SyntaxError; find -> 9 / nil

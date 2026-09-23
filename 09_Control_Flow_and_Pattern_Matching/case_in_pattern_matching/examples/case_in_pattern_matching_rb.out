@@ -1,0 +1,13 @@
+ 1. [1, 2, 3] in [Integer => a, *rest]           -> a = 1, rest = [2, 3]
+ 2. person in {name: String => n, age:}          -> n = "Ada", age = 36  (city: ignored)
+ 3. {name:, **nil} vs {name:, **rest}            -> extra: [:age, :city] / exact
+ 4. nested {user: {roles: [String => first, *]}} -> n = "Ada", first = "dev"
+ 5. find pattern [*, "admin", *post]             -> post = ["ops"]
+ 6. alternatives [_, _] | [_, _, _]              -> "pair or triple"
+ 7. rightward config => {host:, port:}           -> host = "localhost", port = 80
+ 8. boolean: value in pattern                    -> {a: 1} in {a: Integer} -> true; 5 in String -> false; 5 in Integer => five binds five = 5
+ 9. nil pattern                                  -> "matched nil"
+10. Struct: in [x, y] / in {x:, y:}              -> [1, 2] / [1, 2]
+11. Data: {lat:, lng:} / Coord[a, b] / Coord(k:) -> [1.5, 2.5] / [1.5, 2.5] / [1.5, 2.5]
+12. one line: case 5 in X / case 5; in X         -> SyntaxError / compiles
+13. hash pattern keys are symbols                -> in {"name" => n} -> SyntaxError; {"name" => "Ada"} in {name:} -> false

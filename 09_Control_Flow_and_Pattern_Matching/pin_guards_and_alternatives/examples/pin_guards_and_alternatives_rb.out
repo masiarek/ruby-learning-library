@@ -1,0 +1,10 @@
+ 1. 5 in ^expected (expected = 5)            -> true; 6 in ^expected -> false
+ 2. case 7; in expected                      -> matches anything; expected is now 7
+ 3. [3, 3] / [3, 4] in [a, ^a]               -> true / false; in [x, x] -> SyntaxError
+ 4. [[1, 2], 2] / [[1, 2], 3] in [[_, x], ^x] -> true / false
+ 5. ^(2 * 3), ^@limit, ^$max                 -> 6 in ^(2 * 3) -> true; Gate(10): at the limit / under / over; 9 in ^$max -> true
+ 6. 5 / 6 in LIMIT (a constant)              -> true / false; in ^1 -> SyntaxError; in ^Integer -> SyntaxError
+ 7. in [x, y] if x > y / unless x > y        -> descending / not descending
+ 8. 2.5 in Integer | Float => num            -> "number 2.5"
+ 9. [x, y] | [x, y, _] / [_x, _y] | [_x, _y, _] -> SyntaxError / matched, _x = 1
+10. def limit = 5; case 8; in limit          -> binds a local: limit = 8; in ^limit -> SyntaxError; 5 in ^(limit()) -> true

@@ -1,0 +1,8 @@
+same_pair?([3, 3]    ) -> true
+same_pair?([3, 4]    ) -> false
+same_pair?(["x", "x"]) -> true
+band(10, 10) -> exactly the limit
+band(20, 10) -> exactly double
+band( 4, 10) -> below
+band(15, 10) -> above
+after `case 9; in limit`, limit is 9 -- the bare name rebound it
