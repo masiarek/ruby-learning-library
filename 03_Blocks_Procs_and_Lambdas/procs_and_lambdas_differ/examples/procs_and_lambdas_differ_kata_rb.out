@@ -1,0 +1,6 @@
+proc { |a, b| }      lambda? false arity  2  call(1) -> [1, nil]
+->(a, b) { }         lambda? true  arity  2  call(1) -> ArgumentError: wrong number of arguments (given 1, expected 2)
+proc { |a, *b| }     lambda? false arity -2  call(1) -> [1, []]
+->(a, *b) { }        lambda? true  arity -2  call(1) -> [1, []]
+proc { |a, b = 9| }  lambda? false arity  1  call(1) -> [1, 9]
+->(a, b = 9) { }     lambda? true  arity -2  call(1) -> [1, 9]

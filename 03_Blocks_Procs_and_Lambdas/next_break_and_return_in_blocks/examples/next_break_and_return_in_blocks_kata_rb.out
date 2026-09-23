@@ -1,0 +1,3 @@
+match at 5:    find 8, break 8, return 8
+no match at 20: find nil, break [3, 8, 12] (the trap), fixed nil, return nil
+all three agree on a match: true

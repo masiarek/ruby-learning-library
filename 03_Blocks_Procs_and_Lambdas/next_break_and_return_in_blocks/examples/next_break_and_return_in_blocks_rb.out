@@ -1,0 +1,12 @@
+ 1. next v is this run's value; bare next is nil:      [1, 0, 3], [nil]
+ 2. break v ends each and is the call's value:         42; no break: each returns [1, 2, 3]
+ 3. break inside map discards the array:               200; bare break: nil
+ 4. break leaves an endless loop with a value:         8, loop { break :done } = :done
+ 5. return leaves the method the block is in:          4, :none, two levels: [1, 20]
+ 6. redo runs the same iteration again:                tries 3, seen [1, 1, 2]
+ 7. next in a proc or lambda ends it with a value:     proc 6, lambda 6
+ 8. break in a lambda; in a proc via call; via yield:  5; LocalJumpError: break from proc-closure; 8, 9
+ 9. ensure still runs on the way out:
+    ensure ran
+    with_ensure { break :out } = :out
+10. while breaks with a value too:                     x = while true do break 3 end -> 3

@@ -1,0 +1,10 @@
+ 1. curry: one argument at a time, or all at once:   add.curry[1][2] = 3, .(1).(2) = 3, [1, 2] = 3
+ 2. a partly applied lambda is a value:              inc = add.curry[1]; inc[41] = 42, Proc, lambda? true
+ 3. three arguments, split any way:                  [1][2][3] = 6, [1, 2][3] = 6, [1][2, 3] = 6
+ 4. curry on a proc keeps the proc rules:            pr.curry[1][2] = [1, 2], lambda? false; a curried lambda's arity is -1
+ 5. a variadic needs curry(n); a fixed one refuses:  vsum.curry[1] = 1, vsum.curry(3)[1][2][3] = 6; add.curry(3): ArgumentError: wrong number of arguments (given 3, expected 2)
+ 6. >> runs left then right, << the other way:       (f >> g).call(1) = 20, (f << g).call(1) = 11
+ 7. composition returns a lambda, from any callables: Proc, lambda? true; (double >> :to_s.to_proc >> :size.to_proc).call(50000) = 6, map(&(double >> f)) [3, 5]
+ 8. a pipeline by reduce(:>>); order matters:        [double, sq, f].reduce(:>>).call(3) = 37, (sq << double).call(3) = 36, (sq >> double).call(3) = 18
+ 9. anything with call composes on the right:        (double >> callable).call(1) = 102; callable >> double: NoMethodError, a plain object has no >>
+10. parameters and arity describe the shape:         add [[:req, :a], [:req, :b]] 2, pr [[:opt, :a], [:opt, :b]] 2, full [[:req, :a], [:opt, :b], [:rest, :c], [:keyreq, :d], [:key, :e], [:keyrest, :f], [:block, :g]] -3, method(:f).curry[4] = 5

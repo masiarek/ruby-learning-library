@@ -1,0 +1,10 @@
+ 1. partial: some arguments now, the rest later:     partial(add, 1)(2) = 3, by hand: curried(1)(2) = 3, partial(add, 1, 2)() = 3
+ 2. a partial is a value that remembers its pieces:  inc = partial(add, 1); inc(41) = 42, partial, func add, args (1,), keywords {}
+ 3. three arguments, split any way:                  partial(partial(add3, 1), 2)(3) = 6, partial(add3, 1, 2)(3) = 6, partial(add3, 1)(2, 3) = 6
+ 4. a partial by keyword; nothing checks arity early: partial(add, b=2)(1) = 3, keywords {'b': 2}; signature(inc) (b)
+ 5. a variadic takes any split; too many fails at the call: partial(vsum, 1)(2, 3) = 6, partial(vsum, 1, 2)(3) = 6; partial(add, 1, 2, 3)(): TypeError
+ 6. no >> on functions; compose is two lines:        f >> g: TypeError; compose(f, g)(1) = 20, compose(g, f)(1) = 11
+ 7. compose returns a function, from any callables:  function; compose(compose(double, str), len)(50000) = 6, map(compose(mul2, f)) [3, 5]
+ 8. a pipeline by reduce(compose); order matters:    reduce(compose, [double, sq, f])(3) = 37, compose(double, sq)(3) = 36, compose(sq, double)(3) = 18
+ 9. anything with __call__ composes, on either side: compose(double, Callable())(1) = 102, compose(Callable(), double)(1) = 202
+10. inspect.signature describes the shape:           add (a, b) 2, full (a, b=1, *c, d, e=2, **f), kinds ['POSITIONAL_OR_KEYWORD', 'POSITIONAL_OR_KEYWORD', 'VAR_POSITIONAL', 'KEYWORD_ONLY', 'KEYWORD_ONLY', 'VAR_KEYWORD']

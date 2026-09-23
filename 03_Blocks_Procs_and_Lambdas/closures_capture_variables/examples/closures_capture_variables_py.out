@@ -1,0 +1,10 @@
+ 1. a closure sees the later value of n:                 2
+ 2. two closures share one count; a new maker starts over: 2, 0
+ 3. assigning the outer total, without / with nonlocal:  UnboundLocalError / 6
+ 4. a name first assigned inside stays inside:           reading inner outside = NameError
+ 5. a factory call or an i=i default is fresh per call:  [1, 2, 3], [1, 2, 3]
+ 6. a comprehension's i; a for loop's i:                 [3, 3, 3], [3, 3, 3], i after the loop = 3
+ 7. a parameter shadows the outer x:                     x = 10
+ 8. an assignment in a def is local by default:          tmp = 'outer'
+ 9. the captured variable, seen from outside:            f.__closure__[0].cell_contents = 2, co_freevars = ('n',)
+10. a nested def is a closure:                           sees n = 2

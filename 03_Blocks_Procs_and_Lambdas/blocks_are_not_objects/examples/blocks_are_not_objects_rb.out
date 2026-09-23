@@ -1,0 +1,14 @@
+ 1. yield hands 21 to the block and takes its value: 42
+ 2. block_given? without a block / with one:       block_given? false / block_given? true
+ 3. yield with no block:                           LocalJumpError: no block given (yield)
+ 4. a block on its own, x = { |a| a }:             SyntaxError - a block is not an expression
+ 5. two blocks on one call, both(&b) { }:          SyntaxError - one block per call
+ 6. &block reifies it:                             Proc, lambda? false, block.call(1) = 2; no block: nil
+ 7. passing it on with &blk:                       50
+ 8. do...end binds to show, not to map:            show received #<Enumerator: [1, 2]:map>, block_given? true
+ 9. { } binds to map:                              show received [2, 4], block_given? false
+10. a block wraps before/after around its body:
+    before
+    inside
+    after
+    bracket returned :done

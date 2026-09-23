@@ -1,0 +1,6 @@
+a deposit 50   -> 150
+a withdraw 30  -> 120
+b withdraw 30  -> refused: 30 > 5
+a balance      -> 120
+b balance      -> 5
+shared inside a: deposit and read see one variable: true

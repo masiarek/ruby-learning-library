@@ -1,0 +1,11 @@
+ 1. map(&:upcase):                               ["A", "B"]
+ 2. what &:sym builds, called by hand:           :upcase -> "A", :+ with (1, 2) -> 3
+ 3. so inject works; a bare symbol works too:    inject(&:+) 6, inject(:+) 6, reduce(10, :+) 16
+ 4. the proc's shape:                            lambda? true, arity -2, parameters [[:req], [:rest]]
+ 5. &method(:double), a Method's to_proc:        [2, 4], lambda? true
+ 6. &"xaby".method(:index), bound to a receiver: [1, 2]
+ 7. & calls to_proc on any object:               map(&Doubler.new) [2, 4]
+ 8. a Hash has to_proc, keys in, values out:     [:a, :b].map(&{a: 1, b: 2}) [1, 2]
+ 9. &"upcase" is refused; &nil passes no block:  TypeError: no implicit conversion of String into Proc; map(&nil) -> Enumerator
+10. the proc needs a receiver:                   ArgumentError: no receiver given
+11. &:sym dispatches like public_send:           NoMethodError: private method 'puts' called for an instance of Integer

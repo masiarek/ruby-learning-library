@@ -1,0 +1,10 @@
+ 1. a closure sees the later value of n:                 2
+ 2. two lambdas share one count; a new maker starts over: 2, 0
+ 3. a block assigns the outer total:                     6
+ 4. a name first assigned inside stays inside:           defined?(inner) = nil
+ 5. a block parameter is fresh per call:                 [1, 2, 3]
+ 6. an outer j assigned in the block; a for loop's i:    [3, 3, 3], [3, 3, 3], i after the loop = 3
+ 7. a block parameter shadows the outer x:               x = 10
+ 8. |x; tmp| makes tmp block-local:                      tmp = "outer"
+ 9. the captured variable, seen from outside:            f.binding.local_variable_get(:n) = 2
+10. a def is not a closure:                              NameError: a def cannot see the outer n

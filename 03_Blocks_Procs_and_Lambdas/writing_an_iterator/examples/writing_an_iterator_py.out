@@ -1,0 +1,10 @@
+ 1. iter(c) calls __iter__ and gets a generator:       type generator, next(it) = 3
+ 2. the class defines __iter__, the builtins do the rest: own methods none; map [30, 20, 10], filter [3, 1], sorted [1, 2, 3], 2 in c True, min 1, sum 6, islice(2) [3, 2]
+ 3. itertools for the rest:                            batched(2) [(3, 2), (1,)], pairwise [(3, 2), (2, 1)], enumerate [(0, 3), (1, 2), (2, 1)], reduce 6, list [3, 2, 1]
+ 4. c is iterable, iter(c) is the iterator:            Iterable True, Iterator False / True, len(c) TypeError, enumerate(c, 1) [(1, 3), (2, 2), (3, 1)]
+ 5. a generator function in a plain def:               pair_sums([1, 2, 3]) is generator, list [3, 5]
+ 6. def three(): yield 1; yield 2; yield 3:            list [1, 2, 3], next x3 [1, 2, 3], then StopIteration, size: no len on a generator
+ 7. an infinite generator, consumed a piece at a time: islice(8) [0, 1, 1, 2, 3, 5, 8, 13], islice(5) [0, 1, 1, 2, 3], batched(3) first 2 [(0, 1, 1), (2, 3, 5)]
+ 8. lazy by default: filter and map are iterators:     islice(filter(even, fib()), 4) [0, 2, 8, 34], class filter, islice(map(sq, count(1)), 3) [1, 4, 9]
+ 9. accumulate as a generator from a seed:             accumulate(repeat(2), mul, initial=1) [1, 2, 4, 8, 16]
+10. Iterable is a protocol, checked by an ABC:         isinstance(c, Iterable) True, isgeneratorfunction(Countdown.__iter__) True

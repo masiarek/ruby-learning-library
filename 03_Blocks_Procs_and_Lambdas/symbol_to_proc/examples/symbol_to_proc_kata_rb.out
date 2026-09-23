@@ -1,0 +1,5 @@
+[3, 6]
+["A", "B"]
+6
+"ccc"
+NoMethodError: private method 'puts' called for an instance of Integer

@@ -1,0 +1,12 @@
+ 1. a conditional expression supplies a value; continue skips: [1, 0, 3], [1, 3]
+ 2. break ends the loop; the loop has no value:        found = 42, x = for ...: SyntaxError
+ 3. break inside a comprehension:                      SyntaxError; the early exit is a generator + next: 2
+ 4. break leaves an endless loop; the value is a variable: i = 8, while True: SyntaxError
+ 5. return leaves the function the loop is in:         4, none, two levels: [1, 20]
+ 6. no redo: a while loop that does not advance:       tries 3, seen [1, 1, 2]
+ 7. return inside a generator ends it:                 list(three()) = [1], StopIteration.value = 'done'
+ 8. break outside a loop, even inside a lambda:        SyntaxError, SyntaxError, in a function body: SyntaxError
+ 9. finally still runs on the way out:
+    finally ran
+    with_finally(lambda: 'out') = 'out'
+10. for ... else: else runs only when no break happened: else ran (no break)

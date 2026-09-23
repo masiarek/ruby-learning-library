@@ -1,0 +1,11 @@
+ 1. Proc.new, proc, lambda, -> are all Proc:     Proc, lambda? false false true true
+ 2. a proc pads, drops, and splats one array:    call(1) = [1, nil], call(1, 2, 3) = [1, 2], call([1, 2]) = [1, 2]
+ 3. a lambda checks the count, no splat:         ArgumentError (given 1), ArgumentError (given 3), ArgumentError (given 1)
+ 4. the lambda's message:                        wrong number of arguments (given 1, expected 2)
+ 5. return in a lambda:                          lambda returned 10, method continues
+ 6. return in a proc:                            method returned 10
+ 7. return in a proc whose method is gone:       LocalJumpError: unexpected return
+ 8. arity, proc then lambda:                     |a, b| 2 2, |a, b = 1| 1 -2, |*a| -1, none 0
+ 9. four ways to call, and === for case/when:    call 9, .() 9, [] 9, yield 9; big === 7: true
+10. lambda(&a_proc) turns it into a lambda?      ArgumentError: the lambda method requires a literal block
+11. Symbol#to_proc, Method#to_proc are lambdas:  true true

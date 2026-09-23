@@ -1,0 +1,11 @@
+ 1. lambda and def are both function:            function function, no proc/lambda split
+ 2. a lambda given 1, 3, or one tuple:           TypeError (given 1), TypeError (given 3), TypeError (given 1)
+ 3. a def given 1, 3, or one tuple: the same:    TypeError (given 1), TypeError (given 3), TypeError (given 1)
+ 4. the message is not printed:                  CPython rewords TypeError messages between releases
+ 5. return in a lambda:                          inner returned 10, outer continues
+ 6. return in a nested def:                      still reached: return leaves inner only
+ 7. return in a def whose outer is gone:         returns 1 - no error, a function never returns from another
+ 8. inspect.signature, lambda then def:          (a, b) (a, b=1) (*a) () (a, b)
+ 9. three ways to call, no case-equality:        sq(3) 9, sq.__call__(3) 9, operator.call(sq, 3) 9
+10. a statement inside a lambda:                 SyntaxError - a lambda is one expression, def takes the rest
+11. str.upper and 'a'.upper are callables too:   True True (method_descriptor, builtin_function_or_method)

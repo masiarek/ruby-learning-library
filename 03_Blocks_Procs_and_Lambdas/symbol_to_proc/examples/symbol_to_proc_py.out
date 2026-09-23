@@ -1,0 +1,11 @@
+ 1. map(str.upper, xs):                          ['A', 'B']
+ 2. an unbound method takes the receiver first:  str.upper('a') -> 'A', operator.add(1, 2) -> 3
+ 3. so reduce works; no symbol shortcut:         reduce(add, xs) 6, sum 6, reduce(add, xs, 10) 16
+ 4. methodcaller('upper') and str.upper's shape: methodcaller -> 'A', signature(str.upper) (self, /)
+ 5. map(double, xs), a plain function:           [2, 4], type function
+ 6. map('xaby'.index, xs), a bound method:       [1, 2]
+ 7. any object with __call__:                    map(Doubler(), xs) [2, 4]
+ 8. a dict's .get, keys in, values out:          map(d.get, ['a', 'b']) [1, 2]
+ 9. map('upper', xs) is refused; so is map(None, xs): TypeError; TypeError
+10. an unbound method needs a receiver:          TypeError
+11. no private methods: _secret is callable:     map(Quiet._secret, [Quiet()]) [42]

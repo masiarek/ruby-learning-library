@@ -1,0 +1,14 @@
+ 1. a callable takes 21 and hands back its value:  42
+ 2. callback given? without one / with one:        callback given? False / callback given? True
+ 3. calling a missing callback:                    TypeError
+ 4. a lambda on its own, f = lambda a: a:          function - a lambda is an expression
+ 5. two callables on one call, both(f, g):         [42, 42] - any number
+ 6. nothing to reify, it is an object already:     function, callable? True, add_one(1) = 2; not passed: None
+ 7. passing it on as an argument:                  50
+ 8. map takes the callable as an argument:         show received [2, 4]
+ 9. the same with a comprehension:                 show received [2, 4]
+10. with runs before/after around its suite:
+    before
+    inside
+    after
+    the with statement is a statement: it has no value to return
