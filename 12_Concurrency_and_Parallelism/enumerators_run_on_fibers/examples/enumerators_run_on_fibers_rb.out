@@ -1,0 +1,14 @@
+ 1. to_a (internal): the block runs on the root fiber?   [true, true]
+ 2. next (external): on the root fiber?                  false
+ 3. next again: the same private fiber, resumed          false
+ 4. next past the end                                    StopIteration: iteration reached an end
+ 5. StopIteration#result is the block's return value     :finished
+ 6. next once more                                       StopIteration
+ 7. rewind, then next starts the block over              false
+ 8. peek / next / next on [10, 20].each                  10 / 10 / 20
+ 9. loop rescues StopIteration and returns its result    [10, 20]
+10. Yielder#yield returns: under each / map / next       [1, "yield returned 10"] / [10, "yield returned nil"] / [1, "yield returned nil"]
+11. first / take(1) / lazy.first(1): on the root fiber?  true / [true] / [true]
+12. size: Enumerator.new { } / Enumerator.new(3) { }     nil / 3
+13. under next, the block is on the calling thread       true
+14. Enumerator::Yielder's own methods                    [:<<, :to_proc, :yield]

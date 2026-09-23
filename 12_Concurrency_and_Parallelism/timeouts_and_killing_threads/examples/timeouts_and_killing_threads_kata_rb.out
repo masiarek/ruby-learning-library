@@ -1,0 +1,4 @@
+limit 0.2 s, job 5 s: Timeout::Error (execution expired)
+  cleanup ran
+limit 2 s, job 0.1 s: finished a 0.1 s job
+  cleanup ran

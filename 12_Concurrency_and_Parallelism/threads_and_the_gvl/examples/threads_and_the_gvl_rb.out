@@ -1,0 +1,14 @@
+ 1. join returns the thread itself                       true
+ 2. value is the block's last expression                 2
+ 3. after it ends: alive? / status                       false / false
+ 4. Thread.current is Thread.main: outside / inside      true / false
+ 5. a new thread has its own native_thread_id            true
+ 6. a thread did x += 1 on the outer local; x is now     11
+ 7. Thread.new(1, 2) { |a, b| a + b }.value              3
+ 8. join re-raises the thread's exception                ArgumentError: boom
+ 9. status after an exception (nil, not false)           nil
+10. status: a sleeping thread / the current thread       "sleep" / "run"
+11. Thread.pass returns                                  nil
+12. results through a Queue, sorted after join           [[0, 0], [1, 1], [2, 4]]
+13. main ends -> other threads are killed (child stdout) "main done\n"
+14. report_on_exception (default) -> child's stderr, line 1 "#<Thread:0x... -e:1 run> terminated with exception (report_on_exception is true):"

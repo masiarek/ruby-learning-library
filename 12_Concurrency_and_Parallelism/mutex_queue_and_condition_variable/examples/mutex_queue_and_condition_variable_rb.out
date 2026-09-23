@@ -1,0 +1,13 @@
+ 1. 10 threads x 1000 synchronize { count += 1 }         10000
+ 2. locked?/owned? outside -> inside synchronize         [false, false] -> [true, true]
+ 3. try_lock while I hold it / while it is free          false / true
+ 4. unlock when not locked                               ThreadError: Attempt to unlock a mutex which is not locked
+ 5. synchronize inside synchronize (Mutex)               ThreadError: deadlock; recursive locking
+ 6. the same on a Monitor (re-entrant)                   :ok
+ 7. synchronize returns                                  :the_blocks_value
+ 8. pop until close makes it return nil                  [1, 2, 3], closed? true
+ 9. push after close                                     ClosedQueueError: queue closed
+10. pop(timeout: 0.2) / pop(true) on an empty queue      nil / ThreadError: queue empty
+11. SizedQueue.new(2): max, 5 items through it           2, [0, 1, 2, 3, 4]
+12. ConditionVariable wait/signal, in order              ["waiter: entering wait", "signaller: set ready, signalling", "waiter: woke, ready is true"]
+13. Queue#task_done / Queue#join exist?                  false / false

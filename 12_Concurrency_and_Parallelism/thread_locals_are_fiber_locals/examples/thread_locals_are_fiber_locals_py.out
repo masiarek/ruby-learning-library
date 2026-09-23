@@ -1,0 +1,13 @@
+ 1. threading.local(): tl.x = 1; read back               1
+ 2. tl.x inside a generator (no fibers: same thread)     1
+ 3. a generator set tl.x = 9; the caller now sees        9
+ 4. tl.y inside a generator                              2
+ 5. a generator set tl.y = 3; the thread now sees        3
+ 6. a new Thread sees tl.x / tl.y                        None / None
+ 7. in a generator: list() / next() twice                [9, 3] / [9, 3]
+ 8. ContextVar req.set("abc"); in copy_context().run     'abc'
+ 9. a copied context set "child": child / caller         'child' / 'abc'
+10. req in a new Thread / in a generator                 'none' / 'abc'
+11. contextvars.Context() (empty) .run(req.get)          'none'
+12. vars(tl) / the copied context's items                {'x': 9, 'y': 3} / {'req': 'abc'}
+13. a missing name: getattr(tl, 'nope', None) / tl.nope  None / AttributeError

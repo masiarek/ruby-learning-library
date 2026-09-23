@@ -1,0 +1,15 @@
+ 1. pool.submit(six_times_seven).result()                42
+ 2. pool.submit(plus_one, 10).result()                   11
+ 3. a list argument is copied: inside len / outside      4 / [1, 2, 3]
+ 4. picklable? "s" / 1 / [1, "a"] / a lambda             [True, True, True, False]
+ 5. pickle round trip: == / is / inner is                [True, False, False]
+ 6. a nested function that reads an outer local          picklable? False: it never leaves this process
+ 7. a module-level list appended to in the child / here  ['a', 'b'] / ['a']
+ 8. an exception inside: exception() / result() raises   ValueError: inside / ValueError: inside
+ 9. 3 Processes send through a Queue, sorted; exitcodes  [(0, 0), (1, 10), (2, 20)], [0, 0, 0]
+10. send a list; the child upper()s its copy             ['HELLO'] / sender still ['hello']
+11. echoed object is the sent one: a tuple / a list      False / False
+12. send with move?                                      no move semantics; the sender still has 'moved'
+13. parent_process() is None: outside / inside           True / False
+14. pool.map(square, range(4))                           [0, 1, 4, 9]
+15. pass a lambda / a module-level def                   picklable? False / 8

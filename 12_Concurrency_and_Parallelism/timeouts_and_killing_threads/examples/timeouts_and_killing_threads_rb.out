@@ -1,0 +1,15 @@
+ 1. threads before any Timeout.timeout call (names)      [nil]
+ 2. Timeout.timeout(0.2) { sleep 5 }                     Timeout::Error: execution expired
+ 3. after: the watcher thread exists (names)             [nil, "Timeout stdlib thread"]
+ 4. a block that finishes in time returns its value      :fast
+ 5. timeout(nil) / timeout(0) mean no limit              :a / :b
+ 6. your own class and message                           ArgumentError: too slow
+ 7. what the block sees / what the caller sees           ["inside rescued Timeout::ExitException", "inside ensure ran", "outside rescued Timeout::Error"]
+ 8. Timeout::Error's ancestors                           [Timeout::Error, RuntimeError, StandardError]
+ 9. a busy loop (no sleep) is interrupted too            Timeout::Error
+10. Thread#kill: ensure runs; status / alive?            "ensure ran"; false / false
+11. join(0.2) on a 5 s thread / alive?                   nil / true
+12. Thread#wakeup ends a sleep with no limit             :woke
+13. Thread#run ends a timed sleep early                  :sleep_cut_short
+14. Thread#raise delivers an exception into a thread     "rescued RuntimeError: wake up"
+15. Queue#pop(timeout: 0.2) on an empty queue            nil

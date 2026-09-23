@@ -1,0 +1,13 @@
+ 1. Thread.current[:x] = 1; read back in the root fiber  1
+ 2. Thread.current[:x] inside a new Fiber                nil
+ 3. a fiber set [:x] = 9; the root fiber still sees      1
+ 4. thread_variable_get(:y) inside a new Fiber           2
+ 5. a fiber set :y = 3; the thread now sees              3
+ 6. a new Thread sees [:x] / thread_variable :y          nil / nil
+ 7. in an Enumerator: to_a (root fiber) / next (own fiber) [1, 3] / [nil, 3]
+ 8. Fiber[:req] = "abc"; inside a child Fiber            "abc"
+ 9. a child set Fiber[:req] = "child": child / root      "child" / "abc"
+10. Fiber[:req] in a new Thread / in Enumerator#next     "abc" / "abc"
+11. Fiber.new(storage: nil) starts with nothing          nil
+12. keys / thread_variables / Fiber.current.storage      [:x] / [:y] / {req: "abc"}
+13. a missing key: [:nope] / fetch(:nope)                nil / KeyError

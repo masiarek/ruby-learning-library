@@ -1,0 +1,15 @@
+ 1. threads before any timeout (names)                   ['MainThread']
+ 2. future.result(timeout=0.2) on a 5 s wait             TimeoutError; the task is still running: True
+ 3. after: no watcher, only the pool's worker (names)    ['MainThread', 'ThreadPoolExecutor-0_0']
+ 4. a task that finishes in time returns its value       'fast'
+ 5. result(timeout=None) waits / timeout=0 gives up at once True / TimeoutError
+ 6. your own class and message?                          no: always TimeoutError (futures.TimeoutError is TimeoutError: True)
+ 7. what the task sees / what the caller sees            ['outside: TimeoutError, task still running', 'inside: the wait ended normally', 'inside: finally ran']
+ 8. TimeoutError's bases                                 ['TimeoutError', 'OSError', 'Exception']
+ 9. a busy loop cannot be interrupted; it checks a flag  stopped when it saw the flag
+10. Thread.kill exists? / the alternative                False / daemon=True threads die with the process
+11. join(0.2) on a 5 s thread / is_alive()               None / True
+12. Event.wait(0.2) before set / after set               False / True
+13. no Thread.run: time.sleep(5) cannot be cut short; Event.wait(5) can returned True once set
+14. Thread.raise exists?                                 False (PyThreadState_SetAsyncExc is the C-level hack)
+15. queue.get(timeout=0.2) on an empty queue             Empty

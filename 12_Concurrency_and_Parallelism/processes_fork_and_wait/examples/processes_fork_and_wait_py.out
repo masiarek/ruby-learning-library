@@ -1,0 +1,10 @@
+ 1. os.fork(); child os._exit(3); waitpid; exit code / == 0 3 / False
+ 2. fork returned 0: this row is printed by the child    child
+ 3. fork returned a positive int: printed by the parent  parent (pid > 0: True)
+ 4. child did counter += 1 and wrote it / parent's counter 1 / 0
+ 5. os.waitpid(pid, 0) -> (pid, status); WEXITSTATUS     int, exit code 7
+ 6. Popen([python, -c, "raise SystemExit(5)"]).wait()    returncode 5
+ 7. run(...).returncode: exit 0 / exit 2 / a missing command 0 / 2 / FileNotFoundError
+ 8. run(capture_output=True).stdout; returncode == 0     '42' / True
+ 9. killed by SIGTERM: exit code / WIFSIGNALED / signal  -15 / True / SIGTERM
+10. os.wait() with no children left                      ChildProcessError

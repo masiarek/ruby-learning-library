@@ -1,0 +1,15 @@
+ 1. Ractor.new { 6 * 7 }.value                           42
+ 2. Ractor.new(10) { |n| n + 1 }.value                   11
+ 3. an Array argument is copied: inside size / outside   4 / [1, 2, 3]
+ 4. shareable? "s".freeze / "s" / 1 / :a / [1, "a"].freeze [true, false, true, true, false]
+ 5. make_shareable deep-freezes: outer/inner/string/ok?  [true, true, true, true]
+ 6. a block that reads an outer local                    ArgumentError: can not isolate a Proc because it accesses outer variables (x).
+ 7. reading an unfrozen constant: the cause              Ractor::IsolationError: can not access non-shareable objects in constant Object::UNFROZEN by non-main Ractor.
+ 8. an exception inside: value raises                    Ractor::RemoteError: thrown by remote Ractor. cause ArgumentError: inside
+ 9. 3 ractors send through a Ractor::Port, sorted        [[0, 0], [1, 10], [2, 20]], values [:sent, :sent, :sent]
+10. send a String; the ractor upcase!s its copy          "HELLO" / sender still "hello"
+11. received equal?(sent): a frozen String / a mutable one true / false
+12. send(move: true): receiver has it / sender's copy    "moved" / Ractor::MovedError
+13. Ractor.main? outside / inside                        true / false
+14. 4 ractors squaring; values collected in order        [0, 1, 4, 9]
+15. pass a lambda: plain / Ractor.shareable_lambda       TypeError / 8

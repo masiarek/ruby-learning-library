@@ -1,0 +1,14 @@
+ 1. list() (all at once): on the calling thread?         [True, True]
+ 2. next() (one at a time): on the calling thread?       True
+ 3. next() again: the same frame, resumed                True (gi_suspended True)
+ 4. next() past the end                                  StopIteration (state GEN_CLOSED)
+ 5. StopIteration.value is the return value              'finished'
+ 6. next() once more                                     StopIteration (value None)
+ 7. no rewind: gen() again, then next()                  True
+ 8. (no peek) / next / next on iter([10, 20])            (no peek) / 10 / 20
+ 9. for swallows StopIteration; next(it, default)        'the default'
+10. the yield expression: under list() / after send(10)  [1, 'yield returned None'] / [1, 'yield returned 10']
+11. next(gen()) / islice / list: on the calling thread?  True / [True] / [True]
+12. size: len(gen()) / operator.length_hint(gen())       TypeError / 0
+13. under next(), the frame is on the calling thread     True
+14. a generator object's gi_ attributes                  ['gi_code', 'gi_frame', 'gi_running', 'gi_suspended', 'gi_yieldfrom']

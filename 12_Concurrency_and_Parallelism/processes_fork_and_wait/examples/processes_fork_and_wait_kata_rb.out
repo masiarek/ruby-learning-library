@@ -1,0 +1,5 @@
+a child exited with status 1
+a child exited with status 2
+a child exited with status 3
+all three exited normally: true
+waiting again raises: Errno::ECHILD

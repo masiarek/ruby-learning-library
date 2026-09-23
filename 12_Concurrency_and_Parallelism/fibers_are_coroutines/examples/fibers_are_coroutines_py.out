@@ -1,0 +1,15 @@
+ 1. next(): the frame starts, yields x * 2               2
+ 2. getgeneratorstate() while suspended                  GEN_SUSPENDED
+ 3. send(10): the yield expression was 10, yields y + 1  11
+ 4. send(100): return raises StopIteration; its .value   'done 100'
+ 5. getgeneratorstate() after the return                 GEN_CLOSED
+ 6. next() on a finished generator                       StopIteration again, value None
+ 7. yield outside any function                           SyntaxError at compile time
+ 8. gen.throw() delivers an exception at the yield       'rescued RuntimeError: stop', state GEN_CLOSED
+ 9. no Fiber object: type / gi_frame is not None?        generator / True
+10. a generator runs on the thread that resumed it       True
+11. a generator: 8 next() calls on a Fibonacci generator [0, 1, 1, 2, 3, 5, 8, 13]
+12. no preemption: control moves only at next/yield      ['outer 1', 'inner 1', 'outer 2', 'inner 2', 'outer 3']
+13. gen.close() unwinds the frame; finally runs          state GEN_CLOSED, ['finally ran']
+14. several values: `yield 1, 2` / send((3, 4))          (1, 2) / (3, 4)
+15. an async def coroutine driven by send(None)          StopIteration.value 5 (no asyncio needed)

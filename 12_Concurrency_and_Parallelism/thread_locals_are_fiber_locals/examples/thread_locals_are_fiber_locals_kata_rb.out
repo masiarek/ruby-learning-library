@@ -1,0 +1,4 @@
+root fiber:        Thread.current[:request_id]="req-42"  Fiber[:request_id]="req-42"
+a new Fiber:       Thread.current[:request_id]=nil  Fiber[:request_id]="req-42"
+Enumerator#next:   Thread.current[:request_id]=nil  Fiber[:request_id]="req-42"
+a new Thread:      Thread.current[:request_id]=nil  Fiber[:request_id]="req-42"

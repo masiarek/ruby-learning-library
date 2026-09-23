@@ -1,0 +1,13 @@
+ 1. 10 threads x 1000 `with lock: count += 1`            10000
+ 2. locked() outside -> inside `with lock` (no owned?)   False -> True
+ 3. acquire(blocking=False) while held / while free      False / True
+ 4. release() when not locked                            RuntimeError
+ 5. acquire again inside `with lock` (Lock)              acquire(timeout=0.2) -> False: it would block forever
+ 6. the same on an RLock (re-entrant)                    'ok'
+ 7. `with lock:` returns                                 nothing: with is a statement, not an expression
+ 8. get until a None sentinel (no close in 3.12)         [1, 2, 3], closed? n/a
+ 9. put after the sentinel                               accepted; qsize() is 1
+10. get(timeout=0.2) / get_nowait() on an empty queue    Empty / Empty
+11. Queue(maxsize=2): maxsize, 5 items through it        2, [0, 1, 2, 3, 4]
+12. Condition wait_for/notify, in order                  ['waiter: entering wait', 'signaller: set ready, notifying', 'waiter: woke, ready is True']
+13. Queue.task_done / Queue.join exist?                  True / True: join() returned after 3 task_done() calls

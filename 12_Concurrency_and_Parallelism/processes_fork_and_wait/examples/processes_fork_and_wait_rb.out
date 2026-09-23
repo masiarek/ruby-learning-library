@@ -1,0 +1,10 @@
+ 1. fork { exit 3 }; Process.wait; exitstatus / success? 3 / false
+ 2. fork returned nil: this row is printed by the child  child
+ 3. fork returned an Integer: printed by the parent      parent (pid > 0: true)
+ 4. child did counter += 1 and wrote it / parent's counter 1 / 0
+ 5. Process.wait2(fork { exit 7 }) -> [pid, status]      Process::Status, exitstatus 7
+ 6. spawn(ruby, "-e", "exit 5") + Process.wait           $?.exitstatus 5
+ 7. system: exit 0 / exit 2 / a missing command          true / false / nil ($?.exitstatus 127)
+ 8. backticks capture the child's stdout; $?.success?    "42" / true
+ 9. killed by TERM: exitstatus / signaled? / termsig     nil / true / TERM
+10. Process.wait with no children left                   Errno::ECHILD

@@ -1,0 +1,15 @@
+ 1. resume(1): the block starts, yields x * 2            2
+ 2. alive? while suspended at a yield                    true
+ 3. resume(10): Fiber.yield returned 10, yields y + 1    11
+ 4. resume(100): the block ends; its last value          "done 100"
+ 5. alive? after the block ended                         false
+ 6. resume a finished fiber                              FiberError: attempt to resume a terminated fiber
+ 7. Fiber.yield outside any fiber                        FiberError: attempt to yield on a not resumed fiber
+ 8. fiber.raise delivers an exception at the yield       "rescued RuntimeError: stop", alive? false
+ 9. Fiber.current: the root fiber's class / inside is root? Fiber / false
+10. a fiber runs on the thread that resumed it           true
+11. a generator: 8 resumes of a Fibonacci fiber          [0, 1, 1, 2, 3, 5, 8, 13]
+12. no preemption: control moves only at resume/yield    ["outer 1", "inner 1", "outer 2", "inner 2", "outer 3"]
+13. Fiber#kill unwinds the fiber; ensure runs            alive? false, ["ensure ran"]
+14. several values: resume(1, 2) / Fiber.yield 1, 2      [1, 2] / [1, 2]
+15. Fiber.scheduler (hook for non-blocking fibers)       nil

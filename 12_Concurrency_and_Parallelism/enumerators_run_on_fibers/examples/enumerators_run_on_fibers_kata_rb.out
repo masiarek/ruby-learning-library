@@ -1,0 +1,5 @@
+the    -> next: quick
+quick  -> next: brown
+brown  -> next: fox
+fox    -> next: (none)
+after the loop: next raises StopIteration
