@@ -1,0 +1,27 @@
+1. a control-flow exception carries the value; the helper returns it
+   with a raise:    20
+   without a raise: 'function finished without a raise'
+2. escaping nested loops
+   visiting 1,1
+   visiting 1,2
+   visiting 1,3
+   visiting 2,1
+   visiting 2,2
+   first cell whose product is 4: [2, 2]
+3. a raise with no matching except is just an uncaught exception
+   Found; args (1,)
+   isinstance(e, Exception) True
+4. an except Exception in between DOES intercept it; finally runs either way
+   except Exception intercepted Found
+   finally ran on the way out for Found
+   returned 'function finished'
+   finally ran on the way out for Escape
+   Escape (a BaseException) reached the outer handler
+5. no tagless form: the exception class is the tag
+   any class works as a tag; there is nothing to generate
+6. a raise with no value: args is empty, the helper returns None
+   catch(lambda: (_ for _ in ()).throw(Found())) -> None
+7. matching is by class, not identity
+   isinstance(Found(), Found) True; Found() is Found() False
+8. the jump unwinds through function calls
+   catch(lambda: descend(5)) -> 'reached the bottom'

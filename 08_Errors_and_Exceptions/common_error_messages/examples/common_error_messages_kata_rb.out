@@ -1,0 +1,6 @@
+   nil.length             NoMethodError: a nil reached a method call; guard it or use &.
+   "s".zzz                NoMethodError: no such method; check the spelling and the receiver's class
+   {a: 1}.fetch(:x)       KeyError: use fetch with a default, or [] (key :x)
+   Integer("abc")         ArgumentError: check the call's arguments (invalid value for Integer(): "abc")
+   1 / 0                  unhandled: ZeroDivisionError
+   [1, 2].first           ok

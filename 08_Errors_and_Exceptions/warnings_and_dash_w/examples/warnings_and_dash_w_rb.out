@@ -1,0 +1,64 @@
+1. warn writes to stderr, not stdout
+   warn "careful"; puts "out"
+      stdout: out
+      stderr: careful
+      exit status: 0
+2. uplevel: adds the file, the line and the word warning
+   warn "old api", uplevel: 0
+      stderr: -e:1: warning: old api
+      exit status: 0
+3. Warning[:deprecated] is off by default; -W:deprecated turns it on
+   ruby -e '...'
+      stdout: Warning[:deprecated] = false
+      exit status: 0
+   ruby -W:deprecated -e '...'
+      stdout: Warning[:deprecated] = true
+      stderr: old
+      exit status: 0
+4. $VERBOSE is false by default, true under -w, nil under -W0 (which silences warn)
+   ruby -e 'p $VERBOSE; warn "shown?"'
+      stdout: false
+      stderr: shown?
+      exit status: 0
+   ruby -w -e '...'
+      stdout: true
+      stderr: shown?
+      exit status: 0
+   ruby -W0 -e '...'
+      stdout: nil
+      exit status: 0
+5. the warning categories and their defaults
+   Warning.categories [:deprecated, :experimental, :performance, :strict_unused_block]
+   Warning[:deprecated]             false
+   Warning[:experimental]           true
+   Warning[:performance]            false
+   Warning[:strict_unused_block]    false
+6. what -w reports on a sloppy file, and -c, the syntax check
+   ruby sloppy.rb
+      stdout: literal condition
+      stdout: hi again
+      exit status: 0
+   ruby -w sloppy.rb
+      stdout: literal condition
+      stdout: hi again
+      stderr: sloppy.rb:2: warning: assigned but unused variable - unused
+      stderr: sloppy.rb:10: warning: literal in condition
+      stderr: sloppy.rb:16: warning: mismatched indentations at 'end' with 'def' at 14
+      stderr: sloppy.rb:15: warning: assigned but unused variable - x
+      stderr: sloppy.rb:6: warning: method redefined; discarding old greet
+      stderr: sloppy.rb:1: warning: previous definition of greet was here
+      exit status: 0
+   ruby -c sloppy.rb
+      stdout: Syntax OK
+      exit status: 0
+7. capturing warnings in-process by prepending to Warning
+   captured [["captured one", nil], ["captured three", :deprecated]]
+   (the second never reached Warning.warn: its category was off at the time)
+8. mutating a string literal warns only under -W:deprecated (literals are chilled)
+   ruby -e 's = "lit"; s << "x"; puts s'
+      stdout: litx
+      exit status: 0
+   ruby -W:deprecated -e '...'
+      stdout: litx
+      stderr: -e:1: warning: literal string will be frozen in the future (run with --debug-frozen-string-literal for more information)
+      exit status: 0

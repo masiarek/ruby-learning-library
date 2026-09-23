@@ -1,0 +1,7 @@
+1. a good value passes through
+   must_be_positive(5) -> 5
+2. a bad value is reported inside, then re-raised to an outer handler
+   inner handler: ArgumentError: expected a positive number, got -2
+   outer handler got the same object: true
+3. a non-number is reported with inspect, so a string shows its quotes
+   expected a positive number, got "7"

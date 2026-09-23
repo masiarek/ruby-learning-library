@@ -1,0 +1,28 @@
+1. a raise inside except sets __context__ automatically
+   High: 'save failed'; __context__: Low: 'disk full'; __cause__: None
+2. raise X from Y sets __cause__ explicitly
+   e.__cause__ Low; the same object: True; __suppress_context__ True
+3. from None hides the exception being handled (it is still in __context__)
+   e.__cause__ None; e.__context__ Low; __suppress_context__ True
+4. a chain of three, walked with __cause__ / __context__
+   ['High', 'Mid', 'Low']
+5. what the traceback prints about the chain (sentence lines only)
+   Low: l
+   During handling of the above exception, another exception occurred:
+   Mid: m
+   During handling of the above exception, another exception occurred:
+   High: h
+   ... and with an explicit from:
+   Low: l
+   The above exception was the direct cause of the following exception:
+   High: h
+6. no except in progress: both are None
+   e.__context__ None; e.__cause__ None
+7. no loop check: a cycle is accepted, and the printer stops at a repeat
+   a.__cause__ is b and b.__cause__ is a: True
+   format_exception(a) mentions 'Low: a' 1 time(s)
+8. a raise inside finally, while another exception is in flight, gets a __context__ too
+   inner.__context__ Low
+   the body's Low still reaches the outer except
+9. __cause__ is writable
+   e.__cause__ after assignment: Low

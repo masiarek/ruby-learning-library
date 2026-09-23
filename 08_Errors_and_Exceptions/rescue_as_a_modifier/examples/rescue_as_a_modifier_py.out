@@ -1,0 +1,23 @@
+1. no expression form: try is a statement
+   x = int('abc') except ValueError: 0  -> SyntaxError
+   or_default(lambda: int('abc'), 0)    -> 0
+   or_default(lambda: int('42'), 0)     -> 42
+2. contextlib.suppress catches only what it is given
+   suppress(ValueError) around raise NotImplementedError -> propagated NotImplementedError
+3. how it binds: suppress skips the rest of its block, assignment included
+   x after a suppressed int('abc') -> 'unchanged' (set the default before the block)
+4. no def-level except: the try is written out
+   parse('q') -> 'function-level except'
+5. try cannot appear in a lambda or any expression
+   f = lambda: try: 1 except: 2   SyntaxError
+   f = lambda: (try: 1 except: 2) SyntaxError
+6. the built-in defaults that replace most rescue modifiers
+   d.get('b', 0)                 -> 0
+   getattr(None, 'upper', 'dflt') -> 'dflt'
+   next(iter([]), 'empty')        -> 'empty'
+7. int() raises where Ruby's to_i does not
+   int('abc'   ) -> ValueError
+   int('12abc' ) -> ValueError
+   int(' 42 '  ) -> 42
+8. the same trap: a catch-all hides a typo
+   or_default(lambda: None.upcse(), 'default') -> 'default' (the AttributeError is gone)

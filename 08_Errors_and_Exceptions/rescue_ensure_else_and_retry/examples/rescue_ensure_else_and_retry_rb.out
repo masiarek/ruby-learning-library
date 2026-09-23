@@ -1,0 +1,34 @@
+1. the full form, no exception
+   begin body runs
+   begin body finished
+   else runs: no exception was raised
+   ensure runs
+2. the full form, an exception
+   begin body runs
+   rescue runs: ZeroDivisionError: divided by 0
+   ensure runs
+3. rescue A, B => e catches either class, and their subclasses
+   caught ZeroDivisionError, which is_a?(IndexError): false
+   caught IndexError, which is_a?(IndexError): true
+   caught KeyError, which is_a?(IndexError): true
+4. retry re-runs the begin body
+   attempt 1
+   attempt 2
+   attempt 3
+   succeeded on attempt 3
+5. ensure runs on return
+   ensure ran on the way out
+   method returned "the return value"
+6. return inside ensure swallows the exception (never do this)
+   method returned "ensure's return value"; no exception reached the caller
+7. rescue in a def needs no begin
+   parse("12")  -> 12
+   parse("abc") -> "rescued ArgumentError"
+8. what the rescued object carries
+   e.class            ZeroDivisionError
+   e.message          "divided by 0"
+   e.backtrace        an Array of Strings
+   e.full_message     a String (paths inside, not printed)
+9. begin/end is an expression
+   body raised, rescue ran:     "the rescue clause's value"
+   body ok, else and ensure ran: 3 (ensure's 4 is discarded)

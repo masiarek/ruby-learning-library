@@ -1,0 +1,3 @@
+   {age: 3} -> MissingField: name is required (field :name)
+   {name: "Ann", age: "three"} -> ValidationError: age is invalid (field :age)
+   {name: "Ann", age: 30} -> ok

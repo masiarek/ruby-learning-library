@@ -1,0 +1,29 @@
+1. raise "msg": a string is not an exception
+   TypeError
+2. raise Klass instantiates it with no arguments
+   ValueError: args=()
+3. raise Klass, "msg" is Python 2 syntax
+   SyntaxError
+4. raise Klass("msg") is the one form; nothing replaces a message afterwards
+   ValueError: args=('an instance',)
+5. a bare raise inside except re-raises the same object
+   outer got OSError; same object: True
+6. a bare raise outside any except: a RuntimeError
+   RuntimeError
+7. with_traceback replaces the traceback (frames, not strings)
+   frames in the borrowed traceback: 2; after re-raising with it: 3
+8. no fail alias
+   raise is the only spelling
+9. raising something that is not an exception
+   TypeError
+   TypeError
+   TypeError
+10. sys.exception() inside except, and after it
+   sys.exception() is e                    True
+   sys.exc_info()[2] is e.__traceback__    True
+   sys.exception() after the except        None
+11. raise Klass calls Klass(): the constructor, not a hook
+   Custom.__init__ called with ()
+   Custom
+   Custom.__init__ called with ('msg',)
+   Custom

@@ -1,0 +1,4 @@
+1. exit 2 inside begin/rescue => e: the handler runs, the rescue is skipped, status 2
+   stdout "cleanup", stderr "", status 2
+2. exit! 2: the handler is skipped too, and the status is still 2
+   stdout "", stderr "", status 2

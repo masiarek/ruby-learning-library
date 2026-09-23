@@ -1,0 +1,47 @@
+1. sys.exit raises SystemExit, which a handler can catch
+   try: sys.exit() except SystemExit as e: ...; print("still running")
+      stdout: caught SystemExit: code None
+      stdout: still running
+      exit status 0
+2. except Exception does not see it
+   try: sys.exit(3) except Exception: print("caught"); print("after")
+      exit status 3
+3. the exit status: an Integer -- and True is 1, False is 0
+   sys.exit(3)
+      exit status 3
+   sys.exit(True)
+      exit status 1
+   sys.exit(False)
+      exit status 0
+4. atexit handlers run in reverse order of registration
+   three atexit.register calls, then print("main done")
+      stdout: main done
+      stdout: third registered
+      stdout: second registered
+      stdout: first registered
+      exit status 0
+5. os._exit skips them
+   atexit.register(...); os._exit(4)
+      exit status 4
+6. sys.exit with a string writes it to stderr, runs atexit, and exits 1
+   atexit.register(...); sys.exit("fatal: giving up")
+      stdout: atexit ran
+      stderr (last line): fatal: giving up
+      exit status 1
+7. an uncaught exception prints a traceback and exits 1; atexit still runs, but sys.exception() is gone
+   atexit.register(...); print("before"); raise RuntimeError("boom")
+      stdout: before
+      stdout: atexit sees sys.exception(): None
+      stderr (last line): RuntimeError: boom
+      exit status 1
+8. KeyboardInterrupt is a BaseException; an uncaught one ends the process by the signal
+   raise KeyboardInterrupt, caught as BaseException
+      stdout: KeyboardInterrupt < BaseException
+      exit status 0
+   a real SIGINT, not caught: os.kill(os.getpid(), signal.SIGINT); time.sleep(5)
+      stderr (last line): KeyboardInterrupt
+      killed by signal 2
+   a real SIGINT, caught as KeyboardInterrupt
+      stdout: caught KeyboardInterrupt
+      exit status 0
+9. this program's own atexit handler prints last

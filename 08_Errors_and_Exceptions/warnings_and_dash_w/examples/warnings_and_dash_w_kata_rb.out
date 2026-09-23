@@ -1,0 +1,6 @@
+without -w: stdout "6", status 0
+   stderr: (empty)
+with -w: stdout "6", status 0
+   stderr: sloppy.rb:2: warning: assigned but unused variable - count
+   stderr: sloppy.rb:6: warning: method redefined; discarding old total
+   stderr: sloppy.rb:1: warning: previous definition of total was here

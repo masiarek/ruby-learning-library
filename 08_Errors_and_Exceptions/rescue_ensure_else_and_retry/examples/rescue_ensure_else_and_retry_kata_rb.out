@@ -1,0 +1,8 @@
+1. succeeds on the third try
+   attempt 1 failed with ArgumentError: not yet
+   attempt 2 failed with ArgumentError: not yet
+   done after 3 attempts
+2. gives up after the limit and re-raises
+   attempt 1 failed with IOError: still failing (attempt 1)
+   attempt 2 failed with IOError: still failing (attempt 2)
+   caller saw IOError: still failing (attempt 2)

@@ -1,0 +1,24 @@
+1. expr rescue fallback
+   Integer("abc") rescue 0  -> 0
+   Integer("42") rescue 0   -> 42
+2. it catches StandardError only
+   (raise NotImplementedError) rescue 0 -> propagated NotImplementedError
+3. how it binds
+   value = raise("boom") rescue "fallback"  -> value is "fallback"
+   as a bare argument, p(expr rescue 0):   SyntaxError
+   with its own parentheses, p((expr rescue 0)): compiles
+4. a rescue clause in a def needs no begin
+   parse("q") -> "method-level rescue"
+5. a rescue clause inside do...end works; inside { } it is a syntax error
+   do |x| ... rescue => e ... end   compiles
+   { |x| ... rescue => e ... }      SyntaxError
+   rescued inside do...end: "inside a do block (1)"
+6. the modifier form is fine inside { }
+   modifier inside braces (1)
+7. Integer() raises where to_i does not
+   "abc".to_i                    -> 0
+   "12abc".to_i                  -> 12
+   Integer("abc")                -> ArgumentError: invalid value for Integer(): "abc"
+   Integer("abc", exception: false) -> nil
+8. the trap: the modifier hides every StandardError, including a typo
+   nil.upcse rescue "default" -> "default" (the NoMethodError from the typo is gone)

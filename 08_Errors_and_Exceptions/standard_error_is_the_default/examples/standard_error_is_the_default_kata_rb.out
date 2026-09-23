@@ -1,0 +1,7 @@
+1. a value comes back tagged :ok
+[:ok, 42]
+2. a StandardError comes back tagged :error
+[:error, ArgumentError]
+[:error, KeyError]
+3. exit is not a StandardError, so it passes through safe_call
+   SystemExit reached the top level with status 2

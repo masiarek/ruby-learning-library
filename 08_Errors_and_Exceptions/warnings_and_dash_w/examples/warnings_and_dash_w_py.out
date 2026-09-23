@@ -1,0 +1,62 @@
+1. warnings.warn writes to stderr, not stdout
+   warnings.warn('careful'); print('out')
+      stdout: out
+      stderr: <string>:1: UserWarning: careful
+      exit status: 0
+2. the prefix is always file:line: Category; stacklevel=2 blames the caller
+   warn from inside old(), default stacklevel
+      stderr: <string>:3: UserWarning: old api
+      exit status: 0
+   warn from inside old(), stacklevel=2
+      stderr: <string>:4: UserWarning: old api
+      exit status: 0
+3. DeprecationWarning is shown from __main__ only; -W default and -X dev show it everywhere
+   python3 -c 'warnings.warn("old", DeprecationWarning)'
+      stdout: out
+      stderr: <string>:1: DeprecationWarning: old
+      exit status: 0
+   the same warning raised inside an imported module
+      stdout: out
+      exit status: 0
+   ... under python3 -W default
+      stdout: out
+      stderr: oldlib.py:5: DeprecationWarning: old api
+      exit status: 0
+   ... under python3 -X dev
+      stdout: out
+      stderr: oldlib.py:5: DeprecationWarning: old api
+      exit status: 0
+4. -W error turns a warning into an exception; -W ignore silences it
+   python3 -W error -c '...'
+      stderr: UserWarning: careful
+      exit status: 1
+   python3 -W ignore -c '...'
+      stdout: out
+      exit status: 0
+5. the categories, and whether a warning of each is shown from __main__ by default
+   UserWarning                shown
+   DeprecationWarning         shown
+   PendingDeprecationWarning  hidden
+   SyntaxWarning              shown
+   RuntimeWarning             shown
+   FutureWarning              shown
+   ImportWarning              hidden
+   ResourceWarning            hidden
+6. no -w: the closest thing is the compiler's SyntaxWarning
+   if 'a' is 'a': ...
+      stdout: compared
+      stderr: <string>:1: SyntaxWarning: "is" with 'str' literal. Did you mean "=="?
+      exit status: 0
+   assert (1, 'msg')
+      stderr: <string>:1: SyntaxWarning: assertion is always true, perhaps remove parentheses?
+      exit status: 0
+7. capturing warnings in-process with catch_warnings(record=True)
+   captured [('captured one', 'UserWarning'), ('captured two', 'DeprecationWarning')]
+8. a Warning is an Exception, which is what makes -W error possible
+   DeprecationWarning.__mro__ ['DeprecationWarning', 'Warning', 'Exception', 'BaseException', 'object']
+   python3 -X dev: sys.flags.dev_mode
+      stdout: True ['default']
+      exit status: 0
+   default: sys.flags.dev_mode
+      stdout: False []
+      exit status: 0

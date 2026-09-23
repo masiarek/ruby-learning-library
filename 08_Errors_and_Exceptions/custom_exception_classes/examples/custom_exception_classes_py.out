@@ -1,0 +1,28 @@
+1. a default message via super().__init__
+   raise AppError                  -> 'the application failed'
+   raise AppError("given instead") -> 'given instead'
+2. extra attributes
+   NotFound: 'not found', code 404
+   NotFound: 'no such user', code 410
+3. overriding __str__
+   str(e) 'LOUD: x'   e.args ('x',)
+4. a family is caught by its base class
+   except AppError caught AppError
+   except AppError caught NotFound
+   except AppError caught Loud
+5. format_exception_only: the last line of a traceback
+   NotFound: gone
+6. no exception protocol: raise needs a BaseException class or instance
+   raise Ticket(7)  -> TypeError
+7. add_note (3.11) is shown by the traceback; str(e) is untouched
+   str(e)                 'bad setting'
+   e.__notes__            ['hint: check the config']
+   format_exception_only  ['AppError: bad setting', 'hint: check the config']
+8. __init__ without super().__init__: args are kept anyway
+   NoSuper: str '5', args (5,)
+9. == is identity
+   AppError("a") == AppError("a")  False
+   a == a                            True
+10. ExceptionGroup and except* (3.11): several errors at once
+   except* ValueError got 2 of them
+   except* TypeError  got 1 of them

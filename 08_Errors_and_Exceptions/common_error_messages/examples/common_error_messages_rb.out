@@ -1,0 +1,58 @@
+ 1. NoMethodError              nil.length
+    undefined method 'length' for nil
+ 2. NoMethodError              Vault.new.secret
+    private method 'secret' called for an instance of Vault
+ 3. NoMethodError              "s".zzz
+    undefined method 'zzz' for an instance of String
+ 4. NameError                  nope
+    undefined local variable or method 'nope' for main
+ 5. NameError                  Nope
+    uninitialized constant Nope
+ 6. ArgumentError              two(1)
+    wrong number of arguments (given 1, expected 2)
+ 7. ArgumentError              kw
+    missing keyword: :k
+ 8. ArgumentError              kw2(z: 1)
+    unknown keyword: :z
+ 9. ArgumentError              [3, nil].sort
+    comparison of Integer with nil failed
+10. TypeError                  "a" + 1
+    no implicit conversion of Integer into String
+11. TypeError                  1 + "a"
+    String can't be coerced into Integer
+12. ZeroDivisionError          1 / 0
+    divided by 0
+13. KeyError                   {a: 1}.fetch(:x)
+    key not found: :x
+14. IndexError                 [1, 2, 3].fetch(5)
+    index 5 outside of array bounds: -3...3
+15. FrozenError                "abc".freeze << "d"
+    can't modify frozen String: "abc"
+16. StopIteration              [].each.next
+    iteration reached an end
+17. LocalJumpError             needs_block  (def needs_block = yield)
+    no block given (yield)
+18. SystemStackError           down  (def down = down)
+    stack level too deep
+19. NoMatchingPatternError     case 5; in String then 1; end
+    5: String === 5 does not return true
+20. NoMatchingPatternKeyError  case {a: 1}; in {name:} then 1; end
+    {a: 1}: key not found: :name
+21. FloatDomainError           Float::NAN.to_i
+    NaN
+22. FloatDomainError           Float::INFINITY.to_i
+    Infinity
+23. LoadError                  require "nope_nothing"
+    cannot load such file -- nope_nothing
+24. Errno::ENOENT              File.read("missing.txt")
+    No such file or directory @ rb_sysopen - missing.txt
+25. IOError                    f.close; f.read
+    closed stream
+26. EOFError                   f.readline at end of file
+    end of file reached
+27. UncaughtThrowError         throw :x
+    uncaught throw :x
+28. NotImplementedError        raise NotImplementedError
+    NotImplementedError
+29. SyntaxError                RubyVM::InstructionSequence.compile("def")
+    (message not printed: it quotes the source, with carets)

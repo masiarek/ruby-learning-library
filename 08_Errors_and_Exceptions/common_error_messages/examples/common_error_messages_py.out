@@ -1,0 +1,29 @@
+ 1. AttributeError             None.length
+ 2. AttributeError             Vault().__secret()
+ 3. AttributeError             "s".zzz()
+ 4. NameError                  nope
+ 5. NameError                  Nope  (no constants: the same NameError)
+ 6. TypeError                  two(1)
+ 7. TypeError                  kw(z=1)  (a missing keyword is the same TypeError)
+ 8. TypeError                  kw(k=1, z=1)
+ 9. TypeError                  sorted([3, None])
+10. TypeError                  "a" + 1
+11. TypeError                  1 + "a"
+12. ZeroDivisionError          1 / 0
+13. KeyError                   {"a": 1}["x"]
+14. IndexError                 [1, 2, 3][5]
+15. TypeError                  s = "abc"; s[0] = "d"  (str is immutable)
+16. StopIteration              next(iter([]))
+17. TypeError                  apply(None)  (no blocks: a missing callable is None)
+18. RecursionError             down()  (def down(): down())
+19. (no error)                 match 5: case str(): ...
+20. (no error)                 match {"a": 1}: case {"name": _}: ...
+21. ValueError                 int(float("nan"))
+22. OverflowError              int(float("inf"))
+23. ModuleNotFoundError        import nope_nothing
+24. FileNotFoundError          open("missing.txt")
+25. ValueError                 f.read() on a closed file
+26. EOFError                   pickle.load(io.BytesIO(b""))  (readline at EOF returns "")
+27. (no error)                 (no throw/catch: a control-flow exception is just an exception)
+28. NotImplementedError        raise NotImplementedError
+29. SyntaxError                compile("def", "<string>", "exec")

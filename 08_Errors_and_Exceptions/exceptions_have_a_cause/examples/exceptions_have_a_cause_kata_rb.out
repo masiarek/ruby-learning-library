@@ -1,0 +1,6 @@
+1. the handler sees the wrapper and the cause
+   ConfigError: no config at missing.conf
+   cause: Errno::ENOENT
+2. the chain, walked
+   0: ConfigError
+   1: Errno::ENOENT

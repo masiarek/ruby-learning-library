@@ -1,0 +1,41 @@
+1. the hierarchy, up to BaseException
+   Exception            Exception < BaseException
+   RuntimeError         RuntimeError < Exception < BaseException
+   ValueError           ValueError < Exception < BaseException
+   TypeError            TypeError < Exception < BaseException
+   NameError            NameError < Exception < BaseException
+   AttributeError       AttributeError < Exception < BaseException
+   ZeroDivisionError    ZeroDivisionError < ArithmeticError < Exception < BaseException
+   KeyError             KeyError < LookupError < Exception < BaseException
+   StopIteration        StopIteration < Exception < BaseException
+   IndexError           IndexError < LookupError < Exception < BaseException
+   OSError              OSError < Exception < BaseException
+   FileNotFoundError    FileNotFoundError < OSError < Exception < BaseException
+   RecursionError       RecursionError < RuntimeError < Exception < BaseException
+   NotImplementedError  NotImplementedError < RuntimeError < Exception < BaseException
+   ModuleNotFoundError  ModuleNotFoundError < ImportError < Exception < BaseException
+   SyntaxError          SyntaxError < Exception < BaseException
+   SystemExit           SystemExit < BaseException
+   KeyboardInterrupt    KeyboardInterrupt < BaseException
+   MemoryError          MemoryError < Exception < BaseException
+2. what except Exception catches (except Exception inside, except BaseException outside)
+   RuntimeError         caught by except Exception
+   ValueError           caught by except Exception
+   StopIteration        caught by except Exception
+   FileNotFoundError    caught by except Exception
+   SystemExit           SLIPPED PAST it; except BaseException caught SystemExit
+   KeyboardInterrupt    SLIPPED PAST it; except BaseException caught KeyboardInterrupt
+   MemoryError          caught by except Exception
+   NotImplementedError  caught by except Exception
+   ModuleNotFoundError  caught by except Exception
+   RecursionError       caught by except Exception
+3. a bare except is except BaseException -- the opposite default
+   bare except caught SystemExit; isinstance(e, Exception): False
+   isinstance(Exception(), BaseException)  True
+   Exception.__mro__[1].__name__           BaseException
+4. a bare except swallows sys.exit (the anti-pattern)
+   swallowed SystemExit (code 1); the program goes on
+5. a real stack overflow IS an Exception here
+   except Exception caught RecursionError
+6. NotImplementedError is a RuntimeError, so except Exception catches it
+   except Exception caught NotImplementedError

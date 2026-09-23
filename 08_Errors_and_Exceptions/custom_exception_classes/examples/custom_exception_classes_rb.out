@@ -1,0 +1,29 @@
+1. a default message via super
+   raise AppError                  -> "the application failed"
+   raise AppError, "given instead" -> "given instead"
+2. extra attributes
+   NotFound: "not found", code 404
+   NotFound: "no such user", code 410
+3. overriding message
+   e.message "LOUD: x"   e.to_s "x"
+4. a family is caught by its base class
+   rescue AppError caught AppError
+   rescue AppError caught NotFound
+   rescue AppError caught Loud
+5. full_message, first line (line number masked)
+   custom_exception_classes_rb.rb:LINE:in 'Object#boom': gone (NotFound)
+6. raise obj calls obj.exception: any object can be raised that way
+   raise Ticket.new(7)                -> NotFound: "ticket 7 is missing"
+   raise Ticket.new(7), "custom text" -> NotFound: "custom text"
+7. detailed_message (3.2) is what full_message prints; message is untouched
+   e.message           "bad setting"
+   e.detailed_message  "bad setting (Detailed) [hint: check the config]"
+   full_message line 1 custom_exception_classes_rb.rb:LINE:in '<main>': bad setting (Detailed) [hint: check the config]
+8. initialize without super: the message falls back to the class name
+   NoSuper: "NoSuper"
+9. == compares class, message and backtrace
+   AppError.new("a") == AppError.new("a")  true
+   AppError.new("a") == AppError.new("b")  false
+10. no exception groups: collect the errors and raise one wrapper
+   3 errors: [ArgumentError, TypeError, ArgumentError]
+   ArgumentErrors inside: 2, TypeErrors: 1

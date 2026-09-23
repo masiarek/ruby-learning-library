@@ -1,0 +1,31 @@
+1. raise "msg" makes a RuntimeError
+   RuntimeError: "just a message"
+2. raise Klass makes an instance whose message is the class name
+   ArgumentError: "ArgumentError"
+3. raise Klass, "msg"
+   ArgumentError: "with a message"
+4. raise Klass.new("msg"); and raise obj, "msg" replaces the message
+   ArgumentError: "an instance"
+   ArgumentError: "replaced"
+5. a bare raise inside rescue re-raises the same object
+   outer got IOError: "inner"; same object: true
+6. a bare raise outside any rescue: a RuntimeError with an empty message
+   RuntimeError: ""
+7. a third argument sets the backtrace
+   e.backtrace ["frame_a", "frame_b"]
+   with caller: the first entry is in "Object#validate", not in check
+8. fail is an alias of raise
+   RuntimeError: "fail is raise"
+9. raising something that is not an exception
+   TypeError: "exception class/object expected"
+   TypeError: "exception class/object expected"
+   TypeError: "exception class/object expected"
+10. $! and $@ inside rescue, and after it
+   $!.equal?(e)            true
+   $@.equal?(e.backtrace)  true
+   $! after the rescue     nil
+11. raise Klass, args calls Klass.exception(*args)
+   Custom.exception called with []
+   Custom: "Custom"
+   Custom.exception called with ["msg"]
+   Custom: "msg"

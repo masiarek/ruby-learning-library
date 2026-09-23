@@ -1,0 +1,41 @@
+1. the hierarchy, classes only, up to Exception
+   StandardError        StandardError < Exception
+   RuntimeError         RuntimeError < StandardError < Exception
+   ArgumentError        ArgumentError < StandardError < Exception
+   TypeError            TypeError < StandardError < Exception
+   NameError            NameError < StandardError < Exception
+   NoMethodError        NoMethodError < NameError < StandardError < Exception
+   ZeroDivisionError    ZeroDivisionError < StandardError < Exception
+   KeyError             KeyError < IndexError < StandardError < Exception
+   StopIteration        StopIteration < IndexError < StandardError < Exception
+   FrozenError          FrozenError < RuntimeError < StandardError < Exception
+   IOError              IOError < StandardError < Exception
+   Errno::ENOENT        Errno::ENOENT < SystemCallError < StandardError < Exception
+   SystemStackError     SystemStackError < Exception
+   NotImplementedError  NotImplementedError < ScriptError < Exception
+   LoadError            LoadError < ScriptError < Exception
+   SyntaxError          SyntaxError < ScriptError < Exception
+   SystemExit           SystemExit < Exception
+   Interrupt            Interrupt < SignalException < Exception
+   NoMemoryError        NoMemoryError < Exception
+2. what a bare rescue catches (a bare rescue inside, rescue Exception outside)
+   RuntimeError         caught by the bare rescue
+   ArgumentError        caught by the bare rescue
+   StopIteration        caught by the bare rescue
+   Errno::ENOENT        caught by the bare rescue
+   SystemExit           SLIPPED PAST it; rescue Exception caught SystemExit
+   Interrupt            SLIPPED PAST it; rescue Exception caught Interrupt
+   NoMemoryError        SLIPPED PAST it; rescue Exception caught NoMemoryError
+   NotImplementedError  SLIPPED PAST it; rescue Exception caught NotImplementedError
+   LoadError            SLIPPED PAST it; rescue Exception caught LoadError
+   SystemStackError     SLIPPED PAST it; rescue Exception caught SystemStackError
+3. a bare rescue is rescue StandardError
+   StandardError === e                 true
+   Exception.new.is_a?(StandardError)  false
+   StandardError.superclass            Exception
+4. rescue Exception swallows exit (the anti-pattern)
+   swallowed SystemExit (status 1); the program goes on
+5. a real stack overflow is not a StandardError
+   slipped past the bare rescue: SystemStackError: stack level too deep
+6. a method left as raise NotImplementedError is not caught either
+   slipped past the bare rescue: NotImplementedError: Shape must define area

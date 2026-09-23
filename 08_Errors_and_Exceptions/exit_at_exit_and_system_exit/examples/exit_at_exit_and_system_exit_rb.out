@@ -1,0 +1,48 @@
+1. exit raises SystemExit, which a handler can rescue
+   begin; exit; rescue SystemExit => e; ...; end; puts "still running"
+      stdout: rescued SystemExit: status 0, success? true
+      stdout: still running
+      exit status 0
+2. a bare rescue does not see it
+   begin; exit 3; rescue => e; puts "caught"; end; puts "after"
+      exit status 3
+3. the exit status: an Integer, or true for 0 and false for 1
+   exit 3
+      exit status 3
+   exit true
+      exit status 0
+   exit false
+      exit status 1
+4. at_exit handlers run in reverse order of registration
+   three at_exit blocks, then puts "main done"
+      stdout: main done
+      stdout: third registered
+      stdout: second registered
+      stdout: first registered
+      exit status 0
+5. exit! skips them
+   at_exit { puts "at_exit ran" }; exit! 4
+      exit status 4
+6. abort writes its message to stderr, runs at_exit, and exits 1
+   at_exit { puts "at_exit ran" }; abort("fatal: giving up")
+      stdout: at_exit ran
+      stderr: fatal: giving up
+      exit status 1
+7. an uncaught exception reports on stderr and exits 1; at_exit still runs, and sees it in $!
+   at_exit { puts "at_exit sees $!: ..." }; puts "before"; raise "boom"
+      stdout: before
+      stdout: at_exit sees $!: RuntimeError
+      stderr: -e:1:in '<main>': boom (RuntimeError)
+      exit status 1
+8. Interrupt is a SignalException; an unrescued one ends the process by the signal
+   raise Interrupt, rescued as SignalException
+      stdout: Interrupt < SignalException, signo 2
+      exit status 0
+   a real SIGINT, not rescued: Process.kill("INT", Process.pid); sleep 5
+      stderr: -e:1:in '...': Interrupt
+      stderr: 	from -e:1:in '...'
+      killed by signal 2
+   a real SIGINT, rescued as Interrupt
+      stdout: rescued Interrupt
+      exit status 0
+9. this program's own at_exit handler prints last

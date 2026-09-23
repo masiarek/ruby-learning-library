@@ -1,0 +1,21 @@
+1. a raise inside rescue sets cause automatically
+   High: "save failed"; cause: Low: "disk full"
+2. cause: sets it explicitly, to any exception object
+   e.cause.class Low; the same object: true
+3. cause: nil hides the exception being handled
+   e.cause nil
+4. a chain of three, walked with cause
+   [High, Mid, Low]
+5. what full_message prints about the chain (labels only)
+   '<main>': h (High)
+   '<main>': m (Mid)
+   '<main>': l (Low)
+6. no rescue in progress: cause is nil
+   e.cause nil
+7. a cause chain may not loop
+   raise a, cause: b while b's cause is a -> ArgumentError: "circular causes"
+8. a raise inside ensure, while another exception is in flight, gets a cause too
+   inner.cause.class Low
+   the body's Low still reaches the outer rescue
+9. cause is read-only
+   Exception.method_defined?(:cause=) false

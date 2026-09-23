@@ -1,0 +1,34 @@
+1. the full form, no exception
+   try body runs
+   try body finished
+   else runs: no exception was raised
+   finally runs
+2. the full form, an exception
+   try body runs
+   except runs: ZeroDivisionError
+   finally runs
+3. except (A, B) as e catches either class, and their subclasses
+   caught ZeroDivisionError, isinstance(e, LookupError): False
+   caught LookupError, isinstance(e, LookupError): True
+   caught KeyError, isinstance(e, LookupError): True
+4. no retry keyword: a loop around the try
+   attempt 1
+   attempt 2
+   attempt 3
+   succeeded on attempt 3
+5. finally runs on return
+   finally ran on the way out
+   function returned 'the return value'
+6. return inside finally swallows the exception (never do this)
+   not run here: it swallows the same way, and Python 3.14 warns at compile time
+7. no def-level except: the try is written out
+   parse("12")  -> 12
+   parse("abc") -> 'rescued ValueError'
+8. what the caught object carries
+   type(e).__name__   ZeroDivisionError
+   str(e)             a str (CPython rewords messages; not printed)
+   e.__traceback__    a traceback object
+   extract_tb(...)    a StackSummary (paths inside, not printed)
+9. try is a statement, not an expression
+   v = try: ...  ->  SyntaxError
+   (no else/ensure value to read: the block has no value at all)
