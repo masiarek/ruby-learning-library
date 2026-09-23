@@ -1,0 +1,16 @@
+ 1. 7 / 2              -> 3                                Integer / Integer stays an Integer
+ 2. -7 / 2             -> -4                               it floors: towards minus infinity, not towards zero
+ 3. 7.fdiv(2)          -> 3.5                              fdiv asks for a Float; 7.quo(2) is (7/2), a Rational
+ 4. 7 / 2.0            -> 3.5                              one Float operand makes the answer a Float
+ 5. 7.divmod(2)        -> [3, 1]                           quotient and modulo as a pair
+ 6. -7.divmod(2)       -> [-4, 1]                          the pair floors too: -4 * 2 + 1 == -7
+ 7. -7 % 2             -> 1                                % takes the sign of the divisor
+ 8. 7 % -2             -> -1                               so a negative divisor gives a negative result
+ 9. -7.remainder(2)    -> -1                               remainder takes the sign of the dividend, like C's %
+10. 7.0.div(2)         -> 3                                div floors and returns an Integer, even for Floats
+11. 7.ceildiv(2)       -> 4                                the quotient rounded up (Ruby 3.2+)
+12. 7.0 / 0            -> Infinity                         Float division by zero is Infinity, not an error
+13. 0.0 / 0            -> NaN                              NaN; (0.0 / 0).nan? is true
+14. 7 / 0              -> ZeroDivisionError: divided by 0  Integer division by zero raises
+15. 7.0 % 0            -> ZeroDivisionError: divided by 0  so does modulo, even on a Float
+16. (7.0 / 0).to_i     -> FloatDomainError: Infinity       Infinity has no Integer value

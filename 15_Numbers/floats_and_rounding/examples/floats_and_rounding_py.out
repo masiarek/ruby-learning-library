@@ -1,0 +1,17 @@
+ 1. 0.1 + 0.2                          -> 0.30000000000000004    == 0.3 is False
+ 2. round(0.1 + 0.2, 2)                -> 0.3                    == 0.3 is True
+ 3. abs(0.1 + 0.2 - 0.3)               -> 5.551115123125783e-17  < sys.float_info.epsilon is True; math.isclose(0.1 + 0.2, 0.3) is True
+ 4. round(2.5), round(3.5), round(-2.5) -> 2, 4, -2               a half rounds to even; the result is an int
+ 5. Decimal('2.5') quantized HALF_UP   -> 3                      away from zero on request, via decimal; 3.5 gives 4, -2.5 gives -3
+ 6. round(2.675, 2)                    -> 2.67                   the float is 2.67499999999999982236, and round() rounds that exact value, so down
+ 7. round(0.125, 2)                    -> 0.12                   0.125 is exact in binary: a true half, rounded to even
+ 8. math.floor(2.567 * 100) / 100      -> 2.56                   no digits argument on floor; round(1234.567, -2) is 1200.0, a float
+ 9. sys.float_info.epsilon             -> 2.220446049250313e-16  max 1.7976931348623157e+308, min 2.2250738585072014e-308, dig 15, mant_dig 53
+10. 2.0 ** 1024                        -> OverflowError          overflow raises; sys.float_info.max * 10 is inf, no error
+11. nan == nan, math.isnan(nan)        -> False, True            NaN is unequal to everything, itself included; nan < 1.0 is False
+12. nan in [nan], [nan] == [nan]       -> True, True             a container checks identity before ==, so the same NaN object is found
+13. max(1.0, nan), max(nan, 1.0)       -> 1.0, nan               no error: the answer depends on the order
+14. Fraction(0.1)                      -> 3602879701896397/36028797018963968 the exact binary value; (0.1).hex() is 0x1.999999999999ap-4
+15. Fraction(0.1).limit_denominator(100) -> 1/10                   the simplest fraction with a denominator up to 100
+16. 1e16 + 1                           -> 1e+16                  == 1e16 is True: the doubles are 2 apart here; 1e16 + 2 is 1.0000000000000002e+16
+17. math.nextafter(1.0, 2.0)           -> 1.0000000000000002     math.ulp(1.0) == epsilon is True; nextafter(1e16, inf) is 1.0000000000000002e+16

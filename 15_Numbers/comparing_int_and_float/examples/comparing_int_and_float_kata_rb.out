@@ -1,0 +1,8 @@
+a                      b                       a == b same_key?  keys in {a => 1, b => 2}
+1                      1.0                     true   false      2
+1                      (1/1)                   true   false      2
+1.0                    1.0                     true   true       1
+0.0                    -0.0                    true   true       1
+"a"                    "a"                     true   true       1
+:a                     "a"                     false  false      2
+18446744073709551616   18446744073709551616    true   true       1

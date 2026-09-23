@@ -1,0 +1,15 @@
+ 1. 1 == 1.0                             -> True                   == compares by numeric value across types
+ 2. type(1) is type(1.0)                 -> False                  no eql?; (1).__eq__(1.0) is NotImplemented, so float.__eq__ answers instead
+ 3. one is one_f                         -> False                  identity; one is one_again is True: small ints are cached in CPython
+ 4. hash(1) == hash(1.0)                 -> True                   equal numbers must hash alike, so these are one key
+ 5. {1: 'a'}[1.0]                        -> 'a'                    found; {1.0: 'a'}[1] is 'a' too
+ 6. h = {1: 'int'}; h[1.0] = 'float'; h  -> {1: 'float'}           one entry, and the int key kept its spelling; len(h) is 1
+ 7. list(dict.fromkeys([1, 1.0]))        -> [1]                    the uniq idiom keeps one; {1, 1.0} is {1}, Counter {1: 2}
+ 8. 1.0 in [1], [1].index(1.0)           -> True, 0                in, index and count use ==, so they cross the line
+ 9. 1 < 1.5, 1 <= 1.0                    -> True, True             ordered as equal, no <=>; match 1.0: case 1 matches
+10. isinstance(1.0, int), isinstance(1, float) -> False, False           a class pattern does not convert: match 1.0 takes case float(); (1.0).is_integer() is True
+11. 2 ** 53 + 1 == float(2 ** 53 + 1)    -> False                  exact comparison: the float is 9007199254740992, so 2 ** 53 + 1 > it is True
+12. 10 ** 20 + 1 == 1e20                 -> False                  but 10 ** 20 == 1e20 is True: the int is not rounded to a float first
+13. 0.1 == Fraction(1, 10)               -> False                  a Fraction meets a float exactly, and 0.1 is not one tenth; 0.5 == Fraction(1, 2) is True
+14. 0 == -0.0, hash(0.0) == hash(-0.0)   -> True, True             one value and one key: {0.0: 'a'}[-0.0] is 'a'
+15. 1 == Fraction(1), 1 == complex(1, 0) -> True, True             == crosses every numeric type, and so does hash: hash(1) == hash(Fraction(1)) is True

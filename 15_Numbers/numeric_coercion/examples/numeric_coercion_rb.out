@@ -1,0 +1,18 @@
+ 1. 1 + Rational(1, 2)           -> (3/2)                        the Integer is promoted to the wider class: Rational
+ 2. 1 + 1.5                      -> 2.5                          Float
+ 3. Rational(1, 2) + 0.5         -> 1.0                          Rational meets Float: Float wins, and exactness is gone
+ 4. 1 + 2i                       -> (1+2i)                       Complex; every pairing has a wider class to go to
+ 5. 1.coerce(2.5)                -> [2.5, 1.0]                   what Integer#+ asks of a Float: both as Floats, the argument first
+ 6. 2.5.coerce(1)                -> [1.0, 2.5]                   Float#coerce makes the Integer a Float
+ 7. m * 2                        -> #<Meters 6>                  our own *, with a Numeric argument
+    Meters#coerce(2) called on #<Meters 3>
+ 8. 2 * m                        -> #<Meters 6>                  Integer#* did not know Meters, so it called m.coerce(2) and multiplied the pair
+    Meters#coerce(2) called on #<Meters 3>
+ 9. 2 - m                        -> #<Meters -1>                 coerce returned [Meters(2), m], so the operands kept their order
+10. 1 + "1"                      -> TypeError: String can't be coerced into Integer a String has no coerce
+11. "1" + 1                      -> TypeError: no implicit conversion of Integer into String and String#+ wants a String: the other message
+12. Integer("1") + 1             -> 2                            convert explicitly; "1" + 1.to_s is "11"
+13. "a" + Name.new               -> "aBob"                       to_str is the implicit conversion to String
+14. [10, 20, 30][Index.new]      -> 20                           to_int is the implicit conversion to Integer
+15. 1 + Index.new                -> TypeError: Index can't be coerced into Integer arithmetic asks for coerce, never for to_int
+16. Integer.ancestors.take(3)    -> [Integer, Numeric, Comparable] every number is a Numeric and Comparable; 1.is_a?(Numeric) is true

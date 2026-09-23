@@ -1,0 +1,16 @@
+ 1. 1/3r                                   -> (1/3)                  the r suffix makes a Rational literal; class Rational
+ 2. Rational(1, 3), Rational("1/3"), 3.to_r, 0.1r -> (1/3), (1/3), (3/1), (1/10) four spellings; 0.1r is exactly one tenth
+ 3. Rational(0.1)                          -> (3602879701896397/36028797018963968) from a Float you get the Float's exact value, not one tenth
+ 4. 1/3r + 1/6r                            -> (1/2)                  exact arithmetic; (1/3r) * 3 == 1 is true
+ 5. (1/3r).to_f                            -> 0.3333333333333333     a Float on request; 1/3r + 0.5 is 0.8333333333333333, a Float
+ 6. Rational(5, 2).round                   -> 3                      half away from zero, like Float; round(half: :even) is 2; Rational(1, 3).round(2) is (33/100)
+ 7. BigDecimal("0.1") + BigDecimal("0.2") == BigDecimal("0.3") -> true                   decimal digits, so there is no binary fraction to miss by
+ 8. (BigDecimal("0.1") + BigDecimal("0.2")).to_s -> "0.3e0"                to_s is scientific; to_s("F") is "0.3"
+ 9. BigDecimal("1234.5678").to_s("3F")     -> "1 234.567 8"          grouped by 3; to_f 1234.5678, to_i 1234, to_r (6172839/5000)
+10. BigDecimal("2.675").round(2).to_s("F") -> "2.68"                 ROUND_HALF_UP on decimal digits by default; round(2, :half_even) gives 2.68, and 2.665 gives 2.66
+11. BigDecimal("1").div(3, 10).to_s("F")   -> "0.3333333333"         division takes a precision; BigDecimal("1") / 3 * 3 == 1 is false, while 1/3r * 3 == 1 is true
+12. BigDecimal("0.1") == 0.1               -> true                   and BigDecimal("0.3") == 0.1 + 0.2 is true: the Float is rounded to a short decimal first, not read at its exact binary value
+13. BigDecimal("0.1") + 0.1                -> 0.2e0                  a Float operand is converted the same way; class BigDecimal
+14. Complex(1, 2) * Complex(1, 2)          -> (-3+4i)                2i is a literal; Complex(3, 4).abs is 5.0; rectangular [1, 2]
+15. Math.sqrt(-1)                          -> Math::DomainError: Numerical argument is out of domain - sqrt no Complex unless asked: Complex::I ** 2 is (-1+0i)
+16. BigDecimal.ancestors.take(3)           -> [BigDecimal, Numeric, Comparable] Rational, BigDecimal and Complex are all Numeric; Rational.ancestors.take(3) is [Rational, Numeric, Comparable]

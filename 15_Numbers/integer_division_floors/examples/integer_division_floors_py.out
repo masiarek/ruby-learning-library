@@ -1,0 +1,16 @@
+ 1. 7 / 2              -> 3.5                              / always makes a float, even 4 / 2 -> 2.0; 7 // 2 is 3
+ 2. -7 // 2            -> -4                               // floors, like Ruby's /
+ 3. 7 / 2              -> 3.5                              the float answer needs no fdiv; Fraction(7, 2) is Fraction(7, 2)
+ 4. 7 // 2.0           -> 3.0                              // on a float floors but stays a float; 7 / 2.0 is 3.5
+ 5. divmod(7, 2)       -> (3, 1)                           quotient and modulo as a tuple
+ 6. divmod(-7, 2)      -> (-4, 1)                          the pair floors too: -4 * 2 + 1 == -7
+ 7. -7 % 2             -> 1                                % takes the sign of the divisor
+ 8. 7 % -2             -> -1                               so a negative divisor gives a negative result
+ 9. math.fmod(-7, 2)   -> -1.0                             fmod takes the sign of the dividend, and answers in float
+10. 7.0 // 2           -> 3.0                              floors but stays a float; math.floor(7.0 / 2) is 3
+11. -(-7 // 2)         -> 4                                the ceiling-division idiom; math.ceil(7 / 2) is 4
+12. 7.0 / 0            -> ZeroDivisionError                float division by zero raises too; math.inf is inf
+13. 0.0 / 0            -> ZeroDivisionError                no NaN from division; math.nan == math.nan is False
+14. 7 // 0             -> ZeroDivisionError                integer division by zero raises
+15. 7.0 % 0            -> ZeroDivisionError                so does modulo
+16. int(math.inf)      -> OverflowError                    infinity has no int value; int(math.nan) is ValueError

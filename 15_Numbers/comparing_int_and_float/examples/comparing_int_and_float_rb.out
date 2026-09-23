@@ -1,0 +1,15 @@
+ 1. 1 == 1.0                             -> true                   == compares by numeric value across classes
+ 2. 1.eql?(1.0)                          -> false                  eql? also wants the same class; 1.eql?(1) is true
+ 3. 1.equal?(1.0)                        -> false                  identity; 1.equal?(1) is true: a small Integer is an immediate value
+ 4. 1.hash == 1.0.hash                   -> false                  a Hash key is found by hash then eql?, so these are two keys
+ 5. {1 => :a}[1.0]                       -> nil                    no key 1.0; {1.0 => :a}[1] is nil too
+ 6. h = {1 => :int}; h[1.0] = :float; h  -> {1 => :int, 1.0 => :float} two entries; h.size is 2
+ 7. [1, 1.0].uniq                        -> [1, 1.0]               uniq uses hash and eql?: two elements; Set[1, 1.0].size is 2, tally {1 => 1, 1.0 => 1}
+ 8. [1].include?(1.0), [1].index(1.0)    -> true, 0                include?, index and count use ==, so they cross the line
+ 9. 1 <=> 1.0                            -> 0                      ordered as equal; 1 === 1.0 is true, so case 1.0 when 1 matches
+10. Integer === 1.0, Float === 1         -> false, false           a class test does not convert: case 1.0 when Integer does not match; 1.0.integer? is false
+11. 2 ** 53 + 1 == (2 ** 53 + 1).to_f    -> false                  exact comparison: the Float is 9007199254740992, so 2 ** 53 + 1 > it is true
+12. 10 ** 20 + 1 == 1e20                 -> false                  but 10 ** 20 == 1e20 is true: the Integer is not rounded to a Float first
+13. 0.1 == 1/10r                         -> true                   true, yet 0.1.to_r == 1/10r is false: a Rational meets a Float as a Float, not exactly
+14. 0 == -0.0, 0.0.eql?(-0.0)            -> true, true             one value and one key: {0.0 => :a}[-0.0] is :a
+15. 1 == 1r, 1 == Complex(1, 0)          -> true, true             == crosses every numeric class; eql? crosses none: 1.eql?(1r) is false

@@ -1,0 +1,15 @@
+ 1. 2 ** 200                    -> 1606938044258990275541962092341162602522202993782792835301376 (61 digits, and no overflow)
+ 2. type(2 ** 200).__name__     -> int                    one class for every size; type(1).__name__ is int too
+ 3. long                        -> NameError              Python 2's second integer class is gone too
+ 4. (255).bit_length()          -> 8                      (256).bit_length() is 9
+ 5. (-1).bit_length()           -> 1                      bits of the magnitude: (-256).bit_length() is 9
+ 6. digits of 1234              -> [4, 3, 2, 1]           no digits(); go through str and reverse
+ 7. bin(255)                    -> '0b11111111'           prefixed; format(255, 'b') is '11111111', hex(255) is '0xff', bin(-255) is '-0b11111111'
+ 8. math.isqrt(10 ** 40)        -> 100000000000000000000  exact; math.sqrt(10 ** 40) is 1e+20, a float
+ 9. pow(3, 200, 1000)           -> 1                      modular pow, never building the 96-digit power
+10. math.gcd(12, 18), lcm       -> 6, 36                  two functions; math.lcm arrived in 3.9
+11. 2 ** -1                     -> 0.5                    a negative exponent gives a float, not a Fraction
+12. int(float(2 ** 53 + 1))     -> 9007199254740992       the +1 is lost: a float holds 53 bits of integer
+13. len(str(10 ** 5000))        -> ValueError             the 4300-digit limit on str(int)
+14. len(f'{10 ** 5000:x}')      -> 4153                   hex never had the limit; after set_int_max_str_digits(0), len(str(10 ** 5000)) is 5001
+15. 0b1010, 0o17, 0x1f, 1_000   -> 10, 15, 31, 1000       literal forms; a leading 0 alone is a SyntaxError

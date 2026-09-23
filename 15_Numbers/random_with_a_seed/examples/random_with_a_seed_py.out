@@ -1,0 +1,15 @@
+ 1. random.Random(42).randrange(100)             -> 81                             an int in range(100) from a seeded generator
+ 2. Random(42), then 5 x randrange(100)          -> [81, 14, 3, 94, 35]            the same seed always starts the same stream
+ 3. Random(42), then 3 x random()                -> [0.6394267984578837, 0.025010755222666936, 0.27502931836911926] random() is a float in [0, 1)
+ 4. Random(42), then 10 x randint(1, 6)          -> [6, 1, 1, 6, 3, 2, 2, 2, 6, 1] randint is inclusive: dice; randrange(1, 7) is the half-open spelling
+ 5. random.seed(42); [randrange(10), randrange(10)] -> [1, 0]                         seed() seeds the hidden module-level Random behind random.randrange
+ 6. random.seed(42) again; the same two          -> [1, 0]                         reseeding restarts the stream; seed() returned None, not the old seed
+ 7. xs = [1, 2, 3, 4, 5]; Random(1).shuffle(xs)  -> [3, 4, 5, 1, 2]                shuffle is in place and returns None; the generator is the receiver
+ 8. Random(1).sample([1, 2, 3, 4, 5], 2)         -> [2, 1]                         sample never repeats an element
+ 9. Random(42).getstate() == Random(42).getstate() -> True                           no == on Random objects; compare their states
+10. Random(42).getrandbits(70)                   -> 20500439928067422621           any size of int
+11. Random(42).randrange(0)                      -> ValueError                     an empty range raises here too; random() takes no bound at all
+12. random.DEFAULT                               -> AttributeError                 no such name; the module functions are methods of one hidden Random
+13. type(os.urandom(4)).__name__                 -> 'bytes'                        fresh bytes from the OS on each call: os.urandom(4) != os.urandom(4) is True
+14. len(secrets.token_hex(8))                    -> 16                             unpredictable and unseedable, so only its shape is printed; len(str(uuid.uuid4())) is 36
+15. Random(2 ** 70).getrandbits(32), and .random() -> 999817988, 0.2327882718301838  the same two numbers as Ruby: a seed wider than 32 bits loads MT19937 identically, and 42 does not

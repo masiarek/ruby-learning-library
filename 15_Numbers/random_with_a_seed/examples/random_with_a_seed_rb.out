@@ -1,0 +1,15 @@
+ 1. Random.new(42).rand(100)                     -> 51                             an Integer in 0...100 from a seeded generator
+ 2. Random.new(42), then 5 x rand(100)           -> [51, 92, 14, 71, 60]           the same seed always starts the same stream
+ 3. Random.new(42), then 3 x rand                -> [0.3745401188473625, 0.9507143064099162, 0.7319939418114051] rand with no argument is a Float in [0, 1)
+ 4. Random.new(42), then 10 x rand(1..6)         -> [4, 5, 3, 5, 5, 2, 3, 3, 3, 5] a Range is inclusive: dice
+ 5. srand(42); [rand(10), rand(10)]              -> [6, 3]                         srand seeds the process-wide generator behind Kernel#rand
+ 6. srand(42) again; [rand(10), rand(10)]        -> [6, 3]                         reseeding restarts the stream; that srand returned the previous seed, 42
+ 7. [1, 2, 3, 4, 5].shuffle(random: Random.new(1)) -> [3, 2, 5, 1, 4]                shuffle and sample take their generator as a keyword
+ 8. [1, 2, 3, 4, 5].sample(2, random: Random.new(1)) -> [4, 1]                         sample never repeats an element
+ 9. Random.new(42) == Random.new(42)             -> true                           same seed, same position: equal; Random.new(42).seed is 42
+10. Random.new(42).rand(2 ** 70)                 -> 715669899378304353116          any size of Integer
+11. Random.new(42).rand(0)                       -> ArgumentError: invalid argument - 0 an empty range raises; Kernel#rand(0) is the exception, a Float
+12. Random::DEFAULT                              -> NameError: uninitialized constant Random::DEFAULT gone; Random.rand and Kernel#rand use the process-wide generator
+13. Random.new_seed.class                        -> Integer                        a fresh seed from the OS on each call: new_seed != new_seed is true
+14. SecureRandom.hex(8).size                     -> 16                             unpredictable and unseedable, so only its shape is printed; uuid.size is 36
+15. Random.new(2 ** 70).rand(2 ** 32), and .rand -> 999817988, 0.2327882718301838  a seed wider than 32 bits loads MT19937 the same way in both languages: Python prints these two numbers too

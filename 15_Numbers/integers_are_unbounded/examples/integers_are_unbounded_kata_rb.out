@@ -1,0 +1,5 @@
+1. 100! has 158 digits and 525 bits
+2. it starts 933262154439... and ends in 24 zeros
+3. Integer.sqrt(100!) has 79 digits; root ** 2 <= 100! is true, (root + 1) ** 2 > 100! is true
+4. 100! as a Float is 9.332621544394415e+157; f.to_f.to_i == f is false
+5. 100! % 1_000_007 is 323756, and (1..100).inject(1) { |acc, i| acc * i % 1_000_007 } is 323756

@@ -1,0 +1,5 @@
+1. ten Floats with inject(:+): 0.9999999999999999   == 1 is false
+2. ten Floats with sum:        1.0   == 1 is true (sum compensates; inject does not)
+3. ten Rationals:              (1/1)   == 1 is true
+4. ten BigDecimals:            1.0   == 1 is true
+5. 19.99 * 3: Float 59.97, Rational (5997/100), BigDecimal 59.97

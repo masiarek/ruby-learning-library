@@ -1,0 +1,15 @@
+ 1. 2 ** 200                    -> 1606938044258990275541962092341162602522202993782792835301376 (61 digits, and no overflow)
+ 2. (2 ** 200).class            -> Integer                one class for every size; 1.class is Integer too
+ 3. Fixnum                      -> NameError: uninitialized constant Fixnum the size classes are gone; Bignum is a NameError too
+ 4. 255.bit_length              -> 8                      256.bit_length is 9
+ 5. (-1).bit_length             -> 0                      two's complement without the sign bit: (-256).bit_length is 8
+ 6. 1234.digits                 -> [4, 3, 2, 1]           least significant first; 255.digits(16) is [15, 15]
+ 7. 255.to_s(2)                 -> "11111111"             to_s(16) is "ff", to_s(36) is "73", (-255).to_s(2) is "-11111111"
+ 8. Integer.sqrt(10 ** 40)      -> 100000000000000000000  exact; Math.sqrt(10 ** 40) is 1.0e+20, a Float
+ 9. 3.pow(200, 1000)            -> 1                      modular pow, never building the 96-digit power
+10. 12.gcd(18), 12.lcm(18)      -> 6, 36                  gcdlcm gives both: [6, 36]
+11. 2 ** -1                     -> (1/2)                  a negative exponent gives a Rational, not a Float
+12. (2 ** 53 + 1).to_f.to_i     -> 9007199254740992       the +1 is lost: a Float holds 53 bits of integer
+13. (10 ** 5000).to_s.size      -> 5001                   no limit on the digits of to_s
+14. (10 ** 5000).to_s(16).size  -> 4153                   nor in any other base
+15. 0b1010, 0o17, 0x1f, 1_000   -> 10, 15, 31, 1000       literal forms; a leading 0 alone is octal: 017 is 15

@@ -1,0 +1,8 @@
+1. c + 1    -> 21 C
+2. 1 + c    -> 21 C       (Integer#+ called c.coerce(1))
+3. c * 2    -> 40 C
+4. 2.5 * c  -> 50.0 C     (Float#* called c.coerce(2.5))
+5. c > 15   -> true, c.between?(10, 30) -> true   (Comparable, built on <=>)
+6. sort     -> [#<Celsius -5>, #<Celsius 20>, #<Celsius 30>]
+7. max      -> 30 C, c.clamp(0, 10) -> 10
+8. c + "hot" -> TypeError: String can't be coerced into Integer

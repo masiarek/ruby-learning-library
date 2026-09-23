@@ -1,0 +1,18 @@
+ 1. 1 + Fraction(1, 2)           -> Fraction(3, 2)               the int is promoted to the wider type: Fraction
+ 2. 1 + 1.5                      -> 2.5                          float
+ 3. Fraction(1, 2) + 0.5         -> 1.0                          Fraction meets float: float wins, and exactness is gone
+ 4. 1 + 2j                       -> (1+2j)                       complex; every pairing has a wider type to go to
+ 5. (1).__add__(2.5)             -> NotImplemented               int declines a float: NotImplemented, not an error
+ 6. (2.5).__radd__(1)            -> 3.5                          so Python asks the float's reflected method, and that answers
+ 7. m * 2                        -> Meters(6)                    our own __mul__, with a number
+    Meters.__rmul__(2) called on Meters(3)
+ 8. 2 * m                        -> Meters(6)                    int.__mul__(2, m) returned NotImplemented, so Meters.__rmul__(2) ran
+    Meters.__rsub__(2) called on Meters(3)
+ 9. 2 - m                        -> Meters(-1)                   __rsub__ gets the left operand as its argument and keeps the order itself
+10. 1 + "1"                      -> TypeError                    str has no __radd__ for an int
+11. "1" + 1                      -> TypeError                    and str.__add__ wants a str
+12. int("1") + 1                 -> 2                            convert explicitly; "1" + str(1) is '11'
+13. "a" + Name()                 -> TypeError                    no implicit conversion to str; f"a{Name()}" is 'aBob', via __str__
+14. [10, 20, 30][Index()]        -> 20                           __index__ is the implicit conversion to an int
+15. 1 + Index()                  -> TypeError                    arithmetic asks for __add__ and __radd__, never for __index__
+16. [c.__name__ for c in int.__mro__] -> ['int', 'object']            no Numeric class; the numbers ABCs instead: isinstance(1, numbers.Number) is True

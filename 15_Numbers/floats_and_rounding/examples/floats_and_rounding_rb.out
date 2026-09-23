@@ -1,0 +1,17 @@
+ 1. 0.1 + 0.2                          -> 0.30000000000000004    == 0.3 is false
+ 2. (0.1 + 0.2).round(2)               -> 0.3                    == 0.3 is true
+ 3. (0.1 + 0.2 - 0.3).abs              -> 5.551115123125783e-17  < Float::EPSILON is true
+ 4. 2.5.round, 3.5.round, -2.5.round   -> 3, 4, -3               a half rounds away from zero; the result is an Integer
+ 5. 2.5.round(half: :even)             -> 2                      banker's rounding on request; 3.5 gives 4, -2.5 gives -2
+ 6. 2.675.round(2)                     -> 2.68                   the Float is 2.67499999999999982236, but 2.675 * 100 is 267.5, and that half rounds up
+ 7. 0.125.round(2)                     -> 0.13                   0.125 is exact in binary: a true half, rounded away from zero
+ 8. 2.567.floor(2), 2.567.ceil(2)      -> 2.56, 2.57             digits arguments; 1234.567.round(-2) is 1200, an Integer
+ 9. Float::EPSILON                     -> 2.220446049250313e-16  MAX 1.7976931348623157e+308, MIN 2.2250738585072014e-308, DIG 15, MANT_DIG 53
+10. 2.0 ** 1024                        -> Infinity               overflow is Infinity, not an error; Float::MAX * 10 is Infinity
+11. nan == nan, nan.nan?               -> false, true            NaN is unequal to everything, itself included; nan <=> 1.0 is nil
+12. [nan].include?(nan), [nan] == [nan] -> true, true             a container checks identity before ==, so the same NaN object is found
+13. [1.0, nan].max                     -> ArgumentError: comparison of Float with 1.0 failed max and sort refuse a NaN
+14. 0.1.to_r                           -> (3602879701896397/36028797018963968) the exact binary value; 0.5.to_r is (1/2)
+15. 0.1.rationalize(Rational(1, 100))  -> (1/10)                 the simplest fraction within 1/100 of it
+16. 1e16 + 1                           -> 1.0e+16                == 1e16 is true: the doubles are 2 apart here; 1e16 + 2 is 1.0000000000000002e+16
+17. 1.0.next_float                     -> 1.0000000000000002     next_float - 1.0 == Float::EPSILON is true; 1e16.next_float is 1.0000000000000002e+16
