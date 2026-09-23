@@ -99,7 +99,7 @@ python3 tools/check_all.py --staged                # every gate CI runs, on what
 
 ## The programs
 
-**Ruby: 4.0 or later, run as `ruby -E UTF-8 <file>` from the example's folder, under `LC_ALL=C`.** The tool finds the Ruby itself (`$RUBY`, `PATH`, Homebrew) and refuses an older one. Core, default gems and bundled gems only — `json`, `set`, `minitest`, `csv`, `bigdecimal` and `debug` all ship with Ruby 4.0; nothing is installed. A lesson whose subject is a command-line flag, a warning or an exit status starts a child Ruby with `RbConfig.ruby` and prints what the child did, in view.
+**Ruby: 4.0 or later, run as `ruby -E UTF-8 <file>` from the example's folder, under `LC_ALL=C`.** The tool finds the Ruby itself (`$RUBY`, `PATH`, Homebrew) and refuses an older one. Core, default gems and bundled gems only — `json`, `set`, `minitest`, `csv`, `bigdecimal` and `debug` all ship with Ruby 4.0; nothing is installed. Ruby 4.0 bundles Minitest 6, which no longer ships `minitest/mock` (it moved to the `minitest-mock` gem), so a test double here is a singleton method. A lesson whose subject is a command-line flag, a warning or an exit status starts a child Ruby with `RbConfig.ruby` and prints what the child did, in view.
 
 **Python: standard library, run as `python3 -I`, and it must print the same thing under 3.12 and 3.14.** CI's two runners differ in exactly that, so before recording a twin run it under both — `/usr/local/bin/python3.12` on the machine this library was started on:
 
@@ -147,6 +147,7 @@ The keys were recorded on an x86-64 Mac with Ruby 4.0.0 (Homebrew) and Python 3.
 
 Every lesson links its neighbours and is linked back: `python3 tools/check_pages.py --backlinks` reports a lesson-to-lesson link that is not returned, and `--fix` appends the return link under the target's *See also*. Links to the sibling libraries are the point of this one, and go both ways too — when a page here links a Python library page, that page gets a *See also* bullet back.
 
+- In a table cell, do not put `||` inside backticks: the site's Markdown keeps the `\|` escape literally inside a code span where GitHub shows `||`. Reword the cell, or move the code out of the table.
 - Link a folder by naming its `README.md` — `[label](some_folder/README.md)`, never `[label](some_folder/)`.
 - **A link that leaves the library ends its label with ` ↗`**; an internal link never does. `python3 tools/check_link_style.py --fix` adds and removes them; CI runs it without `--fix`.
 - A sibling library's page is linked as `https://masiarek.github.io/<library>/<chapter>/<lesson>/index.html`, and a root page as `.../<NAME>.html`. Check the page exists before linking it.
