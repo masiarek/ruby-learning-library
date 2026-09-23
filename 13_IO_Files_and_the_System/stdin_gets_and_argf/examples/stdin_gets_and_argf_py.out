@@ -1,0 +1,24 @@
+ 1. input() returns the next line, newline stripped          'first'
+ 2. input() three times on two lines: EOFError at EOF        ['first', 'second', 'EOFError']
+ 3. so there is no None to call a method on; input() raises  EOFError
+ 4.   sys.stdin.readline() returns '' at EOF instead         ['', '']
+ 5. for line in sys.stdin is the read loop                   'X\nY'
+ 6.   the same loop, another body                            'cba\nfed'
+ 7. readlines() keeps newlines; read().splitlines() strips   ['x\n', 'y\n']; ['x', 'y']
+ 8. sys.stdin.read(3) takes three characters; read() the rest ['abc', 'def']
+ 9. input() at EOF raises, like Ruby's readline              EOFError
+10. no paragraph mode: read().split('\n\n') is the idiom     ['p1\nl2', '\np2\nrest']
+11. python -c 'print(input())' a.txt reads STDIN anyway      'from stdin'
+12.   sys.stdin.readline() too; argv is never a file to it   'from stdin\n'
+13.   fileinput.input() is ARGF: it joins argv's files       'a1\na2\nb1\n'
+14.   sys.argv before and after: fileinput leaves it alone   [['a.txt', 'b.txt'], ['a.txt', 'b.txt']]
+15. fileinput.filename(), lineno() (total), filelineno() (per file): 
+      a.txt:1:1: a1
+      a.txt:2:2: a2
+      b.txt:3:1: b1
+16. with argv empty, fileinput reads stdin; filename() is    ['from stdin\n', '<stdin>']
+17. a bare '-' in argv means stdin                           'dash means stdin\n'
+18. a name in argv that does not exist                       FileNotFoundError
+19. sys.stdin.isatty() when fed by a pipe, as here           False
+20. no eof(): readline() twice on one line                   ['only\n', '']
+21. sys.stdin is sys.__stdin__; its type                     [True, 'TextIOWrapper']

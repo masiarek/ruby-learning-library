@@ -1,0 +1,26 @@
+ 1. with open() as f: f.closed afterwards                      True
+ 2.   a with statement has no value (it is a statement)        n/a
+ 3. Path.write_text returns what it wrote, in characters       4
+ 4. Path.read_text gives the whole file as one str             'x\ny\n'
+ 5. f.readlines() keeps each newline                           ['x\n', 'y\n']
+ 6. read().splitlines() drops them                             ['x', 'y']
+ 7. for line in f yields one line at a time                    'x\n' then 'y\n'
+ 8. [line.rstrip('\n') for line in f] inside the with          ['x', 'y']
+ 9. mode "a" appends                                           'x\ny\nz\n'
+10. mode "w" truncates first                                   'fresh\n'
+11. mode "r+" reads and writes in place                        'Fresh\n'
+12. mode "x" (exclusive create) exists and raises              FileExistsError
+13.   os.O_CREAT | os.O_EXCL is the flag form of the same idea os.open
+14. os.path.exists for a file that is there / not there        [True, False]
+15. reading a missing file raises                              FileNotFoundError: No such file or directory - nope.txt
+16. without a with the file stays open: closed                 False
+17.   after readline and close: line, closed                   'Fresh\n', True
+18.   reading a closed file                                    ValueError
+19. default encoding (UTF-8 mode via the C locale): read gives 'café\n' utf-8 len=5 bytes=6 utf8_mode=1
+20. encoding="latin-1" decodes the same bytes differently      latin-1 len=6
+21. mode "rb" gives bytes, a different type                    bytes len=6
+22. write_text counts characters, so 'caf\N{...}\n' is         5
+23. CRLF file, text mode translates \r\n to \n                 'a\nb\n'
+24.   newline='' keeps the \r; splitlines() strips both        'a\r\nb\n' ['a', 'b']
+25. the temp directory still exists inside the with            True
+26. and is gone after it                                       False

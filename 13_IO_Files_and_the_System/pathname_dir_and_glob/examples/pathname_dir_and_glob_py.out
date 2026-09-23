@@ -1,0 +1,25 @@
+ 1. the runner's cwd is the example's folder: its name       examples
+ 2. Path(__file__).resolve().parent is this file's folder    examples
+ 3. Path("lib") / "app.rb"; joinpath                         PosixPath('lib/app.rb'); lib/deep/util.rb
+ 4. name, suffix, parent, parent again, stem                 ['app.rb', '.rb', 'lib', 'lib', 'app']
+ 5. exists, is_file, is_dir, and a missing name              [True, True, True, False]
+ 6. read_text and stat().st_size                             'print(1)\n', 9
+ 7. iterdir of lib, sorted                                   ['lib/app.rb', 'lib/deep', 'lib/notes.txt']
+ 8. os.path.relpath(x, 'spec'); Path(x).relative_to('spec', walk_up=True) ../lib/deep/util.rb; ../lib/deep/util.rb
+ 9. glob.glob("**/*.rb", recursive=True), sorted by hand     ['lib/app.rb', 'lib/deep/util.rb', 'spec/app_spec.rb']; sorted=(no order is promised)
+10. no braces: two globs, joined and sorted                  ['README.md', 'lib/app.rb', 'lib/deep/util.rb', 'spec/app_spec.rb']
+11. glob.glob for strings; Path.rglob gives Paths            ['README.md']; ['lib/app.rb', 'lib/deep/util.rb']
+12. os.listdir has no . and ..; os.scandir the same          ['README.md', 'lib', 'spec'] vs ['README.md', 'lib', 'spec']
+13. a glob skips dotfiles unless include_hidden=True         ['README.md', 'lib', 'spec']; ['README.md', 'lib', 'spec']
+14. os.path.join restarts at an absolute part                lib/deep/util.rb; /b
+15. posixpath.normpath(posixpath.join('/base/a', '../b'))    /base/b
+16. posixpath.normpath('a//b/../c'); PurePosixPath keeps ..  a/c; a/b/../c
+17. Path(x).stem, splitext, dirname, dirname of a bare       ['c', ('c.tar', '.gz'), '/a/b', '']
+18. with_suffix; is_absolute of lib and /lib; not absolute   ['x.tar.zip', False, True, True]
+19. parts; parents                                           ['lib', 'app.rb']; ['lib', '.']
+20. fnmatch: * crosses /, and there is no PATHNAME flag      [True, 'n/a']
+21. no ftype: is_dir() and is_file()                         [True, True]
+22. os.rename; os.remove; shutil.rmtree (exists after)       ['README.txt']; False; False
+23. tempfile.mkdtemp(prefix=) without a with: made, removed  prefixed=True; gone=True
+24. inside TemporaryDirectory's with the directory exists    True
+25. after the with it is gone                                False

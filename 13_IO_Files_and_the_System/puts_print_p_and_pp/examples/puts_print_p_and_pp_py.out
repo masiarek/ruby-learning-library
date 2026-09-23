@@ -1,0 +1,31 @@
+ 1. print("a") writes                                    'a\n'
+ 2. print("a\n") adds its newline anyway                 'a\n\n'
+ 3. print(1, 2) joins with sep=' ' on one line           '1 2\n'
+ 4. print([1, [2, 3]]) writes the list's repr            '[1, [2, 3]]\n'
+ 5. print(None) writes the word None                     'None\n'
+ 6. print([]) writes []                                  '[]\n'
+ 7. print() with no argument                             '\n'
+ 8. print("a", "b", sep="", end="") is Ruby's print      'ab'
+ 9. print(None, 1.0, end='') uses str, None included     'None 1.0'
+10. print(repr("s")) is the p spelling                   "'s'\n"
+11. print(repr(1), repr(2)) stays on one line            '1 2\n'
+12.   print returns                                      None
+13.   there is no p; repr(x) returns the string          "'s'"
+14.   print returns                                      None
+15. print(obj) uses str; print(repr(obj)) uses repr      'Foo-str\n'; 'Foo-repr\n'
+16. f"{obj}" uses str; print([obj]) uses repr of each    'Foo-str\n'; '[Foo-repr]\n'
+17. print([obj]) uses repr of each element               '[Foo-repr]\n'
+18. print(h) writes one line, this long                  187
+19. pprint(h, sort_dicts=False) wraps at 80, in order:   
+{'name': 'Ada Lovelace',
+ 'languages': ['ruby', 'python', 'perl'],
+ 'address': {'city': 'London', 'country': 'United Kingdom'},
+ 'notes': 'a fairly long string to push past eighty columns'}
+20.   pprint(h) default sort_dicts=True: first line      {'address': {'city': 'London', 'country': 'United Kingdom'},
+21.   pprint returns                                     None
+22. sys.stdout.write('caf\N{...}\n') returns characters  5
+23. sys.stdout.write takes one string, not several       5
+24. print("%05.1f|%s" % (3.14159, "x")) is format + write '003.1|x\n'
+25. no << on streams: write returns an int, no chain     n/a
+26. print(file=sys.stderr) is the spelling of both       'to stderr\nwarned twice\n'
+27.   several arguments stay on one line, like print     2

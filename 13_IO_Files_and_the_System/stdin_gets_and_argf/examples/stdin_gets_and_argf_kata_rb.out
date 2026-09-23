@@ -1,0 +1,7 @@
+from a file named in ARGV:
+     1	roses are red
+     2	violets are blue
+from standard input:
+     1	one
+     2	two
+     3	three

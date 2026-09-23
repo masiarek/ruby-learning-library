@@ -1,0 +1,25 @@
+ 1. the runner's cwd is the example's folder: its basename   examples
+ 2. __dir__ is this file's folder: its basename              examples
+ 3. Pathname("lib") / "app.rb"; + is the same; join          #<Pathname:lib/app.rb>; true; lib/deep/util.rb
+ 4. basename, extname, dirname, parent, basename(".rb")      ["app.rb", ".rb", "lib", "lib", "app"]
+ 5. exist?, file?, directory?, and a missing name            [true, true, true, false]
+ 6. read and size                                            "puts 1\n", 7
+ 7. children of lib, sorted                                  ["lib/app.rb", "lib/deep", "lib/notes.txt"]
+ 8. lib/deep/util.rb relative_path_from(spec)                ../lib/deep/util.rb
+ 9. Dir.glob("**/*.rb") is sorted by default (since 3.0)     ["lib/app.rb", "lib/deep/util.rb", "spec/app_spec.rb"]; sorted=true
+10. braces: Dir.glob("**/*.{rb,md}")                         ["README.md", "lib/app.rb", "lib/deep/util.rb", "spec/app_spec.rb"]
+11. Dir[] is glob; Pathname.glob gives Pathnames             ["README.md"]; ["lib/app.rb", "lib/deep/util.rb"]
+12. Dir.children(".") vs Dir.entries(".") (sorted)           ["README.md", "lib", "spec"] vs [".", "..", "README.md", "lib", "spec"]
+13. a glob skips dotfiles unless File::FNM_DOTMATCH          ["README.md", "lib", "spec"]; [".", "README.md", "lib", "spec"]
+14. File.join collapses the separators                       lib/deep/util.rb; a/b
+15. File.expand_path("../b", "/base/a")                      /base/b
+16. Pathname("a//b/../c").cleanpath                          a/c
+17. File.basename(x, ext), extname, dirname, dirname of a bare ["c", ".gz", "/a/b", "."]
+18. sub_ext; absolute? of lib and /lib; relative?            ["x.tar.zip", false, true, true]
+19. each_filename; descend; ascend                           ["lib", "app.rb"]; ["lib", "lib/app.rb"]; ["lib/app.rb", "lib"]
+20. File.fnmatch: * crosses / unless File::FNM_PATHNAME      [true, false]
+21. File.ftype of a directory and a file                     ["directory", "file"]
+22. File.rename; File.delete; FileUtils.rm_rf (exist? after) ["README.txt"]; false; false
+23. Dir.mktmpdir("prefix-") without a block: made, then removed prefixed=true; gone=true
+24. inside Dir.mktmpdir's block the directory exists         true
+25. after the block it is gone                               false

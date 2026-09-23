@@ -1,0 +1,31 @@
+ 1. puts "a" writes                                      "a\n"
+ 2. puts "a\n" adds no second newline                    "a\n"
+ 3. puts 1, 2 puts each argument on its own line         "1\n2\n"
+ 4. puts [1, [2, 3]] flattens, one element per line      "1\n2\n3\n"
+ 5. puts nil writes an empty line                        "\n"
+ 6. puts [] writes nothing at all                        ""
+ 7. puts with no argument                                "\n"
+ 8. print "a", "b" adds no separator and no newline      "ab"
+ 9. print nil, 1.0 uses to_s, and nil.to_s is empty      "1.0"
+10. p "s" writes inspect, so the quotes are visible      "\"s\"\n"
+11. p 1, 2 writes two lines                              "1\n2\n"
+12.   and returns its arguments as an Array              [1, 2]
+13.   p with one argument returns it; p alone returns    "s"; nil
+14.   puts returns                                       nil
+15. puts obj uses to_s; p obj uses inspect               "Foo-to_s\n"; "Foo-inspect\n"
+16. "#{obj}" uses to_s; puts [obj] uses to_s of each     "Foo-to_s\n"; "Foo-to_s\n"
+17. p [obj] uses inspect of each element                 "[Foo-inspect]\n"
+18. p h writes one line, this long                       175
+19. pp h wraps at 80 columns, keeping insertion order:   
+{name: "Ada Lovelace",
+ languages: ["ruby", "python", "perl"],
+ address: {city: "London", country: "United Kingdom"},
+ notes: "a fairly long string to push past eighty columns"}
+20.   pp's first line                                    {name: "Ada Lovelace",
+21.   pp returns its argument (equal?)                   true
+22. $stdout.write("caf\u{e9}\n") returns bytes written   6
+23. $stdout.write("ab", "cd\n") takes several arguments  5
+24. printf("%05.1f|%s\n", 3.14159, "x") formats, writes  "003.1|x\n"
+25. $stdout << "a" << 1 << "\n" chains                   "a1\n"
+26. $stderr.puts and warn both write to $stderr          "to stderr\nwarned\ntwice\n"
+27.   warn takes several arguments, one per line         3

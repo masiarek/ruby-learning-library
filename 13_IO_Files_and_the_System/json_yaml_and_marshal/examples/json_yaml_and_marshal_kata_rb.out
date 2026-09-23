@@ -1,0 +1,5 @@
+name     json: true  marshal: true  (json gave "demo")
+retries  json: true  marshal: true  (json gave 3)
+mode     json: false marshal: true  (json gave "fast")
+since    json: false marshal: true  (json gave "2024-01-01 00:00:00 UTC")
+tags     json: true  marshal: true  (json gave ["a", "b"])

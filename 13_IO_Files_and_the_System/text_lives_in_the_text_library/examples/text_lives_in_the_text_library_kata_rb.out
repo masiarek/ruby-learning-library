@@ -1,0 +1,6 @@
+utf8        UTF-8      chars=4 bytes=5 valid=true  ascii_only=false
+utf8.b      ASCII-8BIT chars=5 bytes=5 valid=true  ascii_only=false
+latin1      ISO-8859-1 chars=4 bytes=4 valid=true  ascii_only=false
+relabelled  ISO-8859-1 chars=5 bytes=5 valid=true  ascii_only=false
+invalid     UTF-8      chars=4 bytes=4 valid=false ascii_only=false
+ascii       UTF-8      chars=4 bytes=4 valid=true  ascii_only=true

@@ -1,0 +1,14 @@
+ 1. a str: repr, type; a str carries no encoding label       'café'; str; n/a
+ 2. len counts characters; len(s.encode()) counts bytes      4; 5
+ 3. list(s.encode()); [ord(c) for c in s]                    [99, 97, 102, 195, 169]; [99, 97, 102, 233]
+ 4. a str is always valid text (no valid_encoding); isascii  n/a; False
+ 5. s.encode() is a second type: type, len, == s             bytes; 5; False
+ 6. no relabel (bytes carry no label); encode('latin-1') converts n/a; [99, 97, 102, 233]
+ 7. b'\xe9'.decode() fails at the boundary; .decode('latin-1') UnicodeDecodeError: unexpected end of data; 'é'
+ 8. encode('ascii') raises; errors='replace'; 'xmlcharrefreplace' UnicodeEncodeError: ordinal not in range(128); b'caf?'; b'caf&#233;'
+ 9. str + bytes raises, whatever the bytes hold              TypeError
+10. getdefaultencoding; utf8_mode; type(b''); type('')       utf-8; 1; bytes; str
+11. e + U+0301: len; no grapheme clusters; NFC ==; upper     2; n/a; True; CAFÉ; STRASSE
+12. \w is Unicode here: re.match(r'\w+', s); [^\W\d_]+ for letters 'café'; True
+13. padding counts characters: '%-6s|' % s                   café  |
+14. s[3], s[-1] are characters; s.encode()[3:5] bytes; [3:4] decoded 'é'; 'é'; b'\xc3\xa9'; '�'

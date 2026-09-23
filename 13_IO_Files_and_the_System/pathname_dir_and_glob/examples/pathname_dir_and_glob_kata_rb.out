@@ -1,0 +1,9 @@
+./
+  README.md
+  Rakefile
+  lib/
+    app.rb
+    deep/
+      util.rb
+  spec/
+    app_spec.rb

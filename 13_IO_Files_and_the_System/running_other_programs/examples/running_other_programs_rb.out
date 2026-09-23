@@ -1,0 +1,19 @@
+ 1. system(ruby, "-e", "exit 0") returns; $?.exitstatus    true; 0
+ 2. system(ruby, "-e", "exit 2") returns; $?.exitstatus    false; 2
+ 3. system("definitely_not_a_command_xyz"); $?.exitstatus  nil; 127
+ 4. `echo hello` returns stdout; $?.success?               "hello\n"; true
+ 5. %x(echo hi there) is the same thing                    "hi there\n"
+ 6. one String goes through /bin/sh: `echo *` expands      "a.txt b.txt\n"
+ 7. an argv form skips the shell: capture2("echo", "*")    "*\n"
+ 8. spawn returns a pid; after Process.wait, $?.exitstatus Integer; 4
+ 9. Process.wait2 returns [pid, status]                    pid matches: true; 5
+10. Open3.capture3: stdout, stderr, status.exitstatus      "out\n", "err\n", 3
+11. capture2e merges; a piped stdout is buffered, so       "err\nout\n"
+12.   with $stdout.sync = true in the child                "out\nerr\n"
+13. IO.popen([argv]) { |io| io.readlines }                 ["1\n", "2\n"]
+14. IO.popen(argv, "r+"): write, close_write, read         "ABC\n"
+15. capture2 with stdin_data: feeds the child              "\"fed\"\n"
+16. a leading Hash adds to the child's environment         "hi\n"
+17. exec replaces the process: nothing after it runs       "replaced\n"
+18. system(..., exception: true) raises on failure         RuntimeError
+19. $? is Process.last_status; its class                   true; Process::Status

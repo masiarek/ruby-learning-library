@@ -1,0 +1,14 @@
+ 1. a String: inspect, class, encoding                       "café"; String; UTF-8
+ 2. length counts characters; bytesize counts bytes          4; 5
+ 3. bytes; codepoints                                        [99, 97, 102, 195, 169]; [99, 97, 102, 233]
+ 4. valid_encoding?; ascii_only?                             true; false
+ 5. s.b is the same bytes under a BINARY label: encoding, length, == s ASCII-8BIT; 5; false
+ 6. force_encoding relabels (length); encode converts (bytes) 5; [99, 97, 102, 233]
+ 7. a lone "\xE9": valid_encoding?; relabelled ISO-8859-1, then encoded false; "é"
+ 8. encode("US-ASCII") raises; undef: :replace; fallback:    Encoding::UndefinedConversionError: U+00E9 from UTF-8 to US-ASCII; caf?; cafe
+ 9. UTF-8 + ISO-8859-1, non-ASCII on both sides, raises      Encoding::CompatibilityError: incompatible character encodings: UTF-8 and ISO-8859-1
+10. default_external (-E UTF-8 here); __ENCODING__; String.new; "" UTF-8; UTF-8; ASCII-8BIT; UTF-8
+11. e + U+0301: length; grapheme clusters; NFC == "\u{e9}"; upcase 2; 1; true; CAFÉ; STRASSE
+12. \w is ASCII: s[/\w+/]; \p{L} is Unicode: match?(/\A\p{L}+\z/) "caf"; true
+13. padding counts characters: "%-6s|" % s                   café  |
+14. s[3], s[-1] are characters; byteslice(3, 2) bytes; byteslice(3, 1) valid? "é"; "é"; "é"; false

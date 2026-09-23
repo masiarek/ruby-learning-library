@@ -1,0 +1,9 @@
+ruby greet.rb Ada Alan
+  Hello, Ada!
+  Hello, Alan!
+  exit status: 0
+ruby greet.rb --greeting Hi Grace
+  Hi, Grace!
+  exit status: 0
+ruby greet.rb
+  exit status: 2

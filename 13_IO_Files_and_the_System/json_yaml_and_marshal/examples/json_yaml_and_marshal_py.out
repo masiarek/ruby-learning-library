@@ -1,0 +1,33 @@
+ 1. json.dumps puts spaces after , and :; keys are already str {"a": 1, "b": [1, 2.5, null, true], "c": "sym"}
+ 2. dumps of a dict, list, str, None, tuple, float             {"a": 1} [1, "two"] "str" null [1, 2] 1.5
+ 3. json.dumps({'a': 1, 'b': [1, 2]}, indent=2):               
+      {
+        "a": 1,
+        "b": [
+          1,
+          2
+        ]
+      }
+ 4. json.loads gives str keys (there is no other kind)         {'a': 1, 'b': [1, 2.5, None, True]}
+ 5.   no symbolize_names: a key is always a str                n/a
+ 6. a tuple comes back as a list                               [1, 2]
+ 7. non-str keys are stringified: {1: 2, None: 3}              {"1": 2, "null": 3}
+ 8. a scalar document: loads of 3, "s", null                   [3, 's', None]
+ 9. duplicate keys: the last one wins                          {'a': 2}
+10. bad input raises; its ancestors                            JSONDecodeError < ValueError < Exception
+11. NaN is written as NaN by default; allow_nan=False raises   NaN; ValueError
+12. non-ASCII is escaped by default; ensure_ascii=False keeps it "caf\u00e9" "café"
+13. a dataclass or a datetime raises; default=vars is the fix  TypeError TypeError; {"x": 1}
+14. no YAML: 'yaml' in sys.stdlib_module_names; json, pickle, tomllib [False, True, True, True]
+15.   (PyYAML is a third-party package)                        n/a
+16. pickle.loads runs __reduce__: what loading an Evil printed 'pickle ran code\n'
+17.   there is no safe load: every pickle.loads is unsafe_load n/a
+18.   no permitted_classes                                     n/a
+19.   no aliases option; shared references just round-trip     n/a
+20. pickle round trip keeps tuples, sets and nesting           {'a': [1, {'b': 'c'}], 't': (1, 2), 's': {3}}
+21. pickle.dumps gives bytes; dumps(1, protocol=4) in hex; highest bytes; 80044b012e; 5
+22. the round trip keeps Python types: range, datetime         {'a': [1, 2], 'c': range(1, 4), 'd': datetime.datetime(2024, 1, 1, 0, 0, tzinfo=datetime.timezone.utc)}
+23. loads(dumps(x)) is a deep copy: original, copy             {'a': [1, [2]]}, {'a': [1, [2, 3]]}
+24. pickle refuses a lambda and a file object                  PicklingError < PickleError; TypeError < Exception
+25. pickle.loads of garbage raises                             UnpicklingError
+26. TOML: tomllib.loads (3.11+, read-only)                     {'a': 1, 's': {'b': [1, 2]}}

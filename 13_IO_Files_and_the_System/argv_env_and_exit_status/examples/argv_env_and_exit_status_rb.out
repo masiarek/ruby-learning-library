@@ -1,0 +1,23 @@
+ 1. ruby child.rb 1 two -- ARGV holds Strings          ARGV=["1", "two"] classes=[String, String]
+ 2.   $0 is the script as invoked; __FILE__ == $0      __FILE__=child.rb $0=child.rb $PROGRAM_NAME=child.rb main?=true
+ 3.   ENV[] gives a String or nil                      ENV["DEMO_X"]="1" ENV["DEMO_MISSING"]=nil
+ 4.   ENV.fetch with a default                         fetch with defaults: "1" "d"
+ 5.   ENV.fetch without one                            KeyError: key not found: "DEMO_MISSING"
+ 6.   ENV values must be Strings                       TypeError: no implicit conversion of Integer into String
+ 7.   ENV is not a Hash, but it is Enumerable          ENV.class=Object is_a?(Hash)=false to_h.class=Hash each?=true
+ 8.   the child ran exit 2: $?.exitstatus, success?    2, false
+ 9.   the status object's class                        Process::Status
+10. ruby main.rb, which require_relatives child.rb     __FILE__=child.rb $0=main.rb $PROGRAM_NAME=main.rb main?=false
+11.   the helper is defined, the guarded part did not run helper from child.rb; in main.rb: $0=main.rb; exit=0
+12. exit with no argument                              0
+13. exit true                                          0
+14. exit false                                         1
+15. abort "bye": status, and stderr                    1, ["bye"]
+16. an uncaught exception                              1
+17. OptionParser: -n 3 --verbose in.txt                options={count: 3, verbose: true} ARGV=["in.txt"] exit=0
+18.   an unknown option                                OptionParser::InvalidOption: invalid option: --nope exit=1
+19.   a non-Integer for -n                             OptionParser::InvalidArgument: invalid argument: -n x exit=1
+20.   -h prints the generated help and exits           0
+      Usage: opts.rb [options] FILE
+          -n, --count N                    How many times
+          -v, --verbose                    Say more

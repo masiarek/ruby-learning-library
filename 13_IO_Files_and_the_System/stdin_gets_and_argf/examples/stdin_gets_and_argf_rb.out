@@ -1,0 +1,24 @@
+ 1. gets returns the next line, newline included             "first\n"
+ 2. gets three times on two lines: nil at EOF                ["first\n", "second\n", nil]
+ 3. so gets.chomp on an empty input raises                   NoMethodError: undefined method 'chomp' for nil
+ 4.   gets&.chomp and gets.to_s.chomp are the safe spellings [nil, ""]
+ 5. while (line = gets) is the read loop                     "X\nY"
+ 6. $stdin.each_line { |l| } is the same loop                "cba\nfed"
+ 7. readlines keeps newlines; readlines(chomp: true) strips  ["x\n", "y\n"]; ["x", "y"]
+ 8. $stdin.read(3) takes three bytes; read slurps the rest   ["abc", "def"]
+ 9. $stdin.readline at EOF raises instead of returning nil   EOFError
+10. gets("") reads a paragraph; gets(nil) slurps (Perl)      ["p1\nl2\n\n", "p2\nrest"]
+11. the trap: ruby -e 'p gets' a.txt reads the FILE          "a1\n"
+12.   $stdin.gets ignores ARGV                               "from stdin\n"
+13.   gets is ARGF.gets: ARGF.read joins ARGV's files        "a1\na2\nb1\n"
+14.   ARGV before and after: ARGF consumes the names         [["a.txt", "b.txt"], []]
+15. ARGF.filename, ARGF.lineno (total), ARGF.file.lineno (per file): 
+      a.txt:1:1: a1
+      a.txt:2:2: a2
+      b.txt:3:1: b1
+16. with ARGV empty, ARGF reads stdin; filename is           ["from stdin\n", "-"]
+17. a bare "-" in ARGV means stdin                           "dash means stdin\n"
+18. a name in ARGV that does not exist                       Errno::ENOENT
+19. $stdin.tty? when fed by a pipe, as here                  false
+20. $stdin.eof? before and after the only line               [false, "only\n", true]
+21. $< is ARGF; $stdin and STDIN are one IO                  [true, true, IO]

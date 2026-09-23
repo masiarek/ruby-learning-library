@@ -1,0 +1,2 @@
+fine
+CommandFailed: ruby exited 3 -- status=3 stderr="disk on fire\n"

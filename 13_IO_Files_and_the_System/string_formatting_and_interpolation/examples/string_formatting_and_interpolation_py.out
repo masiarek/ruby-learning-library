@@ -1,0 +1,20 @@
+ 1. f"x is {x}" interpolates; "x is {x}" does not        'x is 5' 'x is {x}'
+ 2. f"{obj}" calls str; None, a list, a str, a dict      'Foo!' "None|[1, 2]|sym|1.0|{'a': 1}"
+ 3. any expression, even a nested f-string               '3' 'in 5'
+ 4. f"{pi:05.2f}"; ":.3e"; ":x :o :b :08b :X"            03.14; 1.235e+05; ff 10 101 00000101 FF
+ 5. ":+d" and ": d" signs; ":5d|" and ":<5d|" width      +5  5;    42|42   |
+ 6. "%s and %s" % (a, b); "%s" % one; "%d%%" % 50        a and b; one; 50%
+ 7. !r is repr: f"{'str'!r} {'str'}"; !r and str of None 'str' str; 'None|None|'
+ 8. "{name} is {age:d}".format(**h); f"{x=}" (3.8+)      Ada is 36; x=5
+ 9. ljust(6, "."), rjust(6), center(6, "*"); ":<10|"; ":>10|" ab....|     ab| **ab**| left      |      right|
+10. bin(255), hex(255); int("ff", 16); ":#x :#o :#b"     0b11111111 0xff; 255; 0xff 0o10 0b101
+11. f"{2.675:.2f}" and round(2.675, 2); ":.0f" of 2.5, 3.5 2.67 2.67; 2 4
+12. f"{1/3:.10g}"; str(1e20); str(100.0); str(1e-5)      0.3333333333; 1e+20; 100.0; 1e-05
+13. "{2} {0} {1}".format(...); a nested width f"{n:{w}d}" c a b;    42|
+14. a precision on a str truncates: f"{s:.2}"            ab
+15. thousands built in: f"{n:,}" and f"{n:_}"            1,234,567; 1_234_567
+16. padding counts characters: f"{s:<6}|"; ljust         café  | café..|
+17. textwrap.dedent strips the common indentation        'indented\n  more\nback\n'
+18. "%c" of an int and of a one-character str            A h
+19. str(3.0); "%d" % 3.99 truncates; "%f" % 3            3.0; 3; 3.000000
+20. an f-string of one str may be the same object: is; == True; True

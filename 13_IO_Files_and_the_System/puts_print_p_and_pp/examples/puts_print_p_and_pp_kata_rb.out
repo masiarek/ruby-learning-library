@@ -1,0 +1,8 @@
+["a"]            mine="a\n"            real="a\n"            same=true
+["a\n"]          mine="a\n"            real="a\n"            same=true
+[1, 2]           mine="1\n2\n"         real="1\n2\n"         same=true
+[[1, [2, 3]]]    mine="1\n2\n3\n"      real="1\n2\n3\n"      same=true
+[nil]            mine="\n"             real="\n"             same=true
+[[]]             mine=""               real=""               same=true
+[]               mine="\n"             real="\n"             same=true
+[:sym, 1.5]      mine="sym\n1.5\n"     real="sym\n1.5\n"     same=true

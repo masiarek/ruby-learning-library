@@ -1,0 +1,26 @@
+ 1. File.open with a block: closed? afterwards                 true
+ 2.   and the block's value is what File.open returns          :block_value
+ 3. File.write returns what it wrote, counted in bytes         4
+ 4. File.read gives the whole file as one String               "x\ny\n"
+ 5. File.readlines keeps each newline                          ["x\n", "y\n"]
+ 6. File.readlines(chomp: true) drops them                     ["x", "y"]
+ 7. File.foreach yields one line at a time                     "x\n" then "y\n"
+ 8. each_line(chomp: true) inside a block                      ["x", "y"]
+ 9. mode "a" appends                                           "x\ny\nz\n"
+10. mode "w" truncates first                                   "fresh\n"
+11. mode "r+" reads and writes in place                        "Fresh\n"
+12. mode "x" (Python's exclusive create) does not exist        ArgumentError: invalid access mode x
+13.   the flag form File::CREAT | File::EXCL is the same idea  Errno::EEXIST
+14. File.exist? for a file that is there / not there           [true, false]
+15. reading a missing file raises                              Errno::ENOENT: No such file or directory @ rb_sysopen - nope.txt
+16. without a block the file stays open: closed?               false
+17.   after gets and close: line, closed?                      "Fresh\n", true
+18.   reading a closed file                                    IOError: closed stream
+19. default encoding under -E UTF-8: read gives                "café\n" UTF-8 length=5 bytesize=6
+20. encoding: "ISO-8859-1" relabels the same bytes             ISO-8859-1 length=6
+21. mode "rb" gives binary (ASCII-8BIT)                        ASCII-8BIT length=6
+22. File.write counts bytes, so "caf\u{e9}\n" is               6
+23. CRLF file, File.read keeps the \r (no translation)         "a\r\nb\n"
+24.   readlines(chomp: true) strips \r\n and \n alike          ["a", "b"]
+25. the temp directory still exists inside the block           true
+26. and is gone after it                                       false

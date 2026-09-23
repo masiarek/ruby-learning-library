@@ -1,0 +1,27 @@
+ 1. datetime(2024, 2, 29, 12, tzinfo=timezone.utc); type; aware?; tzname 2024-02-29 12:00:00+00:00; datetime; True; UTC
+ 2. + timedelta(days=1); later - t is a timedelta              2024-03-01 12:00:00+00:00; 1 day, 0:00:00 (timedelta); total_seconds=86400.0
+ 3. + timedelta(seconds=0.5) keeps microseconds; microsecond   2024-02-29 12:00:00.500000+00:00; 500000
+ 4. strftime("%Y-%m-%d %H:%M:%S %z"); ("%A %d %B %Y")          2024-02-29 12:00:00 +0000; Thursday 29 February 2024
+ 5. strftime("%j %U %u %I %p")  (%-d and %e depend on the C library) 060 08 4 12 PM
+ 6. isoformat() writes +00:00, never Z; timespec=              2024-02-29T12:00:00+00:00; 2024-02-29T12:00:00.000+00:00
+ 7. timestamp() is a float; int() of it                        1709208000.0; 1709208000
+ 8. fromtimestamp(0) is naive local; tz=timezone.utc makes it aware 1970-01-01 00:00:00; None; 1970-01-01 00:00:00+00:00
+ 9. datetime(2024, 2, 29, 12) is naive: tzinfo; == t; < t      2024-02-29 12:00:00; None; False; TypeError
+10. tzinfo=timezone(timedelta(hours=2)); astimezone(utc); utcoffset; == t 2024-02-29 12:00:00+02:00; 2024-02-29 10:00:00+00:00; 2:00:00; False
+11. t.astimezone(+02:00) is the same instant shown elsewhere   2024-02-29 14:00:00+02:00; hour=14; == t: True
+12. t < t + 1s; == with an equal datetime; hash equal; is      True; True; True; False
+13. datetime(2024, 2, 30) and hour 25 both raise               ValueError; ValueError
+14. replace(microsecond=0) instead of round; timetuple()[:6]   2024-02-29 12:00:00+00:00; (2024, 2, 29, 12, 0, 0)
+15. fromisoformat, strptime and strftime need no import        True, True
+16. fromisoformat("...+02:00").astimezone(utc); strptime is naive 2024-02-29 10:00:00+00:00; 2024-02-29 00:00:00
+17. fromisoformat accepts a trailing Z (3.11+)                 2024-02-29 12:00:00+00:00
+18. date(2024, 1, 31); + timedelta(days=1); no month arithmetic: a helper 2024-01-31; 2024-02-01; 2024-02-29; 2025-02-28; 2023-12-31
+19. date - date is a timedelta                                 datetime.timedelta(days=30) (timedelta); days=30
+20. strptime(...).date(), date.fromisoformat, strptime         2024-03-01; 2024-03-01; 2024-03-01
+21. calendar.isleap(2024, 2100, 2000); no valid_date; date(2024, 2, 30) [True, False, True]; n/a; ValueError
+22. weekday() (Monday=0), isoweekday() (Monday=1), tm_yday, week; day_name 2; 3; 31; 5; Wednesday
+23. no negative day: calendar.monthrange(y, m)[1] is the last day 2024-02-29; 2023-02-28
+24. a list of dates by timedelta; a stride                     ['2024-01-01', '2024-01-02', '2024-01-03']; ['2024-01-01', '2024-01-04', '2024-01-07', '2024-01-10']
+25. datetime.combine(d, time()) is naive midnight; t.date()    2024-01-31 00:00:00; 2024-02-29 (date)
+26. one datetime class does both jobs; no DateTime split       n/a
+27. class patterns read attributes: case datetime(year=2024, ...) n/a (no deconstruct_keys); matched, hour=12
