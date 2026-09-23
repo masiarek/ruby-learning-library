@@ -1,0 +1,21 @@
+ 1. k = Class.new(Animal) { def speak = "woof" }   k.new.speak = "woof"
+ 2. k.name -- anonymous so far                     nil
+ 3. Dog = k; k.name                                "Dog"
+ 4. Hound = Dog; Hound.name -- the first name sticks "Dog"
+ 5. Zoo.const_set(:Cat, cat); cat.name             "Zoo::Cat"
+    Object.const_get("Zoo::Cat").equal?(cat)       true
+ 6. Dog.include(Module.new { def hi }); Dog.new.hi "hi", module name = nil
+    Greeting = greeting; Dog.ancestors.first(2)    [Dog, Greeting]
+ 7. Point = Struct.new(:x, :y); Point.new(1, 2)    #<struct Point x=1, y=2>
+    Coord = Data.define(:lat, :lng); Coord.new(1, 2) #<data Coord lat=1, lng=2>
+ 8. k.class / k.superclass / Class.new.superclass  Class / Animal / Object
+    k.is_a?(Module) / k.instance_of?(Class)        true / true
+ 9. Animal.inherited saw, in order (k, then Kitten) [nil, "Kitten"]
+10. Class.new { define_method(:triple) { |x| x * factor } } new.triple(3) = 9
+11. Class.new(Class)                               TypeError: can't make subclass of Class
+    Class.new(Comparable) -- a Module              TypeError: superclass must be an instance of Class (given an instance of Module)
+12. Object.const_set(:lower, Class.new)            NameError: wrong constant name lower
+13. Object.const_defined?(:Hound)                  true
+    Object.send(:remove_const, :Hound) -> then defined? "Dog" / false
+14. make_class.equal?(make_class) / make_class.name false / nil
+15. Class.new(Animal) takes no keyword options     configure with a class method afterwards

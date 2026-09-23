@@ -1,0 +1,24 @@
+ 1. k = type("Dog", (Animal,), {"speak": speak})   k().speak() = 'woof'
+ 2. k.__name__ -- named at birth                   'Dog'
+    type("", (), {}).__name__ -- even an empty name ''
+ 3. Dog = k; k.__name__                            'Dog'
+    k.__name__ = "Renamed"; k.__name__             'Renamed'
+ 4. Hound = Dog; Hound.__name__                    'Dog'
+ 5. setattr(zoo, 'Cat', cat); cat.__qualname__     'Cat' (unchanged), __module__ = '__main__'
+    getattr(zoo, "Cat") is cat                     True
+ 6. type('Dog2', (Greeting, Animal), {})().hi()    'hi', mixin name = 'Greeting'
+    [c.__name__ for c in Dog2.__mro__[:2]]         ['Dog2', 'Greeting']
+ 7. namedtuple("Point", "x y")(1, 2)               Point(x=1, y=2)
+    make_dataclass("Coord", ["lat", "lng"])(1, 2)  Coord(lat=1, lng=2)
+ 8. type(k) / k.__bases__ / type('A', (), {}).__bases__ type / ('Animal',) / ('object',)
+    isinstance(k, type)                            True
+ 9. __init_subclass__ saw, in order (k, Dog2, Kitten) ['Dog', 'Dog2', 'Kitten']
+10. type('T', (), {'triple': triple})().triple(3)  9
+11. Meta = type('Meta', (type,), {}) -- allowed    mro = ['Meta', 'type', 'object']
+    a Python module is an instance of ModuleType   isinstance(zoo, types.ModuleType) = True
+12. type('bad name', (), {}).__name__ -- any str   'bad name'
+13. hasattr(module, "Hound")                       True
+    delattr(module, "Hound") -> then hasattr       False
+14. make_class() is make_class() / __qualname__    False / 'make_class.<locals>.Made'
+15. types.new_class('T', (Base,), {'tag': 'x'}).tag 'x'
+    type('T2', (Base,), {}, tag='y').tag           'y'

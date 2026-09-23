@@ -1,0 +1,16 @@
+ 1. db.find_by_name("Ada") -- a ghost method       {name: "Ada", lang: "Ruby"}
+ 2. Record.new(name: "Ada").name -- attribute ghost "Ada"
+ 3. db.nope -- super keeps the error               NoMethodError: undefined method 'nope' for an instance of Db
+ 4. Probe.new.find_by_x("Ada") receives            [Symbol, :find_by_x, ["Ada"]]
+ 5. db.respond_to?(:find_by_name) -- no respond_to_missing? false
+    db.method(:find_by_name)                       NameError: undefined method 'find_by_name' for class 'Db'
+ 6. listed.respond_to?(:find_by_name)              true
+    listed.method(:find_by_lang).call("Python")    {name: "Guido", lang: "Python"}
+ 7. listed.methods.include?(:find_by_name)         false
+ 8. hook_calls: 2 ghosts (rows 1, 3), then rows, rows 2 (real methods never reach the hook)
+ 9. Swallow.new.typo -- method_missing without super nil
+    Swallow.new.respond_to?(:typo)                 false
+10. memo.say_hello twice -> value, hits            "HELLO" "HELLO", hits = 1
+    Memo.instance_methods(false).include?(:say_hello) true
+11. db.method_missing(:find_by_name, "Ada") explicitly NoMethodError: private method 'method_missing' called for an instance of Db
+12. from row 3: e.name / e.receiver.equal?(db)     :nope / true

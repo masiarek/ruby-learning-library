@@ -1,0 +1,21 @@
+ 1. safe.instance_eval { @secret }                 42
+ 2. safe.instance_eval { self.class }              Safe
+ 3. Safe.class_eval { def x }: Safe.new.x          "instance x"
+    Safe.x                                         NoMethodError: undefined method 'x' for class Safe
+ 4. Safe.instance_eval { def y }: Safe.y           "class y"
+    Safe.new.y                                     NoMethodError: undefined method 'y' for an instance of Safe
+ 5. safe.instance_eval { def only_me }             safe.singleton_methods = [:only_me]
+    Safe.new.respond_to?(:only_me)                 false
+ 6. safe.instance_exec(3) { |n| @secret + n }      45
+    instance_eval { |o| o.equal?(safe) }           true
+    instance_eval(&-> { 1 }) -- a strict lambda    ArgumentError: wrong number of arguments (given 1, expected 0)
+ 7. class_eval("def z = 3", __FILE__, __LINE__ + 1) source_location = instance_eval_and_class_eval_rb.rb:48
+    class_eval("def w = 4") -- no file, no line    source_location = (eval at instance_eval_and_class_eval_rb.rb:49):1
+ 8. class_eval { factor * 2 } -- a block closes    6
+ 9. class_eval { 1 + 1 } / instance_eval("1 + 1")  2 / 2
+10. blk = proc { self.class }; blk.call            Object
+    safe.instance_eval(&blk)                       Safe
+11. class klass; end -- a variable, not a constant SyntaxError
+    klass.class_eval { def v = 5 }: klass.new.v    5
+12. x = 5; eval("x + 1") -- the current scope      6
+13. module_eval == class_eval (same method)        true

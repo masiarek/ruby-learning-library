@@ -1,0 +1,6 @@
+1. Length.new(1.5).to_cm             -> 150.0
+2. Length.new(1.5).to_mm             -> 1500.0
+3. Length.new(1.5).to_km             -> 0.0015
+4. instance_methods(false).sort       -> [:to_cm, :to_km, :to_mm]
+5. respond_to?(:to_leagues)           -> false (private)
+6. send(:to_leagues)                  -> 0.0003

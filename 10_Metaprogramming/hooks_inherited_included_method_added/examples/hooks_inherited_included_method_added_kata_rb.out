@@ -1,0 +1,5 @@
+1. Command.registry.keys       -> ["list_files", "show_version"]
+2. Command.run("list_files", "/tmp") -> "listing /tmp"
+3. Command.run("show_version")    -> "version 1.0"
+4. Command.run("nope")            -> ArgumentError: no command "nope"
+5. Command.subclasses.map(&:name).sort -> ["ListFiles", "ShowVersion"]

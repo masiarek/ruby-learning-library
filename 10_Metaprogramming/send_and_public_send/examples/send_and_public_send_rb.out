@@ -1,0 +1,15 @@
+ 1. calc.send(:add, 2, 3)                          5
+ 2. calc.send("add", 2, 3) -- a String works too   5
+ 3. Report.new.send(:"to_#{fmt}"), fmt = "csv"     "a,b"
+ 4. 1.send(:+, 2) -- operators are methods         3
+ 5. [1, 2, 3].send(:map) { it * 2 } -- block passes [2, 4, 6]
+ 6. vault.send(:code) -- a reader is a method call 42
+ 7. vault.send(:secret) -- private, still called   "the code is 42"
+ 8. vault.public_send(:secret)                     NoMethodError: private method 'secret' called for an instance of Vault
+ 9. respond_to?(:secret) / respond_to?(:secret, true) false / true
+10. vault.send(:nope) -> e.class, e.name           NoMethodError, :nope
+11. mailer.send(:deliver) -- send is overridden    "mailing :deliver"
+    mailer.__send__(:deliver)                      "delivered"
+    mailer.public_send(:deliver)                   "delivered"
+12. owner of send / __send__ / public_send         Kernel / BasicObject / Kernel
+13. calc.send(:add, 1) -- arity is still checked   ArgumentError: wrong number of arguments (given 1, expected 2)

@@ -1,0 +1,22 @@
+ 1. vars(safe)["_secret"] -- nothing to switch     42
+ 2. peek(safe) -- self is the argument             Safe
+ 3. exec("def x(self) ...") + setattr: Safe().x()  'instance x'
+    Safe.x() -- no instance to be self             TypeError
+ 4. Safe.y = classmethod(...): Safe.y()            'class y'
+    Safe().y() -- reachable from instances too     'class y'
+ 5. safe.only_me = MethodType(f, safe)             in vars(safe): ['only_me']
+    hasattr(Safe(), "only_me")                     False
+ 6. add(safe, 3) -- self and args are parameters   45
+    types.MethodType(add, safe)(3)                 45
+    no strict/lenient split                        a function takes exactly its parameters
+ 7. compile(src, "generated.py", "exec")           co_filename = generated.py:1
+    exec(src) -- no filename                       co_filename = <string>
+ 8. eval("factor * 2") -- sees the current scope   6
+    eval("factor * 2", {}) -- an empty namespace   NameError
+ 9. eval("1 + 1") / exec("1 + 1")                  2 / None
+10. peek(A()) / peek(safe) -- self is passed in    A / Safe
+    a function has no self to move                 -
+11. setattr(klass, 'v', ...): klass().v()          5
+    class klass: pass -> klass is Safe             False
+12. x = 5; eval("x + 1") -- the current scope      6
+13. eval is exec -- two builtins, not aliases      False

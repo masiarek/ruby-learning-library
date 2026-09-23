@@ -1,0 +1,6 @@
+1. Celsius.name / superclass         -> Celsius / Temperature
+2. Celsius.new(100).to_kelvin        -> 373.15
+3. Fahrenheit.new(212).to_kelvin     -> 373.15
+4. Kelvin.new(373.15).to_kelvin      -> 373.15
+5. Temperature.subclasses names      -> ["Celsius", "Fahrenheit", "Kelvin"]
+6. Object.const_get("Celsius").new(0).to_kelvin -> 273.15

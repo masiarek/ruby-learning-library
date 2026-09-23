@@ -1,0 +1,18 @@
+ 1. for c in [...]: for_red? for_green? for_blue?  [false, false, false]
+ 2. each { |c| }: red? green? blue?                [true, false, false]
+ 3. define_method(:noop) { } returned              :noop
+    Light.define_method(...) from outside the class :out
+ 4. hello (from instance_method(:greet))           "hi"
+    double (from a lambda): double(4)              8
+ 5. double with no argument                        ArgumentError: wrong number of arguments (given 0, expected 1)
+ 6. triple(3) -- the block sees factor             9
+    triple_def(3) -- def does not                  NameError: undefined local variable or method 'factor' for an instance of Light
+ 7. define_method(:m) { yield }                    SyntaxError: Invalid yield
+    takes_block { |x| x * 10 } -- use &blk         20
+ 8. private define_method(:secret): light.secret   NoMethodError: private method 'secret' called for an instance of Light
+    light.send(:secret)                            :s
+ 9. my_attr :name, :age -> name, age               "Ada", 36
+    Person.instance_methods(false).sort            [:age, :age=, :name, :name=]
+10. class_eval "def str_#{c}? ..." per colour      [true, false, false]
+11. Light.instance_methods(false).grep(/red/)      [:for_red?, :is_red?, :red?, :str_red?]
+12. is_red? -- is?(:red) behind a closure          true

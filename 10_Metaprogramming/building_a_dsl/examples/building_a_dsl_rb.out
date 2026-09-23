@@ -1,0 +1,14 @@
+ 1. Config.build do host ...; port 80 end          Config(host: "example.org", port: 80, timeout: 30, database: Config(adapter: "pg", port: 5432))
+ 2. cfg.host                                       "example.org"
+ 3. timeout 30 -- an open-ended key (method_missing) 30
+ 4. database do adapter "pg" end -- nested         "pg"
+ 5. instance_eval block sees: local / @ivar / method 8080 / nil / NameError
+ 6. router.call("/about") -- a stored block        "about page (/about)"
+ 7. router.call("/") -- the block runs as the router "redirect to /home"
+ 8. Config.build { |c| ... } sees @ivar / method   "prod" / "helper"
+ 9. Kw.new(host: "x") -- keywords, no DSL          Kw(host: "x", port: 80)
+10. Config.build { host "x" } -- validation        Config::Error: port is required
+11. router.routes.keys -- insertion order          ["/", "/about"]
+12. cfg.to_h                                       {host: "example.org", port: 80, timeout: 30, database: {adapter: "pg", port: 5432}}
+13. Html.build { div { p "text" } } -- p is Kernel#p Kernel#p printed "text", built "<div></div>"
+    Html.build { div { span "text" } }             "<div><span>text</span></div>"

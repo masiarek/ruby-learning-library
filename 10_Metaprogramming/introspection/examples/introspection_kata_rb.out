@@ -1,0 +1,9 @@
+class:     Account
+ancestors: [Account, Comparable]
+ivars:     @owner = "Ada", @balance = 150
+methods:
+  <=>        (other:req)
+  balance    ()
+  deposit    (amount:req, note:key)
+  owner      ()
+  withdraw   (amount:req, fees:rest, options:keyrest)

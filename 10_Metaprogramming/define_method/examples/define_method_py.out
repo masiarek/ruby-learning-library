@@ -1,0 +1,18 @@
+ 1. for c in ...: for_red for_green for_blue       [False, False, False]
+ 2. lambda self, c=c: is_red is_green is_blue      [True, False, False]
+ 3. setattr(Light, 'noop', ...) returned           None
+    setattr is always called from outside          -
+ 4. hello (Light.hello = Light.greet)              'hi'
+    double (from a lambda): double(4)              8
+ 5. double with no argument                        TypeError
+ 6. triple(3) -- the closure sees factor           9
+    a def is a closure too                         no NameError to show
+ 7. no yield to fail: a callback is a parameter    -
+    each_twice(lambda x: x * 10)                   [10, 20]
+ 8. setattr(Light, "__secret", ...) then getattr   's'
+    hasattr(light, "_Light__secret")               False
+ 9. my_attr(Person, "name", "age") -> name, age    'Ada', 36
+    sorted(vars(Person)) minus dunders             ['age', 'name']
+10. exec(f'def str_{c}(self): ...') per colour     [True, False, False]
+11. sorted(k for k in vars(Light) if 'red' in k)   ['for_red', 'is_red', 'is_red2', 'str_red']
+12. is_red2 -- partialmethod(is_colour, 'red')     True

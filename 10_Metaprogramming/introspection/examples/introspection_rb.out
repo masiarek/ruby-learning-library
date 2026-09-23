@@ -1,0 +1,23 @@
+ 1. point.methods - Object.instance_methods (sorted) [:<, :<=, :>, :>=, :area, :between?, :clamp, :configure, :move!, :x, :y]
+ 2. Point.instance_methods(false).sort             [:<=>, :area, :configure, :move!, :x, :y]
+    Point.private_instance_methods(false).sort     [:initialize, :secret]
+ 3. point.instance_variables                       [:@x, :@y]
+    instance_variable_get(:@x) for each            {"@x": 1, "@y": 2}
+ 4. instance_method(:configure).parameters         [[:req, :a], [:opt, :b], [:rest, :r], [:keyreq, :k], [:key, :d], [:keyrest, :o], [:block, :blk]]
+    arity of configure / area / move!              -3 / 0 / 2
+ 5. instance_method(:area).source_location         introspection_rb.rb:20
+ 6. Point.ancestors                                [Geometry::Point, Comparable, Object, Kernel, BasicObject]
+ 7. Geometry.constants.sort                        [:ORIGIN, :Point]
+    Geometry.const_source_location(:ORIGIN)        introspection_rb.rb:12
+ 8. Point.singleton_methods                        [:origin]
+    after define_singleton_method: point.singleton_methods [:label]
+ 9. local_variables inside a method (a = 1; b = 2) [:a, :b]
+10. defined?(a) local / String / Nope / puts / nope ["local-variable", "constant", nil, "method", nil]
+    defined?(@x) / (a = 1) / 3 / self / $stdout    ["instance-variable", "assignment", "expression", "self", "global-variable"]
+    defined?(yield) / (super) with no block, no parent [nil, nil]
+11. __method__ inside whoami                       :whoami
+12. method(:area).owner / method(:between?).owner  Geometry::Point / Comparable
+    method_defined?(:area) / (:secret) / private_method_defined?(:secret) true / false / true
+    instance_variable_defined?(:@x) / (:@z)        true / false
+13. point.class / Point.class / Geometry.class     Geometry::Point / Class / Module
+    Point.name / Point.singleton_class             "Geometry::Point" / #<Class:Geometry::Point>

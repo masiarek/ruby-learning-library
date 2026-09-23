@@ -1,0 +1,14 @@
+ 1. Exporter.registry after two `class X < Exporter` ["CsvExporter", "JsonExporter"]
+ 2. Class.new(Exporter): registry.last, anon.name  nil / nil
+    XmlExporter = anon; anon.name                  "XmlExporter"
+ 3. class CsvExporter < Exporter; tag "csv"; end   CsvExporter.tag = "csv"
+ 4. include Persist: Model.table_name, .new.save   "models", "saved models"
+ 5. LOG order during include                       ["append_features Model", "included in Model, already in ancestors: true"]
+ 6. Object.new.extend(Persist)                     ["extended a Object"]
+ 7. class Audited; prepend Persist; end            ["prepended to Audited"]; ancestors.first(2) = [Persist, Audited]
+ 8. method_added saw (def, attr_accessor, alias, define_method, private) [:load, :id, :id=, :fetch, :touch, :hidden]
+ 9. singleton_method_added saw                     [:create]
+10. const_added saw                                [:VERSION, :Inner]
+11. Exporter.subclasses.map(&:name).sort           ["CsvExporter", "JsonExporter", "XmlExporter"]
+12. class Leaf < Mid: Base2.all, and Mid's own hook ["Mid", "Leaf"], ["Mid saw Leaf"]
+13. the hooks are private: inherited/included/method_added [true, true, true]

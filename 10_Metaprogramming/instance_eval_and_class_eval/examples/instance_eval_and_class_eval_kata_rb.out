@@ -1,0 +1,6 @@
+1. ada.greet                       -> "Hello from Ada!"
+2. bob.respond_to?(:greet)         -> false
+3. ada.singleton_methods           -> [:greet]
+4. bob.wave                        -> "Bob waves"
+5. Person.instance_methods(false)  -> [:wave]
+6. ada.instance_variable_get(:@name) -> "Ada!"

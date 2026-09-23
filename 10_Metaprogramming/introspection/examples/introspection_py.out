@@ -1,0 +1,25 @@
+ 1. [n for n in dir(point) if not n.startswith('_')] ['area', 'configure', 'move', 'origin', 'x', 'y']
+    inspect.getmembers(point, inspect.ismethod) names ['__init__', '__lt__', '_secret', 'area', 'configure', 'move', 'origin']
+ 2. own functions of Point (vars, minus dunders)   ['_secret', 'area', 'configure', 'move']
+    _secret is listed like any other               one underscore is a naming convention
+ 3. vars(point)                                    {'x': 1, 'y': 2}
+    getattr(point, name) for each                  {'x': 1, 'y': 2}
+ 4. inspect.signature(Point.configure)             (self, a, b=1, *r, k, d=2, **o)
+    parameter kinds                                self:POSITIONAL_OR_KEYWORD a:POSITIONAL_OR_KEYWORD b:POSITIONAL_OR_KEYWORD r:VAR_POSITIONAL k:KEYWORD_ONLY d:KEYWORD_ONLY o:VAR_KEYWORD
+ 5. inspect.getsourcefile / getsourcelines(area)[1] introspection_py.py:27
+    inspect.getsource(area).splitlines()[0]        def area(self):
+ 6. [c.__name__ for c in Point.__mro__]            ['Point', 'object']
+ 7. own names of Geometry                          ['ORIGIN', 'Point']
+    inspect.getsourcelines(Geometry)[1]            15
+ 8. classmethods of Point                          ['origin']
+    callables in vars(point) after MethodType      ['label']
+ 9. sorted(locals()) inside a method (a = 1; b = 2) ['a', 'b', 'self']
+10. 'a' in locals() / str / Nope / print / nope    [True, True, None, True, None]
+    hasattr(self, 'x') / assignment / 3 / self / stdout [True, 'assignment is a statement', 'defined', 'defined', True]
+    no yield/super probes                          a callback is a parameter; super() is explicit
+11. sys._getframe().f_code.co_name inside whoami   'whoami'
+12. Point.area.__qualname__ / inspect.ismethod(point.area) Geometry.Point.area / True
+    hasattr(Point, 'area') / ('_secret') / in vars(Point) True / True / True
+    'x' in vars(point) / 'z' in vars(point)        True / False
+13. type(point) / type(Point) / type(Geometry)     Point / type / type
+    Point.__qualname__ / Point.__module__          'Geometry.Point' / '__main__'

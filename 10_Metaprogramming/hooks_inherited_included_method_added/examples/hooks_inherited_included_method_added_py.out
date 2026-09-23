@@ -1,0 +1,16 @@
+ 1. Exporter.registry after two `class X(Exporter)` ['CsvExporter', 'JsonExporter']
+ 2. type("Anon", (Exporter,), {}): registry[-1]    'Anon' -- named at birth
+    anon.__name__                                  'Anon'
+ 3. class CsvExporter(Exporter, tag="csv")         CsvExporter.tag = 'csv'
+    an option nobody consumes                      TypeError
+ 4. class Model(Persist): table_name(), ().save()  'models', 'saved models'
+ 5. LOG order while the class was built            ['body defined load', 'body defined id', 'body defined fetch', 'body defined touch', 'body defined _hidden', 'body defined create', 'body defined VERSION', 'set_name Model.id', 'Persist mixed into Model, already in mro: True']
+ 6. o.__class__ = type('LoudModel', (Loud, Model), {}) ['Loud mixed into LoudModel', 'Persist mixed into LoudModel, already in mro: True']; isinstance(o, Loud) = True
+ 7. Audited = type(..., (Audit, Model), {})        ['Persist mixed into Audited, already in mro: True']; mro[:2] = ['Audited', 'Audit']
+    Audited().save()                               'audit then saved auditeds'
+ 8. metaclass saw functions (def, alias, lambda, _hidden) ['load', 'fetch', 'touch', '_hidden']
+ 9. metaclass saw classmethods                     ['create']
+10. metaclass saw the rest of the body             ['id', 'VERSION']
+11. sorted(c.__name__ for c in Exporter.__subclasses__()) ['Anon', 'CsvExporter', 'JsonExporter']
+12. class Leaf(Mid): Base2.all, and Mid's own hook ['Mid', 'Leaf'], ['Mid saw Leaf']
+13. __init_subclass__ is implicitly a classmethod  classmethod

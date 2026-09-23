@@ -1,0 +1,5 @@
+1. s.host after s.host = "example.org" -> "example.org"
+2. s.respond_to?(:host=)                -> true
+3. s.respond_to?(:host) / (:port)       -> true / false
+4. s.method(:host).call                 -> "example.org"
+5. s.nope!                              -> NoMethodError: undefined method 'nope!' for an instance of Settings

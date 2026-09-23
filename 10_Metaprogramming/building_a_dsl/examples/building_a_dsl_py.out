@@ -1,0 +1,14 @@
+ 1. class Site(Config): host = ...; port = 80      {'host': 'example.org', 'port': 80, 'timeout': 30, 'database': {'adapter': 'pg', 'port': 5432}}
+ 2. Site.host                                      'example.org'
+ 3. timeout = 30 -- no hook needed for a new key   30
+ 4. class database(Config): adapter = 'pg' -- nested 'pg'
+ 5. class body sees: local / earlier name / from a def 8080 / 8081 / NameError
+ 6. app.call("/about") -- a stored function        'about page (/about)'
+ 7. app.call("/") -- the app arrives as a parameter 'redirect to /home'
+ 8. with edit(cfg) as c: c.host = ... -- sees everything Cfg(host='example.org', port=80)
+ 9. Cfg(host="x", port=80) -- keywords, no DSL     Cfg(host='x', port=80)
+10. class Broken(Config): host = 'x' -- validation Error: port is required
+11. list(app.routes) -- insertion order            ['/', '/about']
+12. sorted(vars(Site)) minus dunders               ['database', 'host', 'port', 'settings', 'timeout']
+13. class Page(Config): print = 'text'             settings['print'] = 'text'; print still works
+    no method_missing layer to collide with        -

@@ -1,0 +1,16 @@
+ 1. db.find_by_name("Ada") -- a ghost method       {'name': 'Ada', 'lang': 'Ruby'}
+ 2. Record({"name": "Ada"}).name -- attribute ghost 'Ada'
+ 3. db.nope -- raise AttributeError keeps it       AttributeError
+ 4. Probe().find_by_x("Ada") receives              ['str', 'find_by_x', 'args arrive at the call, later']
+ 5. hasattr(db, "find_by_name") -- no extra hook needed True
+    callable(getattr(db, "find_by_name"))          True
+ 6. hasattr(listed, "find_by_name")                True
+    getattr(listed, "find_by_lang")("Python")      {'name': 'Guido', 'lang': 'Python'}
+ 7. "find_by_name" in dir(db) / in dir(listed)     False / True
+ 8. Counted: real, real, ghost -> always / only_missing 3 / 1
+ 9. Swallow().typo -- __getattr__ that never raises None
+    hasattr(Swallow(), "typo")                     True
+10. memo.say_hello() twice -> value, hits          'HELLO' 'HELLO', hits = 1
+    "say_hello" in vars(memo)                      True
+11. db.__getattr__("find_by_name")("Ada") explicitly {'name': 'Ada', 'lang': 'Ruby'}
+12. from row 3: e.name / e.obj is db               'nope' / True
