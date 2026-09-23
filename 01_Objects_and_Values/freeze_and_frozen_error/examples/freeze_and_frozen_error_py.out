@@ -1,0 +1,36 @@
+1. no freeze: immutability comes from the type
+   t = (1, 2); hasattr(t, "freeze")                   False
+   type(t).__name__                                   tuple
+   copy.copy(t) is t  (an immutable is not copied)    True
+   list(t)  (the mutable counterpart)                 [1, 2]
+   tuple(list(t)) == t                                True
+2. the errors are TypeError or AttributeError
+   t[0] = 9                                           TypeError
+   frozenset({1}).add(2)                              AttributeError
+   MappingProxyType({"a": 1})["b"] = 2                TypeError
+   [c.__name__ for c in TypeError.__mro__[:3]]        ['TypeError', 'Exception', 'BaseException']
+3. a tuple is shallow too
+   nested = ([1],); nested[0].append(2)               ([1, 2],)
+   type(nested[0]).__name__  (still mutable)          list
+   nested[0] = [9]                                    TypeError
+4. no deep freeze; MappingProxyType is a read-only view
+   mp = MappingProxyType(d); mp["k"].append(2)        [1, 2]
+   d["z"] = 0; dict(mp)  (a view, not a copy)         {'k': [1, 2], 'z': 0}
+   isinstance(([1],), Hashable)                       True
+   hash(([1],))  (shallow, like freeze)               TypeError
+5. born immutable: numbers, str, None, range; a list is not
+   isinstance(1, Hashable)                            True
+   isinstance("a", Hashable)                          True
+   isinstance(None, Hashable)                         True
+   isinstance(True, Hashable)                         True
+   isinstance(1.5, Hashable)                          True
+   isinstance(range(1, 3), Hashable)                  True
+   s = "lit"; s[0] = "L"  (every str literal)         TypeError
+   isinstance([], Hashable)                           False
+6. no magic comment: a str literal is immutable already
+   s = "lit"; s += "!"; s  (rebinds s)                'lit!'
+   ba = bytearray(b"lit"); ba += b"!"; ba             bytearray(b'lit!')
+7. dataclass(frozen=True) has a back door
+   c = Config(); c.host = "x"                         FrozenInstanceError
+   object.__setattr__(c, "host", "x"); c.host         'x'
+   issubclass(FrozenInstanceError, AttributeError)    True

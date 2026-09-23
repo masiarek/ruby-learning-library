@@ -1,0 +1,36 @@
+1. equal? asks: the same object?
+   a = [1]; b = [1]; a.equal?(b)                false
+   a.equal?(a)                                  true
+   1.equal?(1)                                  true
+   :s.equal?(:s)                                true
+   "xy".equal?("xy")                            false
+2. == asks: the same value?
+   a == b                                       true
+   "x" == "x"                                   true
+   1 == 1.0                                     true
+   "a" == :a                                    false
+   nil == false                                 false
+3. eql? asks: the same value and type? (Hash uses it)
+   1.eql?(1.0)                                  false
+   1.hash == 1.0.hash                           false
+   {1 => :int}[1.0]                             nil
+   {1 => :int}[1]                               :int
+   [1, 1.0].uniq                                [1, 1.0]
+4. === asks: does the pattern match the value?
+   Integer === 1                                true
+   Integer === 1.0                              false
+   /a/ === "cat"                                true
+   (1..3) === 2                                 true
+   ->(x) { x > 1 } === 2                        true
+   "cat" === "cat"                              true
+5. case/when calls ===
+   case 2 when Integer                          :int
+   case "cat" when /a/                          :match
+   case 2 when 1..3                             :in_range
+   case 7 when ->(n) { n > 5 }                  :big
+6. your own class: identity until you define ==
+   Point.new(1, 2) == Point.new(1, 2)           false
+   after def ==:  the same comparison           true
+   Point.new(1, 2).eql?(Point.new(1, 2))        false
+   Point.new(1, 2) === Point.new(1, 2)          true
+   {p1 => :a, p2 => :b}.size  (equal points)    2

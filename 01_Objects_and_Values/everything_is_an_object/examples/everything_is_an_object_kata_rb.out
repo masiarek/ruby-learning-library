@@ -1,0 +1,6 @@
+value    class     ancestors up to Object
+   1        Integer   Integer > Numeric > Comparable > Object
+   nil      NilClass  NilClass > Object
+   "a"      String    String > Comparable > Object
+   []       Array     Array > Enumerable > Object
+   Integer  Class     Class > Module > Object

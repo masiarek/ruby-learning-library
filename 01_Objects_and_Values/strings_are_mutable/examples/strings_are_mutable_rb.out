@@ -1,0 +1,34 @@
+1. << mutates in place; += makes a new string
+   s = "abc".dup; before = s; s << "d"; s           "abcd"
+   s.equal?(before)                                 true
+   s += "e"; s                                      "abcde"
+   s.equal?(before)                                 false
+   before                                           "abcd"
+2. bang methods change the receiver; the others return a copy
+   u = "abc".dup; u.upcase!; u                      "ABC"
+   u.upcase! returned u itself                      true
+   "ABC".dup.upcase!  (nothing to change)           nil
+   v = "abc"; w = v.upcase; v                       "abc"
+   w.equal?(v)                                      false
+3. editing in place
+   t = "abc".dup; t[0] = "X"; t                     "Xbc"
+   t.insert(1, "-")                                 "X-bc"
+   t.sub!("b", "B")                                 "X-Bc"
+   t.replace("new")                                 "new"
+   t.clear                                          ""
+4. a literal is chilled, not frozen
+   "a".frozen?                                      false
+   lit = "lit"; lit << "!"; lit                     "lit!"
+   (+"a").frozen?  (a mutable copy on demand)       false
+   (-"a").frozen?  (the deduplicated one)           true
+   String.new("a").frozen?                          false
+5. building a string
+   buf = +""; buf << "a" << "b"                     "ab"
+   xs = "x".dup; 5.times { xs << "x" }              "xxxxxx"
+   %w[a b c].join                                   "abc"
+   chars = "abc".chars; chars[0] = "X"; join        "Xbc"
+6. what mutability costs: a Hash copies and freezes a String key
+   key = "key".dup; h = { key => 1 }                {"key" => 1}
+   h.keys.first.frozen?                             true
+   h.keys.first.equal?(key)                         false
+   key << "!"; h["key"]  (the copy is untouched)    1

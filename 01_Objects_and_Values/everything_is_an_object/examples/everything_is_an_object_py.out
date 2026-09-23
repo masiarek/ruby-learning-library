@@ -1,0 +1,32 @@
+1. every value has a class
+   type(1).__name__               int
+   type(None).__name__            NoneType
+   type(True).__name__            bool
+   type(int).__name__             type
+   type(type).__name__            type
+2. an operator is a method call
+   1 + 2                          3
+   (1).__add__(2)                 3
+   getattr(1, "__add__")(2)       3
+3. None is an object with methods
+   list(None) (no nil.to_a)       TypeError
+   str(None)                      'None'
+   repr(None)                     'None'
+4. a literal is a receiver
+   (3).times (no counterpart)     AttributeError
+   "a".upper()                    'A'
+   1.__class__ (compiled)         SyntaxError
+   (1).__class__.__name__         'int'
+5. the ancestor chain
+   int.__mro__ names              ['int', 'object']
+   type(None).__mro__ names       ['NoneType', 'object']
+6. everything is an object, classes included
+   isinstance(1, object)          True
+   isinstance(None, object)       True
+   isinstance(int, object)        True
+   isinstance(int, type)          True
+7. even the top level is an object
+   __name__                       '__main__'
+   type(sys.modules[__name__])    module
+8. what a small integer cannot do
+   x = 1; x.tag = 'mine'          AttributeError

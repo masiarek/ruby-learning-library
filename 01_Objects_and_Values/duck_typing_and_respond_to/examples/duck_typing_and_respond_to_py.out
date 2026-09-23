@@ -1,0 +1,40 @@
+1. ask what it does, not what it is
+   hasattr([], "__iter__")                              True
+   hasattr({}, "__iter__")                              True
+   hasattr(range(2), "__iter__")                        True
+   hasattr("", "__iter__")  (a str is iterable)         True
+   hasattr(1, "__iter__")                               False
+2. the three what-is-it tests
+   isinstance(1, numbers.Number)                        True
+   isinstance(True, int)  (a subclass counts)           True
+   type(True) is int                                    False
+   type(1) is int                                       True
+   isinstance(1, Hashable)  (an ABC counts)             True
+3. anything that quacks
+   [d.quack() for d in flock if hasattr(d, "quack")]    ['Quack', 'Beep']
+   hasattr(Rock(), "quack")                             False
+   Rock().quack()                                       AttributeError
+   [isinstance(d, Quacker) for d in flock]  (Protocol)  [True, True]
+4. __iter__ makes a collection
+   c = Countdown(3); hasattr(c, "__iter__")             True
+   [i * 10 for i in c]                                  [30, 20, 10]
+   2 in c                                               True
+   sorted(c)                                            [1, 2, 3]
+   isinstance(c, Iterable)                              True
+   isinstance(c, list)                                  False
+5. the implicit protocols the core calls for you
+   "Hello, " + str(Name("Ada"))  (no to_str)            'Hello, Ada'
+   a, b = Pair()  (__iter__)                            [1, 2]
+   list(map(Doubler(), [1, 2]))  (__call__)             [2, 4]
+   [10, 20, 30][Idx()]  (__index__)                     20
+   os.path.basename(Loc())  (__fspath__)                'path.txt'
+   "x" + Plain()  (__str__ is not implicit)             TypeError
+6. list() and int() convert on request
+   list(None)                                           TypeError
+   list([1])                                            [1]
+   list(1)                                              TypeError
+   list({"a": 1})  (the keys)                           ['a']
+   int("42")                                            42
+   int("4x")                                            ValueError
+   int(None)                                            TypeError
+   "4x".isdigit()  (no lenient to_i)                    False

@@ -1,0 +1,34 @@
+1. one object per name (interning)
+   sys.intern("a") is sys.intern("a")           True
+   a = "abc"; b = "abc"; a is b                 True
+   c = "".join(["ab", "c"]); a is c             False
+   sys.intern(c) is a                           True
+2. a str is the only string; Enum is the nearest name type
+   "a" == "a"  (no symbol to differ from)       True
+   type("a").__name__                           str
+   Color.RED.name                               'RED'
+   Color["RED"] is Color.RED                    True
+   Color.RED == "RED"                           False
+3. every str is immutable; an Enum member is fixed
+   s = "a"; s[0] = "b"                          TypeError
+   hash("a") == hash("a")  (usable as a key)    True
+   Color.RED is Color.RED                       True
+   Color.RED = 1                                AttributeError
+4. literal forms and dict keys
+   ["a", "b"]  (no %i)                          ['a', 'b']
+   "hello world"  (just a str)                  'hello world'
+   dict(a=1)  (the {a: 1} spelling)             {'a': 1}
+   type(next(iter(dict(a=1))))                  str
+   type(next(iter({"a": 1})))                   str
+   {"a": 1}["a"]                                1
+   d["k"] = 1; d["k"] = 2; d                    {'k': 2}
+   len(d)                                       1
+5. method names are strings
+   getattr("x", "upper")()                      'X'
+   def greet(): ...  (a statement)              greet.__name__ == 'greet'
+   str.upper.__name__                           'upper'
+   "upper" in dir("x")                          True
+6. methodcaller and map do the job of &:sym
+   operator.methodcaller("upper")("x")          'X'
+   list(map(str.upper, ["a", "b"]))             ['A', 'B']
+   functools.reduce(operator.add, [1, 2])       3

@@ -1,0 +1,31 @@
+1. two names, one object
+   a = [1]; b = a; b << 2; a                        [1, 2]
+   b                                                [1, 2]
+   a.equal?(b)                                      true
+2. + makes a new object; = rebinds the name
+   b = b + [3]; a                                   [1, 2]
+   b                                                [1, 2, 3]
+   a.equal?(b)                                      false
+3. += is always a rebinding in Ruby
+   b = a; b += [4]; a                               [1, 2]
+   b                                                [1, 2, 4]
+   a.equal?(b)                                      false
+4. the same with a string
+   s = "x"; t = s; t << "y"; s                      "xy"
+   t += "z"; s                                      "xy"
+   t                                                "xyz"
+   s.equal?(t)                                      false
+5. a method receives the reference
+   push_four(orig); orig                            [1, 4]
+   reassign(orig) returns                           [9]
+   orig after reassign                              [1, 4]
+   shout(word); word  (upcase! in place)            "HI"
+6. dup breaks the sharing, one level deep
+   base = [1, 2]; c = base.dup; c.equal?(base)      false
+   c << 9; base                                     [1, 2]
+   c                                                [1, 2, 9]
+   nested = [[1]]; nested.dup[0] << 2; nested       [[1, 2]]
+   Marshal round trip, then [0] << 3; nested        [[1, 2]]
+7. the shared-default trap
+   Array.new(3, "x"), then [0] << "!"               ["x!", "x!", "x!"]
+   Array.new(3) { "x" }, then [0] << "!"            ["x!", "x", "x"]

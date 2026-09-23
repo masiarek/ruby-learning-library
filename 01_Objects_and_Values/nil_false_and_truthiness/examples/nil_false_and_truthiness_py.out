@@ -1,0 +1,36 @@
+1. the truth table: bool(x)
+   None                                 False
+   False                                False
+   0                                    False
+   0.0                                  False
+   ''                                   False
+   []                                   False
+   {}                                   False
+   'a' (no symbols: a str)              True
+2. None is an object with methods
+   str(None)                            'None'
+   list(None) (no nil.to_a)             TypeError
+   int(None) (no nil.to_i)              TypeError
+   repr(None)                           'None'
+3. or returns the first truthy operand
+   x = None;  x or "default"            'default'
+   x = 0;     x or "default"            'default'
+   x = "";    x or "default"            'default'
+   x = False; x or "default"            'default'
+4. None and False are two different objects
+   None == False                        False
+   x = None;  x is None                 True
+   x = False; x is None                 False
+   False == 0                           True
+5. truthiness is a method a class can define
+   not h   (Hollow defines __bool__)    True
+   'truthy' if h else 'falsy'           'falsy'
+   not not h                            False
+   len([])                              0
+   'truthy' if [] else 'falsy'          'falsy'
+6. if 0 and if '' take the else branch
+   n = 0;  'then' if n else 'else'      'else'
+   s = ''; 'then' if s else 'else'      'else'
+7. dropping None is not dropping falsy
+   [v for v in mixed if v is not None]  [1, False, 2]
+   [v for v in mixed if v]              [1, 2]

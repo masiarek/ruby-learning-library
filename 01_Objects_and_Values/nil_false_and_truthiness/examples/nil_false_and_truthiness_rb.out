@@ -1,0 +1,36 @@
+1. the truth table: !!x
+   nil                                  false
+   false                                false
+   0                                    true
+   0.0                                  true
+   ""                                   true
+   []                                   true
+   {}                                   true
+   :a                                   true
+2. nil is an object with methods
+   nil.to_s                             ""
+   nil.to_a                             []
+   nil.to_i                             0
+   nil.inspect                          "nil"
+3. || returns the first truthy operand
+   x = nil;   x || "default"            "default"
+   x = 0;     x || "default"            0
+   x = "";    x || "default"            ""
+   x = false; x || "default"            "default"
+4. nil and false are two different objects
+   nil == false                         false
+   nil.nil?                             true
+   false.nil?                           false
+   false == 0                           false
+5. truthiness is not a method a class can define
+   !h   (Hollow defines !)              true
+   h ? :truthy : :falsy                 :truthy
+   !!h  (calls ! twice)                 false
+   [].empty?                            true
+   [] ? :truthy : :falsy                :truthy
+6. if 0 and if "" take the then branch
+   n = 0;  n ? :then : :else            :then
+   s = ""; s ? :then : :else            :then
+7. dropping nil is not dropping falsy
+   mixed.compact                        [1, false, 2]
+   mixed.select(&:itself)               [1, 2]

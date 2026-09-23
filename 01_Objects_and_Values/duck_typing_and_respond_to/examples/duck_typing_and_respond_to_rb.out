@@ -1,0 +1,40 @@
+1. ask what it does, not what it is
+   [].respond_to?(:each)                                true
+   {}.respond_to?(:each)                                true
+   (1..2).respond_to?(:each)                            true
+   "".respond_to?(:each)  (each_char, not each)         false
+   1.respond_to?(:each)                                 false
+2. the three what-is-it tests
+   1.is_a?(Numeric)                                     true
+   1.kind_of?(Numeric)  (the same test)                 true
+   1.instance_of?(Numeric)                              false
+   1.instance_of?(Integer)                              true
+   1.is_a?(Comparable)  (a module counts)               true
+3. anything that quacks
+   flock.map { |d| d.quack if d.respond_to?(:quack) }   ["Quack", "Beep"]
+   Rock.new.respond_to?(:quack)                         false
+   Rock.new.quack                                       NoMethodError
+   flock.map { |d| d.is_a?(Duck) }  (class test)        [true, false]
+4. each + Enumerable makes a collection
+   c = Countdown.new(3); c.respond_to?(:map)            true
+   c.map { |i| i * 10 }                                 [30, 20, 10]
+   c.include?(2)                                        true
+   c.sort                                               [1, 2, 3]
+   c.is_a?(Enumerable)                                  true
+   c.is_a?(Array)                                       false
+5. the implicit conversions the core calls for you
+   "Hello, " + Name.new("Ada")  (to_str)                "Hello, Ada"
+   a, b = Pair.new  (to_ary)                            [1, 2]
+   [1, 2].map(&Doubler.new)  (to_proc)                  [2, 4]
+   [10, 20, 30][Idx.new]  (to_int)                      20
+   File.basename(Loc.new)  (to_path)                    "path.txt"
+   "x" + Plain.new  (to_s is not implicit)              TypeError: no implicit conversion of Plain into String
+6. Array() and Integer() convert on request
+   Array(nil)                                           []
+   Array([1])                                           [1]
+   Array(1)                                             [1]
+   Array({a: 1})                                        [[:a, 1]]
+   Integer("42")                                        42
+   Integer("4x")                                        ArgumentError
+   Integer(nil)                                         TypeError
+   "4x".to_i  (never fails)                             4

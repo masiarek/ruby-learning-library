@@ -1,0 +1,36 @@
+1. is asks: the same object?
+   a = [1]; b = [1]; a is b                     False
+   a is a                                       True
+   x = 1; y = 1; x is y  (cached small int)     True
+   s = "s"; t = "s"; s is t  (interned literal) True
+   u = "".join(["x", "y"]); v = the same; u is v False
+2. == asks: the same value?
+   a == b                                       True
+   "x" == "x"                                   True
+   1 == 1.0                                     True
+   "a" == "a"  (no symbol to differ from)       True
+   None == False                                False
+3. no eql?: == and hash() agree across int and float
+   type(1) is type(1.0) and 1 == 1.0            False
+   hash(1) == hash(1.0)                         True
+   {1: "int"}[1.0]                              'int'
+   {1: "int"}[True]                             'int'
+   len({1, 1.0})                                1
+4. no ===: isinstance, re.search, in, a call
+   isinstance(1, int)                           True
+   isinstance(1.0, int)                         False
+   re.search("a", "cat") is not None            True
+   2 in range(1, 4)                             True
+   (lambda x: x > 1)(2)                         True
+   "cat" == "cat"                               True
+5. match/case: isinstance for class patterns, guards for the rest
+   match 2: case int():                         'int'
+   match "cat": case str() as t if re.search:   'match'
+   match 2: case n if 1 <= n <= 3:              'in_range'
+   match 7: case n if n > 5:                    'big'
+6. your own class: identity until you define __eq__
+   Point(1, 2) == Point(1, 2)                   False
+   after def __eq__:  the same comparison       True
+   Point.__hash__ is None  (unhashable now)     True
+   isinstance(Point(1, 2), Point)               True
+   {p1: 'a', p2: 'b'}  (equal points)           TypeError

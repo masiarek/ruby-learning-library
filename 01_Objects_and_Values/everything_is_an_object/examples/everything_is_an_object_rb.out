@@ -1,0 +1,31 @@
+1. every value has a class
+   1.class                        Integer
+   nil.class                      NilClass
+   true.class                     TrueClass
+   Integer.class                  Class
+   Class.class                    Class
+2. an operator is a method call
+   1 + 2                          3
+   1.+(2)                         3
+   1.send(:+, 2)                  3
+3. nil is an object with methods
+   nil.to_a                       []
+   nil.to_s                       ""
+   nil.inspect                    "nil"
+4. a literal is a receiver
+   3.times.to_a                   [0, 1, 2]
+   "a".upcase                     "A"
+   1.class (no parentheses)       Integer
+5. the ancestor chain
+   Integer.ancestors              [Integer, Numeric, Comparable, Object, Kernel, BasicObject]
+   NilClass.ancestors             [NilClass, Object, Kernel, BasicObject]
+6. everything is an Object, classes included
+   1.is_a?(Object)                true
+   nil.is_a?(Object)              true
+   Integer.is_a?(Object)          true
+   Integer.is_a?(Class)           true
+7. even the top level is an object
+   self.inspect                   "main"
+   self.class                     Object
+8. what a small integer cannot do
+   1.singleton_class              TypeError

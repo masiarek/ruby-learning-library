@@ -1,0 +1,9 @@
+   to_a                 [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+   select(&:even?)      [0, 2, 8, 34]
+   each_slice(4).to_a   [[0, 1, 1, 2], [3, 5, 8, 13], [21, 34]]
+   include?(8)          true
+   first(3)             [0, 1, 1]
+   max                  34
+   respond_to?(:lazy)   true
+   is_a?(Array)         false
+   Enumerable === fibs  true

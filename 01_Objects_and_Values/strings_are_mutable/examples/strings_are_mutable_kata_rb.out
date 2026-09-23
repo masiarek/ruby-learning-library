@@ -1,0 +1,7 @@
+   censor returns            "the ****** is a ******"
+   original afterwards       "the secret is a secret"
+   copy.equal?(original)     false
+   censor! returns           "the ****** is a ******"
+   original afterwards       "the ****** is a ******"
+   result.equal?(original)   true
+   censor! a second time     nil

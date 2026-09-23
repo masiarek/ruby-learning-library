@@ -1,0 +1,34 @@
+1. no <<; += makes a new string
+   s = "abc"; before = s; s += "d"; s               'abcd'
+   s is before                                      False
+   s += "e"; s                                      'abcde'
+   s is before                                      False
+   before                                           'abc'
+2. every str method returns a copy; none ends in !
+   v = "abc"; w = v.upper(); v                      'abc'
+   w.upper() is w                                   False
+   [m for m in dir(str) if m.endswith("!")]         []
+   w                                                'ABC'
+   w is v                                           False
+3. no editing in place: every step rebinds
+   t = "abc"; t[0] = "X"                            TypeError
+   t = "X" + t[1:]                                  'Xbc'
+   t = t[:1] + "-" + t[1:]                          'X-bc'
+   t = t.replace("b", "B")                          'X-Bc'
+   t = "new"                                        'new'
+4. a literal is immutable, like every str
+   type("a").__name__                               str
+   lit = "lit"; lit += "!"; lit  (a new object)     'lit!'
+   hasattr(str, "__iadd__")  (so += rebinds)        False
+   sys.intern("a") is sys.intern("a")  (like -"a")  True
+   hasattr(str, "__setitem__")                      False
+5. building a string: the mutable routes
+   buf = io.StringIO(); write("a"); write("b")      'ab'
+   ba = bytearray(b"x"); 5 times ba += b"x"         'xxxxxx'
+   "".join(["a", "b", "c"])                         'abc'
+   chars = list("abc"); chars[0] = "X"; join        'Xbc'
+6. what immutability buys: a str key needs no copying
+   key = "key"; d = {key: 1}                        {'key': 1}
+   next(iter(d)) is key  (the very object)          True
+   {bytearray(b'key'): 1}  (a mutable key)          TypeError
+   key += "!"; d["key"]  (key was rebound)          1

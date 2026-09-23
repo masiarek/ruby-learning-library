@@ -1,0 +1,34 @@
+1. one object per name
+   :a.equal?(:a)                                true
+   "a".equal?("a")                              false
+   "a".to_sym.equal?(:a)                        true
+   ("dyn" + "amic").to_sym.equal?(:dynamic)     true
+2. a symbol is not a string
+   :a == "a"                                    false
+   :a.class                                     Symbol
+   :a.to_s                                      "a"
+   "a".to_sym                                   :a
+   [:a, "a"].uniq                               [:a, "a"]
+3. symbols are frozen
+   :a.frozen?                                   true
+   :a.name.frozen?  (one shared String)         true
+   :a.to_s.frozen?  (a fresh String)            false
+   :a.name << "b"                               FrozenError
+4. literal forms and hash keys
+   %i[a b]                                      [:a, :b]
+   :"hello world"                               :"hello world"
+   {a: 1}                                       {a: 1}
+   {a: 1}.keys.first.class                      Symbol
+   {"a" => 1}.keys.first.class                  String
+   {a: 1}["a"]                                  nil
+   h[:k] = 1; h["k"] = 2; h                     {k: 1, "k" => 2}
+   h.size                                       2
+5. method names are symbols
+   "x".send(:upcase)                            "X"
+   def greet; end                               :greet
+   "x".method(:upcase).name                     :upcase
+   "x".methods.include?(:upcase)                true
+6. to_proc makes &:sym work
+   :upcase.to_proc.call("x")                    "X"
+   %w[a b].map(&:upcase)                        ["A", "B"]
+   [1, 2].inject(:+)                            3

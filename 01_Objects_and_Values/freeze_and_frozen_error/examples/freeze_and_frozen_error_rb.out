@@ -1,0 +1,39 @@
+1. freeze, frozen?, and what the copies do
+   s = "abc".dup; s.frozen?                           false
+   s.freeze.frozen?                                   true
+   s.freeze.equal?(s)  (freeze returns self)          true
+   s.dup.frozen?                                      false
+   s.clone.frozen?                                    true
+2. FrozenError names the object
+   s << "d"                                           FrozenError: can't modify frozen String: "abc"
+   [1].freeze << 2                                    FrozenError: can't modify frozen Array: [1]
+   {a: 1}.freeze[:b] = 2                              FrozenError: can't modify frozen Hash: {a: 1}
+   FrozenError.ancestors.take(3)                      [FrozenError, RuntimeError, StandardError]
+3. freeze is shallow
+   nested = [[1]].freeze; nested.first << 2           [[1, 2]]
+   nested.first.frozen?                               false
+   nested << [3]                                      FrozenError: can't modify frozen Array: [[1, 2]]
+4. Ractor.make_shareable freezes all the way down
+   Ractor.shareable?(nested)  (before)                false
+   after make_shareable: nested.first.frozen?         true
+   Ractor.shareable?(nested)  (after)                 true
+5. born frozen: immediates and ranges; a literal is not
+   1.frozen?                                          true
+   :a.frozen?                                         true
+   nil.frozen?                                        true
+   true.frozen?                                       true
+   1.5.frozen?                                        true
+   (1..2).frozen?                                     true
+   "lit".frozen?  (chilled, not frozen)               false
+   [].frozen?                                         false
+6. # frozen_string_literal: true, in a child ruby
+   $ ruby plain.rb
+   "lit".frozen?                                      false
+   s << "!"                                           "lit!"
+   $ ruby magic.rb   (line 1 is the magic comment)
+   "lit".frozen?                                      true
+   s << "!"                                           FrozenError: can't modify frozen String: "lit"
+7. a frozen object of your own class has no back door
+   c = Config.new.freeze; c.host = "x"                FrozenError: can't modify frozen Config: #<Config>
+   c.instance_variable_set(:@host, "x")               FrozenError: can't modify frozen Config: #<Config>
+   c.frozen?                                          true

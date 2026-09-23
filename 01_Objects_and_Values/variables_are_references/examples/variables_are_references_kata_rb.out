@@ -1,0 +1,5 @@
+   b = a        a = [1]          b = [1]          sharing? true
+   b << 2       a = [1, 2]       b = [1, 2]       sharing? true
+   b += [3]     a = [1, 2]       b = [1, 2, 3]    sharing? false
+   b = a.dup    a = [1, 2]       b = [1, 2]       sharing? false
+   b << 4       a = [1, 2]       b = [1, 2, 4]    sharing? false

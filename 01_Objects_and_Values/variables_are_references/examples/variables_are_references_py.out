@@ -1,0 +1,31 @@
+1. two names, one object
+   a = [1]; b = a; b.append(2); a                   [1, 2]
+   b                                                [1, 2]
+   a is b                                           True
+2. + makes a new object; = rebinds the name
+   b = b + [3]; a                                   [1, 2]
+   b                                                [1, 2, 3]
+   a is b                                           False
+3. += on a list mutates in place in Python
+   b = a; b += [4]; a                               [1, 2, 4]
+   b                                                [1, 2, 4]
+   a is b                                           True
+4. the same with a string: no << exists
+   s = "x"; t = s; t[0] = "y"                       TypeError
+   t += "y"; s                                      'x'
+   t                                                'xy'
+   s is t                                           False
+5. a function receives the reference
+   push_four(orig); orig                            [1, 4]
+   reassign(orig) returns                           [9]
+   orig after reassign                              [1, 4]
+   shout(word); word  (upper() returns new)         'hi'
+6. copy.copy breaks the sharing, one level deep
+   base = [1, 2]; c = copy.copy(base); c is base    False
+   c.append(9); base                                [1, 2]
+   c                                                [1, 2, 9]
+   nested = [[1]]; copy.copy(nested)[0].append(2)   [[1, 2]]
+   copy.deepcopy, then [0].append(3); nested        [[1, 2]]
+7. the shared-default trap
+   [[]] * 3, then [0].append('!')                   [['!'], ['!'], ['!']]
+   [[] for _ in range(3)], then the same            [['!'], [], []]
