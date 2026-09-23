@@ -1,0 +1,23 @@
+ 1. 0 and "" in a condition                    truthy / truthy
+ 2. [1, 2, 3][10]                              nil
+ 3. 7 / 2 / 7.fdiv(2) / 7 / 2.0                3 / 3.5 / 3.5
+ 4. s = "abc"; s << "d"                        "abcd", same object? true
+ 5. "a" == :a                                  false
+ 6. x1 = false or true / x2 = false || true    x1=false / x2=true
+ 7. puts "hi" returns  (printed "hi\n")        nil
+ 8. y = 5 if false; y / defined?(y)            nil / "local-variable"
+ 9. elsif / elif                               compiles / SyntaxError
+10. an if without end / with end               SyntaxError / compiles
+11. 2.5.round / (-2.5).round / 2.5.round(half: :even) 3 / -3 / 2
+12. [1, 2].uniq! / [1, 1].uniq!                nil / [1]
+13. h = Hash.new([]); h[:a] << 1; h[:b] / h.size [1] / 0  (one array, no keys)
+14. {"a": 1}.keys.first.class                  Symbol
+15. show [1].map do |v| v * 2 end / with { }   #<Enumerator: [1]:map> / [2]
+16. ?a / ?a.class                              "a" / String
+17. Integer("08") / "08".to_i / Integer("010") ArgumentError / 8 / 8  (a leading 0 means octal)
+18. %w[a b c]                                  ["a", "b", "c"]
+19. for i in 1..3: i after / each { |elem| }: defined?(elem) 3 / nil
+20. 1.equal?(1) / "a".equal?("a") / "a" == "a" true / false / true
+21. private: obj.secret / obj.reveal / obj.send(:secret) NoMethodError / "s3cret" / "s3cret"
+22. attr_accessor :name defines                [:name, :name=]
+23. require "json" / import json               true / NameError

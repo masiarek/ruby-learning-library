@@ -1,0 +1,9 @@
+ 1. x = 1  # trailing comment                      x = 1
+ 2. """ ... """ around x = 2                       x = 1  (still 1: the string is an Expr statement, its value a Constant)
+ 3. =begin ... =end in a Python file               exit 1, SyntaxError
+ 4. no frozen-literal comment: str is immutable    hasattr(str, '__setitem__') is False
+ 5. # coding: latin-1, then 'caf' + byte e9 / without it 4 / 4  (length / bytes) / exit 1, SyntaxError
+ 6. __END__ in a Python file                       exit 1, SyntaxError  (no data section: use a string or a file)
+ 7. #!/usr/bin/env python3 as line 1               the shebang line is a comment
+ 8. documented.__doc__                             'Return a unchanged; this docstring is the documentation.'
+ 9. # type: comment above; double(4), __annotations__ 8  {}  (a type comment is an ordinary comment)

@@ -1,0 +1,17 @@
+The `x = x or v` idiom, value by value
+ 1. x = None;  x = x or 5                                5
+ 2. x = False; x = x or 5  (False is replaced)           5
+ 3. x = 0;     x = x or 5  (0 is falsy: replaced!)       5
+ 4. x = "";    x = x or 5  ("" is falsy: replaced!)      5
+
+Memoization with functools.cache
+ 5. @functools.cache compute(), called 3 times: ran      1 time(s)
+ 6. @functools.cache of a False result, 3 calls: ran     1 time(s)  <- no trap: it caches the value
+ 7. @cached_property of a False result, 3 reads: ran     1 time(s)
+
+The cousins
+ 8. a = 1; a = a and a + 1 / b = None; b = b and b + 1   2 / None
+ 9. h.setdefault("k", []).append(1), then 2              {'k': [1, 2]}
+10. list(None) / (None or []) / list([1]) / list(range(1, 3)) TypeError / [] / [1] / [1, 2]
+11. h["z"] / h.get("z", 0) / h.get("z") or "no z"        KeyError / 0 / 'no z'
+12. p1 = None or 5 / p2 = None or 5                      5 / 5  (or has ordinary precedence)

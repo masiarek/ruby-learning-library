@@ -1,0 +1,5 @@
+as an Array:  [4, 42, 18.0]
+destructured: min=4 max=42 mean=18.0
+as a Data:    #<data Stats min=4, max=42, mean=18.0>
+by name:      s.mean=18.0
+pattern:      min=4 max=42

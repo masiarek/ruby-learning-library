@@ -1,0 +1,14 @@
+ 1. python3 mismatch.py (a dedent that matches nothing) stdout '', exit 1
+       stderr: IndentationError: unindent does not match any outer indentation level
+ 2. python3 unused.py (assigned, never read)       stdout 'ok', stderr '', exit 0  (no lint in the stdlib)
+ 3. python3 -m tabnanny tabs.py (a tab line, a space line) stdout "tabs.py 3 '        y = 2'", exit 0
+       running it instead: exit 1, stderr: TabError: inconsistent use of tabs and spaces in indentation
+ 4. python3 -m py_compile unused.py (syntax check only) stdout '', exit 0
+ 5. class parseError: pass                         compiled (PEP 8 says CapWords; nothing enforces it)
+ 6. def empty_bag?()  (a ? in a name)              SyntaxError (PEP 8 spells it is_empty)
+ 7. MAX_RETRIES: Final = 3; MAX_RETRIES = 4 ->     4  (UPPER_CASE is a convention; Final is for type checkers)
+ 8. comprehension on one line / for block over lines [2, 4, 6] / [2, 4, 6]  (same result)
+ 9. 'lit'[0] = 'L'   (every str is immutable)      TypeError  (no magic comment needed or possible)
+10. guard clauses: describe(None) / describe("ann") / describe("jonathan")
+       'nobody' / 'hello, ann' / 'too long'
+11. mis-indented code cannot run: exec of a def with every line at column 0 -> IndentationError

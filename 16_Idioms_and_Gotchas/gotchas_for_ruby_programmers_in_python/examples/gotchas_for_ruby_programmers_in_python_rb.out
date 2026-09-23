@@ -1,0 +1,23 @@
+ 1. def f(a = []); a << 1; end; f / f            [1] / [1]  (a fresh array per call)
+ 2. (1..3).map { |i| -> { i } }.map(&:call)      [1, 2, 3]
+ 3. 256.equal?(256) / "a".equal?("a") / "a" == "a" true / false / true
+ 4. 7 / 2 / 7.fdiv(2) / -7 / 2                   3 / 3.5 / -4
+ 5. 2.5.round / 3.5.round / 2.5.round(half: :even) 3 / 4 / 2
+ 6. def m = self.class.name; WithSelf.new.m      "WithSelf"  (self is implicit)
+ 7. eval of a def with every line at column 0    1  (ran)
+ 8. puts "x" is a method call without parentheses compiles / compiles
+ 9. elsif / elif                                 compiles / SyntaxError
+10. no for-else: [1, 2].find { it == 9 } / each returns nil / [1, 2]
+11. a = [3, 1]; a.sort! / [1, 2].uniq!           [1, 3] / nil  (bang returns self, or nil for no change)
+12. s = "abc"; s[0] = "x"; s                     "xbc"
+13. def empty?; end / def save!; end             compiles / compiles
+14. (1..3).to_a / (1...3).to_a                   [1, 2, 3] / [1, 2]  (.. is closed, ... half-open)
+15. h = {}; h[:k] / h.fetch(:k)                  nil / KeyError
+16. y = 5 if false; y / defined?(y)              nil / "local-variable"
+17. def __init__ is never called: @balance after new nil
+18. a block assigns the outer local / a def sees it? 1 / NameError  (no nonlocal; a def is a new scope)
+19. ->(v) { w = v * 2; w + 1 }.call(2)           5  (a lambda holds statements)
+20. [] and 0 in a condition                      truthy / truthy
+21. "abc".length / length("abc")                 3 / NoMethodError
+22. [1].class / (1).class / no tuple: [1].freeze.frozen? Array / Integer / true
+23. 1 < 2 < 3                                    NoMethodError  (no chained comparison: (1 < 2) < 3 asks true < 3)

@@ -1,0 +1,15 @@
+ 1. 5.tap  { |v| v * 100 }                         5
+ 2. 5.then { |v| v * 100 }                         500
+    -- tap inside a chain, printing without breaking it --
+       before sort: [3, 1, 2]
+       after sort:  [1, 2, 3]
+ 3. [3, 1, 2].tap {..}.sort.tap {..}.map { * 10 }  [10, 20, 30]
+ 4. "5".then(&:to_i)                               5 (Integer)
+ 5. 5.then { it + 1 }                              6
+ 6. leading-dot chain over four lines, summed      10
+ 7. [1, 2, 2].group_by(&:itself)                   {1 => [1], 2 => [2, 2]}
+ 8. "  Hello World ".then(&strip).then(&lower).then(&snake) "hello_world"
+ 9. (strip >> lower >> snake).call(same string)    "hello_world"
+10. 5.method(:then) == 5.method(:yield_self)       true
+11. 5.method(:tap).owner / 5.method(:then).owner   Kernel / Kernel
+12. [].tap { |a| a << 1; :ignored }                [1]  (mutation kept, block value dropped)

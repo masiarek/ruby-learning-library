@@ -1,0 +1,8 @@
+before.rb under ruby -w:
+  stdout: "hello, ann"
+  before.rb:5: warning: mismatched indentations at 'end' with 'if' at 3
+  before.rb:2: warning: assigned but unused variable - unused
+  (greetUser is legal Ruby: the camelCase method name draws no warning; only a style tool would object)
+after.rb under ruby -w:
+  stdout: "hello, ann"
+  no warnings

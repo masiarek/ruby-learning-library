@@ -1,0 +1,12 @@
+ 1. {"a" => 1}[:a] / ["a"]                         nil / 1
+ 2. {"a" => 1}.key?(:a) / key?("a")                false / true
+ 3. JSON.parse('{"a": 1, "b": [1, 2]}')            {"a" => 1, "b" => [1, 2]}  key class String
+ 4. JSON.parse(..., symbolize_names: true)         {a: 1, b: [1, 2]}  key class Symbol
+ 5. transform_keys(&:to_sym) / (&:to_s)            {a: 1} / {"a" => 1}
+ 6. {"a": 1}   (quotes, then a colon: the trap)    {a: 1}  key class Symbol
+ 7. {"a" => 1, :a => 2}.size                       2  {"a" => 1, a: 2}
+ 8. {a: 1} == {"a" => 1}                           false
+ 9. {a: 1}.to_json, then JSON.parse                {"a":1}  -> {"a" => 1}  key class String
+10. :a.to_s / "a".to_sym / :a.frozen? / "a".frozen? "a" / :a / true / false
+11. {"a-b": 1}  (a symbol that needs quoting)      {"a-b": 1}  key class Symbol
+12. {"a" => 1}.fetch(:a)                           KeyError: key not found: :a  <- the message shows the symbol

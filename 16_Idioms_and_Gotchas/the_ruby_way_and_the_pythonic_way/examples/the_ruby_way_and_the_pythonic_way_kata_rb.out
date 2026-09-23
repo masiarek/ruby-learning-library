@@ -1,0 +1,19 @@
+tally:
+  the      4
+  and      2
+  barks    2
+  dog      2
+  fox      2
+each_with_object:
+  the      4
+  and      2
+  barks    2
+  dog      2
+  fox      2
+group_by:
+  the      4
+  and      2
+  barks    2
+  dog      2
+  fox      2
+all three equal? true

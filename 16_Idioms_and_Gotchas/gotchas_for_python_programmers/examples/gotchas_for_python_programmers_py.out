@@ -1,0 +1,23 @@
+ 1. bool(0) / bool("")                         False / False
+ 2. [1, 2, 3][10]                              IndexError
+ 3. 7 / 2 / 7 // 2 / 7 / 2.0                   3.5 / 3 / 3.5
+ 4. s = "abc"; s += "d" / s[0] = "x"           'abcd', same object? False / TypeError
+ 5. "a" == "a"  (no symbol type)               True
+ 6. x1 = False or True                         x1=True  (or has ordinary precedence)
+ 7. print("hi") returns  (printed 'hi\n')      None
+ 8. if False: y = 5; y / x = 5 if False        NameError / SyntaxError
+ 9. elif / elsif                               compiles / SyntaxError
+10. no end: a dedent closes the block          module has 2 statements, the if holds 1
+11. round(2.5) / round(-2.5) / round(3.5)      2 / -2 / 4
+12. [1, 2].sort() / [2, 1].sort()  (always None) None / None
+13. defaultdict(list): dd["a"].append(1); dd["b"] [] / len 2  (a fresh list per key, stored on access)
+14. {"a": 1}: type of the key                  str
+15. list(map(lambda v: v * 2, [1]))  (no blocks) [2]
+16. "a" / type("a").__name__ / ord("a")        'a' / str / 97  (no character type)
+17. int("08") / int("010") / the literal 08    8 / 10 / SyntaxError
+18. "a b c".split()                            ['a', 'b', 'c']
+19. for i in range(1, 4): i after / [j for j in ...]: 'j' in dir() 3 / False
+20. m = 256; n = 256; m is n / [] is [] / [] == [] True / False / True
+21. obj._secret() / obj.reveal() / obj._Safe__hidden() 's3cret' / 's3cret' / 'mangled'  (nothing enforced)
+22. self.name = ...: attributes are public     vars(Person()) = {'name': 'ann'}
+23. import json / require("json")              module / NameError

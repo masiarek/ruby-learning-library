@@ -1,0 +1,2 @@
+||= version, three reads: computed 3 time(s), value false
+defined? version, three reads: computed 1 time(s), value false

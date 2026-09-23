@@ -1,0 +1,11 @@
+value    Ruby !!v     py_truthy?(v)
+nil      false        false
+false    false        false
+0        true         false  <- differ
+0.0      true         false  <- differ
+""       true         false  <- differ
+" "      true         true
+[]       true         false  <- differ
+{}       true         false  <- differ
+:a       true         true
+[0]      true         true

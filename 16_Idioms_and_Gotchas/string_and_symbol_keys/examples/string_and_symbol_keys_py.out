@@ -1,0 +1,12 @@
+ 1. {"a": 1}["a"] / ['a']                          1 / 1
+ 2. "a" in d / 'a' in d                            True / True
+ 3. json.loads('{"a": 1, "b": [1, 2]}')            {'a': 1, 'b': [1, 2]}  key type str
+ 4. json.loads(...) keys are always                str  (no symbolize_names to ask for)
+ 5. {Key(k): v for k, v in d.items()}              {<Key.A: 'a'>: 1}  key type Key
+ 6. {"a": 1}   (quotes, then a colon: a str key)   {'a': 1}  key type str
+ 7. len({"a": 1, "a": 2})                          1  {'a': 2}  (the same key twice: last wins)
+ 8. {"a": 1} == {"a": 1} / {Key.A: 1} == {"a": 1}  True / False
+ 9. json.dumps({1: 2}), then json.loads            {"1": 2}  -> {'1': 2}  key type str
+10. sys.intern("a") is sys.intern("a")             True  (interning: the nearest to a symbol)
+11. {("a", "b"): 1} / {["a"]: 1}                   {('a', 'b'): 1} / TypeError  (any hashable key)
+12. {"a": 1}[Key.A]                                KeyError: <Key.A: 'a'>  <- the enum member, not the string

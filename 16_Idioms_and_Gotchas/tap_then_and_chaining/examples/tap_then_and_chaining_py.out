@@ -1,0 +1,15 @@
+ 1. tap(5, lambda v: v * 100)   (helper)           5
+ 2. (lambda v: v * 100)(5)      (a call is `then`) 500
+    -- tap inside a chain, printing without breaking it --
+       before sort: [3, 1, 2]
+       after sort:  [1, 2, 3]
+ 3. [v * 10 for v in tap(sorted(tap(xs, ..)), ..)] [10, 20, 30]
+ 4. int("5")                                       5 (int)
+ 5. (lambda it: it + 1)(5)                         6
+ 6. generator pipeline over four lines, summed     10
+ 7. groupby(sorted(xs)); operator.identity exists? {1: [1], 2: [2, 2]}  False
+ 8. pipe("  Hello World ", strip, lower, snake)    'hello_world'
+ 9. compose(strip, lower, snake)(same string)      'hello_world'
+10. hasattr(5, 'then') / hasattr(5, 'tap')         False / False
+11. "  Hello World ".strip().lower().replace(" ", "_") 'hello_world'
+12. seen = []; seen.append(1) returns              None; seen is [1]  (no receiver comes back)

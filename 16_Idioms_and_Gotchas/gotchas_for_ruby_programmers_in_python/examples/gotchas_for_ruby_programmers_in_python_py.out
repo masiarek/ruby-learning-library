@@ -1,0 +1,23 @@
+ 1. def f(a=[]): a.append(1); f() / f()          [1] / [1, 1]  (one list, shared)
+ 2. [lambda: i for i in range(3)] / lambda i=i: i [2, 2, 2] / [0, 1, 2]
+ 3. m = 256; n = 256; m is n / [] is [] / [] == [] True / False / True
+ 4. 7 / 2 / 7 // 2 / -7 // 2                     3.5 / 3 / -4
+ 5. round(2.5) / round(3.5) / round(-2.5)        2 / 4 / -2
+ 6. class NoSelf: def m(): ...; NoSelf().m()     TypeError  (self is a real parameter)
+ 7. compile('if True:\nprint(1)')                IndentationError
+ 8. print 'x' / print('a', 'b', sep='-')         SyntaxError / printed 'a-b\n'
+ 9. elif / elsif                                 compiles / SyntaxError
+10. for ... else, without and with a break       ['else ran (no break)']
+11. a = [3, 1]; a.sort() / sorted([3, 1])        None / [1, 3]
+12. s = "abc"; s[0] = "x"                        TypeError
+13. def empty?(): ... / def save!(): ...         SyntaxError / SyntaxError
+14. list(range(1, 4)) / list(range(1, 3))        [1, 2, 3] / [1, 2]  (half-open)
+15. d = {}; d["k"] / d.get("k")                  KeyError / None
+16. if False: y = 5; y / x = 5 if False          NameError / SyntaxError
+17. def initialize(self) is never called: Account().balance AttributeError
+18. count += 1 in an inner def / with nonlocal   UnboundLocalError / 1
+19. lambda: x = 1 / lambda v: v * 2              SyntaxError / 4
+20. bool([]) / bool(0) / bool(0.0)               False / False / False
+21. len("abc") / "abc".len                       3 / AttributeError
+22. type((1,)) / type((1)) / type([1])           tuple / int / list
+23. 1 < 2 < 3 / 1 < 3 < 2                        True / False  (chained comparison)

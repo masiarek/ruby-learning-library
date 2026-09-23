@@ -1,0 +1,17 @@
+The ||= operator, value by value
+ 1. x = nil;   x ||= 5                                   5
+ 2. x = false; x ||= 5   (false is replaced too)         5
+ 3. x = 0;     x ||= 5   (0 is truthy: kept)             0
+ 4. x = "";    x ||= 5   ("" is truthy: kept)            ""
+
+Memoization with ||=
+ 5. @cache ||= compute, called 3 times: ran              1 time(s)
+ 6. @flag ||= (a false result), called 3 times: ran      3 time(s)  <- the trap
+ 7. defined?(@right) guard instead, 3 calls: ran         1 time(s)
+
+The cousins
+ 8. a = 1; a &&= a + 1 / b = nil; b &&= b + 1            2 / nil
+ 9. (h[:k] ||= []) << 1, then << 2                       {k: [1, 2]}
+10. nil.to_a / Array(nil) / Array([1]) / Array(1..2)     [] / [] / [1] / [1, 2]
+11. h[:z] / h.fetch(:z, 0) / h.fetch(:z) { |k| "no #{k}" } nil / 0 / "no z"
+12. p1 = nil || 5 / p2 = nil or 5                        5 / nil  (or binds below =)

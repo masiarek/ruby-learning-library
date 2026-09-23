@@ -1,0 +1,4 @@
+before: {"user" => {"name" => "ann", "tags" => ["x", "y"]}, "items" => [{"id" => 1}, {"id" => 2}]}
+after:  {user: {name: "ann", tags: ["x", "y"]}, items: [{id: 1}, {id: 2}]}
+dig:    2
+same as symbolize_names? true

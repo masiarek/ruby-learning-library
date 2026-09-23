@@ -1,0 +1,14 @@
+ 1. ruby -w mismatch.rb (end under the wrong column) stdout "ran anyway", exit 0
+       stderr: mismatch.rb:4: warning: mismatched indentations at 'end' with 'if' at 2
+ 2. ruby -w unused.rb (assigned, never read)       stdout "ok", exit 0
+       stderr: unused.rb:1: warning: assigned but unused variable - unused
+ 3. ruby -w tabs.rb (a tab line, a space line)     stdout "1", stderr "", exit 0
+ 4. ruby -c unused.rb (syntax check only)          stdout "Syntax OK", exit 0
+ 5. class parseError; end                          SyntaxError (a class name must be a constant)
+ 6. def empty_bag? / def save!  (predicate and bang names) true / :saved
+ 7. defined?(MAX_RETRIES) / defined?(max_retries)  constant / local-variable
+ 8. { } on one line / do...end over lines          [2, 4, 6] / [2, 4, 6]  (same result)
+ 9. # frozen_string_literal: true / without it     true / false
+10. guard clauses: describe(nil) / describe("ann") / describe("jonathan")
+       "nobody" / "hello, ann" / "too long"
+11. mis-indented code still runs: eval of a def with every line at column 0 -> 1

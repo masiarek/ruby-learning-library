@@ -1,0 +1,9 @@
+ 1. x = 1 # trailing comment                       x = 1
+ 2. =begin ... =end around x = 2                   x = 1  (still 1: the block did not run)
+ 3. an indented =begin (not at column 0)           exit 1, syntax errors found (SyntaxError)
+ 4. # frozen_string_literal: true / no comment     true / false
+ 5. # encoding: iso-8859-1, then 'caf' + byte E9   ISO-8859-1 / 4 / 4  (__ENCODING__ / length / bytesize)
+ 6. __END__ then DATA.read                         "line one\nline two\n"
+ 7. #!/usr/bin/env ruby as line 1                  the shebang line is a comment
+ 8. method(:documented).respond_to?(:__doc__)      false
+ 9. # @param line above def double; double(4)      8  (a YARD tag is an ordinary comment)

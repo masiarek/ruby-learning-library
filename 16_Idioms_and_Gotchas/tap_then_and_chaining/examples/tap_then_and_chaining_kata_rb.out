@@ -1,0 +1,5 @@
+after select: ["pear", "banana", "kiwi", "apple", "plum"]
+after map:    ["PEAR", "BANANA", "KIWI", "APPLE", "PLUM"]
+after sort:   ["APPLE", "BANANA", "KIWI", "PEAR", "PLUM"]
+returned:     ["APPLE", "BANANA", "KIWI", "PEAR", "PLUM"]
+same object as the last tap saw? true
