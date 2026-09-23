@@ -1,0 +1,84 @@
+ 1. ruby -e 'puts 1 + 1'
+    stdout: 2
+    exit:   0
+ 2. ruby -c DIR/ok.rb
+    stdout: Syntax OK
+    exit:   0
+ 2. ruby -c DIR/bad.rb
+    stderr: ruby: DIR/bad.rb:1: syntax errors found (SyntaxError)   (first line only)
+    exit:   1
+ 3. ruby -w DIR/unused.rb
+    stderr: DIR/unused.rb:2: warning: assigned but unused variable - x
+    exit:   0
+ 4. ruby -W:deprecated -e 'p Warning[:deprecated]'
+    stdout: true
+    exit:   0
+ 4. ruby -W:no-deprecated -e 'p Warning[:deprecated]'
+    stdout: false
+    exit:   0
+ 4. ruby -W0 -e 'p $VERBOSE'
+    stdout: nil
+    exit:   0
+ 4. ruby -w -e 'p $VERBOSE'
+    stdout: true
+    exit:   0
+ 5. ruby -r json -e 'puts JSON.generate([1, {a: 2}])'
+    stdout: [1,{"a":2}]
+    exit:   0
+ 6. ruby -I DIR/lib -e 'require "helper2"'
+    stdout: helper2 here
+    exit:   0
+ 7. ruby -n -e 'puts $_.upcase'
+    stdin:  "ab\ncd\n"
+    stdout: AB | CD
+    exit:   0
+ 7. ruby -p -e '$_.upcase!'
+    stdin:  "ab\ncd\n"
+    stdout: AB | CD
+    exit:   0
+ 7. ruby -a -n -e 'puts $F[1]'
+    stdin:  "a b c\nd e f\n"
+    stdout: b | e
+    exit:   0
+ 7. ruby -n -e "puts $_ + '!'"
+    stdin:  "ab\ncd\n"
+    stdout: ab | ! | cd | !
+    exit:   0
+ 7. ruby -l -n -e "puts $_ + '!'"
+    stdin:  "ab\ncd\n"
+    stdout: ab! | cd!
+    exit:   0
+ 8. ruby -E UTF-8 -e 'p Encoding.default_external'
+    stdout: #<Encoding:UTF-8>
+    exit:   0
+ 8. ruby -E ASCII-8BIT -e 'p Encoding.default_external'
+    stdout: #<Encoding:BINARY (ASCII-8BIT)>
+    exit:   0
+ 9. ruby --yjit -e 'p RubyVM::YJIT.enabled?'
+    stdout: true
+    exit:   0
+ 9. ruby -e 'p RubyVM::YJIT.enabled?'
+    stdout: false
+    exit:   0
+10. ruby --disable-gems -e 'p defined?(Gem)'
+    stdout: nil
+    exit:   0
+10. ruby -e 'p defined?(Gem)'
+    stdout: "constant"
+    exit:   0
+11. ruby --enable=frozen-string-literal -e "p 'a'.frozen?"
+    stdout: true
+    exit:   0
+11. ruby -e "p 'a'.frozen?"
+    stdout: false
+    exit:   0
+12. ruby --dump=insns -e 'a = 1 + 2; puts a * 3'
+    instructions: putobject_INT2FIX_1_ putobject opt_plus setlocal_WC_0 putself getlocal_WC_0 putobject opt_mult opt_send_without_block leave
+13. ruby -v   -> starts with 'ruby 4.': true
+13. ruby -h   -> first line starts with 'Usage:': true
+14. ruby -e 'p ARGV' -- -x y
+    stdout: ["-x", "y"]
+    exit:   0
+15. ruby -s -e 'p $flag' -- -flag=5
+    stdout: "5"
+    exit:   0

@@ -1,0 +1,26 @@
+1. the report of TextTestRunner(verbosity=2), timing and traceback lines removed:
+   test_add (__main__.TestCalc.test_add) ... ok
+   test_deliberate_failure (__main__.TestCalc.test_deliberate_failure) ... FAIL
+   test_div_by_zero (__main__.TestCalc.test_div_by_zero) ... ok
+   test_double_with_mock (__main__.TestCalc.test_double_with_mock) ... ok
+   test_skipped (__main__.TestCalc.test_skipped) ... skipped 'not today'
+   test_subtests (__main__.TestCalc.test_subtests) ... ok
+
+   ======================================================================
+   FAIL: test_deliberate_failure (__main__.TestCalc.test_deliberate_failure)
+   ----------------------------------------------------------------------
+   Traceback (most recent call last):
+   AssertionError: {'name': 'a', 'n': 1} != {'name': 'b', 'n': 1}
+   - {'n': 1, 'name': 'a'}
+   ?                   ^
+
+   + {'n': 1, 'name': 'b'}
+   ?                   ^
+
+
+   ----------------------------------------------------------------------
+   Ran 6 tests in (time removed)
+
+   FAILED (failures=1, skipped=1)
+2. result.wasSuccessful() is False (one failure): ran 6, failures 1, errors 0, skipped 1
+3. import unittest.mock: loaded -- Mock, patch and MagicMock are in the stdlib: True

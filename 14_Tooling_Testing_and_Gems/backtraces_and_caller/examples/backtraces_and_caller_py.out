@@ -1,0 +1,13 @@
+ 1. extract_stack names (outermost first): ['<module>', 'outer', 'inner']
+ 2. inspect.stack names (innermost first): ['inner', 'outer', '<module>']
+ 3. co_qualname and co_name:                'Worker.inner', 'inner'
+ 4. f_code.co_name of the current frame:    'inner'
+ 5. a frame has a filename and a line:      backtraces_and_caller_py.py, lineno is int
+ 6. e.__traceback__ is a traceback; its names: ['<module>', 'outer', 'inner']
+ 7. extract_tb gives frames with .name:      ['<module>', 'outer', 'inner']
+ 8. format_exception_only:                   ['ValueError: bad input\n']   (no location at all)
+ 9. after add_note (3.11+):                  ['ValueError: bad input\n', 'checked by the twin\n']
+10. after with_traceback(None):             e.__traceback__ is None
+11. an exception never raised:              ValueError('x').__traceback__ is None
+12. extract_stack at module level:          ['<module>']
+13. names elsewhere:                        top-level def: 'top_level_function'   lambda: '<lambda>'   module: '<module>'

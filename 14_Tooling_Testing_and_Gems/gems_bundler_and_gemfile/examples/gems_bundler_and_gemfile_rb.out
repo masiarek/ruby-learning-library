@@ -1,0 +1,11 @@
+ 1. json: part of the standard install?    default gem: true
+ 2. csv: part of the standard install?     default gem: false   bundled gem since 3.4.0
+ 3. minitest:                              default gem: false   in the since-list: false (bundled since before 3.0)
+ 4. set:                                   no gem at all (Gem::MissingSpecError) -- a core class in 4.0
+ 5. what require "json" activated          Gem.loaded_specs["json"].name = json; a default gem has a spec too
+ 6. gem "minitest" in code (activate)      first: true   second: false
+ 7. gem "nope"                             Gem::MissingSpecError   is a LoadError: true   e.name: "nope"
+ 8. versions compare as numbers            Gem::Version 1.10 > 1.9: true   as strings: false   2.0.0.pre < 2.0.0: true
+ 9. a requirement, ~> 1.2                  satisfied by 1.9: true   by 2.0: false
+10. a Gemfile, evaluated by Bundler        minitest (~> 5.0) [:default], csv (>= 0) [:default], rake (>= 0) [:development]
+11. a gemspec object                       demo-0.1.0   runtime: json (~> 2.0)   development: minitest (>= 5, development)

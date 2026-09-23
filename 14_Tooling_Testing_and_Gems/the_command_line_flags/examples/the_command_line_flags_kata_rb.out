@@ -1,0 +1,11 @@
+ruby -a -n -e 'puts $F[1]'
+    30
+    25
+ruby -p -e '$_.upcase!'
+    ALICE 30
+    BOB 25
+ruby -l -n -e 'puts $_ + "!"'
+    alice 30!
+    bob 25!
+ruby -a -n -e 'BEGIN { $sum = 0 }; $sum += $F[1].to_i; END { puts $sum }'
+    55

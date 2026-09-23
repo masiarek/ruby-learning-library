@@ -1,0 +1,41 @@
+1. every expression's value is echoed, one per line:
+   in:  1 + 1
+   in:  x = 2
+   in:  x * 3
+   in:  _
+   in:  [1, 2].map { it * 2 }
+   in:  puts "side effect"
+   in:  nil
+   in:  def f(x) = x * 2
+   in:  f(21)
+   out: 2
+   out: 2
+   out: 6
+   out: 6
+   out: [2, 4]
+   out: side effect
+   out: nil
+   out: nil
+   out: :f
+   out: 42
+   stderr empty: true   exit: 0
+2. an error is printed and the session goes on:
+   in:  1 / 0
+   in:  "after"
+   out: (irb):1:in 'Integer#/': divided by 0 (ZeroDivisionError)
+   out: 	from (irb):1:in '<main>'
+   out: 	from -e:1:in '<main>'
+   out: "after"
+   stderr empty: true   exit: 0
+3. --noecho keeps only what the code prints itself:
+   in:  1 + 1
+   in:  puts "side effect"
+   out: side effect
+   stderr empty: true   exit: 0
+4. exit ends the session; later lines are never read:
+   in:  puts "before"
+   in:  exit
+   in:  puts "never"
+   out: before
+   out: nil
+   stderr empty: true   exit: 0

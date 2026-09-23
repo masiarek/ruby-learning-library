@@ -1,0 +1,10 @@
+1. once_load first time:
+    counter.rb ran (run 1)
+   -> true
+2. once_load second time:
+   -> false
+3. load, twice, ignores the once-list:
+    counter.rb ran (run 2)
+    counter.rb ran (run 3)
+4. runs in total: 3   remembered by once_load: 1 file(s)
+5. real require agrees on a real feature: true then false

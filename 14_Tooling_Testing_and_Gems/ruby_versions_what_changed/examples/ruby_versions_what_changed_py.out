@@ -1,0 +1,10 @@
+ 1. now  sys.version_info >= (3, 12)              True   (major 3)
+ 2. 3.8  walrus :=, positional-only /             (y := 1) compiles: True   def f(a, /, b): True
+ 3. 3.9  dict | dict, str.removeprefix            {1: 1} | {2: 2}: True   removeprefix: True
+ 4. 3.10 match statement, zip(strict=), pairwise  match compiles: True   zip strict: True   pairwise: True
+ 5. 3.11 ExceptionGroup, except*, tomllib, Self   ExceptionGroup: True   except*: True   tomllib: True   typing.Self: True
+ 6. 3.12 f-string quotes, type stmt, def f[T]     f"{"a"}": True   type X = int: True   def f[T](x: T): True
+ 7. 3.12 itertools.batched, sys.monitoring        batched: True   sys.monitoring: True   TaskGroup (3.11): True
+ 8. 3.13 copy.replace, free threading, new REPL   not asserted: hasattr(copy, 'replace') differs between this library's 3.12 and 3.14 runners
+ 9. 3.14 t-strings, deferred annotations          not asserted: compiles('t"x"') likewise differs, so the page describes both releases
+10. both what rows 8 and 9 prove                  a feature check is worth exactly the set of interpreters it ran on

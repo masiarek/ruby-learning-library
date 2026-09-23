@@ -1,0 +1,8 @@
+ 1. Method#source_location:     [no_docstrings_rb.rb, 7] -- a String and an Integer
+ 2. a C-implemented method:     1.method(:+).source_location is nil, method(:puts) too: nil
+ 3. comment above def add:      ["Adds two numbers.", "Both must be numeric."]
+ 4. comment above Calc#mul:     ["the multiply helper"]
+ 5. no comment:                 []
+ 6. no Method#doc at all:       Method.instance_methods.grep(/doc/) = []
+ 7. a comment is not an object: the string "# Adds two numbers." exists only in the file; nothing at run time holds it
+ 8. RDoc parses that comment:   a Document with 2 paragraphs (parts: Paragraph, BlankLine, Paragraph)

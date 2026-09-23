@@ -1,0 +1,79 @@
+ 1. python3 -c 'print(1 + 1)'
+    stdout: 2
+    exit:   0
+ 2. python3 -m py_compile DIR/ok.py
+    exit:   0
+ 2. python3 -m py_compile DIR/bad.py
+    stderr: SyntaxError: '(' was never closed   (last line only)
+    exit:   1
+    (stderr mentions 'SyntaxError': True)
+ 3. python3 -W error -c "import warnings; warnings.warn('careful')"
+    stderr: UserWarning: careful   (last line only)
+    exit:   1
+ 3. python3 -c "import warnings; warnings.warn('careful')"
+    stderr: <string>:1: UserWarning: careful   (last line only)
+    exit:   0
+ 4. python3 -X dev -c 'import sys; print(sys.flags.dev_mode)'
+    stdout: True
+    exit:   0
+ 4. python3 -W ignore -c "import warnings; warnings.warn('careful'); print('silenced')"
+    stdout: silenced
+    exit:   0
+ 4. python3 -c 'import sys; print(sys.flags.dev_mode)'
+    stdout: False
+    exit:   0
+ 5. python3 -m json.tool --compact
+    stdin:  '[1, {"a": 2}]'
+    stdout: [1,{"a":2}]
+    exit:   0
+ 6. python3 -I -c "import sys; print('isolated:', sys.flags.isolated, 'safe_path:', sys.flags.safe_path)"
+    stdout: isolated: 1 safe_path: True
+    exit:   0
+ 6. python3 -c 'import helper2'
+    stdout: helper2 here
+    exit:   0
+    (the include-directory job is PYTHONPATH=DIR/lib, not a flag)
+ 7. python3 -c 'import sys
+for line in sys.stdin: print(line.rstrip().upper())'
+    stdin:  'ab\ncd\n'
+    stdout: AB | CD
+    exit:   0
+    (no -n, -p, -a or -l: the loop is written out)
+ 8. python3 -X utf8 -c 'import sys; print(sys.flags.utf8_mode)'
+    stdout: 1
+    exit:   0
+ 8. python3 -c 'import sys; print(sys.stdout.encoding)'
+    stdout: utf-8
+    exit:   0
+ 9. python3 -O -c print(__debug__)
+    stdout: False
+    exit:   0
+ 9. python3 -c print(__debug__)
+    stdout: True
+    exit:   0
+    (no JIT switch in 3.12; -X jit exists only in later builds made with it)
+10. python3 -S -c "import sys; print(sys.flags.no_site, 'site' in sys.modules)"
+    stdout: 1 False
+    exit:   0
+10. python3 -c "import sys; print(sys.flags.no_site, 'site' in sys.modules)"
+    stdout: 0 True
+    exit:   0
+11. python3 -OO -c 'import json; print(json.dumps.__doc__ is None)'
+    stdout: True
+    exit:   0
+11. python3 -c 'import json; print(json.dumps.__doc__ is None)'
+    stdout: False
+    exit:   0
+12. python3 -c "print(3000 in compile('a = 1000 + 2000', '', 'exec').co_consts)"
+    stdout: True
+    exit:   0
+    (the compiler folded 1000 + 2000; -m dis shows the bytecode, whose text changes per release)
+13. python3 -V   -> starts with 'Python 3.': True
+13. python3 -h   -> first line starts with 'usage:': True
+14. python3 -c 'import sys; print(sys.argv)' -x y
+    stdout: ['-c', '-x', 'y']
+    exit:   0
+15. python3 -s -c "import sys; print('no_user_site:', sys.flags.no_user_site)"
+    stdout: no_user_site: 1
+    exit:   0
+    (-s means 'no user site-packages' here; Ruby's -s parses -flag=value switches)

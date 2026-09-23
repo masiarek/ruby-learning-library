@@ -1,0 +1,18 @@
+ 1. require "json" twice                       first: true   second: false
+ 2. $LOADED_FEATURES (the once-list)           grew: true   holds json.rb: true
+ 3. load main_part.rb, which require_relatives lib/helper against its own folder:
+    (helper body ran, from lib)
+    main_part sees Helper.hi = hi
+ 4. load main_part.rb again                    main_part runs; helper is remembered:
+    main_part sees Helper.hi = hi
+ 5. load lib/helper.rb twice                   load runs the file every time:
+    (helper body ran, from lib)
+    (helper body ran, from lib)
+ 6. $LOAD_PATH is Array; after unshift(lib)    require "helper2" (no extension):
+    (helper2 body ran)
+ 6.                                            found helper2.rb: true   again: false
+ 7. require "nope"                             LoadError: cannot load such file -- nope   (e.path: "nope")
+ 8. autoload :Greeter, path                    registered: true   const_defined?: true   body ran yet: no
+ 8.                                            first reference to Greeter loads it:
+    (greeter body ran)
+ 8.                                            Greeter is Class Greeter   autoload? now nil: true

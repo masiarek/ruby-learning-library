@@ -1,0 +1,11 @@
+ 1. json: part of the standard install?    stdlib module: True
+ 2. csv: part of the standard install?     stdlib module: True   (Ruby moved csv out; Python did not)
+ 3. minitest / unittest:                   minitest: False   unittest: True
+ 4. set:                                   builtin type: True -- no module at all
+ 5. what import json loaded                json.__spec__.name = json; no package metadata (PackageNotFoundError: the stdlib is not a package)
+ 6. no gem 'x' in code: import just finds  first: loads   second: cached (same object: True)
+ 7. importlib.metadata.version('nope')     PackageNotFoundError   is a ModuleNotFoundError: True   e.name: 'nope'
+ 8. versions compare as numbers            tuples (1, 10) > (1, 9): True   as strings: False   (no Version class in the stdlib)
+ 9. a requirement, ~= 1.2 by hand          satisfied by 1.9: True   by 2.0: False
+10. a pyproject.toml, read by tomllib      dependencies: ['minitest~=5.0', 'csv']   dev: ['rake']
+11. the [project] table is the gemspec     demo-0.1.0   (name, version, dependencies in one file)

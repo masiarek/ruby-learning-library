@@ -1,0 +1,6 @@
+2.3 safe navigation          accepted
+2.7 pattern matching         accepted
+3.1 hash shorthand           accepted
+3.4 it parameter             accepted
+imaginary: pipe operator     rejected (SyntaxError)
+imaginary: def without end   rejected (SyntaxError)

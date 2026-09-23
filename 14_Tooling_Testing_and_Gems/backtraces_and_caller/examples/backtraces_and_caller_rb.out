@@ -1,0 +1,13 @@
+ 1. caller, reduced to labels:            ["Worker#outer", "<main>"]
+ 2. caller_locations(0, 3) labels:        ["Worker#inner", "Worker#outer", "<main>"]
+ 3. ...and their base_labels:             ["inner", "outer", "<main>"]
+ 4. __method__ inside the method:         :inner
+ 5. a location has a path and a line:     backtraces_and_caller_rb.rb, lineno is Integer
+ 6. e.backtrace (Array) labels:      ["Worker#inner", "Worker#outer", "<main>"]
+ 7. e.backtrace_locations labels:         ["Worker#inner", "Worker#outer", "<main>"]
+ 8. full_message first line:              FILE:LINE:in 'Worker#inner': bad input (ArgumentError)
+ 9. detailed_message first line:          bad input (ArgumentError)   (error_highlight added a snippet below it: true)
+10. after set_backtrace:                  backtrace ["custom:1:in 'made_up'"], backtrace_locations still the originals: true
+11. an exception never raised:            RuntimeError.new("x").backtrace is nil
+12. caller at the top level:              []
+13. labels elsewhere:                     top-level def: "Object#top_level_method"   block: "block in <main>"   main: "<main>"

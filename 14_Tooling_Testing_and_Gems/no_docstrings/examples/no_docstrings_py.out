@@ -1,0 +1,8 @@
+ 1. inspect.getsourcefile/lines:  [no_docstrings_py.py, 9] -- a str and an int
+ 2. a C-implemented function:     getsourcefile(len) raises TypeError, yet len.__doc__ starts 'Return the number of items'
+ 3. comment above def add:        '# Adds two numbers.\n# Both must be numeric.\n'
+ 4. comment above Calc.mul:       '# the multiply helper\n'
+ 5. no comment, no docstring:     getcomments None, __doc__ None
+ 6. the real thing, __doc__:      inspect.getdoc(sub) = 'Subtract b from a.\n\nReturns a number.'
+ 7. a docstring is an object:     Calc.__doc__ = 'A calculator.', add.__doc__ = None (a comment is not)
+ 8. getdoc cleans indentation:    lines of getdoc(sub): ['Subtract b from a.', '', 'Returns a number.']

@@ -1,0 +1,15 @@
+ 1. now  RUBY_VERSION >= "4.0"                    true   (major 4)
+ 2. 2.0  keyword arguments, Module#prepend        def f(a:, b: 2) compiles: true   prepend: true
+ 3. 2.1  refinements                              Refinement class: true
+ 4. 2.3  &. safe navigation, Hash#dig             nil&.length compiles: true   dig: true
+ 5. 2.4  one Integer class                        Fixnum defined: false   1.class: Integer   (2**100).class: Integer
+ 6. 2.5  rescue inside do...end blocks            compiles: true
+ 7. 2.6  endless range, then, proc >>             (1..) compiles: true   then: true   >>: true
+ 8. 2.7  pattern matching, ... forwarding, _1     case/in: true   (...): true   _1: true
+ 9. 3.0  keyword separation, Ractor, endless def  f({a: 1}) no longer fills **opts: true   Ractor: true   def f = 1: true
+10. 3.1  {x:} shorthand, Class#subclasses         compiles: true   subclasses: true
+11. 3.2  Data, anonymous * ** &, linear_time?     Data.define: true   def f(*, **, &) = g(*, **, &): true   Regexp.linear_time?: true
+12. 3.3  Prism parser ships with Ruby             require "prism" then Prism defined: true
+13. 3.4  it, chilled literals, 'name' quoting     [1].map { it }: true   "a".frozen?: false (chilled, not frozen)   message: "undefined method 'foo' for nil"
+14. 4.0  core Set, Ractor::Port, ZJIT, Ruby::Box  Set needs no require and is C code: true   Ractor::Port: true   RubyVM::ZJIT: true   Ruby::Box: true
+15. 4.0  Warning.categories                       [:deprecated, :experimental, :performance, :strict_unused_block]

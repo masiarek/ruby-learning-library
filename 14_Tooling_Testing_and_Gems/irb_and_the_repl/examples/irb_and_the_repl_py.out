@@ -1,0 +1,37 @@
+1. every expression's value is echoed, one per line:
+   in:  1 + 1
+   in:  x = 2
+   in:  x * 3
+   in:  _
+   in:  [v * 2 for v in [1, 2]]
+   in:  print('side effect')
+   in:  None
+   in:  def f(x): return x * 2
+   in:
+   in:  f(21)
+   out: 2
+   out: 6
+   out: 6
+   out: [2, 4]
+   out: side effect
+   out: 42
+   stderr: 10 prompts   exit: 0
+2. an error is printed (to stderr) and the session goes on:
+   in:  1 / 0
+   in:  'after'
+   out: 'after'
+   stderr: 3 prompts, and: ZeroDivisionError: division by zero   exit: 0
+3. no --noecho flag: a script (python3 file.py) is the mode that never echoes
+4. exit() ends the session; later lines are never read:
+   in:  print('before')
+   in:  exit()
+   in:  print('never')
+   out: before
+   stderr: 2 prompts   exit: 0
+5. the same loop in-process, code.InteractiveConsole:
+   push '1 + 1'    -> printed: '2'      needs more input: False
+   push 'y = 5'    -> printed: ''       needs more input: False
+   push 'y * 2'    -> printed: '10'     needs more input: False
+   push '_'        -> printed: '10'     needs more input: False
+   push 'def g():' -> printed: ''       needs more input: True
+   _ lives in builtins: True   value: 10

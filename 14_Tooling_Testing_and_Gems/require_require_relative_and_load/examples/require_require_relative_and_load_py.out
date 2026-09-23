@@ -1,0 +1,18 @@
+ 1. import json twice                          first: loads (was cached: False)   second: cached (same object: True)
+ 2. sys.modules (the once-dict)                grew: True   holds json: True
+ 3. import pkg.main_part, which does           from . import helper inside the package:
+    (helper body ran, from pkg)
+    main_part sees helper.hi() = hi
+ 4. import pkg.main_part again                 nothing runs; both are remembered:
+ 4.                                            (same module object: True)
+ 5. reload(helper); run_path(helper.py)        each runs the body again:
+    (helper body ran, from pkg)
+    (helper body ran, from pkg)
+ 6. sys.path is a list; after insert(0, d)     import helper2 (no extension):
+    (helper2 body ran)
+ 6.                                            found helper2.py: True   again: cached (True)
+ 7. import nope                                ModuleNotFoundError: No module named 'nope'   (e.name: 'nope')
+ 8. importlib.util.LazyLoader for greeter      registered: True   body ran yet: no
+ 8.                                            first attribute access loads it:
+    (greeter body ran)
+ 8.                                            Greeter is type Greeter

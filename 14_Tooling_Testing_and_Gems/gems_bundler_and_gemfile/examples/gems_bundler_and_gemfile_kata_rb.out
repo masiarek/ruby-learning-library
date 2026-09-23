@@ -1,0 +1,9 @@
+1. as strings:      ["1.10.0", "1.9.10", "1.9.2", "2.0.0", "2.0.0.pre1"]
+2. as Gem::Version: ["1.9.2", "1.9.10", "1.10.0", "2.0.0.pre1", "2.0.0"]
+3. ~> 1.9 accepts:
+   1.10.0     true  prerelease: false
+   1.9.2      true  prerelease: false
+   1.9.10     true  prerelease: false
+   2.0.0.pre1 false prerelease: true
+   2.0.0      false prerelease: false
+4. newest non-prerelease: 2.0.0
