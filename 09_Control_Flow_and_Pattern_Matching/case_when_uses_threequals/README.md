@@ -126,3 +126,5 @@ move `when Float` above the Range if that is not what you meant
 - [Ruby text: named captures become variables ↗](https://masiarek.github.io/ruby-text-learning-library/04_Regex/named_captures_become_variables/index.html) — what `when /re/` leaves behind in `$~`, and what a named group does with it
 - [Regex library: named groups ↗](https://masiarek.github.io/regex-learning-library/10_Keywords/named_group/index.html) — the same feature across engines, with a Ruby column
 - [Ruby docs: `case` ↗](https://docs.ruby-lang.org/en/4.0/syntax/control_expressions_rdoc.html#label-case+Expression) — the reference for `when`, `then` and the subject-less form
+- [Procs and lambdas differ in arity and `return`](../../03_Blocks_Procs_and_Lambdas/procs_and_lambdas_differ/README.md) — Every proc and lambda is a `Proc`, but a lambda checks its argument count and `return`s from itself, while…
+- [A pin compares; a bare name binds](../pin_guards_and_alternatives/README.md) — Inside a pattern a bare name always *binds*

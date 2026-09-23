@@ -186,3 +186,6 @@ row 10, "first warm day, and the days before it", [temps.find { |t| t > 20 }, te
 - [Hashes and default values](../../04_Collections/hashes_and_default_values/README.md) — `Hash.new { |h, k| h[k] = [] }`, the loop that `group_by` replaces
 - [Bang and question methods](../../02_Methods_and_Arguments/bang_and_question_methods/README.md) — `sort` versus `sort!`, `any?` and friends
 - [`collect` and `FromIterator` ↗](https://masiarek.github.io/rust-learning-library/24_Iterators/collect_and_fromiterator/index.html) — Rust's toolbox, where the consumer decides the container
+- [Past the end, an array gives nil, not an error](../../04_Collections/arrays_and_negative_indexes/README.md) — `a[10]` on a four-element array is `nil`, `a[5] = 99` pads the gap with `nil`, and a slice is `a[1..2]`…
+- [`Random.new(42)` gives the same numbers every run](../../15_Numbers/random_with_a_seed/README.md) — A seeded `Random` is a function of its seed
+- [There is more than one way, and one obvious way](../../16_Idioms_and_Gotchas/the_ruby_way_and_the_pythonic_way/README.md) — Ruby's idioms

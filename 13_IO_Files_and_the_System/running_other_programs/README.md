@@ -129,3 +129,4 @@ CommandFailed: ruby exited 3 -- status=3 stderr="disk on fire\n"
 - [Stderr does not go down the pipe ↗](https://masiarek.github.io/linux-learning-library/01_Pipelines/stderr_does_not_go_down_the_pipe/index.html) — why rows 10–12 have two streams to capture
 - [A pipeline reports its last command ↗](https://masiarek.github.io/linux-learning-library/01_Pipelines/a_pipeline_reports_its_last_command/index.html) — the shell's `$?`, which `system` reads
 - [Standard in, standard out, and pipes ↗](https://masiarek.github.io/python-learning-library/01_Text_and_Bytes/stdin_stdout_and_pipes/index.html) — Python's streams when it is the child
+- [`Pathname#/` joins, and `Dir.glob` is sorted](../pathname_dir_and_glob/README.md) — `Pathname` is an object with `/`, `basename`, `extname`, `parent`, `children`, `exist?` and `read`;…

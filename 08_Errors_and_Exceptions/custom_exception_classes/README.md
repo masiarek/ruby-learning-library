@@ -154,3 +154,6 @@ end
 - [Exceptions have a `cause`](../exceptions_have_a_cause/README.md) — wrapping a low-level error in one of your own classes without losing it
 - [Minitest and unittest](../../14_Tooling_Testing_and_Gems/minitest_and_unittest/README.md) — `assert_raises` against a class you defined here
 - [Exception ↗](https://docs.ruby-lang.org/en/4.0/Exception.html) — the reference for `message`, `detailed_message`, `full_message` and `exception`
+- [`puts` calls `to_s`, `p` calls `inspect`](../../07_The_Object_Model/to_s_inspect_and_p/README.md) — Every object answers two questions
+- [Common error messages](../common_error_messages/README.md) — Twenty-nine errors you will meet in your first month of Ruby, each with the code that raises it, the…
+- [A backtrace is data you can read](../../14_Tooling_Testing_and_Gems/backtraces_and_caller/README.md) — `caller` returns an Array of Strings shaped `file:line:in 'Klass#method'`, `caller_locations` returns the…

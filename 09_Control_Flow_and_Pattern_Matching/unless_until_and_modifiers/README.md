@@ -119,3 +119,5 @@ the body ran 1 time(s) although the queue was empty from the start
 - [Rust: the `loop` keyword ↗](https://masiarek.github.io/rust-learning-library/25_Control_Flow/the_loop_keyword/index.html) — Rust's `loop` is Ruby's `loop do`, down to `break` carrying a value
 - [Rust: `while` loops ↗](https://masiarek.github.io/rust-learning-library/25_Control_Flow/while_loops/index.html) — another language without a do-while
 - [Ruby docs: control expressions ↗](https://docs.ruby-lang.org/en/4.0/syntax/control_expressions_rdoc.html) — `unless`, `until`, the modifiers and `begin … end while`, from the reference
+- [Twenty-three Python traps for a Ruby programmer](../../16_Idioms_and_Gotchas/gotchas_for_ruby_programmers_in_python/README.md) — The twenty-three places where a Ruby reflex gives the wrong answer in Python
+- [There is more than one way, and one obvious way](../../16_Idioms_and_Gotchas/the_ruby_way_and_the_pythonic_way/README.md) — Ruby's idioms

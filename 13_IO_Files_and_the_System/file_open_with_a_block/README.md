@@ -144,3 +144,6 @@ end
 - [The BOM is kept unless you ask ↗](https://masiarek.github.io/ruby-text-learning-library/02_Reading_and_Writing/the_bom_is_kept/index.html) — `"r:BOM|UTF-8"`, the one mode string this page does not show
 - [Opening a file ↗](https://masiarek.github.io/python-learning-library/01_Text_and_Bytes/opening_a_file/index.html) — Python's `open`, its encoding default and its newline handling, measured
 - [What ends a line ↗](https://masiarek.github.io/python-learning-library/01_Text_and_Bytes/what_ends_a_line/index.html) — `splitlines`, universal newlines and `newline=""`
+- [Common error messages](../../08_Errors_and_Exceptions/common_error_messages/README.md) — Twenty-nine errors you will meet in your first month of Ruby, each with the code that raises it, the…
+- [`JSON.parse` gives string keys; `YAML.load` is safe](../json_yaml_and_marshal/README.md) — JSON is text for everyone and loses what JSON cannot say
+- [Text lives in the Ruby text library](../text_lives_in_the_text_library/README.md) — a Ruby `String` is bytes plus an encoding label

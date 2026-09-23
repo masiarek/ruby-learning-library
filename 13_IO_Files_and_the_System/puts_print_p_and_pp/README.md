@@ -160,3 +160,5 @@ end
 - [`warn "msg"` goes to stderr, and `-w` reports what it sees](../../08_Errors_and_Exceptions/warnings_and_dash_w/README.md) — `warn` beyond the two rows here
 - [`repr` is not `str` ↗](https://masiarek.github.io/python-learning-library/01_Text_and_Bytes/repr_is_not_str/index.html) — Python's `__str__`/`__repr__` pair, measured
 - [Standard in, standard out, and pipes ↗](https://masiarek.github.io/python-learning-library/01_Text_and_Bytes/stdin_stdout_and_pipes/index.html) — `sys.stdout`, `sys.stderr` and what a pipe changes
+- [`irb` echoes every value; a script does not](../../14_Tooling_Testing_and_Gems/irb_and_the_repl/README.md) — `irb` is a read–eval–print loop: each line's value is printed with `inspect`, `_` holds the last one, an…
+- [There is more than one way, and one obvious way](../../16_Idioms_and_Gotchas/the_ruby_way_and_the_pythonic_way/README.md) — Ruby's idioms

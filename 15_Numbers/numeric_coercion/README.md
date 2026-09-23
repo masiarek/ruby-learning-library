@@ -139,3 +139,4 @@ end
 - [`1 == 1.0` is true, but `{1 => :a}[1.0]` is `nil`](../comparing_int_and_float/README.md) — comparison across the same line: `==` converts, `eql?` does not
 - [Common error messages](../../08_Errors_and_Exceptions/common_error_messages/README.md) — `String can't be coerced into Integer` and `no implicit conversion of Integer into String` in the library's table of errors
 - [`to_i` never fails; `Integer()` does ↗](https://masiarek.github.io/ruby-text-learning-library/07_Parsing_and_Formatting/to_i_never_fails/index.html) — the explicit conversions that fix rows 10 and 11, in the Ruby text library
+- [`7 / 2` is `3`: integer division floors](../integer_division_floors/README.md) — Ruby's `/` on two Integers is Python's `//`

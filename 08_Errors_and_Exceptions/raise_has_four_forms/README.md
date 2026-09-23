@@ -162,3 +162,4 @@ end
 - [A bare `rescue` catches `StandardError`, not everything](../standard_error_is_the_default/README.md) — why the `RuntimeError` of row 1 is rescued by default and a `SystemExit` is not
 - [Backtraces and `caller`](../../14_Tooling_Testing_and_Gems/backtraces_and_caller/README.md) — the third argument of row 7 in more depth
 - [Kernel#raise ↗](https://docs.ruby-lang.org/en/4.0/Kernel.html#method-i-raise) — the reference for every form here, including `cause:`
+- [Common error messages](../common_error_messages/README.md) — Twenty-nine errors you will meet in your first month of Ruby, each with the code that raises it, the…

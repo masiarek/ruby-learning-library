@@ -182,3 +182,6 @@ puts "   Ractor.shareable?(config)  #{Ractor.shareable?(config)}"
 - [`Struct` and `Data`](../../04_Collections/struct_and_data/README.md) — `Data` instances are frozen from birth, the way Python's frozen dataclass wants to be
 - [String literals are chilled, not frozen ↗](https://masiarek.github.io/ruby-text-learning-library/05_Literals/literals_are_chilled/index.html) — the Ruby text library's page on row 5 and row 6: the warning, the flag and the comment, run five ways
 - [FrozenError ↗](https://docs.ruby-lang.org/en/4.0/FrozenError.html) and [Ractor ↗](https://docs.ruby-lang.org/en/4.0/Ractor.html) — the Ruby 4.0 docs for the error and for `make_shareable`
+- [A symbol is a name, not a string](../symbols_are_names/README.md) — A Ruby symbol is an immutable name of which exactly one object exists per spelling
+- [Constants are found lexically, then through ancestors](../../06_Classes_and_Modules/constants_and_lexical_scope/README.md) — A bare constant name is resolved by the lexical nesting the code was written in (`Module.nesting`), then…
+- [Common error messages](../../08_Errors_and_Exceptions/common_error_messages/README.md) — Twenty-nine errors you will meet in your first month of Ruby, each with the code that raises it, the…

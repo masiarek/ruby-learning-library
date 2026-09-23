@@ -138,3 +138,4 @@ first seen, either day: ["ada", "bob", "cy", "dee", "eve", "fay"]
 - [Comparing int and float](../../15_Numbers/comparing_int_and_float/README.md) — why `Set[1, 1.0]` has two elements here and `{1, 1.0}` one in Python.
 - [Rust: `HashSet` ↗](https://masiarek.github.io/rust-learning-library/26_Collections/the_hashset/index.html) — where `insert` returns the `bool` that Ruby's `add?` answers with `nil` or the Set.
 - [Rust: `BTreeMap` and `BTreeSet` ↗](https://masiarek.github.io/rust-learning-library/26_Collections/sorted_collections/index.html) — the sorted set that neither Ruby's nor Python's standard library ships.
+- [Gems are versioned; Bundler pins them](../../14_Tooling_Testing_and_Gems/gems_bundler_and_gemfile/README.md) — A gem is a versioned package that RubyGems can *activate* by name (`gem "x"`), some ship inside Ruby…

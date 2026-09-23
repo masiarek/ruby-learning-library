@@ -130,3 +130,7 @@ puts "5. normalize_chained!(\" mixed \")     -> #{normalize_chained!(e).inspect}
 - [Style and naming](../../16_Idioms_and_Gotchas/style_and_naming/README.md) — the conventions in one place: `?`, `!`, `snake_case`, `CamelCase`
 - [Exit, at_exit and SystemExit](../../08_Errors_and_Exceptions/exit_at_exit_and_system_exit/README.md) — row 7 in full: `exit`, `exit!`, `abort` and the handlers
 - [Python: sorting is not comparing ↗](https://masiarek.github.io/python-learning-library/01_Text_and_Bytes/sorting_is_not_comparing/index.html) — what `sorted` does with a `key=`, on the Python side
+- [Strings are mutable; `<<` keeps the object](../../01_Objects_and_Values/strings_are_mutable/README.md) — A Ruby `String` is a mutable object
+- [Twenty-three Ruby traps for a Python programmer](../../16_Idioms_and_Gotchas/gotchas_for_python_programmers/README.md) — The twenty-three places where a Python reflex gives the wrong answer in Ruby
+- [Twenty-three Python traps for a Ruby programmer](../../16_Idioms_and_Gotchas/gotchas_for_ruby_programmers_in_python/README.md) — The twenty-three places where a Ruby reflex gives the wrong answer in Python
+- [There is more than one way, and one obvious way](../../16_Idioms_and_Gotchas/the_ruby_way_and_the_pythonic_way/README.md) — Ruby's idioms

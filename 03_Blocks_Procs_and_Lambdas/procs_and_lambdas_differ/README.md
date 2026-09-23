@@ -110,3 +110,8 @@ proc { |a, b = 9| }  lambda? false arity  1  call(1) -> [1, 9]
 - [Method objects and unbound methods](../../11_Under_the_Hood/method_objects_and_unbound_methods/README.md) — `Method#to_proc`, the lambda of row 11
 - [Rust: the three closure traits ↗](https://masiarek.github.io/rust-learning-library/23_Closures/three_closure_traits/index.html) — Rust sorts closures by what they capture, not by how they treat arguments
 - [Rust: function pointers ↗](https://masiarek.github.io/rust-learning-library/23_Closures/function_pointers/index.html) — a plain function as a value, the way `method(:puts).to_proc` is
+- [`it` and `_1` name the block's parameter](../it_and_numbered_parameters/README.md) — A block with no `|x|` can read its arguments as `_1`, `_2`, … (Ruby 2.7) or as `it` (Ruby 3.4); they are…
+- [`&:sym` calls `Symbol#to_proc`](../symbol_to_proc/README.md) — `&x` in an argument list calls `x.to_proc` and attaches the result as the block; a symbol's `to_proc` is a…
+- [Assignment destructures, and blocks auto-splat](../../04_Collections/destructuring_assignment/README.md) — `a, b = 1, 2`, `a, *rest = list` and `(a, b), c = pair, 3` read like Python
+- [A DSL is `instance_eval` plus stored blocks](../../10_Metaprogramming/building_a_dsl/README.md) — A Ruby DSL is ordinary method calls made readable by three tricks
+- [Twenty-three Python traps for a Ruby programmer](../../16_Idioms_and_Gotchas/gotchas_for_ruby_programmers_in_python/README.md) — The twenty-three places where a Ruby reflex gives the wrong answer in Python

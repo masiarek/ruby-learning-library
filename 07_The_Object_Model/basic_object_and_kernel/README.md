@@ -197,3 +197,4 @@ rec.equal?(rec)     true   (equal? is BasicObject's own, so it was not recorded)
 - [Ruby docs: `Kernel` ↗](https://docs.ruby-lang.org/en/4.0/Kernel.html) — every "function" Ruby has
 - [Python docs: `builtins` ↗](https://docs.python.org/3/library/builtins.html) — the module that plays `Kernel`'s part
 - [Python docs: `__getattr__` and `__getattribute__` ↗](https://docs.python.org/3/reference/datamodel.html#object.__getattr__) — and the note on special method lookup
+- [Refinements are lexical, not global](../refinements/README.md) — `refine String do … end` inside a module builds a `Refinement`, and `using` that module activates it from…

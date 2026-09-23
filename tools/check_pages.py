@@ -38,7 +38,9 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parent.parent
 CHAPTER = re.compile(r"^\d\d_")
 FENCE = re.compile(r"^\s*(```|~~~)")
-LINK = re.compile(r'(?<!!)\[([^\]]*)\]\(([^)\s]+)(?:\s+"[^"]*")?\)')
+# A label may hold one level of nested brackets -- an H1 such as
+# `{1 => :a}[1.0]` is nil -- so the class allows a bracketed run inside it.
+LINK = re.compile(r'(?<!!)\[((?:[^\[\]]|\[[^\[\]]*\])*)\]\(([^)\s]+)(?:\s+"[^"]*")?\)')
 REQUIRED_SECTIONS = ("## Compared with Python", "## Try it", "## See also")
 EXAMPLE_SUFFIXES = (".rb", ".py", ".sh")
 

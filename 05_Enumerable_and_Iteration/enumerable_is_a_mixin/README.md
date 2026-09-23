@@ -187,3 +187,5 @@ row 10, "each_with_index.select { |x, i| x == i }", fib.each_with_index.select {
 - [Duck typing and `respond_to?`](../../01_Objects_and_Values/duck_typing_and_respond_to/README.md) — `respond_to?(:each)` as the protocol check
 - [Mixins: `include`, `extend`, `prepend`](../../06_Classes_and_Modules/mixins_include_extend_prepend/README.md) — where `Enumerable` lands in `ancestors`, and why
 - [Implementing `Iterator` ↗](https://masiarek.github.io/rust-learning-library/24_Iterators/implementing_iterator/index.html) — Rust's version of the same bargain: write `next`, get seventy-five methods
+- [`inject` makes the block's value the next accumulator](../inject_and_each_with_object/README.md) — `inject` feeds each block result back in as the accumulator, so a block that ends in an assignment hands…
+- [There is more than one way, and one obvious way](../../16_Idioms_and_Gotchas/the_ruby_way_and_the_pythonic_way/README.md) — Ruby's idioms

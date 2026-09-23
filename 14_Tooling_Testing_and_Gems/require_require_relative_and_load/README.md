@@ -135,3 +135,6 @@ end
 - [Common error messages](../../08_Errors_and_Exceptions/common_error_messages/README.md) — `LoadError` among the errors a reader meets in the first week
 - [Constants and lexical scope](../../06_Classes_and_Modules/constants_and_lexical_scope/README.md) — `autoload` hooks into constant lookup, the same lookup this page explains
 - [Python: `pyproject.toml` ↗](https://masiarek.github.io/python-learning-library/02_Projects_and_Environments/pyproject_toml/index.html) — how a Python project declares what its `import` lines will find
+- [`Pathname#/` joins, and `Dir.glob` is sorted](../../13_IO_Files_and_the_System/pathname_dir_and_glob/README.md) — `Pathname` is an object with `/`, `basename`, `extname`, `parent`, `children`, `exist?` and `read`;…
+- [Twenty-three Ruby traps for a Python programmer](../../16_Idioms_and_Gotchas/gotchas_for_python_programmers/README.md) — The twenty-three places where a Python reflex gives the wrong answer in Ruby
+- [There is more than one way, and one obvious way](../../16_Idioms_and_Gotchas/the_ruby_way_and_the_pythonic_way/README.md) — Ruby's idioms

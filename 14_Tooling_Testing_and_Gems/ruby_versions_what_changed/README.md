@@ -126,3 +126,5 @@ imaginary: def without end   rejected (SyntaxError)
 - [Strings are mutable](../../01_Objects_and_Values/strings_are_mutable/README.md) — chilled literals, the 3.4 change of row 13
 - [Gems, Bundler and the Gemfile](../gems_bundler_and_gemfile/README.md) — how a library leaves the default set (3.3, 3.4) without leaving Ruby
 - [Ruby text: literals are chilled ↗](https://masiarek.github.io/ruby-text-learning-library/05_Literals/literals_are_chilled/index.html) — the warning row 13 mentions, captured
+- [Arguments: positional, keyword, splat and block](../../02_Methods_and_Arguments/arguments_positional_keyword_and_splat/README.md) — A Ruby parameter list has eight kinds of slot
+- [YJIT and ZJIT are switches, not defaults](../../11_Under_the_Hood/jits_and_the_interpreter/README.md) — MRI (`RUBY_ENGINE == "ruby"`) always runs YARV bytecode through its interpreter; YJIT (since 3.1) and ZJIT…

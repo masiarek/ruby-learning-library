@@ -130,3 +130,5 @@ v.public_send(:audit_log): NoMethodError: private method 'audit_log' called for 
 - [`send` and `public_send`](../../10_Metaprogramming/send_and_public_send/README.md) — row 6 as a whole lesson: dispatching by a name built at runtime
 - [`new`, `allocate` and `initialize`](../../07_The_Object_Model/new_allocate_and_initialize/README.md) — why `initialize` is private and what `private_class_method :new` hides
 - [Modules and visibility ↗](https://masiarek.github.io/rust-learning-library/27_Modules/modules_and_visibility/index.html) — a third design: Rust's `pub` is decided per module, checked at compile time
+- [Common error messages](../../08_Errors_and_Exceptions/common_error_messages/README.md) — Twenty-nine errors you will meet in your first month of Ruby, each with the code that raises it, the…
+- [Twenty-three Ruby traps for a Python programmer](../../16_Idioms_and_Gotchas/gotchas_for_python_programmers/README.md) — The twenty-three places where a Python reflex gives the wrong answer in Ruby

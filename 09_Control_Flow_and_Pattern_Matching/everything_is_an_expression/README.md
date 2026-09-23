@@ -133,3 +133,4 @@ each with break n -> 9
 - [Rust: `if` is an expression ↗](https://masiarek.github.io/rust-learning-library/25_Control_Flow/if_expressions/index.html) — Rust makes the same choice as Ruby, with a type check on the branches
 - [Rust: `match` expressions ↗](https://masiarek.github.io/rust-learning-library/25_Control_Flow/match_expressions/index.html) — the Rust form of a `case` with a value
 - [Ruby docs: control expressions ↗](https://docs.ruby-lang.org/en/4.0/syntax/control_expressions_rdoc.html) — the reference for `if`, `case`, `while` and friends
+- [`for` loops do not make a scope](../for_loops_do_not_scope/README.md) — `for` and `while` are syntax and open no scope

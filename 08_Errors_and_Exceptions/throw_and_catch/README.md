@@ -157,3 +157,4 @@ puts "   -> #{find_pair(matrix, 42).inspect}"
 - [`rescue`, `else` and `ensure` run in a fixed order](../rescue_ensure_else_and_retry/README.md) — the `ensure` that row 4 shows running for a `throw`
 - [A bare `rescue` catches `StandardError`, not everything](../standard_error_is_the_default/README.md) — why `rescue => e` catches an `UncaughtThrowError`
 - [Kernel#catch ↗](https://docs.ruby-lang.org/en/4.0/Kernel.html#method-i-catch) — the reference, with `throw` beside it
+- [Common error messages](../common_error_messages/README.md) — Twenty-nine errors you will meet in your first month of Ruby, each with the code that raises it, the…

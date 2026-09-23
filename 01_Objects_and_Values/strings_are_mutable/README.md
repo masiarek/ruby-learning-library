@@ -163,3 +163,6 @@ puts "   censor! a second time     #{censor!(original, "secret").inspect}"
 - [A string is bytes plus a label ↗](https://masiarek.github.io/ruby-text-learning-library/01_Strings_Carry_an_Encoding/bytes_plus_a_label/index.html) — the Ruby text library on what a `String` holds
 - [String literals are chilled, not frozen ↗](https://masiarek.github.io/ruby-text-learning-library/05_Literals/literals_are_chilled/index.html) — row 4 in full
 - [String ↗](https://docs.ruby-lang.org/en/4.0/String.html) — the Ruby 4.0 docs, with every method's bang twin
+- [Text lives in the Ruby text library](../../13_IO_Files_and_the_System/text_lives_in_the_text_library/README.md) — a Ruby `String` is bytes plus an encoding label
+- [Twenty-three Ruby traps for a Python programmer](../../16_Idioms_and_Gotchas/gotchas_for_python_programmers/README.md) — The twenty-three places where a Python reflex gives the wrong answer in Ruby
+- [Twenty-three Python traps for a Ruby programmer](../../16_Idioms_and_Gotchas/gotchas_for_ruby_programmers_in_python/README.md) — The twenty-three places where a Ruby reflex gives the wrong answer in Python

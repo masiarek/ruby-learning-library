@@ -126,3 +126,5 @@ puts "6. send(:to_leagues)                  -> #{len.send(:to_leagues)}"
 - [Classes are open](../../06_Classes_and_Modules/classes_are_open/README.md) — `define_method` on a class that already exists
 - [Singleton classes](../../07_The_Object_Model/singleton_classes/README.md) — `define_singleton_method`, the one-object version
 - [`for` loops do not scope](../../09_Control_Flow_and_Pattern_Matching/for_loops_do_not_scope/README.md) — the reason row 1 fails in both languages
+- [Instance variables are private](../../06_Classes_and_Modules/instance_variables_are_private/README.md) — An `@variable` belongs to one object and can be read or written only by that object's own methods
+- [`method_missing` needs `respond_to_missing?`](../method_missing_and_respond_to_missing/README.md) — `method_missing(name, *args)` runs only after normal lookup has failed, and it must call `super` for names…

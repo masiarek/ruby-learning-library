@@ -221,3 +221,4 @@ dup writable?        yes
 - [String literals are chilled, not frozen ↗](https://masiarek.github.io/ruby-text-learning-library/05_Literals/literals_are_chilled/index.html) — why `"lit".frozen?` is `false` in row 7
 - [Ruby docs: `Object#clone` and `Object#dup` ↗](https://docs.ruby-lang.org/en/4.0/Object.html#method-i-clone) — the reference, with the `freeze:` keyword
 - [Python docs: `copy` ↗](https://docs.python.org/3/library/copy.html) — shallow, deep, and the two hooks
+- [A Hash key needs `eql?` and `hash`, not `==`](../eql_and_hash_for_hash_keys/README.md) — A `Hash` finds a key by calling `hash` and then `eql?`

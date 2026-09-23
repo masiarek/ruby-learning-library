@@ -121,3 +121,6 @@ unknown event "boom"
 - [Destructuring assignment](../../04_Collections/destructuring_assignment/README.md) — `a, *rest = arr`, the assignment-side cousin of an array pattern
 - [Rust: destructuring structs ↗](https://masiarek.github.io/rust-learning-library/30_Pattern_Matching/destructuring_structs/index.html) — the same idea with a compiler that checks every field
 - [Ruby docs: pattern matching ↗](https://docs.ruby-lang.org/en/4.0/syntax/pattern_matching_rdoc.html) — the reference for every pattern form
+- [`Time` is an instant, `Date` is a calendar day](../../13_IO_Files_and_the_System/time_and_date/README.md) — a `Time` is a point on the timeline with an offset attached
+- [What changed, 1.9 to 4.0](../../14_Tooling_Testing_and_Gems/ruby_versions_what_changed/README.md) — Ruby's releases each added a few things you will meet in old code and new
+- [There is more than one way, and one obvious way](../../16_Idioms_and_Gotchas/the_ruby_way_and_the_pythonic_way/README.md) — Ruby's idioms

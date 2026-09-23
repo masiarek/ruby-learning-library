@@ -118,3 +118,4 @@ users.each { |u| puts "   #{u[:name]}: #{(u[:address] || {}).fetch(:city, "(none
 - [Rust: Nullable pointers ↗](https://masiarek.github.io/rust-learning-library/17_Option_and_Result/nullable_pointers/index.html) — a language that makes "may be absent" a type rather than a value
 - [Rust: The `?` operator ↗](https://masiarek.github.io/rust-learning-library/17_Option_and_Result/the_question_mark_operator/index.html) — a similar-looking operator that returns early from the function instead of skipping one call
 - [PEP 505: None-aware operators ↗](https://peps.python.org/pep-0505/) — the deferred Python proposal for `?.`
+- [`gets` returns nil at EOF, and reads `ARGV`'s files first](../../13_IO_Files_and_the_System/stdin_gets_and_argf/README.md) — `gets` returns the next line with its newline and `nil` at end of input

@@ -112,3 +112,6 @@ puts "5. 100! % 1_000_007 is #{f % 1_000_007}, and (1..100).inject(1) { |acc, i|
 - [`bin()` is not the bits ↗](https://masiarek.github.io/python-learning-library/01_Text_and_Bytes/bin_is_not_the_bits/index.html) — the Python library on `bin(-255)` and the missing width
 - [Big integers: `BigInt` and Python's `int` ↗](https://masiarek.github.io/rust-learning-library/19_Numbers/other_number_types/big_integers/index.html) — the Rust library, where an integer has a fixed width and a big one is a crate
 - [Machine numbers ↗](https://masiarek.github.io/math-learning-library/01_Precision/machine_numbers/index.html) — the math library on why the doubles run out of integers at 2^53
+- [Two dots include the end, three dots exclude it](../../04_Collections/ranges_two_dots_and_three/README.md) — `1..5` is five numbers and `1...5` is four; a Range can be endless (`1..`), beginless (`..5`), made of…
+- [`1 == 1.0` is true, but `{1 => :a}[1.0]` is `nil`](../comparing_int_and_float/README.md) — Ruby's `==` compares an Integer with a Float by value
+- [`Random.new(42)` gives the same numbers every run](../random_with_a_seed/README.md) — A seeded `Random` is a function of its seed

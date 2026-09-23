@@ -105,3 +105,4 @@ puts "3. from the top:      #{who_called_me}"
 - [Custom exception classes](../../08_Errors_and_Exceptions/custom_exception_classes/README.md) — `detailed_message` and `full_message` on a class of your own
 - [Introspection](../../10_Metaprogramming/introspection/README.md) — `source_location`, the other thing a method knows about its own file
 - [A Minitest test is a plain class](../minitest_and_unittest/README.md) — where the `[FILE:LINE]` of a failing assertion comes from
+- [`raise` has four forms](../../08_Errors_and_Exceptions/raise_has_four_forms/README.md) — `raise "msg"` is a `RuntimeError`, `raise Klass` an instance whose message is the class name, `raise…

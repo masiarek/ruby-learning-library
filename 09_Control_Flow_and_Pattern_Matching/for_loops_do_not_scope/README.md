@@ -119,3 +119,6 @@ lambdas from each -> [1, 2, 3]
 - [Gotchas for Python programmers](../../16_Idioms_and_Gotchas/gotchas_for_python_programmers/README.md) — "a `for` loop leaks" in the hub of traps
 - [Rust: `for` loops ↗](https://masiarek.github.io/rust-learning-library/25_Control_Flow/for_loops/index.html) — a `for` whose variable is scoped to the loop body
 - [Ruby docs: `for` ↗](https://docs.ruby-lang.org/en/4.0/syntax/control_expressions_rdoc.html#label-for+Loop) — the reference, including that `for` does not create a new scope
+- [`define_method` turns a block into a method](../../10_Metaprogramming/define_method/README.md) — `define_method(:name) { ... }` installs a method whose body is a closure
+- [Twenty-three Python traps for a Ruby programmer](../../16_Idioms_and_Gotchas/gotchas_for_ruby_programmers_in_python/README.md) — The twenty-three places where a Ruby reflex gives the wrong answer in Python
+- [There is more than one way, and one obvious way](../../16_Idioms_and_Gotchas/the_ruby_way_and_the_pythonic_way/README.md) — Ruby's idioms

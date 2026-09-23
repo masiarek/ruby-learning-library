@@ -229,3 +229,6 @@ with -w: stdout "6", status 0
 - [`exit` raises `SystemExit`](../exit_at_exit_and_system_exit/README.md) — the other lesson here that reads children's stderr and exit status
 - [String literals are chilled, not frozen ↗](https://masiarek.github.io/ruby-text-learning-library/05_Literals/literals_are_chilled/index.html) — the Ruby text library on the warning in row 8
 - [Warning ↗](https://docs.ruby-lang.org/en/4.0/Warning.html) — the reference: `Warning[]`, `Warning.warn`, `categories`
+- [Parentheses are optional, but the space is not](../../02_Methods_and_Arguments/parentheses_are_optional/README.md) — Ruby lets you leave the parentheses off a call and off a `def`, so a bare name *is* a call
+- [Constants are found lexically, then through ancestors](../../06_Classes_and_Modules/constants_and_lexical_scope/README.md) — A bare constant name is resolved by the lexical nesting the code was written in (`Module.nesting`), then…
+- [`puts` adds a newline, `print` does not, `p` shows `inspect`](../../13_IO_Files_and_the_System/puts_print_p_and_pp/README.md) — `puts` writes `to_s` plus a newline it does not double, flattening arrays, printing `nil` as an empty line…

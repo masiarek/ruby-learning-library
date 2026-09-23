@@ -131,3 +131,4 @@ end
 - [Integers are unbounded](../../15_Numbers/integers_are_unbounded/README.md) — `(1..10**12).sum` is an Integer with no size limit.
 - [`succ` counts in letters ↗](https://masiarek.github.io/ruby-text-learning-library/06_Perl_Heritage/succ_counts_in_letters/index.html) — the Ruby text library on the `succ` that String ranges step with.
 - [Slicing is not indexing ↗](https://masiarek.github.io/python-learning-library/01_Text_and_Bytes/slicing_is_not_indexing/index.html) — the Python library on the slice contract.
+- [Twenty-three Python traps for a Ruby programmer](../../16_Idioms_and_Gotchas/gotchas_for_ruby_programmers_in_python/README.md) — The twenty-three places where a Ruby reflex gives the wrong answer in Python

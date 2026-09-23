@@ -254,3 +254,4 @@ sorted          -> [#<Version 1.2.3>, #<Version 1.2.10>, #<Version 1.10.0>]
 - [Ruby docs: `Kernel#p` ↗](https://docs.ruby-lang.org/en/4.0/Kernel.html#method-i-p) — and `puts`, `print` and `pp` beside it
 - [Ruby docs: `PP` ↗](https://docs.ruby-lang.org/en/4.0/PP.html) — pretty printing, `pretty_inspect` and the width argument
 - [Python docs: `__repr__` and `__str__` ↗](https://docs.python.org/3/reference/datamodel.html#object.__repr__) — the data model's account, including the fall-back
+- [Instance variables are private](../../06_Classes_and_Modules/instance_variables_are_private/README.md) — An `@variable` belongs to one object and can be read or written only by that object's own methods

@@ -105,3 +105,4 @@ pairs with it, which is the whole pair: [3, 7]
 - [Destructuring assignment](../../04_Collections/destructuring_assignment/README.md) — the splat of row 4 in its general form
 - [Ruby versions: what changed](../../14_Tooling_Testing_and_Gems/ruby_versions_what_changed/README.md) — `_1` in 2.7 and `it` in 3.4 on the timeline
 - [Rust: what a closure is ↗](https://masiarek.github.io/rust-learning-library/23_Closures/what_a_closure_is/index.html) — a closure that always names its `|x|`
+- [Ruby shows you its bytecode and its syntax tree](../../11_Under_the_Hood/the_bytecode_you_can_see/README.md) — `RubyVM::InstructionSequence.compile(src).disasm` lists the YARV instructions the interpreter will execute…

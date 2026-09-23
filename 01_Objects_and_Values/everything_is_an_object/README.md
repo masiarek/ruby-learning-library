@@ -149,3 +149,5 @@ value    class     ancestors up to Object
 - [`BasicObject` and `Kernel`](../../07_The_Object_Model/basic_object_and_kernel/README.md) — the two ends of row 5's chain, measured
 - [Python crosswalk ↗](https://masiarek.github.io/python-learning-library/CROSSWALK.html) — the Python library's one-table map of its ideas
 - [Object ↗](https://docs.ruby-lang.org/en/4.0/Object.html) and [BasicObject ↗](https://docs.ruby-lang.org/en/4.0/BasicObject.html) — the Ruby 4.0 docs for the two classes every object inherits from
+- [`send` reaches private methods; `public_send` does not](../../10_Metaprogramming/send_and_public_send/README.md) — `obj.send(:name, *args)` calls a method by name and ignores visibility, `public_send` honours it, and…
+- [Twenty-three Python traps for a Ruby programmer](../../16_Idioms_and_Gotchas/gotchas_for_ruby_programmers_in_python/README.md) — The twenty-three places where a Ruby reflex gives the wrong answer in Python

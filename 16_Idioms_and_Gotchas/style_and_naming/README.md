@@ -147,3 +147,6 @@ after.rb under ruby -w:
 - [Resources](../../17_Resources/README.md) — the style guide, RuboCop and PEP 8, with links
 - [The Ruby Style Guide ↗](https://rubystyle.guide/) — the conventions this page measured a corner of
 - [PEP 8 ↗](https://peps.python.org/pep-0008/) — the Python conventions in the twin's rows 5–8
+- [Twenty-three Ruby traps for a Python programmer](../gotchas_for_python_programmers/README.md) — The twenty-three places where a Python reflex gives the wrong answer in Ruby
+- [Twenty-three Python traps for a Ruby programmer](../gotchas_for_ruby_programmers_in_python/README.md) — The twenty-three places where a Ruby reflex gives the wrong answer in Python
+- [`tap` returns the receiver, `then` returns the block's value](../tap_then_and_chaining/README.md) — `x.tap { … }` yields `x` to the block and returns `x` whatever the block returned, so a debugging `puts`…

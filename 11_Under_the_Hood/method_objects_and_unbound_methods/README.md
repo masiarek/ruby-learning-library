@@ -144,3 +144,4 @@ push   from Array    required=0 optional=0  unbound
 - [Function pointers ↗](https://masiarek.github.io/rust-learning-library/23_Closures/function_pointers/index.html) — the Rust library on a function as a value with no environment; a `Method` is the opposite, code plus the receiver it was found on
 - [`Method` ↗](https://docs.ruby-lang.org/en/4.0/Method.html) and [`UnboundMethod` ↗](https://docs.ruby-lang.org/en/4.0/UnboundMethod.html) — the reference for `arity`, `parameters`, `bind_call` and `super_method`
 - [`inspect` — signatures and bound methods ↗](https://docs.python.org/3/library/inspect.html) — Python's `signature`, `ismethod` and `isfunction`
+- [Procs and lambdas differ in arity and `return`](../../03_Blocks_Procs_and_Lambdas/procs_and_lambdas_differ/README.md) — Every proc and lambda is a `Proc`, but a lambda checks its argument count and `return`s from itself, while…

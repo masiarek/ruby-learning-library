@@ -160,3 +160,5 @@ passed: true
 - [Resources](../../17_Resources/README.md) — Minitest, test-unit, RSpec and pytest documentation
 - [Rust: a first test, step by step ↗](https://masiarek.github.io/rust-learning-library/28_Testing/a_first_test_step_by_step/index.html) — the same three-line test in a language where the test runner is the build tool
 - [Rust: a test double by hand ↗](https://masiarek.github.io/rust-learning-library/28_Testing/a_test_double_by_hand/index.html) — the singleton-method double of row 3, done with a trait
+- [Refinements are lexical, not global](../../07_The_Object_Model/refinements/README.md) — `refine String do … end` inside a module builds a `Refinement`, and `using` that module activates it from…
+- [Ruby has no docstrings](../no_docstrings/README.md) — A Ruby method carries no documentation at run time

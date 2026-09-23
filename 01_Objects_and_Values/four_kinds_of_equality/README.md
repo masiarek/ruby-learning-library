@@ -161,3 +161,8 @@ end
 - [`eql?` and `hash` for hash keys](../../07_The_Object_Model/eql_and_hash_for_hash_keys/README.md) — what row 6's `Point` needs before it can be a key
 - [Comparing `int` and `float` in Python ↗](https://masiarek.github.io/python-learning-library/03_Numbers/comparing_int_and_float/index.html) — the Python side of row 3
 - [Object#=== ↗](https://docs.ruby-lang.org/en/4.0/Object.html#method-i-3D-3D-3D) — the docs entry that names the four methods
+- [Duck typing asks `respond_to?`, not `class`](../duck_typing_and_respond_to/README.md) — Ruby code asks an object what it can do
+- [Procs and lambdas differ in arity and `return`](../../03_Blocks_Procs_and_Lambdas/procs_and_lambdas_differ/README.md) — Every proc and lambda is a `Proc`, but a lambda checks its argument count and `return`s from itself, while…
+- [Define `<=>` and Comparable gives you the rest](../../04_Collections/comparable_and_spaceship/README.md) — `<=>` answers `-1`, `0`, `1` or `nil` ("these do not compare"); `include Comparable` turns that one method…
+- [Twenty-three Ruby traps for a Python programmer](../../16_Idioms_and_Gotchas/gotchas_for_python_programmers/README.md) — The twenty-three places where a Python reflex gives the wrong answer in Ruby
+- [Twenty-three Python traps for a Ruby programmer](../../16_Idioms_and_Gotchas/gotchas_for_ruby_programmers_in_python/README.md) — The twenty-three places where a Ruby reflex gives the wrong answer in Python

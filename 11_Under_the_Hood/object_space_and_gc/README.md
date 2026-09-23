@@ -125,3 +125,4 @@ puts "5. [[1], [2], [3]] allocates at least 4 objects:        #{arrays >= 4}"
 - [Assignment drops the old value ↗](https://masiarek.github.io/rust-learning-library/18_Ownership/assignment_is_a_drop/index.html) — deterministic destruction on a known line, which Python's refcount gives and Ruby's tracing collector does not
 - [`GC` ↗](https://docs.ruby-lang.org/en/4.0/GC.html), [`ObjectSpace` ↗](https://docs.ruby-lang.org/en/4.0/ObjectSpace.html) and [`WeakRef` ↗](https://docs.ruby-lang.org/en/4.0/WeakRef.html) — the reference for `stat`, `each_object`, `define_finalizer` and `weakref_alive?`
 - [`gc` ↗](https://docs.python.org/3/library/gc.html) and [`weakref` ↗](https://docs.python.org/3/library/weakref.html) — the cycle collector and weak references in Python
+- [YJIT and ZJIT are switches, not defaults](../jits_and_the_interpreter/README.md) — MRI (`RUBY_ENGINE == "ruby"`) always runs YARV bytecode through its interpreter; YJIT (since 3.1) and ZJIT…

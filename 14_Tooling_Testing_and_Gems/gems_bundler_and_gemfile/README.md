@@ -132,3 +132,5 @@ puts "4. newest non-prerelease: #{versions.map { Gem::Version.new(it) }.reject(&
 - [Python: `pyproject.toml` ↗](https://masiarek.github.io/python-learning-library/02_Projects_and_Environments/pyproject_toml/index.html) — the one file that is Python's Gemfile and gemspec together
 - [Rust: `Cargo.lock` ↗](https://masiarek.github.io/rust-learning-library/05_Tooling/cargo_lock/index.html) — the same lockfile idea, measured in a third language
 - [Rust: Cargo dependencies ↗](https://masiarek.github.io/rust-learning-library/05_Tooling/cargo_dependencies/index.html) — caret and tilde requirements next to `~>`
+- [`JSON.parse` gives string keys; `YAML.load` is safe](../../13_IO_Files_and_the_System/json_yaml_and_marshal/README.md) — JSON is text for everyone and loses what JSON cannot say
+- [A Minitest test is a plain class](../minitest_and_unittest/README.md) — Minitest, a bundled gem, runs every `test_*` method of a `Minitest::Test` subclass in a seeded random…

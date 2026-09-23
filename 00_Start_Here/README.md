@@ -49,7 +49,7 @@ More than either community says. Both are dynamically typed, garbage-collected, 
 **Python will surprise a Ruby programmer with:**
 
 - `def f(a=[])` shares one list across every call — [Default arguments are evaluated on each call](../02_Methods_and_Arguments/default_arguments_are_evaluated_each_call/README.md).
-- `[lambda: i for i in range(3)]` all return `2` — [Closures capture variables](../03_Blocks_Procs_and_Lambdas/closures_capture_variables/README.md).
+- Every lambda made inside a loop returns the loop's *last* value — [Closures capture variables](../03_Blocks_Procs_and_Lambdas/closures_capture_variables/README.md).
 - `round(2.5)` is `2` — [Floats and rounding](../15_Numbers/floats_and_rounding/README.md).
 - `list.sort()` returns `None` — [`!` and `?` methods](../02_Methods_and_Arguments/bang_and_question_methods/README.md).
 - A `match` with no matching `case` does nothing at all — [`NoMatchingPatternError`](../09_Control_Flow_and_Pattern_Matching/no_matching_pattern_error/README.md).

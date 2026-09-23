@@ -167,3 +167,6 @@ end
 - [`||=` and nil guards](../../16_Idioms_and_Gotchas/or_equals_and_nil_guards/README.md) — the idiom built on row 3, and the `false` trap inside it
 - [Gotchas for Python programmers](../../16_Idioms_and_Gotchas/gotchas_for_python_programmers/README.md) — `0` and `""` being truthy is the first row of that list
 - [NilClass ↗](https://docs.ruby-lang.org/en/4.0/NilClass.html) — every method `nil` answers
+- [`&.` skips the call when the receiver is nil](../../02_Methods_and_Arguments/safe_navigation/README.md) — `receiver&.method(args)` returns `nil` without calling anything
+- [Twenty-three Python traps for a Ruby programmer](../../16_Idioms_and_Gotchas/gotchas_for_ruby_programmers_in_python/README.md) — The twenty-three places where a Ruby reflex gives the wrong answer in Python
+- [There is more than one way, and one obvious way](../../16_Idioms_and_Gotchas/the_ruby_way_and_the_pythonic_way/README.md) — Ruby's idioms

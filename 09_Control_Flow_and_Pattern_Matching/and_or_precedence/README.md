@@ -140,3 +140,4 @@ defined?(@fixed) guard, called 3 times -> compute ran 1 time(s)
 - [Operators are methods](../../02_Methods_and_Arguments/operators_are_methods/README.md) — `!` is a method and `&&`/`||`/`and`/`or` are not, from the other side
 - [Gotchas for Python programmers](../../16_Idioms_and_Gotchas/gotchas_for_python_programmers/README.md) — `x = a or b` and `1 < x < 3` in the hub of traps
 - [Ruby docs: precedence ↗](https://docs.ruby-lang.org/en/4.0/syntax/precedence_rdoc.html) — the full table, `!` at the top and `and`/`or` at the bottom
+- [Twenty-three Python traps for a Ruby programmer](../../16_Idioms_and_Gotchas/gotchas_for_ruby_programmers_in_python/README.md) — The twenty-three places where a Ruby reflex gives the wrong answer in Python

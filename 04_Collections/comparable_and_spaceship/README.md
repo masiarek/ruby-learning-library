@@ -151,3 +151,6 @@ v1.10 == v1.10.0? false  ([1, 10] <=> [1, 10, 0] is -1)
 - [Comparing int and float](../../15_Numbers/comparing_int_and_float/README.md) — `1 <=> 1.0` is `0` while `1.eql?(1.0)` is false.
 - [Sorting is not comparing ↗](https://masiarek.github.io/python-learning-library/01_Text_and_Bytes/sorting_is_not_comparing/index.html) — the Python library on code-point order against a human alphabet.
 - [Rust: the comparison traits ↗](https://masiarek.github.io/rust-learning-library/12_Traits/comparison_traits/index.html) — `PartialOrd` is the trait whose `partial_cmp` answers `None` the way `<=>` answers `nil`.
+- [Mixins: `include`, `extend`, `prepend`](../../06_Classes_and_Modules/mixins_include_extend_prepend/README.md) — `include` inserts a module into the class's ancestor chain *behind* the class, `prepend` inserts it *in…
+- [Common error messages](../../08_Errors_and_Exceptions/common_error_messages/README.md) — Twenty-nine errors you will meet in your first month of Ruby, each with the code that raises it, the…
+- [There is more than one way, and one obvious way](../../16_Idioms_and_Gotchas/the_ruby_way_and_the_pythonic_way/README.md) — Ruby's idioms

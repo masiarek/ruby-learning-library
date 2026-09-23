@@ -128,3 +128,4 @@ puts "   and returns #{v.inspect}, because the value is now the last expression"
 - [Multiple return values](../../16_Idioms_and_Gotchas/multiple_return_values/README.md) — what `return a, b` builds and how to take it apart
 - [Destructuring assignment](../../04_Collections/destructuring_assignment/README.md) — `lo, hi = bounds(a)` on the caller's side
 - [Ruby docs: Methods ↗](https://docs.ruby-lang.org/en/4.0/syntax/methods_rdoc.html) — the reference for `return`, `ensure` and the value of a method
+- [Twenty-three Ruby traps for a Python programmer](../../16_Idioms_and_Gotchas/gotchas_for_python_programmers/README.md) — The twenty-three places where a Python reflex gives the wrong answer in Ruby

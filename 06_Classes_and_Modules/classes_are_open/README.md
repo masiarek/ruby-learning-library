@@ -117,3 +117,4 @@ after remove_method:          NoMethodError: undefined method 'minutes' for an i
 - [`define_method`](../../10_Metaprogramming/define_method/README.md) — reopening a class from inside a loop, one generated method at a time
 - [Warnings and `-w`](../../08_Errors_and_Exceptions/warnings_and_dash_w/README.md) — the `method redefined` warning of row 5 and the other things `-w` reports
 - [Extension traits ↗](https://masiarek.github.io/rust-learning-library/12_Traits/extension_traits/index.html) — how Rust adds a method to a type it does not own, without opening it
+- [Ruby shows you its bytecode and its syntax tree](../../11_Under_the_Hood/the_bytecode_you_can_see/README.md) — `RubyVM::InstructionSequence.compile(src).disasm` lists the YARV instructions the interpreter will execute…

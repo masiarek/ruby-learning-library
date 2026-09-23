@@ -124,3 +124,5 @@ puts "5. c.count     -> #{c.count}"
 - [Singleton classes](../../07_The_Object_Model/singleton_classes/README.md) — what `def self.species` really defines, and `class << self`
 - [Instance variables are private](../../06_Classes_and_Modules/instance_variables_are_private/README.md) — `@count` versus the reader and setter `attr_accessor` writes
 - [Ruby docs: Calling methods ↗](https://docs.ruby-lang.org/en/4.0/syntax/calling_methods_rdoc.html) — receivers, and when one may be omitted
+- [`instance_eval` moves `self`, `class_eval` moves `def`](../../10_Metaprogramming/instance_eval_and_class_eval/README.md) — Both evals run a block with `self` set to the receiver; the difference is where a `def` inside lands
+- [Twenty-three Python traps for a Ruby programmer](../../16_Idioms_and_Gotchas/gotchas_for_ruby_programmers_in_python/README.md) — The twenty-three places where a Ruby reflex gives the wrong answer in Python

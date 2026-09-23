@@ -151,3 +151,4 @@ ascii       UTF-8      chars=4 bytes=4 valid=true  ascii_only=true
 - [Encodings library ↗](https://masiarek.github.io/encodings-learning-library/) — UTF-8 itself, byte by byte
 - [`str` is not `bytes` ↗](https://masiarek.github.io/python-learning-library/01_Text_and_Bytes/str_is_not_bytes/index.html) — Python's two types, measured
 - [Encode and decode ↗](https://masiarek.github.io/python-learning-library/01_Text_and_Bytes/encode_and_decode/index.html) — the boundary where Python's failures happen
+- [Twenty-three Ruby traps for a Python programmer](../../16_Idioms_and_Gotchas/gotchas_for_python_programmers/README.md) — The twenty-three places where a Python reflex gives the wrong answer in Ruby

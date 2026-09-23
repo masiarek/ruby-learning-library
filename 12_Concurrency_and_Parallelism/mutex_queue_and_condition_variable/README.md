@@ -130,3 +130,4 @@ closed and drained:     true
 - [Blocks are not objects](../../03_Blocks_Procs_and_Lambdas/blocks_are_not_objects/README.md) — `synchronize` and `Thread.new` both take a block and return its value
 - [Is `total += n` safe on two threads? ↗](https://masiarek.github.io/concurrency-learning-library/02_Shared_State/the_lost_update/index.html) — the lost update, measured in six languages
 - [Keeping every update ↗](https://masiarek.github.io/concurrency-learning-library/02_Shared_State/keeping_every_update/index.html) — a lock, an atomic or a single owner, compared
+- [Class variables are shared with subclasses](../../06_Classes_and_Modules/class_variables_are_shared/README.md) — `@@count` is one variable, owned by the class that first assigns it and seen by every subclass and every…

@@ -112,3 +112,4 @@ a                      b                       a == b same_key?  keys in {a => 1
 - [`0.1 + 0.2 != 0.3`, and `2.5.round` is `3`](../floats_and_rounding/README.md) — why `0.1` is not one tenth, and where `2 ** 53` comes from
 - [`1 + 1.5` works because Integer asks Float to `coerce`](../numeric_coercion/README.md) — how arithmetic, unlike `==`, does convert one operand to the other's class
 - [Comparing an `int` with a `float` ↗](https://masiarek.github.io/python-learning-library/03_Numbers/comparing_int_and_float/index.html) — the Python library's twin: the exact comparison, and the cast Rust and C make instead
+- [Define `<=>` and Comparable gives you the rest](../../04_Collections/comparable_and_spaceship/README.md) — `<=>` answers `-1`, `0`, `1` or `nil` ("these do not compare"); `include Comparable` turns that one method…

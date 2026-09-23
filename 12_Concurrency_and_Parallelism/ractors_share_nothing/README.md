@@ -127,3 +127,5 @@ every ractor's value: [:done]
 - [Ruby versions: what changed](../../14_Tooling_Testing_and_Gems/ruby_versions_what_changed/README.md) — Ractors in 3.0, ports and `value` in 4.0
 - [Splitting a sum across workers ↗](https://masiarek.github.io/concurrency-learning-library/07_Parallelism/splitting_a_sum_across_workers/index.html) — the Concurrency library's measured parallel sum in six languages
 - [Multiprocessing ↗](https://masiarek.github.io/concurrency-learning-library/11_Concepts/parallelism/multiprocessing/index.html) — the concept page for processes as the unit of parallelism
+- [`dup` is a fresh copy, `clone` is a faithful one](../../07_The_Object_Model/dup_clone_and_frozen_state/README.md) — `dup` and `clone` both make a new object with the same instance variables, and both are shallow
+- [Mutex guards, Queue hands over, ConditionVariable waits](../mutex_queue_and_condition_variable/README.md) — `Mutex#synchronize` makes `count += 1` exact across ten threads, a `Queue` moves work from one thread to…

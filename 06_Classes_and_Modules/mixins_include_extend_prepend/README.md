@@ -118,3 +118,5 @@ included: Timestamped#save is reached only through super, which IncludedRecord#s
 - [Comparable and the spaceship](../../04_Collections/comparable_and_spaceship/README.md) — row 8 as a whole lesson
 - [What a trait is ↗](https://masiarek.github.io/rust-learning-library/12_Traits/what_a_trait_is/index.html) — Rust's traits are the third design: a mixin that is also a type check
 - [A trait must be in scope ↗](https://masiarek.github.io/rust-learning-library/12_Traits/trait_in_scope/index.html) — a Rust trait's methods appear only where the trait is imported, closer to a refinement than to `include`
+- [A module is a namespace, and cannot be instantiated](../modules_as_namespaces/README.md) — `module Shop` is a named box for classes, constants and methods
+- [There is more than one way, and one obvious way](../../16_Idioms_and_Gotchas/the_ruby_way_and_the_pythonic_way/README.md) — Ruby's idioms

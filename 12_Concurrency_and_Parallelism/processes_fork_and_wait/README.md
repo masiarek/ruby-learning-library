@@ -103,3 +103,4 @@ waiting again raises: Errno::ECHILD
 - [exit, at_exit and SystemExit](../../08_Errors_and_Exceptions/exit_at_exit_and_system_exit/README.md) — what `exit 3` does inside the child
 - [The signals you cannot catch ↗](https://masiarek.github.io/linux-learning-library/11_Signals/signals_you_cannot_catch/index.html) — `TERM` against `KILL`, in the Linux library
 - [Processes ↗](https://masiarek.github.io/concurrency-learning-library/08_Processes/index.html) — fork, exit statuses, pipes and zombies across six languages in the Concurrency library
+- [`Timeout.timeout` interrupts a thread from outside](../timeouts_and_killing_threads/README.md) — `Timeout.timeout(0.2) { sleep 5 }` raises `Timeout::Error` after a fifth of a second because a watcher…

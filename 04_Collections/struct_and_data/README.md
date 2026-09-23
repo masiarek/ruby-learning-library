@@ -163,3 +163,10 @@ inspect: #<data Money cents=1250, currency="EUR">
 - [Multiple return values](../../16_Idioms_and_Gotchas/multiple_return_values/README.md) — a Struct or Data as a named return value instead of an Array.
 - [Rust: what a struct is ↗](https://masiarek.github.io/rust-learning-library/16_Structs/what_a_struct_is/index.html) — a named group of values made into a type, with no behaviour of its own.
 - [Rust: struct update ↗](https://masiarek.github.io/rust-learning-library/16_Structs/struct_update/index.html) — `..base` builds a changed copy the way `with` does.
+- [`dup` is a fresh copy, `clone` is a faithful one](../../07_The_Object_Model/dup_clone_and_frozen_state/README.md) — `dup` and `clone` both make a new object with the same instance variables, and both are shallow
+- [A Hash key needs `eql?` and `hash`, not `==`](../../07_The_Object_Model/eql_and_hash_for_hash_keys/README.md) — A `Hash` finds a key by calling `hash` and then `eql?`
+- [`new` is `allocate` then `initialize`](../../07_The_Object_Model/new_allocate_and_initialize/README.md) — `Point.new(1, 2)` is a class method that does two things
+- [`puts` calls `to_s`, `p` calls `inspect`](../../07_The_Object_Model/to_s_inspect_and_p/README.md) — Every object answers two questions
+- [`Class.new` makes a class; a constant names it](../../10_Metaprogramming/classes_at_runtime/README.md) — `Class.new(Base) { ... }` returns a class object with no name, `Foo = klass` gives it the name of the…
+- [What changed, 1.9 to 4.0](../../14_Tooling_Testing_and_Gems/ruby_versions_what_changed/README.md) — Ruby's releases each added a few things you will meet in old code and new
+- [There is more than one way, and one obvious way](../../16_Idioms_and_Gotchas/the_ruby_way_and_the_pythonic_way/README.md) — Ruby's idioms

@@ -118,3 +118,4 @@ each_with_index 0:2 1:3 2:4 3:1
 - [Rust: implementing `Iterator` ↗](https://masiarek.github.io/rust-learning-library/24_Iterators/implementing_iterator/index.html) — one `next` method earns the adapters, the way one `each` earns `Enumerable`
 - [Rust: iterators are lazy ↗](https://masiarek.github.io/rust-learning-library/24_Iterators/iterators_are_lazy/index.html) — the default that Ruby spells `lazy` and Python has for free
 - [Rust: returning an iterator ↗](https://masiarek.github.io/rust-learning-library/24_Iterators/returning_an_iterator/index.html) — the counterpart of `enum_for` in a plain method
+- [Two dots include the end, three dots exclude it](../../04_Collections/ranges_two_dots_and_three/README.md) — `1..5` is five numbers and `1...5` is four; a Range can be endless (`1..`), beginless (`..5`), made of…

@@ -137,3 +137,4 @@ defined? version, three reads: computed 1 time(s), value false
 - [Hashes and default values](../../04_Collections/hashes_and_default_values/README.md) — `Hash.new { |h, k| h[k] = [] }` does row 9's job for every key at once
 - [Twenty-three Ruby traps for a Python programmer](../gotchas_for_python_programmers/README.md) — `0` and `""` are truthy, as one line among twenty-three
 - [Twenty-three Python traps for a Ruby programmer](../gotchas_for_ruby_programmers_in_python/README.md) — `[]` and `0` are falsy, the row that makes `x = x or 5` a bug
+- [`&.` skips the call when the receiver is nil](../../02_Methods_and_Arguments/safe_navigation/README.md) — `receiver&.method(args)` returns `nil` without calling anything

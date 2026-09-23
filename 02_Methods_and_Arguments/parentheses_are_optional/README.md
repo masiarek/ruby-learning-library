@@ -117,3 +117,5 @@ puts "7. self.shout(\"hi\")       -> #{self.shout("hi").inspect}  (a receiver re
 - [Warnings and `-w`](../../08_Errors_and_Exceptions/warnings_and_dash_w/README.md) — what the flag does and does not report
 - [Gotchas for Python programmers](../../16_Idioms_and_Gotchas/gotchas_for_python_programmers/README.md) — this page's rows 7 and 10, in the list of everything else that bites
 - [Ruby docs: Calling methods ↗](https://docs.ruby-lang.org/en/4.0/syntax/calling_methods_rdoc.html) — the reference for receivers, arguments and the spellings on this page
+- [Common error messages](../../08_Errors_and_Exceptions/common_error_messages/README.md) — Twenty-nine errors you will meet in your first month of Ruby, each with the code that raises it, the…
+- [Twenty-three Python traps for a Ruby programmer](../../16_Idioms_and_Gotchas/gotchas_for_ruby_programmers_in_python/README.md) — The twenty-three places where a Ruby reflex gives the wrong answer in Python

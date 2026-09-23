@@ -156,3 +156,4 @@ row 5, "the trap: to_a after next starts over", [e.to_a, e.next]
 - [Fibers are coroutines](../../12_Concurrency_and_Parallelism/fibers_are_coroutines/README.md) — the machinery under `next`, beside Python's generator `send`
 - [Common error messages](../../08_Errors_and_Exceptions/common_error_messages/README.md) — `StopIteration` among the errors a Ruby program meets
 - [Implementing `Iterator` ↗](https://masiarek.github.io/rust-learning-library/24_Iterators/implementing_iterator/index.html) — in Rust, `next` *is* the whole protocol
+- [`next`, `break` and `return` leave a block differently](../../03_Blocks_Procs_and_Lambdas/next_break_and_return_in_blocks/README.md) — `next v` ends this run of the block with `v` as its value, `break v` ends the method the block was given…

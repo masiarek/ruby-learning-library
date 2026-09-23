@@ -122,3 +122,4 @@ puts "4. the caller's binding sees secret -> " + ERB.new("<%= secret %>").result
 - [Scope is about names, not values ↗](https://masiarek.github.io/rust-learning-library/18_Ownership/scope_is_about_names/index.html) — the Rust library separating a name's scope from its value's lifetime, which a `Binding` deliberately ties back together
 - [`Binding` ↗](https://docs.ruby-lang.org/en/4.0/Binding.html) and [`ERB` ↗](https://docs.ruby-lang.org/en/4.0/ERB.html) — the reference for `local_variable_*`, `receiver` and `result`
 - [`eval` and `exec` ↗](https://docs.python.org/3/library/functions.html#eval) — Python's explicit namespaces, and the note that `locals()` is a snapshot
+- [`irb` echoes every value; a script does not](../../14_Tooling_Testing_and_Gems/irb_and_the_repl/README.md) — `irb` is a read–eval–print loop: each line's value is printed with `inspect`, `_` holds the last one, an…

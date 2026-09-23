@@ -128,3 +128,4 @@ end
 - [Common error messages](../common_error_messages/README.md) — the `NoMethodError` and `ArgumentError` that rows 7 and 8 raise
 - [The command-line flags](../../14_Tooling_Testing_and_Gems/the_command_line_flags/README.md) — `ruby -c`, the syntax check the `compiles?` helper does in-process
 - [`to_i` never fails; `Integer()` does ↗](https://masiarek.github.io/ruby-text-learning-library/07_Parsing_and_Formatting/to_i_never_fails/index.html) — the Ruby text library on row 7
+- [`unless` negates `if`; modifiers hang off the end of a line](../../09_Control_Flow_and_Pattern_Matching/unless_until_and_modifiers/README.md) — Ruby spells `if not` as `unless` and `while not` as `until`, lets any statement carry `if`, `unless`,…

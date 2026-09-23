@@ -149,3 +149,10 @@ counts['zzz'] did not: 0 and ["the", "cat", "and", "dog", "bird"]
 - [Symbols are names](../../01_Objects_and_Values/symbols_are_names/README.md) — why `:a` is the natural key.
 - [Safe navigation](../../02_Methods_and_Arguments/safe_navigation/README.md) — `dig`, and `fetch` against `[]`, on the way to a nested value.
 - [Rust: `HashMap` ↗](https://masiarek.github.io/rust-learning-library/26_Collections/the_hashmap/index.html) — `entry` is its counting idiom, and its iteration order is deliberately different on every run.
+- [`inject` makes the block's value the next accumulator](../../05_Enumerable_and_Iteration/inject_and_each_with_object/README.md) — `inject` feeds each block result back in as the accumulator, so a block that ends in an assignment hands…
+- [Most loops you would write are one Enumerable call](../../05_Enumerable_and_Iteration/the_enumerable_toolbox/README.md) — `map`, `select`, `reject`, `find`, `partition`, `group_by`, `tally`, `each_slice`, `each_cons`, `zip`,…
+- [Common error messages](../../08_Errors_and_Exceptions/common_error_messages/README.md) — Twenty-nine errors you will meet in your first month of Ruby, each with the code that raises it, the…
+- [Twenty-three Ruby traps for a Python programmer](../../16_Idioms_and_Gotchas/gotchas_for_python_programmers/README.md) — The twenty-three places where a Python reflex gives the wrong answer in Ruby
+- [Twenty-three Python traps for a Ruby programmer](../../16_Idioms_and_Gotchas/gotchas_for_ruby_programmers_in_python/README.md) — The twenty-three places where a Ruby reflex gives the wrong answer in Python
+- [There is more than one way, and one obvious way](../../16_Idioms_and_Gotchas/the_ruby_way_and_the_pythonic_way/README.md) — Ruby's idioms
+- [Assignment destructures, and blocks auto-splat](../destructuring_assignment/README.md) — `a, b = 1, 2`, `a, *rest = list` and `(a, b), c = pair, 3` read like Python

@@ -148,3 +148,4 @@ row 8, "primes.with_index(1).find { |_, i| i == 100 }", primes.with_index(1).fin
 - [Writing an iterator](../../03_Blocks_Procs_and_Lambdas/writing_an_iterator/README.md) — `Enumerator.new` and an infinite enumerator of your own
 - [Enumerators run on fibers](../../12_Concurrency_and_Parallelism/enumerators_run_on_fibers/README.md) — what `next` on a lazy chain costs, and why
 - [Iterators are lazy ↗](https://masiarek.github.io/rust-learning-library/24_Iterators/iterators_are_lazy/index.html) — the adapter/consumer split in Rust, traced the same way
+- [Two dots include the end, three dots exclude it](../../04_Collections/ranges_two_dots_and_three/README.md) — `1..5` is five numbers and `1...5` is four; a Range can be endless (`1..`), beginless (`..5`), made of…

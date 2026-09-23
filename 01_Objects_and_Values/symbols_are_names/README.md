@@ -160,3 +160,5 @@ puts "   tally[\"apple\"]     #{tally["apple"].inspect}"
 - [Hashes and default values](../../04_Collections/hashes_and_default_values/README.md) — the `{a: 1}` and `{"a" => 1}` spellings and what lookup does with each
 - [Symbol to proc](../../03_Blocks_Procs_and_Lambdas/symbol_to_proc/README.md) — the `&:upcase` of row 6, and what else `&` accepts
 - [Symbol ↗](https://docs.ruby-lang.org/en/4.0/Symbol.html) — the Ruby 4.0 docs; [sys.intern ↗](https://docs.python.org/3/library/sys.html#sys.intern) and [enum ↗](https://docs.python.org/3/library/enum.html) — Python's two halves of the idea
+- [Twenty-three Ruby traps for a Python programmer](../../16_Idioms_and_Gotchas/gotchas_for_python_programmers/README.md) — The twenty-three places where a Python reflex gives the wrong answer in Ruby
+- [There is more than one way, and one obvious way](../../16_Idioms_and_Gotchas/the_ruby_way_and_the_pythonic_way/README.md) — Ruby's idioms

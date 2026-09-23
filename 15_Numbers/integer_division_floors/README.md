@@ -119,3 +119,5 @@ a   b   | a / b  a % b  | trunc  remainder | both identities hold?
 - [Gotchas for Python programmers](../../16_Idioms_and_Gotchas/gotchas_for_python_programmers/README.md) — `7 / 2` is `3` sits in the table of traps beside `0` being truthy
 - [Comparing an `int` with a `float` ↗](https://masiarek.github.io/python-learning-library/03_Numbers/comparing_int_and_float/index.html) — the Python library on what `/` answering in float costs once the integer is big
 - [Big integers ↗](https://masiarek.github.io/rust-learning-library/19_Numbers/other_number_types/big_integers/index.html) — the Rust library's three ways to divide a negative number, in a language whose `/` truncates
+- [Common error messages](../../08_Errors_and_Exceptions/common_error_messages/README.md) — Twenty-nine errors you will meet in your first month of Ruby, each with the code that raises it, the…
+- [Twenty-three Python traps for a Ruby programmer](../../16_Idioms_and_Gotchas/gotchas_for_ruby_programmers_in_python/README.md) — The twenty-three places where a Ruby reflex gives the wrong answer in Python

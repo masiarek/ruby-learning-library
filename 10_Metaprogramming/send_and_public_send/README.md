@@ -119,3 +119,6 @@ puts "4. dispatch(Calc.new, format(\"%s\", op), 5, 6) -> #{dispatch(Calc.new, fo
 - [Everything is an object](../../01_Objects_and_Values/everything_is_an_object/README.md) — why `1.send(:+, 2)` works
 - [Common error messages](../../08_Errors_and_Exceptions/common_error_messages/README.md) — the `NoMethodError` wordings rows 8 and 10 print
 - [ABAP: dynamic programming — names decided at runtime ↗](https://masiarek.github.io/abap-learning-library/03_Topics/dynamic_programming/index.html) — the same idea in ABAP, where a method name in a string moves every check to run time
+- [`&:sym` calls `Symbol#to_proc`](../../03_Blocks_Procs_and_Lambdas/symbol_to_proc/README.md) — `&x` in an argument list calls `x.to_proc` and attaches the result as the block; a symbol's `to_proc` is a…
+- [`new` is `allocate` then `initialize`](../../07_The_Object_Model/new_allocate_and_initialize/README.md) — `Point.new(1, 2)` is a class method that does two things
+- [Refinements are lexical, not global](../../07_The_Object_Model/refinements/README.md) — `refine String do … end` inside a module builds a `Refinement`, and `using` that module activates it from…

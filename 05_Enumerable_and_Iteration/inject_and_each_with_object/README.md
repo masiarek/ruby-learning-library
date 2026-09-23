@@ -153,3 +153,5 @@ row 7, "[0.1] * 10 by inject, then by sum", [([0.1] * 10).inject(:+), ([0.1] * 1
 - [Floats and rounding](../../15_Numbers/floats_and_rounding/README.md) — `0.1 + 0.2`, `round`, `Float::EPSILON` and the rest of what row 10 rests on
 - [Hashes and default values](../../04_Collections/hashes_and_default_values/README.md) — the `Hash.new(0)` memo of row 22 and the `Hash.new { }` of the kata
 - [`fold` and `reduce` ↗](https://masiarek.github.io/rust-learning-library/24_Iterators/fold_and_reduce/index.html) — the same pair in Rust, where the accumulator's type is spelled out
+- [`sort_by` keys once, `sort` many times, neither is stable](../sort_stability_and_sort_by/README.md) — `sort_by` computes each element's key exactly once and `sort { |a, b| … }` recomputes at every comparison,…
+- [`1/3r` and `BigDecimal("0.1")` are exact where Float is not](../../15_Numbers/rational_and_bigdecimal/README.md) — Ruby ships two exact number types beside Float

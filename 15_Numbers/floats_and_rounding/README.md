@@ -116,3 +116,9 @@ x       round   even   down  floor   ceil  trunc
 - [Float equality and NaN ↗](https://masiarek.github.io/python-learning-library/03_Numbers/float_equality_and_nan/index.html) — the Python library's twin: tolerances that scale, and NaN inside a container
 - [Machine numbers ↗](https://masiarek.github.io/math-learning-library/01_Precision/machine_numbers/index.html) — the math library on which values a double can hold and why the gaps grow
 - [Rounding a float ↗](https://masiarek.github.io/rust-learning-library/19_Numbers/rounding_a_float/index.html) — the Rust library, where `round` is also half away from zero
+- [Common error messages](../../08_Errors_and_Exceptions/common_error_messages/README.md) — Twenty-nine errors you will meet in your first month of Ruby, each with the code that raises it, the…
+- [`Time` is an instant, `Date` is a calendar day](../../13_IO_Files_and_the_System/time_and_date/README.md) — a `Time` is a point on the timeline with an offset attached
+- [Integers never overflow: `2 ** 200` is just an Integer](../integers_are_unbounded/README.md) — Ruby has one `Integer` class with no ceiling
+- [Numbers become text with `format`, `to_s(16)` and `%`](../number_formatting/README.md) — `format` speaks C's mini-language
+- [Twenty-three Ruby traps for a Python programmer](../../16_Idioms_and_Gotchas/gotchas_for_python_programmers/README.md) — The twenty-three places where a Python reflex gives the wrong answer in Ruby
+- [Twenty-three Python traps for a Ruby programmer](../../16_Idioms_and_Gotchas/gotchas_for_ruby_programmers_in_python/README.md) — The twenty-three places where a Ruby reflex gives the wrong answer in Python

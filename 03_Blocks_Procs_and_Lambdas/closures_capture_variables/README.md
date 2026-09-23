@@ -110,3 +110,5 @@ shared inside a: deposit and read see one variable: true
 - [Gotchas for Ruby programmers in Python](../../16_Idioms_and_Gotchas/gotchas_for_ruby_programmers_in_python/README.md) — late binding and `nonlocal` in that list
 - [Rust: what a closure is ↗](https://masiarek.github.io/rust-learning-library/23_Closures/what_a_closure_is/index.html) — a closure that borrows the variables it names
 - [Rust: the `move` keyword ↗](https://masiarek.github.io/rust-learning-library/23_Closures/the_move_keyword/index.html) — capture by value, the choice Python spells `i=i`
+- [`it` and `_1` name the block's parameter](../it_and_numbered_parameters/README.md) — A block with no `|x|` can read its arguments as `_1`, `_2`, … (Ruby 2.7) or as `it` (Ruby 3.4); they are…
+- [A pin compares; a bare name binds](../../09_Control_Flow_and_Pattern_Matching/pin_guards_and_alternatives/README.md) — Inside a pattern a bare name always *binds*

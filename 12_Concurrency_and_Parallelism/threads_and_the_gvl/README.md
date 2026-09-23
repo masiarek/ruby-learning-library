@@ -131,3 +131,5 @@ value of the failed thread: raises RuntimeError again
 - [exit, at_exit and SystemExit](../../08_Errors_and_Exceptions/exit_at_exit_and_system_exit/README.md) — what ends the main thread
 - [Is `total += n` safe on two threads? ↗](https://masiarek.github.io/concurrency-learning-library/02_Shared_State/the_lost_update/index.html) — the Concurrency library measures the lost update in six languages
 - [Getting a result back ↗](https://masiarek.github.io/concurrency-learning-library/01_Threads/getting_a_result_back/index.html) — where a thread's value goes in Rust, Go, C, C++, Java and Python
+- [A Fiber is a coroutine you resume by hand](../fibers_are_coroutines/README.md) — `Fiber.new { }` makes a block that runs only when you `resume` it and stops wherever it calls…
+- [`fork` copies the process; `wait` collects its status](../processes_fork_and_wait/README.md) — `fork` makes a second process that is a copy of this one

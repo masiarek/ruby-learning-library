@@ -112,3 +112,6 @@ puts "5. 19.99 * 3: Float #{19.99 * 3}, Rational #{(19.99r * 3).inspect}, BigDec
 - [`1 + 1.5` works because Integer asks Float to `coerce`](../numeric_coercion/README.md) — the promotions of rows 1–5: who wins when a Rational meets a Float
 - [`inject` and `each_with_object`](../../05_Enumerable_and_Iteration/inject_and_each_with_object/README.md) — why `sum` and `inject(:+)` disagree on ten Floats, as the kata shows
 - [Rational numbers ↗](https://masiarek.github.io/rust-learning-library/19_Numbers/other_number_types/rational_numbers/index.html) and [Decimal numbers ↗](https://masiarek.github.io/rust-learning-library/19_Numbers/other_number_types/decimal_numbers/index.html) — the Rust library, where both are crates and a decimal has no context
+- [`Time` is an instant, `Date` is a calendar day](../../13_IO_Files_and_the_System/time_and_date/README.md) — a `Time` is a point on the timeline with an offset attached
+- [Integers never overflow: `2 ** 200` is just an Integer](../integers_are_unbounded/README.md) — Ruby has one `Integer` class with no ceiling
+- [There is more than one way, and one obvious way](../../16_Idioms_and_Gotchas/the_ruby_way_and_the_pythonic_way/README.md) — Ruby's idioms

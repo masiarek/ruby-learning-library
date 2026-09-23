@@ -206,3 +206,4 @@ times initialize ran after allocate 3
 - [Struct and Data](../../04_Collections/struct_and_data/README.md) — classes that write `initialize` for you
 - [Ruby docs: `Class#new` and `Class#allocate` ↗](https://docs.ruby-lang.org/en/4.0/Class.html) — the two methods this page takes apart
 - [Python docs: `__new__` and `__init__` ↗](https://docs.python.org/3/reference/datamodel.html#object.__new__) — the data model's account of instance creation
+- [Twenty-three Python traps for a Ruby programmer](../../16_Idioms_and_Gotchas/gotchas_for_ruby_programmers_in_python/README.md) — The twenty-three places where a Ruby reflex gives the wrong answer in Python

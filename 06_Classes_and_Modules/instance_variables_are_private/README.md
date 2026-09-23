@@ -137,3 +137,7 @@ t.fahrenheit = 0:      NoMethodError (no writer was defined)
 - [`to_s`, `inspect` and `p`](../../07_The_Object_Model/to_s_inspect_and_p/README.md) — why the program defines `inspect` (the default one prints an address)
 - [`repr` is not `str` ↗](https://masiarek.github.io/python-learning-library/01_Text_and_Bytes/repr_is_not_str/index.html) — the Python side of the same `__repr__` the twin defines
 - [Modules and visibility ↗](https://masiarek.github.io/rust-learning-library/27_Modules/modules_and_visibility/index.html) — Rust draws the privacy line around a module, not around an object
+- [`self` is the implicit receiver](../../02_Methods_and_Arguments/self_is_implicit/README.md) — Every Ruby call has a receiver, and when you write none it is `self`
+- [`Thread.current[:x]` is fiber-local, not thread-local](../../12_Concurrency_and_Parallelism/thread_locals_are_fiber_locals/README.md) — `Thread.current[:x]` is scoped to the *fiber* that set it
+- [Twenty-three Ruby traps for a Python programmer](../../16_Idioms_and_Gotchas/gotchas_for_python_programmers/README.md) — The twenty-three places where a Python reflex gives the wrong answer in Ruby
+- [There is more than one way, and one obvious way](../../16_Idioms_and_Gotchas/the_ruby_way_and_the_pythonic_way/README.md) — Ruby's idioms

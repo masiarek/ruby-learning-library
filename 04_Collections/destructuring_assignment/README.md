@@ -139,3 +139,6 @@ minmax [3, 9], divmod [3, 2], partition [[2, 4, 6], [1, 3, 5]]
 - [Procs and lambdas differ](../../03_Blocks_Procs_and_Lambdas/procs_and_lambdas_differ/README.md) — the arity strictness behind row 17.
 - [Rust: destructuring structs ↗](https://masiarek.github.io/rust-learning-library/30_Pattern_Matching/destructuring_structs/index.html) — `let Point { x, y } = p;`, the same idea with the field names as the pattern.
 - [Rust: tuples ↗](https://masiarek.github.io/rust-learning-library/26_Collections/tuples/index.html) — the numbered-field struct that `let (a, b) = pair;` takes apart.
+- [Arguments: positional, keyword, splat and block](../../02_Methods_and_Arguments/arguments_positional_keyword_and_splat/README.md) — A Ruby parameter list has eight kinds of slot
+- [The last expression is the return value](../../02_Methods_and_Arguments/the_last_expression_is_the_value/README.md) — A Ruby method returns the value of the last expression it evaluated, so `return` is only for leaving early
+- [`it` and `_1` name the block's parameter](../../03_Blocks_Procs_and_Lambdas/it_and_numbered_parameters/README.md) — A block with no `|x|` can read its arguments as `_1`, `_2`, … (Ruby 2.7) or as `it` (Ruby 3.4); they are…

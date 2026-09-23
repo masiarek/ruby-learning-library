@@ -129,3 +129,6 @@ end
 - [Method lookup and `super`](../../06_Classes_and_Modules/method_lookup_and_super/README.md) — the lookup that has to fail before the hook runs
 - [Common error messages](../../08_Errors_and_Exceptions/common_error_messages/README.md) — the `NoMethodError` and `NameError` wordings rows 3, 5 and 11 print
 - [Rust: "No method named …" ↗](https://masiarek.github.io/rust-learning-library/12_Traits/no_method_named/index.html) — the language with no hook at all: an unknown method is a compile error, never a message
+- [A setter returns its argument, not its body](../../02_Methods_and_Arguments/setters_return_the_argument/README.md) — `obj.x = 5` is a call to the method `x=`, but as an expression it evaluates to 5 whatever the method body…
+- [An object can list its methods and variables](../introspection/README.md) — `methods`, `instance_methods(false)`, `instance_variables`, `instance_method(:x).parameters`,…
+- [There is more than one way, and one obvious way](../../16_Idioms_and_Gotchas/the_ruby_way_and_the_pythonic_way/README.md) — Ruby's idioms

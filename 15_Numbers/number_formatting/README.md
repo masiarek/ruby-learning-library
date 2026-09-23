@@ -111,3 +111,4 @@ total      1,234,657.88
 - [`bin()` is not the bits ↗](https://masiarek.github.io/python-learning-library/01_Text_and_Bytes/bin_is_not_the_bits/index.html) — the Python library on a negative number in binary
 - [`to_i` never fails; `Integer()` does ↗](https://masiarek.github.io/ruby-text-learning-library/07_Parsing_and_Formatting/to_i_never_fails/index.html) — the Ruby text library's page on rows 10–12
 - [`ljust` and `%-8s` pad by code points, not columns ↗](https://masiarek.github.io/ruby-text-learning-library/07_Parsing_and_Formatting/padding_counts_characters/index.html) — what a width counts when the text is not ASCII
+- [`Random.new(42)` gives the same numbers every run](../random_with_a_seed/README.md) — A seeded `Random` is a function of its seed

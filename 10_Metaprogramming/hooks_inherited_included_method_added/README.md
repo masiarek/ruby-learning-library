@@ -130,3 +130,5 @@ puts "5. Command.subclasses.map(&:name).sort -> #{Command.subclasses.map(&:name)
 - [Method lookup and `super`](../../06_Classes_and_Modules/method_lookup_and_super/README.md) — the ancestor chain `append_features` edits
 - [`TracePoint`](../../11_Under_the_Hood/tracepoint/README.md) — hooks on *running* code, the other half of "defined, not run"
 - [Singleton classes](../../07_The_Object_Model/singleton_classes/README.md) — where `extend` and `singleton_method_added` operate
+- [Class variables are shared with subclasses](../../06_Classes_and_Modules/class_variables_are_shared/README.md) — `@@count` is one variable, owned by the class that first assigns it and seen by every subclass and every…
+- [Ruby has no docstrings](../../14_Tooling_Testing_and_Gems/no_docstrings/README.md) — A Ruby method carries no documentation at run time
