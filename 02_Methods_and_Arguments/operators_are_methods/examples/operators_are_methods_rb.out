@@ -1,0 +1,13 @@
+1. an operator is a call:         1 + 2 -> 3, 1.+(2) -> 3, 1.send(:+, 2) -> 3, 1.method(:+).owner -> Integer
+2. def +(other):                  v + w -> Vec(4, 6), v.+(w) -> Vec(4, 6)
+3. def -@ (unary minus):          -v -> Vec(-1, -2)
+4. def [] and def []=:            v[0] -> 1; v[1] = 9 evaluates to 9, not the body's :ignored; v is Vec(1, 9)
+5. def <=> plus Comparable:       v < w true, v == Vec.new(1, 2) true, v != w true, [w, v].min -> Vec(1, 2), v.clamp(w, w) -> Vec(3, 4)
+6. def <<:                        v << 10 -> Vec(11, 12)
+7. def ! is a method:             !v -> "bang called on Vec(1, 2)", (not v) -> "bang called on Vec(1, 2)", v.! -> "bang called on Vec(1, 2)"
+   every object has one:          1.method(:!).owner -> BasicObject, !1 -> false
+8. def * but no coerce:           v * 2 -> Vec(2, 4); 2 * v -> TypeError: Vec can't be coerced into Integer
+9. && is not a method:            1.method(:"&&") -> NameError: undefined method '&&' for class 'Integer'
+   def &&(other); end            -> SyntaxError
+10. Integer responds to:          + - * / % ** == != < <= > >= <=> << >> & | ^ ~ ! -@ +@ [] ===
+    syntax, not methods:          && || .. and or not =

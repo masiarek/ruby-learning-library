@@ -1,0 +1,13 @@
+1. no return statement:       add(1, 2)               -> None
+2. early return:              early(-1), early(1)     -> 'early', 'late'
+3. if with no branch taken:   negative_or_nothing(5)  -> None (fell off the end)
+4. def is a statement:        r = def named(): pass   -> SyntaxError
+5. a function ending in print: ends_with_print        -> prints:
+   (printing from inside)
+   then returns None
+6. print itself:              v = print("hi")         -> prints hi
+   and v is None
+7. return with two values:    pair                    -> (1, 2) (a tuple)
+8. assignment as last line:   assigns                 -> None
+9. a body that is only pass:  empty_body              -> None
+10. finally does not replace: ensured                 -> 'the body'

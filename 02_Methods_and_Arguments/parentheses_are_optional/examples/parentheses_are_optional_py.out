@@ -1,0 +1,16 @@
+1. a call without parentheses:    print "x"        -> SyntaxError: Missing parentheses in call to 'print'. Did you mean print(...)?
+2. a def without parentheses:     def f a, b:      -> SyntaxError: expected '('
+3. a bare name, no local exists:  greeting         -> a function object, not a call
+4. after greeting = "the local": greeting       -> 'the local'
+5. parentheses call the binding:  greeting()       -> TypeError: 'str' object is not callable
+6. a receiver forces it too:      self.greeting    -> (no counterpart: the function was overwritten by row 4)
+7. one space before the paren:    print (1+2)*3    -> prints 3
+   then TypeError: unsupported operand type(s) for *: 'NoneType' and 'int'
+8. no space before the paren:     print(1+2)*3     -> prints 3
+   then TypeError: unsupported operand type(s) for *: 'NoneType' and 'int'
+9. rows 7 and 8 compile to the same bytecode: True
+10. minus, one space:             p -1             -> TypeError: unsupported operand type(s) for -: 'builtin_function_or_method' and 'int'
+11. python3 -W error on row 10:   nothing to warn about: the space never changes the parse
+12. minus, two spaces:            p - 1            -> TypeError: unsupported operand type(s) for -: 'builtin_function_or_method' and 'int'
+13. star, one space:              rest *[1, 2]     -> TypeError: can't multiply sequence by non-int of type 'function'
+14. the star unpacks only inside the call's parentheses: rest(*[1, 2]) -> (1, 2)

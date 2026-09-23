@@ -1,0 +1,6 @@
+1. bump_wrong  -> NoMethodError: undefined method '+' for nil
+   (count = count + 1 makes count a local for the whole method, so the right-hand count is that local, nil)
+2. bump_right  -> 1 (self.count += 1 reads through the reader and writes through the setter)
+3. bump_ivar   -> 2 (@count += 1 skips both)
+4. read_bare   -> 2 (a bare read still reaches the reader)
+5. c.count     -> 2

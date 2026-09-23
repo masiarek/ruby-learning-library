@@ -1,0 +1,12 @@
+1. with &.:
+   ann: "Oslo"
+   bo: nil
+   cy: nil
+2. with dig:
+   ann: "Oslo"
+   bo: nil
+   cy: nil
+3. with || {} and fetch's default:
+   ann: Oslo
+   bo: (none)
+   cy: (none)

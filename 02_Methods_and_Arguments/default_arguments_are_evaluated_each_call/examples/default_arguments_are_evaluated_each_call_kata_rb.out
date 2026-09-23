@@ -1,0 +1,5 @@
+1. append_log(:a), append_log(:b) -> [:a], [:b]
+   first.equal?(second)           -> false (two arrays, not one shared default)
+2. the same array passed twice    -> [:a, :b] (the default is skipped, so it accumulates)
+3. next_id, next_id               -> 1, 2
+   next_id(99), next_id           -> 99, 3 (an explicit id leaves the counter alone)

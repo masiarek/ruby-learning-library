@@ -1,0 +1,14 @@
+1. implicit return:           add(1, 2)               -> 3
+2. early return:              early(-1), early(1)     -> "early", "late"
+3. if with no branch taken:   negative_or_nothing(5)  -> nil
+4. def is an expression:      r = def named; end      -> :named (a Symbol)
+   so private can take a def:  private def helper; end -> private received :helper
+5. a method ending in puts:   ends_with_puts          -> prints:
+   (printing from inside)
+   then returns nil
+6. puts itself:               v = (puts "hi")         -> prints hi
+   and v is nil
+7. return with two values:    pair                    -> [1, 2] (an Array)
+8. assignment as last line:   assigns                 -> 5
+9. an empty body:             empty_body              -> nil
+10. ensure does not replace:  ensured                 -> "the body"

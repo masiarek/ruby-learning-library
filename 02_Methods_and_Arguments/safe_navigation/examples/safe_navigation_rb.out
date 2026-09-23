@@ -1,0 +1,15 @@
+1. a method on nil:               name.length          -> NoMethodError: undefined method 'length' for nil
+2. safe navigation:               name&.length         -> nil, "abc"&.length -> 3
+3. the arguments are skipped:     nil&.concat(noisy)   -> nil
+   ...and evaluated otherwise:    "x"&.concat(noisy)   -> (argument evaluated) "x!"
+4. only nil is skipped:           false&.to_s          -> "false" (false is a real object with methods)
+5. a chain of objects:            u1.address&.city     -> "Oslo", u2.address&.city -> nil
+                                  u2.address.city      -> NoMethodError: undefined method 'city' for nil
+6. dig through nested Hashes:     h.dig(:a, :b, :c)    -> 1, h.dig(:a, :x, :c) -> nil
+                                  h[:a][:x][:c]        -> NoMethodError: undefined method '[]' for nil
+7. [] is lenient, fetch is strict: h[:zz]              -> nil, h.fetch(:zz) -> KeyError: key not found: :zz
+                                  h.fetch(:zz, "default") -> "default"
+8. Array#dig and a dead end:      [[1, [2]]].dig(0, 1, 0) -> 2, [].dig(0, 1) -> nil
+                                  h.dig(:a, :b, :c, :d) -> TypeError: Integer does not have #dig method
+9. &. guards one call only:       nil&.length.zero?    -> NoMethodError: undefined method 'zero?' for nil
+                                  nil&.length&.zero?   -> nil

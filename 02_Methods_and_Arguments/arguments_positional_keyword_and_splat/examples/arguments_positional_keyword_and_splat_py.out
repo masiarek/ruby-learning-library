@@ -1,0 +1,19 @@
+1. required, default, *rest, then a name:     def f(a, b=2, *rest, z)  -- z is keyword-only
+   f(1, 9)                    -> TypeError (z was not given)
+   f(1, 2, 3, 4, z=5)         -> [1, 2, (3, 4), 5]
+2. introspected:              inspect.signature(f)  -> (a, b=2, *rest, z)
+3. keyword-only after *:      def g(a, *, k, d=4, **opts)
+   g(1, k=2)                  -> [1, 2, 4, {}]
+   g(1, k=2, d=5, x=6)        -> [1, 2, 5, {'x': 6}]
+4. a callable parameter:      h(lambda x: x * 2)    -> 6
+5. *args, **kwargs forward:   fwd(1, 2, k=3)        -> [(1, 2), {'k': 3}] (no block slot)
+6. anonymous *, ** and &:     no counterpart: *args and **kwargs must be named to be forwarded
+   fwd's parameters           -> (*args, **kwargs)
+7. too few positionals:       f(1)                  -> TypeError
+8. a missing keyword:         kw()                  -> TypeError
+9. an unknown keyword:        kw(k=1, z=2)          -> TypeError
+10. a dict is not keywords:   kw({'k': 1})          -> TypeError
+    but ** splats it:         kw(**{'k': 1})        -> [1, 4]
+11. positionals have names:   two(b=2, a=1)         -> [1, 2]
+    unless marked with /:     pos_only(a=1)         -> TypeError; pos(a=1) -> 1
+12. no arity; parameter counts: f 4, g 4, kw 2, two 2, fwd 2

@@ -1,0 +1,14 @@
+1. def add_item(item, list = [])
+   add_item(:a), add_item(:b), add_item(:c) -> [:a], [:b], [:c]
+2. where the default lives:       method(:add_item).parameters -> [[:req, :item], [:opt, :list]]
+                                  (an expression in the method body, not a stored object)
+3. the nil-sentinel idiom:        add_item_sentinel(:a), (:b)  -> [:a], [:b] (works, unnecessary)
+4. a default may use an earlier parameter:
+   rect(3), rect(3, 4)            -> [3, 6], [3, 4]
+   chain(1), chain(1, 5)          -> [1, 2, 3], [1, 5, 6]
+5. but not a later one:           later (a = b, b = 1)   -> NameError at call time: undefined local variable or method 'b' for main
+6. a default that counts calls:   tick, tick, tick       -> 1, 2, 3
+   tick(10), tick                 -> 10, 4 (an explicit argument skips the default)
+7. when the default runs:         side     -> (default evaluated now) then 1
+                                  side(2)  -> then 2
+                                  side     -> (default evaluated now) then 1

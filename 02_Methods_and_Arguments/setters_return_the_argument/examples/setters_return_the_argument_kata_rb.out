@@ -1,0 +1,4 @@
+1. r = (t.target = 99)      -> r is 99 (the argument, unclamped)
+2. t.target                 -> 30 (the setter clamped what it stored)
+3. t.send(:target=, 99)     -> 30 (the body's value, visible only through send)
+4. (t.target = 5), t.target -> 5, 10

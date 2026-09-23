@@ -1,0 +1,15 @@
+1. a call without parentheses:    puts "x"        -> prints x
+2. a def without parentheses:     def f a, b       -> f 1, 2 = 3
+3. a bare name, no local exists:  greeting         -> "the method"
+4. after greeting = "the local": greeting       -> "the local"
+5. parentheses force the method:  greeting()       -> "the method"
+6. a receiver forces it too:      self.greeting    -> "the method"
+7. one space before the paren:    puts (1+2)*3     -> prints 9
+8. no space before the paren:     puts(1+2)*3      -> prints 3
+   then NoMethodError: undefined method '*' for nil
+9. ruby -w on row 7:              stdout "9", stderr "" (no warning in 4.0)
+10. minus, one space:             p -1             -> prints -1
+11. ruby -w on row 10:            -e:1: warning: ambiguous first argument; put parentheses or a space even after `-` operator
+12. minus, two spaces:            p - 1            -> NoMethodError: undefined method '-' for nil
+13. star, one space:              rest *[1, 2]     -> [1, 2]
+14. ruby -w on row 13:            -e:1: warning: ambiguous `*` has been interpreted as an argument prefix

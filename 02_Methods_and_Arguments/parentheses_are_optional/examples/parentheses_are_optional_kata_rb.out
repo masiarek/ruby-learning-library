@@ -1,0 +1,7 @@
+1. shout "hi"             -> "HI!"
+2. shout("hi")            -> "HI!"
+3. puts shout "hi"        -> prints HI!
+4. shout = "quiet"; shout  -> "quiet"  (the local wins)
+5. shout("hi")            -> "HI!"  (parentheses reach the method)
+6. shout "hi"             -> "HI!"  (a bare name with an argument is a call)
+7. self.shout("hi")       -> "HI!"  (a receiver reaches the method)

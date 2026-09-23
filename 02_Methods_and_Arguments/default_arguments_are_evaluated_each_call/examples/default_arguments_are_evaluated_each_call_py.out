@@ -1,0 +1,15 @@
+1. def add_item(item, lst=[])
+   add_item('a'), add_item('b'), add_item('c') -> ['a', 'b', 'c'] ['a', 'b', 'c'] ['a', 'b', 'c']
+2. where the default lives:       add_item.__defaults__ -> (['a', 'b', 'c'],)
+                                  (one object, stored on the function when def ran)
+3. the None-sentinel fix:         add_item_sentinel('a'), ('b') -> ['a'] ['b'] (the idiom)
+4. a default may use an earlier parameter?
+   def rect(w, h=w * 2)           -> NameError at def time
+   def chain(a, b=a + 1, c=b + 1) -> NameError at def time
+5. nor a later one:               def later(a=b, b=1)    -> NameError at def time
+6. a default that counts calls:   tick(), tick(), tick() -> 1 1 1
+   tick(10), tick()               -> 10 1 (the default was evaluated once, at def)
+7. when the default runs:         def side(...) -> (default evaluated now) at def time
+                                  side()   -> 1 (nothing evaluated)
+                                  side(2)  -> 2
+                                  side()   -> 1

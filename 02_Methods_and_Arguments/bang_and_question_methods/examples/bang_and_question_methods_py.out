@@ -1,0 +1,18 @@
+1. sorted returns a new list:     sorted(a)             -> [1, 2, 3] a is still [3, 1, 2]
+2. sort() changes the receiver:   a.sort()              -> None a is now [1, 2, 3]
+3. nothing-changed returns:       [1, 2].sort()         -> None (None whether or not anything changed)
+                                  'x'.strip()           -> 'x'
+                                  'abc'.replace('z','y') -> 'abc'
+                                  'ABC'.upper()         -> 'ABC' (str is immutable: always a string)
+                                  [1, 2].reverse()      -> None
+                                  [1, 2].clear()        -> None
+   the new value when it did:     sorted([1, 1])        -> [1, 1] (a copy, so nothing to signal)
+                                  ' x '.strip()         -> 'x'
+4. so chaining sort() breaks:     a.sort().append(1)    -> AttributeError: 'NoneType' object has no attribute 'append'
+   chain the copying versions:    ' abc '.strip().upper() -> 'ABC'
+5. predicates are is_/has_ names: len([]) == 0 True 0 == 0 True 2 in [1, 2] True 'a'.isalpha() True 1 % 2 == 0 False None is None True
+6. ? and ! do not parse:          def ready?(): -> SyntaxError ; def go!(): -> SyntaxError ; hasattr(str, 'strip') True
+7. the dangerous exit:            sys.exit()  -> stdout 'exiting\natexit ran\n', status 0
+                                  os._exit(0) -> stdout 'exiting\n', status 0
+8. mutation returns None:         b.append(3) -> None ; b.pop() -> 4 ; b is [1, 2, 3]
+                                  (no naming rule: append, extend, remove, reverse all return None)

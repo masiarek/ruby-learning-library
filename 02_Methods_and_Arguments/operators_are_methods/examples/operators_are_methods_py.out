@@ -1,0 +1,13 @@
+1. an operator is a call:         1 + 2 -> 3 , (1).__add__(2) -> 3 , int.__add__(1, 2) -> 3 , type((1).__add__).__name__ -> method-wrapper
+2. def __add__:                   v + w -> Vec(4, 6) , v.__add__(w) -> Vec(4, 6)
+3. def __neg__:                   -v -> Vec(-1, -2)
+4. __getitem__ and __setitem__:   v[0] -> 1 ; v[1] = 9 is a statement with no value (the 'ignored' return is discarded); v is Vec(1, 9)
+5. __eq__ and __lt__ (+ total_ordering): v < w True , v == Vec(1, 2) True , v != w True , min([w, v]) -> Vec(1, 2) , v > w False
+   without __lt__:               NoLt() < NoLt() -> TypeError
+6. def __lshift__:                v << 10 -> Vec(11, 12)
+7. not calls __bool__:            not v -> True (__bool__ ran 1 time and could only return a bool)
+8. __mul__ and __rmul__:          v * 2 -> Vec(2, 4) ; 2 * v -> Vec(2, 4) (the reflected hook answers)
+9. and is not a hook:             b & b -> bitwise & called ; b and 'second' -> 'second' (__and__ not called)
+   keywords, not methods:         and True , or True , not True
+10. int has a hook for:           + - * / % ** == != < <= > >= << >> & | ^ ~ -@ +@
+    no hook (syntax, or not Python): <=> ! [] === && || .. and or not =

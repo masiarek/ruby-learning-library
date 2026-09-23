@@ -1,0 +1,12 @@
+1. self at module level:          NameError (there is no self here; __name__ is '__main__')
+2. self in a class body:          NameError (the body sees __qualname__ = 'Person')
+3. self is the first parameter:   a.whoami() -> Person(ann) ; a.whoami() is a -> True ; Person.greet(a) -> 'hi from ann' (named this, not self)
+4. no receiverless call:          a.greet_bare() -> NameError (a bare greet() is a global lookup)
+5. cls, or nothing:               a classmethod: cls is Person; a staticmethod: neither self nor cls
+6. the setter trap:               a.rename_wrong('bo') -> 'bo' but a.name is still 'ann' (name = v made a local)
+                                  a.rename_right('bo') -> 'bo' and a.name is now 'bo' (self.name = v set the attribute)
+7. private is a convention:       a._secret() -> 'the secret of bo' ; a.peek(Person('cy')) -> 'the secret of cy' (nothing enforced)
+8. count = count + 1:             UnboundLocalError (the assignment makes count a local for the whole method, read before it is set)
+   self.count += 1:               -> 1 ; c.count is 1
+9. self inside a lambda:          a.in_lambda() is a -> True (a closed-over variable, like any other)
+10. a top-level def:              'top_level_function' in globals() -> True (a module attribute, not a method of anything)

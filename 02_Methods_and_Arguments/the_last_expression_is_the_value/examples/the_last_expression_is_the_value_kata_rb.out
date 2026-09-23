@@ -1,0 +1,9 @@
+1. describe(-3)                 -> "negative"
+2. describe(0)                  -> "zero"
+3. describe(7)                  -> "positive"
+4. describe_and_print(7)        -> prints:
+   7 is positive
+   and returns nil, because puts returns nil
+5. describe_and_print_fixed(7)  -> prints:
+   7 is positive
+   and returns "positive", because the value is now the last expression

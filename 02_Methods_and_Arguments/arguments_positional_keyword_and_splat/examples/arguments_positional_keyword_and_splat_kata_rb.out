@@ -1,0 +1,7 @@
+1. order(:tea, priority: :low)                     -> [:tea, 1, [], :low, ""]
+2. order(:tea, 2, priority: :low)                  -> [:tea, 2, [], :low, ""]
+3. order(:tea, 2, :milk, :sugar, priority: :high)  -> [:tea, 2, [:milk, :sugar], :high, ""]
+4. order(:tea, priority: :low, note: "decaf")      -> [:tea, 1, [], :low, "decaf"]
+5. order(:tea)                                     -> ArgumentError: missing keyword: :priority
+6. order(:tea, priority: :low, size: :large)       -> ArgumentError: unknown keyword: :size
+7. order(priority: :low)                           -> ArgumentError: wrong number of arguments (given 0, expected 1+; required keyword: priority)

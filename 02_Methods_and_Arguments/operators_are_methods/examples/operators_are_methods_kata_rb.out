@@ -1,0 +1,7 @@
+1. a + b                    -> $17.50
+2. -a                       -> $-5.00
+3. [b, a, c].sort           -> [$0.99, $5.00, $12.50]
+4. [b, a, c].max            -> $12.50
+5. a < b, a == Money.new(500), a != b -> true, true, true
+6. c.between?(a, b)         -> false; c.clamp(a, b) -> $5.00
+7. Money.instance_method(:<).owner -> Comparable (Comparable wrote < from <=>)

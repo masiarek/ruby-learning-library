@@ -1,0 +1,18 @@
+1. sort returns a new array:      a.sort                -> [1, 2, 3], a is still [3, 1, 2]
+2. sort! changes the receiver:    a.sort!               -> [1, 2, 3], a is now [1, 2, 3], r.equal?(a) is true
+3. nil when nothing changed:      [1, 2].uniq!          -> nil
+                                  "x".strip!            -> nil
+                                  "abc".sub!("z", "y")  -> nil
+                                  "ABC".upcase!         -> nil
+                                  [1, 2].flatten!       -> nil
+                                  [1, 2].compact!       -> nil
+   the new value when it did:     [1, 1].uniq!          -> [1]
+                                  " x ".strip!          -> "x"
+4. so chaining a bang breaks:     "abc".strip!.upcase   -> NoMethodError: undefined method 'upcase' for nil
+   chain the non-bang versions:   " abc ".strip.upcase  -> "ABC"
+5. ? methods answer a question:   [].empty? true, 0.zero? true, [1, 2].include?(2) true, "a".frozen? false, 1.even? false, nil.nil? true
+6. ? and ! are part of the name:  def ready? -> :ready?, def go! -> :go!, "abc".respond_to?(:strip!) true
+7. ! is not always mutation:      exit  -> stdout "exiting\nat_exit ran\n", status 0
+                                  exit! -> stdout "exiting\n", status 1
+8. mutation without a bang:       b << 3; b.push(4); b.pop -> 4, b is [1, 2, 3]
+                                  (the bang marks the dangerous one of a pair; a method with no twin has no bang)

@@ -1,0 +1,5 @@
+1. normalize!("  MiXed  ")           -> "mixed", and a is now "mixed"
+2. normalize!("clean")               -> "clean" (nothing changed, still returns the string)
+3. normalize_chained!("clean")       -> NoMethodError: undefined method 'downcase!' for nil
+4. normalize_chained!("  MiXed  ")   -> "mixed" (works only because strip! changed something)
+5. normalize_chained!(" mixed ")     -> nil (strip! changed it, downcase! did not, and e is "mixed")

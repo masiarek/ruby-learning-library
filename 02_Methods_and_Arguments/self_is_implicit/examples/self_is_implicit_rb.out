@@ -1,0 +1,13 @@
+1. self at the top level:         main (an instance of Object)
+2. self in a class body:          Person (an instance of Class)
+3. self in an instance method:    a.whoami -> Person(ann), a.whoami.equal?(a) -> true
+4. a receiverless call goes to self: a.greet -> "hi from ann" (greet called name with no receiver)
+5. self in def self.species:      a class method: self is Person
+6. the setter trap:               a.rename_wrong("bo") -> "bo", but a.name is still "ann" (name = v made a local)
+                                  a.rename_right("bo") -> "bo", and a.name is now "bo" (self.name = v called the setter)
+7. private methods and self:      secret (bare) -> "the secret of bo"; self.secret -> "the secret of bo"
+                                  other.secret -> NoMethodError: private method 'secret' called for an instance of Person
+8. count = count + 1:             NoMethodError: undefined method '+' for nil (the local count shadows the reader and starts as nil)
+   self.count += 1:               -> 1, c.count is 1; a bare read still works: read_bare -> 1
+9. self inside a block:           a.in_block -> [Person(bo)] (the enclosing self, not the block)
+10. a top-level def:              top_level_method -> "self here is main"; Object.private_method_defined?(:top_level_method) -> true

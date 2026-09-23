@@ -1,0 +1,19 @@
+1. required, optional, *rest, post-required:  def f(a, b = 2, *rest, z)
+   f(1, 9)                    -> [1, 2, [], 9]
+   f(1, 2, 3, 4, 5)           -> [1, 2, [3, 4], 5]
+2. introspected:              method(:f).parameters -> [[:req, :a], [:opt, :b], [:rest, :rest], [:req, :z]]
+3. keywords:                  def g(a, k:, d: 4, **opts)
+   g(1, k: 2)                 -> [1, 2, 4, {}]
+   g(1, k: 2, d: 5, x: 6)     -> [1, 2, 5, {x: 6}]
+4. a block parameter:         h { |x| x * 2 }       -> 6
+5. ... forwards everything:   fwd(1, 2, k: 3) { :b } -> [[1, 2], {k: 3}, :b]
+6. anonymous *, ** and &:     anon(1, k: 2) { :b }  -> [[1], {k: 2}, :b]
+   its parameters             -> [[:rest, :*], [:keyrest, :**], [:block, :&]]
+7. too few positionals:       f(1)                  -> ArgumentError: wrong number of arguments (given 1, expected 2+)
+8. a missing keyword:         kw()                  -> ArgumentError: missing keyword: :k
+9. an unknown keyword:        kw(k: 1, z: 2)        -> ArgumentError: unknown keyword: :z
+10. a Hash is not keywords:   kw({k: 1})            -> ArgumentError: wrong number of arguments (given 1, expected 0; required keyword: k)
+    but ** splats it:         kw(**{k: 1})          -> [1, 4]
+11. positionals have no names: two(b: 2, a: 1)      -> ArgumentError: wrong number of arguments (given 1, expected 2)
+    the Hash lands in one slot: pos(a: 1)           -> {a: 1} (a Hash)
+12. arity:                    f -3, g 2, kw 1, two 2, anon -1

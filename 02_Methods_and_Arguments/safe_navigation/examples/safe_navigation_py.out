@@ -1,0 +1,14 @@
+1. a method on None:              name.upper()         -> AttributeError: 'NoneType' object has no attribute 'upper'
+2. the conditional expression:    name.upper() if name is not None else None -> None ; 'abc' -> 'ABC'
+3. the arguments are skipped:     x.replace('a', noisy()) if x is not None else None -> None
+   ...but not by getattr:         getattr(x, 'replace', lambda *a: None)('a', noisy()) -> (argument evaluated) None
+4. only None is skipped:          '' if '' is None else 'kept'  -> 'kept'; but '' and ''.upper() -> '' (the `and` idiom drops every falsy value)
+5. a chain of objects:            getattr(u1.address, 'city', None) -> 'Oslo' , getattr(u2.address, 'city', None) -> None
+                                  u2.address.city      -> AttributeError: 'NoneType' object has no attribute 'city'
+6. get chains through dicts:      h.get('a', {}).get('b', {}).get('c') -> 1 , with 'x' -> None
+                                  h['a']['x']['c']     -> KeyError: 'x'
+7. [] is strict, get is lenient:  h['zz']              -> KeyError: 'zz' , h.get('zz') -> None
+                                  h.get('zz', 'default') -> 'default'
+8. no dig: a five-line helper:    dig([[1, [2]]], 0, 1, 0) -> 2 , dig([], 0, 1) -> None
+                                  dig(h, 'a', 'b', 'c', 'd') -> None (the helper swallows the dead end)
+9. no operator to chain:          PEP 505's None-aware `?.` was deferred; each step needs its own guard
