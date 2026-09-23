@@ -1,0 +1,10 @@
+ 1. "hello".shout() before anyone defines it           AttributeError
+ 2. str.shout = shout (a built-in type)                TypeError
+ 3. setattr(int, "double", double)                     TypeError
+ 4. Widget.b = f: methods / early.b()                  ['a', 'b'] / 'b'
+ 5. reassigning Widget.a: early.a() / warning          'a, again' / none
+ 6. a second class Widget statement -- same class?     False (early.b() still 'b')
+ 7. class Widget(str) (another base)                   no error; Widget.__mro__[1] is str
+ 8. object.yell = f                                    TypeError
+ 9. del Widget.b / delattr(str, "upper")               AttributeError / TypeError
+10. class LoudStr(str) -- LoudStr("hello").shout()     'HELLO!!'

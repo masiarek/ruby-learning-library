@@ -1,0 +1,10 @@
+ 1. include Greeting -- Person.ancestors.first(3)              [Person, Greeting, Object]; ann.greet: "hello from ann"
+ 2. Person.include?(Greeting) / included_modules - Object's    true / [Greeting]
+ 3. bob.extend(Shouting) -- bob.shout / ann.shout              "BOB!" / NoMethodError: undefined method 'shout' for an instance of Person
+ 4. extend in a class body -- Registry.count                   "Registry counts"; singleton_class.include?: true
+ 5. prepend Loud -- Person.ancestors.first(4)                  [Loud, Person, Greeting, Object]
+ 6. ann.greet: the result / the order the methods ran          "PERSON SAYS HELLO FROM ANN" / [:Loud, :Person, :Greeting]
+ 7. include Greeting a second time -- ancestors grew?          false
+ 8. include Comparable + <=> -- v1 < v2 / v5.clamp(v1, v3)     true / v3
+ 9. include Enumerable + each -- sort / include?("a")          ["a", "b", "c"] / true
+10. a module is not a class: Class.new(Greeting)               TypeError: superclass must be an instance of Class (given an instance of Module)

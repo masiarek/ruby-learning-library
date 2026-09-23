@@ -1,0 +1,11 @@
+ 1. Dog.ancestors                                              [Wrapped, Dog, Walkable, Animal, Object, Kernel, BasicObject]
+ 2. the diamond (B and C include A) -- D.ancestors.take(4)     [D, C, B, A]
+ 3. zsuper -- Dog.new.speak(3)                                 "[dog:animal x3]"
+ 4. super() -- Cat.new.speak(3)                                "cat:animal x1"
+ 5. zsuper after times += 1 -- Dog.new.shout(3)                "ANIMAL x4"
+ 6. super inside a module method -- dog.move                   "walk, then animal moves"
+ 7. initialize without super / with super -- instance_variables [:@sub] / [:@base, :@sub]
+ 8. method(:speak).owner, then super_method, until nil         [Wrapped, Dog, Animal]
+ 9. super with no superclass method -- Cat.new.purr            NoMethodError: super: no superclass method 'purr' for an instance of Cat
+10. ends in method_missing -- dog.fly / respond_to?(:fly)      "method_missing caught fly" / false
+11. Dog.superclass / BasicObject.superclass / method(:puts).owner Animal / nil / Kernel

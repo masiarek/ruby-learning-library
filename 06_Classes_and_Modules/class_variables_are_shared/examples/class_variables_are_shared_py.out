@@ -1,0 +1,11 @@
+ 1. count set in Base, read through Sub                        0
+ 2. Sub.bump() does cls.count += 1 -- Base.count / Sub.count   0 / 1
+ 3. Sub assigns cls.count = 100 -- Base.count / Sub's own?     0 / True ('count' in vars(Sub))
+ 4. an instance method reads self.count                        0
+ 5. an instance method assigns self.count = 7 -- Base.count    0 (vars(b): {'count': 7})
+ 6. count_ivar -- Base's / Sub's (inherited, not per class)    0 / 0
+ 7. items = []; Sub.push(1) -- Base.items                      [1]
+ 8. getattr / names in vars(Base) / hasattr                    0 / ['count', 'count_ivar', 'items'] / False
+ 9. getattr(Base, "nope")                                      AttributeError
+10. fresh set in Early, then in Base -- Early.fresh            1
+11. no class variable outside a class; ClassVar in a dataclass ['x'] (registry is a class attribute)

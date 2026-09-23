@@ -1,0 +1,3 @@
+D.ancestors up to Object: [D, C, B, A]
+D.new.name:               D > C > B > A
+A appears once, and the module included last (C) is reached first

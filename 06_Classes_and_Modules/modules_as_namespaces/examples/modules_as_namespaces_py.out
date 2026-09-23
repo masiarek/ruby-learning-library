@@ -1,0 +1,10 @@
+ 1. shop/cart.py -- Cart's qualified name / Cart()                 shop.cart.Cart / <shop.cart.Cart>
+ 2. shop.Item, warehouse.Item, Item -- the same class?             False / False (<shop.Item>, <warehouse.Item>)
+ 3. module function: shop.slug / import_module / Cart().slug       'hello-world' / 'hello-world' / AttributeError
+ 4. def version() in __init__ -- shop.version() / public names     'Shop 1.0' / ['Item', 'VERSION', 'cart', 'slug', 'version']
+ 5. round(math.pi, 2) / math.sqrt(16) -- one dot for both          3.14 / 4.0 / (no :: form)
+ 6. one dot for everything -- shop.Cart (never defined there)      AttributeError
+ 7. shop.Item.__module__ / Item.__module__                         ['shop', '__main__']
+ 8. a module cannot be instantiated -- shop()                      TypeError
+ 9. classes in vars(shop) / getattr(shop, "Item")                  ['Item'] / Item
+10. type(shop).__name__ / types.ModuleType("util").helper()        module / 'helped'

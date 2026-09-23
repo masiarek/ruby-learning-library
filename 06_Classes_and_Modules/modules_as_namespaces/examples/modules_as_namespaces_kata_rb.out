@@ -1,0 +1,5 @@
+Geometry.area(1):              3.14
+Geometry::Circle.new(2).area:  12.57
+Geometry.constants:            [:Circle]
+Geometry.new:                  NoMethodError: undefined method 'new' for module Geometry
+Class.new(Geometry):           TypeError: superclass must be an instance of Class (given an instance of Module)

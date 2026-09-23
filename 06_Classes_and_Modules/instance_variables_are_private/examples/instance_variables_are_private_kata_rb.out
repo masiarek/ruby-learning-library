@@ -1,0 +1,7 @@
+celsius:               25
+fahrenheit:            77.0
+instance_variables:    [:@celsius]
+after t.celsius = 100: 212.0
+t.celsius = -300:      ArgumentError: -300 is below absolute zero
+still:                 #<Temperature 100 C>
+t.fahrenheit = 0:      NoMethodError (no writer was defined)

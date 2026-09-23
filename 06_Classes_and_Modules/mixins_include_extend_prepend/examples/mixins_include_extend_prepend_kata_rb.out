@@ -1,0 +1,5 @@
+PrependedRecord.ancestors.first(2): [Timestamped, PrependedRecord]
+PrependedRecord.new.save:           timestamped(PrependedRecord#save)
+IncludedRecord.ancestors.first(2):  [IncludedRecord, Timestamped]
+IncludedRecord.new.save:            IncludedRecord#save
+included: Timestamped#save is reached only through super, which IncludedRecord#save never calls

@@ -1,0 +1,10 @@
+ 1. "hello".shout before anyone defines it             NoMethodError: undefined method 'shout' for an instance of String
+ 2. class String; def shout; end -- "hello".shout      "HELLO!"
+ 3. class Integer; def double; end -- 21.double        42 (owner: Integer)
+ 4. Widget reopened: instance_methods(false) / early.b [:a, :b] / :b
+ 5. redefining shout: the child prints / ruby -w says  "X?" / warning: method redefined; discarding old shout; warning: previous definition of shout was here
+ 6. a second class Widget statement -- same class?     true
+ 7. class Widget < String (another superclass)         TypeError: superclass mismatch for class Widget
+ 8. class Object; def yell; end -- nil.yell / 1.yell   "!" / "1!"
+ 9. String.remove_method(:shout) -- "hello".shout      NoMethodError: undefined method 'shout' for an instance of String
+10. refine String + using -- "hello".shout in this file "HELLO!!"

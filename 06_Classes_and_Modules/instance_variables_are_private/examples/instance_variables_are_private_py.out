@@ -1,0 +1,10 @@
+ 1. acct._owner with no reader defined                 'ann'
+ 2. the reader: @property owner, acct.owner            'ann'
+ 3. no declaration needed, acct.balance = 10           10
+ 4. acct.owner = "bob" on a property with no setter    AttributeError
+ 5. the back door: vars(acct)["_owner"]                'ann'
+ 6. list(vars(acct))                                   ['_owner', 'balance']
+ 7. unset acct.nickname read from outside              AttributeError (hasattr False)
+ 8. self.__secret is stored under a mangled name       '_Account__secret'
+ 9. a new attribute added after the fact               True on Account; AttributeError on a __slots__ class
+10. two instances, two sets of attributes              ann / bob (balance of other: AttributeError)

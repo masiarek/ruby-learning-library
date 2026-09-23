@@ -1,0 +1,10 @@
+ 1. nested class: __qualname__ / Outer.LIMIT                   'Outer.Inner' / 10
+ 2. a bare LIMIT inside a method of the class that defines it  NameError
+ 3. Child(Parent): cls.LIMIT found through the MRO             20
+ 4. TOP from inside Child: a module global                     top-level / 'TOP' in globals(): True
+ 5. X: Final = 1; X = 2 -- prints / warns                      2 / none
+ 6. Shop.TAX / Shop.tax() -- one dot for both                  0.2 / method tax / (no :: form)
+ 7. getattr(Shop, "TAX") / uppercase in vars(Shop) / hasattr   0.2 / ['TAX'] / False
+ 8. Shop.NOPE with a metaclass __getattr__                     '__getattr__ saw NOPE'
+ 9. LIST = [1]; LIST.append(2) -- LIST / is it frozen?         [1, 2] / no such thing
+10. mixin method: bare NAME / type(self).NAME, on a Robot      'module global' / 'robot'

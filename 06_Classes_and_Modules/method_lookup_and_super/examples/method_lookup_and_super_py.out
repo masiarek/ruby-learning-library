@@ -1,0 +1,11 @@
+ 1. Dog.__mro__                                                ['Dog', 'Walkable', 'Animal', 'object']
+ 2. the diamond (B and C extend A) -- D.__mro__[:4]            ['D', 'B', 'C', 'A']
+ 3. super().speak(times) -- Dog().speak(3)                     'dog:animal x3'
+ 4. super().speak() -- Cat().speak(3)                          'cat:animal x1'
+ 5. super().shout(times) after times += 1 -- Dog().shout(3)    'ANIMAL x4'
+ 6. super() inside a mixin method -- dog.move()                'walk, then animal moves'
+ 7. __init__ without super() / with super() -- vars()          ['sub'] / ['base', 'sub']
+ 8. classes in Dog.__mro__ that define speak                   ['Dog', 'Animal']
+ 9. super().purr() with no base method -- Cat().purr()         AttributeError
+10. ends in __getattr__ -- dog.fly / hasattr(dog, "fly")       '__getattr__ caught fly' / True
+11. Dog.__bases__ / object.__bases__ / where print lives       ['Walkable', 'Animal'] / () / builtins

@@ -1,0 +1,10 @@
+ 1. acct._audit() -- convention only, explicit receiver  'audited ann'
+ 2. inside the class, plain _audit()                     NameError
+ 3. inside the class, self._audit()                      'audited ann'
+ 4. no protected: acct == other / acct._balance          True / 0
+ 5. no private constructor -- Account("x", 0)            <Account x>; Account.open works: <Account x>
+ 6. getattr(acct, "_audit")() / no public_send           'audited ann' / getattr reaches every name
+ 7. names in vars(Account) that start with _             ['_Account__vault', '_audit', '_helper1']
+ 8. acct.__vault() / acct._Account__vault()              AttributeError / 'vault'
+ 9. a "private" attribute set as self._total = 1         1
+10. hasattr(acct, "_audit") / hasattr(acct, "__vault")   True / False

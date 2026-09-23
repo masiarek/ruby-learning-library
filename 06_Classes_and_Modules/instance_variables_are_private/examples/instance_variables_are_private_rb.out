@@ -1,0 +1,10 @@
+ 1. acct.owner with no reader defined                  NoMethodError: undefined method 'owner' for an instance of Account
+ 2. after attr_reader :owner, acct.owner               "ann"
+ 3. after attr_accessor :balance, acct.balance = 10    10
+ 4. acct.owner = "bob" with no writer                  NoMethodError: undefined method 'owner=' for an instance of Account
+ 5. the back door: instance_variable_get(:@owner)      "ann"
+ 6. acct.instance_variables                            [:@owner, :@balance]
+ 7. unset @nickname read inside a method               nil (instance_variable_defined? false)
+ 8. @__secret is stored under its own name             :@__secret
+ 9. a new ivar added after the fact                    true (no way to forbid it)
+10. two instances, two sets of ivars                   ann / bob (balance of other: nil)

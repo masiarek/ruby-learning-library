@@ -1,0 +1,5 @@
+Config::Loader.nesting:   [Config::Loader]
+Config::Loader.bare:      NameError: uninitialized constant Config::Loader::DEFAULTS
+Config::Loader.qualified: {host: "localhost", port: 80}
+Config::Reader.nesting:   [Config::Reader, Config]
+Config::Reader.bare:      {host: "localhost", port: 80}

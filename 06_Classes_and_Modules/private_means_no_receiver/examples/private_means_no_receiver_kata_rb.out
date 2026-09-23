@@ -1,0 +1,8 @@
+v.open(1234):              open
+v.open(1):                 locked
+v == Vault.new(1234):      true
+v == Vault.new(9):         false
+v.combination:             NoMethodError: protected method 'combination' called for an instance of Vault
+v.audit_log:               NoMethodError: private method 'audit_log' called for an instance of Vault
+v.send(:audit_log):        audit: opened by 1234
+v.public_send(:audit_log): NoMethodError: private method 'audit_log' called for an instance of Vault

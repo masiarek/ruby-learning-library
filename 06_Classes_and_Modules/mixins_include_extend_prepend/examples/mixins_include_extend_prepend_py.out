@@ -1,0 +1,10 @@
+ 1. class Person(Greeting) -- Person.__mro__[:3]               ['Person', 'Greeting', 'object']; ann.greet(): 'hello from ann'
+ 2. issubclass(Person, Greeting) / bases beyond object         True / ['Greeting']
+ 3. bob.shout = MethodType(...) -- bob.shout() / ann.shout()   'BOB!' / AttributeError
+ 4. a base with @classmethod -- Registry.count()               'Registry counts'; kind: classmethod
+ 5. class Person(Loud, Greeting) -- __mro__[:4]                ['Person', 'Loud', 'Greeting', 'object']
+ 6. Person("ann").greet(): the result / the order              'person says HELLO FROM ANN' / ['Person', 'Loud', 'Greeting']
+ 7. class Twice(Greeting, Greeting) -- a base listed twice     TypeError
+ 8. @total_ordering + __lt__/__eq__ -- v1 < v2 / min(max())    True / v3
+ 9. Sequence + __getitem__/__len__ -- sorted / "a" in          ['a', 'b', 'c'] / True
+10. a mixin is a class: Greeting() / a subclass of it          Greeting instance / Sub

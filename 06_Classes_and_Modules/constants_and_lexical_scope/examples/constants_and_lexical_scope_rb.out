@@ -1,0 +1,10 @@
+ 1. nested class: Module.nesting / LIMIT                       [Outer::Inner, Outer] / 10
+ 2. compact class Outer::Compact: Module.nesting / LIMIT       [Outer::Compact] / NameError: uninitialized constant Outer::Compact::LIMIT
+ 3. Child < Parent: LIMIT found through ancestors              20
+ 4. TOP from inside Child: top-level constants live in Object  top-level / Object.const_defined?(:TOP): true
+ 5. X = 1; X = 2 in a child (no -w): it prints / warns         "2" / warning: already initialized constant X; warning: previous definition of X was here
+ 6. Shop::TAX / Shop.tax / Shop::tax (lowercase = a call)      0.2 / method tax / method tax
+ 7. const_get(:TAX) / constants / const_defined?(:NOPE)        0.2 / [:TAX] / false
+ 8. Shop::NOPE with const_missing defined                      "const_missing saw NOPE"
+ 9. LIST = [1]; LIST << 2 -- LIST / LIST.frozen?               [1, 2] / false
+10. module method: bare NAME / self.class::NAME, on a Robot    "greeter" / "robot"

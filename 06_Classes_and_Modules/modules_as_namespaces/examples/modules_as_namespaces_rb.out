@@ -1,0 +1,10 @@
+ 1. module Shop; class Cart -- Shop::Cart.name / .new              Shop::Cart / #<Shop::Cart>
+ 2. Shop::Item, Warehouse::Item, ::Item -- the same class?         false / false (#<Shop::Item>, #<Warehouse::Item>)
+ 3. module_function: Util.slug / Post.new.path / Post.new.slug     "hello-world" / "/hello-world" / NoMethodError: private method 'slug' called for an instance of Post
+ 4. def self.version -- Shop.version / singleton_methods.sort      "Shop 1.0" / [:both_items, :version]
+ 5. Math::PI.round(2) / Math.sqrt(16) / Math::sqrt(16)             3.14 / 4.0 / 4.0
+ 6. :: for a constant, . for a method -- Shop.Cart                 NoMethodError: undefined method 'Cart' for module Shop
+ 7. inside Shop: [Item, ::Item]                                    [Shop::Item, Item]
+ 8. a module cannot be instantiated -- Shop.new                    NoMethodError: undefined method 'new' for module Shop
+ 9. Shop.constants.sort / Shop.const_get(:Cart)                    [:Cart, :Item, :VERSION] / Shop::Cart
+10. Shop.class / Class.superclass (a class is a module + new)      Module / Module
