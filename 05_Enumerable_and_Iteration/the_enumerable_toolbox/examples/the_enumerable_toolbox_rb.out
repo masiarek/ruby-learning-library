@@ -1,0 +1,43 @@
+Transform, keep, drop, find
+ 1. map(&:upcase)                                ["FIG", "APPLE", "KIWI", "BANANA", "PLUM", "CHERRY"]
+ 2. select { size == 4 }, filter is the same method [["kiwi", "plum"], true]
+ 3. reject { |w| w.size == 4 }                   ["fig", "apple", "banana", "cherry"]
+ 4. find { start_with?("b") }, find { ...("z") } ["banana", nil]
+ 5. partition { |w| w.size < 5 }                 [["fig", "kiwi", "plum"], ["apple", "banana", "cherry"]]
+ 6. filter_map { |w| w.upcase if w.size == 4 }   ["KIWI", "PLUM"]
+
+Group and count
+ 7. group_by(&:size)                             {3 => ["fig"], 5 => ["apple"], 4 => ["kiwi", "plum"], 6 => ["banana", "cherry"]}
+ 8. nums.group_by(&:odd?)  (unsorted input)      {true => [3, 1, 1, 5, 9], false => [4, 2, 6]}
+ 9. nums.chunk(&:odd?).to_a  (runs, not groups)  [[true, [3, 1]], [false, [4]], [true, [1, 5, 9]], [false, [2, 6]]]
+10. nums.tally                                   {3 => 1, 1 => 2, 4 => 1, 5 => 1, 9 => 1, 2 => 1, 6 => 1}
+11. nums.count(&:odd?), words.count              [5, 6]
+
+Windows and slices
+12. nums.each_slice(3).to_a                      [[3, 1, 4], [1, 5, 9], [2, 6]]
+13. nums.each_cons(2).to_a                       [[3, 1], [1, 4], [4, 1], [1, 5], [5, 9], [9, 2], [2, 6]]
+14. steps.chunk_while { |a, b| b == a + 1 }.to_a [[1, 2], [4], [9, 10, 11, 12], [15]]
+15. steps.slice_when { |a, b| b != a + 1 }.to_a  [[1, 2], [4], [9, 10, 11, 12], [15]]
+16. words.zip(nums)                              [["fig", 3], ["apple", 1], ["kiwi", 4], ["banana", 1], ["plum", 5], ["cherry", 9]]
+17. words.flat_map(&:chars).first(5)             ["f", "i", "g", "a", "p"]
+
+Numbering
+18. each_with_index.map { |w, i| "#{i}:#{w}" }   ["0:fig", "1:apple", "2:kiwi", "3:banana", "4:plum", "5:cherry"]
+19. map.with_index(1) { |w, i| "#{i}. #{w}" }    ["1. fig", "2. apple", "3. kiwi", "4. banana", "5. plum", "6. cherry"]
+
+Reduce to one value
+20. nums.sum, nums.sum { |x| x * x }             [31, 173]
+21. nums.minmax, words.minmax_by(&:size)         [[1, 9], ["fig", "banana"]]
+22. words.min(2), words.max(2)                   [["apple", "banana"], ["plum", "kiwi"]]
+23. any? { > 8 }, all?(Integer), none?(String)   [true, true, true]
+
+Order and slice
+24. sort_by { |w| [w.size, w] }  (array key)     ["fig", "kiwi", "plum", "apple", "banana", "cherry"]
+25. sort_by { |w| [-w.size, w] }                 ["banana", "cherry", "apple", "kiwi", "plum", "fig"]
+26. take_while { < 5 }, drop_while { < 5 }       [[3, 1, 4, 1], [5, 9, 2, 6]]
+27. nums.uniq                                    [3, 1, 4, 5, 9, 2, 6]
+28. words.cycle.first(8)                         ["fig", "apple", "kiwi", "banana", "plum", "cherry", "fig", "apple"]
+
+Two Ruby-only spellings
+29. words.to_h { |w| [w, w.size] }               {"fig" => 3, "apple" => 5, "kiwi" => 4, "banana" => 6, "plum" => 4, "cherry" => 6}
+30. grep(/an/), nums.grep(2..5)  (grep uses ===) [["banana"], [3, 4, 5, 2]]

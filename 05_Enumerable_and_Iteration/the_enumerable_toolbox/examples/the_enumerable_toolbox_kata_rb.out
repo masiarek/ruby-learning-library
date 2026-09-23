@@ -1,0 +1,10 @@
+ 1. days above 20, with their index                ["day 4: 21", "day 5: 22", "day 6: 22", "day 7: 22"]
+ 2. runs of non-decreasing readings                [[12, 15, 15], [9, 21, 22, 22, 22], [18], [7]]
+ 3. day-to-day changes                             [3, 0, -6, 12, 1, 0, 0, -4, -11]
+ 4. three-day moving averages                      [14.0, 13.0, 15.0, 17.3, 21.7, 22.0, 20.7, 15.7]
+ 5. how often each reading occurs                  {12 => 1, 15 => 2, 9 => 1, 21 => 1, 22 => 3, 18 => 1, 7 => 1}
+ 6. the most frequent reading                      22
+ 7. readings in groups of four                     [[12, 15, 15, 9], [21, 22, 22, 22], [18, 7]]
+ 8. coldest and warmest                            [7, 22]
+ 9. readings sorted by distance from 15            [15, 15, 12, 18, 9, 21, 22, 22, 22, 7]
+10. first warm day, and the days before it         [21, [12, 15, 15, 9]]

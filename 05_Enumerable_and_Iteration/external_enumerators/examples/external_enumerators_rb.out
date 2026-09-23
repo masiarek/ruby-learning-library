@@ -1,0 +1,25 @@
+next, peek, and the end
+ 1. e = [1, 2].each; e.class                                       Enumerator
+ 2. e.next                                                         1
+ 3. e.peek  (looks, does not advance)                              2
+ 4. e.next                                                         2
+ 5. e.next at the end raises: class, message, ex.result            [StopIteration, "iteration reached an end", [1, 2]]
+ 6. e.next again: still exhausted                                  StopIteration
+ 7. e.rewind; e.next                                               1
+ 8. [1, 2].each.size, [1, 2].cycle.size, Enumerator.new {}.size    [2, Infinity, nil]
+
+loop rescues StopIteration silently, and its value is the result
+ 9. seen; loop { e2.next }.equal?(arr)  (each returned arr)        [[10, 20, 30], true]
+
+The external cursor is separate from internal iteration
+10. e3.next; e3.to_a; e3.next  (to_a starts over, next does not)   [10, [10, 20, 30], 20]
+11. [1, 2].each.with_index(1).to_a                                 [[1, 1], [2, 2]]
+
+Enumerators built by hand, and what they leave in result
+12. Enumerator.new { y << 1; y.yield 2; :done }: next x2, result   [[1, 2], :done]
+13. numbers (to_enum): loop { em.next } is the method's value      :the_return
+14. a raise inside the block comes out of next                     ["a", "RuntimeError: boom"]
+15. Enumerator.produce(1) { |x| x * 2 }.take(5)                    [1, 2, 4, 8, 16]
+16. 3.times.next, "abc".each_char.next, {a: 1}.each.next           [0, "a", [:a, 1]]
+17. StopIteration.ancestors.take(3)  (a bare rescue catches it)    [StopIteration, IndexError, StandardError]
+18. e2.peek on the e2 that loop drained                            StopIteration

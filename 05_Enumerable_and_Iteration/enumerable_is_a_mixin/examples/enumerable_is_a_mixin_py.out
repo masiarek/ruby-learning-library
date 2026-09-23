@@ -1,0 +1,38 @@
+A class with only __iter__: nothing to include, and no methods arrive
+ 1. hasattr(bare, "map")  (__iter__, nothing else)       False
+ 2. bare.map(...) raises                                 'AttributeError'
+ 3. Shelf.__mro__ names, isinstance(shelf, Iterable)     (['Shelf', 'object'], True)
+ 4. hasattr(shelf, "map")                                False
+
+The same handful, as builtins and itertools taking the iterable
+ 5. list(map(str.upper, shelf))                          ['EMMA', 'DRACULA', 'MIDDLEMARCH', 'PERSUASION']
+ 6. [t for t in shelf if len(t) > 6]                     ['Dracula', 'Middlemarch', 'Persuasion']
+ 7. sorted(shelf, key=len)                               ['Emma', 'Dracula', 'Persuasion', 'Middlemarch']
+ 8. min(shelf, key=len)                                  'Emma'
+ 9. "Emma" in shelf  (in falls back to __iter__)         True
+10. next(iter(shelf)), list(islice(shelf, 2))            ['Emma', ['Emma', 'Dracula']]
+11. list(batched(shelf, 3))  (3.12+)                     [('Emma', 'Dracula', 'Middlemarch'), ('Persuasion',)]
+12. list(shelf)                                          ['Emma', 'Dracula', 'Middlemarch', 'Persuasion']
+13. list(enumerate(shelf))                               [(0, 'Emma'), (1, 'Dracula'), (2, 'Middlemarch'), (3, 'Persuasion')]
+14. sum(shelf, "") raises; "".join(shelf)                ['TypeError', 'EmmaDraculaMiddlemarchPersuasion']
+15. type(map(str.lower, shelf)).__name__  (lazy already) 'map'
+16. list(islice(map(str.lower, shelf), 2))               ['emma', 'dracula']
+17. type(iter(shelf)).__name__, next(iter(shelf))        ['generator', 'Emma']
+
+Builtins that are Iterable, and one that is not
+18. isinstance([], Iterable)                             True
+19. isinstance({}, Iterable)                             True
+20. isinstance(range(3), Iterable)                       True
+21. isinstance(Point(1, 2), Iterable)                    True
+22. isinstance(os.scandir("."), Iterable)                True
+23. isinstance(set(), Iterable)                          True
+24. isinstance(iter([]), Iterable)                       True
+25. isinstance("abc", Iterable)                          True
+26. isinstance(3, Iterable)                              False
+
+The mixin idea, seen from the ABCs' side
+27. sorted(Iterable.__abstractmethods__)                 ['__iter__']
+28. hasattr(shelf, "sorted"), "sorted" in dir(builtins)  [False, True]
+29. list.__mro__ names, hasattr(list, "map")             (['list', 'object'], False)
+30. sorted(Sequence.__abstractmethods__)  (a real mixin) ['__getitem__', '__len__']
+31. deck: "K" in, .index("Q"), .count("K"), reversed     [True, 2, 2, ['K', 'Q', 'K', 'A']]

@@ -1,0 +1,5 @@
+ 1. merge([1, 4, 9], [2, 3, 10, 11])             [1, 2, 3, 4, 9, 10, 11]
+ 2. merge([], [5, 6])                            [5, 6]
+ 3. interleave(%w[a b c], [1, 2])                ["a", 1, "b", 2, "c"]
+ 4. interleave([1], %w[x y z])                   [1, "x", "y", "z"]
+ 5. the trap: to_a after next starts over        [[1, 2, 3], 2]

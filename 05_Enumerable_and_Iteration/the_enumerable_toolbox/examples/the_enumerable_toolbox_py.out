@@ -1,0 +1,43 @@
+Transform, keep, drop, find
+ 1. [w.upper() for w in words]                   ['FIG', 'APPLE', 'KIWI', 'BANANA', 'PLUM', 'CHERRY']
+ 2. [w for w in words if len(w) == 4]            ['kiwi', 'plum']
+ 3. [w for w in words if len(w) != 4]            ['fig', 'apple', 'banana', 'cherry']
+ 4. next((w ... if w.startswith("b")), None), ..."z" ['banana', None]
+ 5. two comprehensions (no partition)            (['fig', 'kiwi', 'plum'], ['apple', 'banana', 'cherry'])
+ 6. [w.upper() for w in words if len(w) == 4]    ['KIWI', 'PLUM']
+
+Group and count
+ 7. defaultdict(list) loop  (no group_by)        {3: ['fig'], 5: ['apple'], 4: ['kiwi', 'plum'], 6: ['banana', 'cherry']}
+ 8. groupby(nums, key=odd)  (unsorted input)     [(True, [3, 1]), (False, [4]), (True, [1, 5, 9]), (False, [2, 6])]
+ 9. groupby(sorted(nums, key=odd), key=odd)      [(False, [4, 2, 6]), (True, [3, 1, 1, 5, 9])]
+10. dict(Counter(nums))                          {3: 1, 1: 2, 4: 1, 5: 1, 9: 1, 2: 1, 6: 1}
+11. sum(1 for x in nums if odd(x)), len(words)   [5, 6]
+
+Windows and slices
+12. list(batched(nums, 3))  (3.12+)              [(3, 1, 4), (1, 5, 9), (2, 6)]
+13. list(pairwise(nums))                         [(3, 1), (1, 4), (4, 1), (1, 5), (5, 9), (9, 2), (2, 6)]
+14. runs(steps, lambda a, b: b == a + 1)         [[1, 2], [4], [9, 10, 11, 12], [15]]
+15. runs(steps, lambda a, b: not b != a + 1)     [[1, 2], [4], [9, 10, 11, 12], [15]]
+16. list(zip(words, nums))                       [('fig', 3), ('apple', 1), ('kiwi', 4), ('banana', 1), ('plum', 5), ('cherry', 9)]
+17. list(chain.from_iterable(words))[:5]         ['f', 'i', 'g', 'a', 'p']
+
+Numbering
+18. [f"{i}:{w}" for i, w in enumerate(words)]    ['0:fig', '1:apple', '2:kiwi', '3:banana', '4:plum', '5:cherry']
+19. [f"{i}. {w}" for i, w in enumerate(words, 1)] ['1. fig', '2. apple', '3. kiwi', '4. banana', '5. plum', '6. cherry']
+
+Reduce to one value
+20. sum(nums), sum(x * x for x in nums)          [31, 173]
+21. (min, max)(nums), (min, max)(words, key=len) [(1, 9), ('fig', 'banana')]
+22. heapq.nsmallest(2, words), .nlargest(2, words) [['apple', 'banana'], ['plum', 'kiwi']]
+23. any(...), all(isinstance(...)), not any(...) [True, True, True]
+
+Order and slice
+24. sorted(words, key=lambda w: (len(w), w))     ['fig', 'kiwi', 'plum', 'apple', 'banana', 'cherry']
+25. sorted(words, key=lambda w: (-len(w), w))    ['banana', 'cherry', 'apple', 'kiwi', 'plum', 'fig']
+26. list(takewhile(...)), list(dropwhile(...))   [[3, 1, 4, 1], [5, 9, 2, 6]]
+27. list(dict.fromkeys(nums))                    [3, 1, 4, 5, 9, 2, 6]
+28. list(islice(cycle(words), 8))                ['fig', 'apple', 'kiwi', 'banana', 'plum', 'cherry', 'fig', 'apple']
+
+The two Ruby-only spellings, by hand
+29. {w: len(w) for w in words}                   {'fig': 3, 'apple': 5, 'kiwi': 4, 'banana': 6, 'plum': 4, 'cherry': 6}
+30. re.search / a range test in a comprehension  [['banana'], [3, 4, 5, 2]]

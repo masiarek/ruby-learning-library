@@ -1,0 +1,23 @@
+How often the key is computed
+ 1. sort_by { [w.size, w] }: key calls, result                         [8, ["fig", "date", "kiwi", "pear", "plum", "apple", "banana", "cherry"]]
+ 2. sort { key(a) <=> key(b) }: key calls >= 2 * (n - 1), same result  [true, true]
+ 3. the sort block ran at least n - 1 times  (exact count: platform)   true
+
+Equal keys: what sort_by promises (a valid order) and what it does not (which one)
+ 4. sort_by(&:age).map(&:age); non-decreasing?; the same people?       [[25, 25, 30, 30, 30, 41], true, true]
+ 5. sort_by.with_index { |p, i| [p.age, i] }.map(&:name)  (stable)     ["Bob", "Abe", "Ann", "Cid", "Fay", "Eve"]
+ 6. sort_by { |p| [p.age, p.name] }.map(&:name)  (tiebreak by name)    ["Abe", "Bob", "Ann", "Cid", "Fay", "Eve"]
+ 7. descending: with_index { [-p.age, i] } vs stable.reverse           [["Eve", "Ann", "Cid", "Fay", "Bob", "Abe"], ["Eve", "Fay", "Cid", "Ann", "Abe", "Bob"]]
+
+sort, sort!, and the block
+ 8. s = nums.sort; s, nums, s.equal?(nums); nums.sort!.equal?(nums)    [[1, 2, 3], [1, 2, 3], false, true]
+ 9. sort { |a, b| b <=> a }, sort.reverse, sort_by { -x }, max(2)      [[3, 2, 1], [3, 2, 1], [3, 2, 1], [3, 2]]
+10. [3, "a", 2].sort, [3, nil].sort  (class only)                      [ArgumentError, ArgumentError]
+11. [2, 1].sort { nil }  (the block must return an Integer)            ArgumentError
+
+min_by, max_by, and strings
+12. people.min_by(&:name).name, people.max_by(&:age).name              ["Abe", "Eve"]
+13. %w[b a C].sort, %w[b a C].sort_by(&:downcase)                      [["C", "a", "b"], ["a", "b", "C"]]
+14. %w[10 9 100].sort, %w[10 9 100].sort_by(&:to_i)                    [["10", "100", "9"], ["9", "10", "100"]]
+15. strs.sort_by!(&:to_i).equal?(strs), strs; Enumerable has sort_by!? [true, ["9", "10", "100"], false]
+16. {b: 2, a: 1}.sort_by { |k, v| v }, .to_h                           [[[:a, 1], [:b, 2]], {a: 1, b: 2}]

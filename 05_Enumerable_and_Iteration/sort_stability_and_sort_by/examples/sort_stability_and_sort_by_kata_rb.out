@@ -1,0 +1,6 @@
+ 1. by age, ties in input order (with_index)       ["Bob", "Abe", "Ann", "Cid", "Eve"]
+ 2. by age descending, then name ascending         ["Eve", "Ann", "Cid", "Abe", "Bob"]
+ 3. the same with sort and a block                 ["Eve", "Ann", "Cid", "Abe", "Bob"]
+ 4. names by length, then alphabetically           ["Abe", "Ann", "Bob", "Cid", "Eve"]
+ 5. sort_by { age }: the ages, and are they valid? [[25, 25, 30, 30, 41], true]
+ 6. sort returns a new array; sort! the same one   [false, true]

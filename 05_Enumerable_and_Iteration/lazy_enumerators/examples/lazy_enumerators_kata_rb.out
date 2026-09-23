@@ -1,0 +1,8 @@
+ 1. primes.first(10)                               [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
+ 2. candidates tested for those ten                28
+ 3. primes.find { |p| p > 1000 }                   1009
+ 4. candidates tested for that one                 1008
+ 5. primes.each_slice(3).first(2)                  [[2, 3, 5], [7, 11, 13]]
+ 6. twin primes: each_cons(2).select { gap 2 }.first(4) [[3, 5], [5, 7], [11, 13], [17, 19]]
+ 7. primes.map { p * p }.take_while { < 200 }.to_a [4, 9, 25, 49, 121, 169]
+ 8. primes.with_index(1).find { |_, i| i == 100 }  [541, 100]

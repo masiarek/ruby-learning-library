@@ -1,0 +1,7 @@
+ 1. product of 1..6                              720
+ 2. the longest word                             "apple"
+ 3. word => size, with each_with_object          {"pear" => 4, "fig" => 3, "apple" => 5, "plum" => 4, "kiwi" => 4}
+ 4. running totals of [3, 1, 4, 1, 5]            [3, 4, 8, 9, 14]
+ 5. reverse [1, 2, 3] with inject                [3, 2, 1]
+ 6. group by first letter, with a default block  {"p" => ["pear", "plum"], "f" => ["fig"], "a" => ["apple"], "k" => ["kiwi"]}
+ 7. [0.1] * 10 by inject, then by sum            [0.9999999999999999, 1.0]

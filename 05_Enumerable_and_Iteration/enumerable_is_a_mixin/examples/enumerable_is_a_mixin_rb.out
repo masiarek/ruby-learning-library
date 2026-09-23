@@ -1,0 +1,38 @@
+A class with only `each`, before and after `include Enumerable`
+ 1. Bare.new.respond_to?(:map)  (each, no include)       false
+ 2. Bare.new.map { } raises                              NoMethodError
+ 3. Shelf.ancestors.take(3)                              [Shelf, Enumerable, Object]
+ 4. shelf.respond_to?(:map)                              true
+
+What one `each` bought (a handful of the toolbox)
+ 5. map(&:upcase)                                        ["EMMA", "DRACULA", "MIDDLEMARCH", "PERSUASION"]
+ 6. select { |t| t.size > 6 }                            ["Dracula", "Middlemarch", "Persuasion"]
+ 7. sort_by(&:size)                                      ["Emma", "Dracula", "Persuasion", "Middlemarch"]
+ 8. min_by(&:size)                                       "Emma"
+ 9. include?("Emma")                                     true
+10. first, first(2)                                      ["Emma", ["Emma", "Dracula"]]
+11. each_slice(3).to_a                                   [["Emma", "Dracula", "Middlemarch"], ["Persuasion"]]
+12. to_a                                                 ["Emma", "Dracula", "Middlemarch", "Persuasion"]
+13. each_with_index.to_a                                 [["Emma", 0], ["Dracula", 1], ["Middlemarch", 2], ["Persuasion", 3]]
+14. sum("")                                              "EmmaDraculaMiddlemarchPersuasion"
+15. lazy.class                                           Enumerator::Lazy
+16. lazy.map(&:downcase).first(2)                        ["emma", "dracula"]
+17. each.class, each.next  (no block given)              [Enumerator, "Emma"]
+
+Core classes that include Enumerable, and two that do not
+18. Array.include?(Enumerable)                           true
+19. Hash.include?(Enumerable)                            true
+20. Range.include?(Enumerable)                           true
+21. Struct.include?(Enumerable)                          true
+22. Dir.include?(Enumerable)                             true
+23. Set.include?(Enumerable)                             true
+24. Enumerator.include?(Enumerable)                      true
+25. String.include?(Enumerable)                          false
+26. Integer.include?(Enumerable)                         false
+
+The mixin, seen from the module's side
+27. Enumerable.instance_methods.include?(:each)          false
+28. ...include?(:tally), ...size > 50                    [true, true]
+29. Array.instance_method(:map).owner, (:inject).owner   [Array, Enumerable]
+30. Comparable.instance_methods.sort  (the other mixin)  [:<, :<=, :==, :>, :>=, :between?, :clamp]
+31. Shelf.include?(Comparable)  (mixins are opt-in)      false
