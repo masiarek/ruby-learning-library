@@ -1,0 +1,9 @@
+pool   peak queue   longest wait   refused
+6      100          3325 ms        500
+7      100          2850 ms        200
+8      0            0 ms           0
+9      0            0 ms           0
+10     0            0 ms           0
+
+The pool clears 5 requests a second per process, so 40 a second
+needs 8 processes: the smallest pool that refuses nobody is 8.

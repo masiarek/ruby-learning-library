@@ -144,6 +144,7 @@ Every row names an idea once and then gives its two spellings. The last column i
 | Isolated parallelism | `Ractor` | `multiprocessing`; subinterpreters | [Ractors share nothing](12_Concurrency_and_Parallelism/ractors_share_nothing/README.md) |
 | Processes | `fork`, `spawn`, `Process.wait` | `os.fork`, `subprocess`, `os.waitpid` | [Processes](12_Concurrency_and_Parallelism/processes_fork_and_wait/README.md) |
 | Timeouts | `Timeout.timeout`, `Thread#kill` | `join(timeout)`, futures with `timeout=` | [Timeouts and killing threads](12_Concurrency_and_Parallelism/timeouts_and_killing_threads/README.md) |
+| A queue that refuses when full | `SizedQueue#push(job, true)` raises `ThreadError` | `queue.Queue(maxsize=n).put_nowait` raises `queue.Full` | [A `SizedQueue` that refuses](12_Concurrency_and_Parallelism/a_sized_queue_that_refuses/README.md) |
 
 ## IO, files and the system
 

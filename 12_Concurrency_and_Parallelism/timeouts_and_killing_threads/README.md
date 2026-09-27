@@ -120,3 +120,4 @@ limit 2 s, job 0.1 s: finished a 0.1 s job
 - [exit, at_exit and SystemExit](../../08_Errors_and_Exceptions/exit_at_exit_and_system_exit/README.md) — `Interrupt` and `SignalException`, the interrupts that come from outside the process
 - [Ctrl-C is a signal ↗](https://masiarek.github.io/python-learning-library/02_Projects_and_Environments/ctrl_c_is_a_signal/index.html) — the Python library on `signal`, the one interrupt Python has
 - [What does a wait return when the time runs out? ↗](https://masiarek.github.io/concurrency-learning-library/04_Waiting_For_Each_Other/waiting_with_a_timeout/index.html) — the same question across six languages in the Concurrency library
+- [A `SizedQueue` that refuses is the 503 behind "queue full"](../a_sized_queue_that_refuses/README.md) — Passenger answers a Rails app's requests from a fixed pool of processes, 6 by default, through a request…

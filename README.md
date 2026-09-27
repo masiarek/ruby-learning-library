@@ -27,7 +27,7 @@ Someone who knows Python and is learning Ruby; someone who knows Ruby and wants 
 | 09 | [Control flow and pattern matching](09_Control_Flow_and_Pattern_Matching/README.md) | expressions everywhere, `unless`/`until`, `and`/`or`, `case`/`when`, `case`/`in`, pins and guards, `deconstruct`, `for` scope |
 | 10 | [Metaprogramming](10_Metaprogramming/README.md) | `send`, `define_method`, `method_missing`, `instance_eval`/`class_eval`, hooks, a DSL, classes at runtime, introspection |
 | 11 | [Under the hood](11_Under_the_Hood/README.md) | `Method` objects, `Binding`, `TracePoint`, `ObjectSpace` and GC, the bytecode, the JITs |
-| 12 | [Concurrency and parallelism](12_Concurrency_and_Parallelism/README.md) | threads and the GVL, `Mutex`/`Queue`, fibers, fiber-local storage, Ractors, processes, timeouts |
+| 12 | [Concurrency and parallelism](12_Concurrency_and_Parallelism/README.md) | threads and the GVL, `Mutex`/`Queue`, fibers, fiber-local storage, Ractors, processes, timeouts, a request queue that refuses |
 | 13 | [IO, files and the system](13_IO_Files_and_the_System/README.md) | `File.open`, `puts`/`p`/`pp`, `ARGV`/`ENV`, running programs, stdin and `ARGF`, `Pathname`, JSON/YAML/Marshal, time, formatting |
 | 14 | [Tooling, testing and gems](14_Tooling_Testing_and_Gems/README.md) | `require`, gems and Bundler, Minitest, the command line, `irb`, what changed per version, backtraces, no docstrings |
 | 15 | [Numbers](15_Numbers/README.md) | `7 / 2`, unbounded integers, floats and rounding, `Rational`/`BigDecimal`, `1 == 1.0`, coercion, seeded randomness, formatting |

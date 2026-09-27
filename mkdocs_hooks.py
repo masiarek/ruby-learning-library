@@ -209,6 +209,7 @@ NAV_ORDER: dict[str, list[str]] = {
         "ractors_share_nothing",
         "processes_fork_and_wait",
         "timeouts_and_killing_threads",
+        "a_sized_queue_that_refuses",
     ],
     "13_IO_Files_and_the_System": [
         "README.md",
