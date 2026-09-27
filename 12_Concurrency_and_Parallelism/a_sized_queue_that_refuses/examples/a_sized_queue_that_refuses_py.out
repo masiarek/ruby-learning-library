@@ -1,0 +1,58 @@
+Passenger's defaults: a pool of 6 processes, each answering one request
+at a time, in front of a request queue of 100. When a request takes 200 ms,
+the pool answers at most 30 a second. HAProxy, in front, waits
+30 s for an answer and then sends a 504 itself.
+(A simulation on a millisecond clock, not Passenger or HAProxy themselves.)
+
+ 1. 25 requests/s for 60 s: under the 30/s the pool clears
+   peak queue in second 5 / 20 / 40 / 60      0 / 0 / 0 / 0    never full
+   longest wait in the queue                  0.0 s
+   refused with 503 (Passenger: queue full)   0 of 1500
+   timed out with 504 (HAProxy: 30 s passed)  0 of 1500
+   queue empty again                          0.2 s after the last arrival
+
+ 2. 40 requests/s for 60 s: over 30/s, queue capped at 100
+   peak queue in second 5 / 20 / 40 / 60      50 / 100 / 100 / 100    full from 10.0 s
+   longest wait in the queue                  3.3 s
+   refused with 503 (Passenger: queue full)   500 of 2400
+   timed out with 504 (HAProxy: 30 s passed)  0 of 2400
+   queue empty again                          3.5 s after the last arrival
+
+ 3. the same 40 requests/s, queue uncapped
+   peak queue in second 5 / 20 / 40 / 60      50 / 200 / 400 / 600    never full
+   longest wait in the queue                  19.9 s
+   refused with 503 (Passenger: queue full)   0 of 2400
+   timed out with 504 (HAProxy: 30 s passed)  0 of 2400
+   queue empty again                          20.1 s after the last arrival
+
+ 4. 25 requests/s again, but a slow database: 2000 ms per request
+   peak queue in second 5 / 20 / 40 / 60      100 / 100 / 100 / 100    full from 4.7 s
+   longest wait in the queue                  33.8 s
+   refused with 503 (Passenger: queue full)   1220 of 1500
+   timed out with 504 (HAProxy: 30 s passed)  184 of 1500
+   queue empty again                          34.1 s after the last arrival
+
+ 5. a registration window: 200 requests in the first second, then 20/s
+   peak queue in second 5 / 20 / 40 / 60      69 / 0 / 0 / 0    full from 0.5 s
+   longest wait in the queue                  3.3 s
+   refused with 503 (Passenger: queue full)   71 of 1380
+   timed out with 504 (HAProxy: 30 s passed)  0 of 1380
+   queue empty again                          0.2 s after the last arrival
+
+ 6. the same window, queue uncapped
+   peak queue in second 5 / 20 / 40 / 60      140 / 0 / 0 / 0    never full
+   longest wait in the queue                  5.6 s
+   refused with 503 (Passenger: queue full)   0 of 1380
+   timed out with 504 (HAProxy: 30 s passed)  0 of 1380
+   queue empty again                          0.2 s after the last arrival
+
+ 7. the database locks up: 5 requests/s, 40 000 ms per request
+   peak queue in second 5 / 20 / 40 / 60      19 / 94 / 100 / 100    full from 21.2 s
+   longest wait in the queue                  679.4 s
+   refused with 503 (Passenger: queue full)   188 of 300
+   timed out with 504 (HAProxy: 30 s passed)  112 of 300
+   queue empty again                          700.8 s after the last arrival
+
+ 8. Queue(maxsize=100): put 100, then put_nowait(job)    Full
+ 9. put(job, timeout=0) on the full queue                Full (raised, not None)
+10. Queue() has no cap: put number 100001                qsize 100001, maxsize 0
